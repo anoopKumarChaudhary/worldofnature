@@ -5,7 +5,6 @@ import Link from "next/link";
 import ProductCard from "../components/ProductCard"; // Adjust path if needed
 import { useDispatch } from "react-redux";
 import { addToCart, CartItem } from "../redux/features/cart/cartSlice";
-import styles from "./shop.module.css";
 
 // --- UPDATED: Import only the icons we need ---
 import { Filter, ChevronDown } from "lucide-react";
@@ -328,120 +327,132 @@ const ShopPage = () => {
   };
 
   return (
-    <section className="bg-[var(--shop-bg)] text-[var(--shop-text)] py-16 px-4">
+    <section className="bg-[var(--color-background)] text-[var(--color-text-primary)] py-16 px-4">
       <div className="max-w-7xl mx-auto">
         {/* --- 1. Shop Header --- */}
-        <div className={styles.shopHeader}>
-          <h1 className={styles.shopTitle}>Shop All Products</h1>
-          <p className={styles.shopSubtitle}>
+        <div className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold text-[var(--color-text-primary)] mb-4">
+            Shop All Products
+          </h1>
+          <p className="text-lg md:text-xl text-[var(--color-text-secondary)] max-w-2xl mx-auto">
             Browse our full collection of organic, sustainably-sourced goods.
           </p>
         </div>
 
         {/* --- 2. Search Bar --- */}
-        <div className={styles.searchContainer}>
+        <div className="max-w-md mx-auto mb-8">
           <input
             type="text"
             placeholder="Search products..."
             value={searchTerm}
             onChange={handleSearchChange}
-            className={styles.searchInput}
+            className="w-full px-4 py-3 border border-[var(--color-border)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-primary)] bg-[var(--color-surface)] text-[var(--color-text-primary)]"
           />
         </div>
 
         {/* --- 3. Main Shop Layout (Sidebar + Grid) --- */}
-        <div className={styles.shopLayout}>
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* --- 3a. Sidebar --- */}
           <aside
-            className={`${styles.sidebar} ${styles.sticky} ${
-              isFilterOpen ? "" : "hidden lg:block"
-            }`}
+            className={`lg:col-span-1 ${isFilterOpen ? "" : "hidden lg:block"}`}
           >
             {/* --- Filter Toggle (Mobile) --- */}
             <div
-              className={`${styles.filterToggle} lg:hidden`}
+              className="lg:hidden bg-[var(--color-surface)] p-4 rounded-lg border border-[var(--color-border)] mb-6 cursor-pointer"
               onClick={() => setIsFilterOpen(!isFilterOpen)}
             >
-              <div className="flex items-center gap-3">
-                <FilterIcon />
-                <span className={styles.text}>Filters & Sort</span>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <FilterIcon />
+                  <span className="text-[var(--color-text-primary)] font-medium">
+                    Filters & Sort
+                  </span>
+                </div>
+                <DisclosureIcon />
               </div>
-              <DisclosureIcon />
             </div>
 
             {/* --- Filter Groups --- */}
             <div className="space-y-6">
               {/* --- Categories --- */}
-              <div className={styles.filterGroup}>
-                <h3 className={styles.filterTitle}>
-                  <span className={styles.indicator}></span>
+              <div className="bg-[var(--color-surface)] p-6 rounded-lg border border-[var(--color-border)]">
+                <h3 className="text-lg font-semibold text-[var(--color-text-primary)] mb-4 flex items-center gap-2">
+                  <span className="w-2 h-2 bg-[var(--color-brand-primary)] rounded-full"></span>
                   Categories
                 </h3>
-                <ul className={styles.filterList}>
-                  <li className={styles.filterItem}>
-                    <label className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors duration-200">
+                <ul className="space-y-3">
+                  <li>
+                    <label className="flex items-center gap-3 p-2 rounded-lg hover:bg-[var(--color-border)] cursor-pointer transition-colors duration-200">
                       <input
                         type="checkbox"
                         id="cat-honey"
                         value="honey"
                         onChange={handleCategoryChange}
                         checked={selectedCategories.includes("honey")}
-                        className={styles.filterCheckbox}
+                        className="w-4 h-4 text-[var(--color-brand-primary)] bg-[var(--color-surface)] border-[var(--color-border)] rounded focus:ring-[var(--color-brand-primary)] focus:ring-2"
                       />
-                      <span className={styles.filterLabel}>Raw Honey</span>
+                      <span className="text-[var(--color-text-primary)]">
+                        Raw Honey
+                      </span>
                     </label>
                   </li>
-                  <li className={styles.filterItem}>
-                    <label className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors duration-200">
+                  <li>
+                    <label className="flex items-center gap-3 p-2 rounded-lg hover:bg-[var(--color-border)] cursor-pointer transition-colors duration-200">
                       <input
                         type="checkbox"
                         id="cat-oils"
                         value="oils"
                         onChange={handleCategoryChange}
                         checked={selectedCategories.includes("oils")}
-                        className={styles.filterCheckbox}
+                        className="w-4 h-4 text-[var(--color-brand-primary)] bg-[var(--color-surface)] border-[var(--color-border)] rounded focus:ring-[var(--color-brand-primary)] focus:ring-2"
                       />
-                      <span className={styles.filterLabel}>Ghee & Oils</span>
+                      <span className="text-[var(--color-text-primary)]">
+                        Ghee & Oils
+                      </span>
                     </label>
                   </li>
-                  <li className={styles.filterItem}>
-                    <label className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors duration-200">
+                  <li>
+                    <label className="flex items-center gap-3 p-2 rounded-lg hover:bg-[var(--color-border)] cursor-pointer transition-colors duration-200">
                       <input
                         type="checkbox"
                         id="cat-teas"
                         value="teas"
                         onChange={handleCategoryChange}
                         checked={selectedCategories.includes("teas")}
-                        className={styles.filterCheckbox}
+                        className="w-4 h-4 text-[var(--color-brand-primary)] bg-[var(--color-surface)] border-[var(--color-border)] rounded focus:ring-[var(--color-brand-primary)] focus:ring-2"
                       />
-                      <span className={styles.filterLabel}>Artisanal Teas</span>
+                      <span className="text-[var(--color-text-primary)]">
+                        Artisanal Teas
+                      </span>
                     </label>
                   </li>
-                  <li className={styles.filterItem}>
-                    <label className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors duration-200">
+                  <li>
+                    <label className="flex items-center gap-3 p-2 rounded-lg hover:bg-[var(--color-border)] cursor-pointer transition-colors duration-200">
                       <input
                         type="checkbox"
                         id="cat-seeds"
                         value="seeds"
                         onChange={handleCategoryChange}
                         checked={selectedCategories.includes("seeds")}
-                        className={styles.filterCheckbox}
+                        className="w-4 h-4 text-[var(--color-brand-primary)] bg-[var(--color-surface)] border-[var(--color-border)] rounded focus:ring-[var(--color-brand-primary)] focus:ring-2"
                       />
-                      <span className={styles.filterLabel}>Seeds & Spices</span>
+                      <span className="text-[var(--color-text-primary)]">
+                        Seeds & Spices
+                      </span>
                     </label>
                   </li>
                 </ul>
               </div>
 
               {/* --- Price --- */}
-              <div className={styles.filterGroup}>
-                <h3 className={styles.filterTitle}>
-                  <span className={styles.indicator}></span>
+              <div className="bg-[var(--color-surface)] p-6 rounded-lg border border-[var(--color-border)]">
+                <h3 className="text-lg font-semibold text-[var(--color-text-primary)] mb-4 flex items-center gap-2">
+                  <span className="w-2 h-2 bg-[var(--color-brand-primary)] rounded-full"></span>
                   Price Range
                 </h3>
-                <ul className={styles.filterList}>
-                  <li className={styles.filterItem}>
-                    <label className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors duration-200">
+                <ul className="space-y-3">
+                  <li>
+                    <label className="flex items-center gap-3 p-2 rounded-lg hover:bg-[var(--color-border)] cursor-pointer transition-colors duration-200">
                       <input
                         type="radio"
                         id="price-all"
@@ -449,13 +460,15 @@ const ShopPage = () => {
                         value="all"
                         onChange={handlePriceChange}
                         checked={selectedPrice === "all"}
-                        className={styles.filterCheckbox}
+                        className="w-4 h-4 text-[var(--color-brand-primary)] bg-[var(--color-surface)] border-[var(--color-border)] focus:ring-[var(--color-brand-primary)] focus:ring-2"
                       />
-                      <span className={styles.filterLabel}>All Prices</span>
+                      <span className="text-[var(--color-text-primary)]">
+                        All Prices
+                      </span>
                     </label>
                   </li>
-                  <li className={styles.filterItem}>
-                    <label className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors duration-200">
+                  <li>
+                    <label className="flex items-center gap-3 p-2 rounded-lg hover:bg-[var(--color-border)] cursor-pointer transition-colors duration-200">
                       <input
                         type="radio"
                         id="price-1"
@@ -463,13 +476,15 @@ const ShopPage = () => {
                         value="0-15"
                         onChange={handlePriceChange}
                         checked={selectedPrice === "0-15"}
-                        className={styles.filterCheckbox}
+                        className="w-4 h-4 text-[var(--color-brand-primary)] bg-[var(--color-surface)] border-[var(--color-border)] focus:ring-[var(--color-brand-primary)] focus:ring-2"
                       />
-                      <span className={styles.filterLabel}>$0 - $15</span>
+                      <span className="text-[var(--color-text-primary)]">
+                        $0 - $15
+                      </span>
                     </label>
                   </li>
-                  <li className={styles.filterItem}>
-                    <label className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors duration-200">
+                  <li>
+                    <label className="flex items-center gap-3 p-2 rounded-lg hover:bg-[var(--color-border)] cursor-pointer transition-colors duration-200">
                       <input
                         type="radio"
                         id="price-2"
@@ -477,13 +492,15 @@ const ShopPage = () => {
                         value="15-25"
                         onChange={handlePriceChange}
                         checked={selectedPrice === "15-25"}
-                        className={styles.filterCheckbox}
+                        className="w-4 h-4 text-[var(--color-brand-primary)] bg-[var(--color-surface)] border-[var(--color-border)] focus:ring-[var(--color-brand-primary)] focus:ring-2"
                       />
-                      <span className={styles.filterLabel}>$15 - $25</span>
+                      <span className="text-[var(--color-text-primary)]">
+                        $15 - $25
+                      </span>
                     </label>
                   </li>
-                  <li className={styles.filterItem}>
-                    <label className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors duration-200">
+                  <li>
+                    <label className="flex items-center gap-3 p-2 rounded-lg hover:bg-[var(--color-border)] cursor-pointer transition-colors duration-200">
                       <input
                         type="radio"
                         id="price-3"
@@ -491,9 +508,11 @@ const ShopPage = () => {
                         value="25+"
                         onChange={handlePriceChange}
                         checked={selectedPrice === "25+"}
-                        className={styles.filterCheckbox}
+                        className="w-4 h-4 text-[var(--color-brand-primary)] bg-[var(--color-surface)] border-[var(--color-border)] focus:ring-[var(--color-brand-primary)] focus:ring-2"
                       />
-                      <span className={styles.filterLabel}>$25+</span>
+                      <span className="text-[var(--color-text-primary)]">
+                        $25+
+                      </span>
                     </label>
                   </li>
                 </ul>
@@ -502,18 +521,21 @@ const ShopPage = () => {
           </aside>
 
           {/* --- 3b. Main Content --- */}
-          <main>
+          <main className="lg:col-span-3">
             {/* --- Sort Controls --- */}
-            <div className={styles.sortControls}>
-              <div className={styles.sortSelectContainer}>
-                <label htmlFor="sort-by" className={styles.sortLabel}>
+            <div className="flex justify-between items-center mb-6">
+              <div className="relative">
+                <label
+                  htmlFor="sort-by"
+                  className="block text-sm font-medium text-[var(--color-text-primary)] mb-2"
+                >
                   Sort by:
                 </label>
                 <select
                   id="sort-by"
                   value={sortBy}
                   onChange={handleSortChange}
-                  className={styles.sortSelect}
+                  className="appearance-none bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg px-4 py-2 pr-8 text-[var(--color-text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-primary)]"
                 >
                   <option value="default">Featured</option>
                   <option value="price-asc">Price: Low to High</option>
@@ -526,7 +548,7 @@ const ShopPage = () => {
             </div>
 
             {/* --- Product Grid --- */}
-            <div className={styles.productGrid}>
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
               {displayedProducts.length > 0 ? (
                 displayedProducts.map((product) => (
                   <ProductCard
@@ -540,7 +562,7 @@ const ShopPage = () => {
                   />
                 ))
               ) : (
-                <p className={styles.noProducts}>
+                <p className="text-center text-[var(--color-text-secondary)] py-12 col-span-full">
                   No products found matching your criteria.
                 </p>
               )}
@@ -548,9 +570,9 @@ const ShopPage = () => {
 
             {/* --- Pagination --- */}
             {totalPages > 1 && (
-              <nav className={styles.pagination}>
+              <nav className="flex justify-center items-center gap-2 mt-8">
                 <button
-                  className={styles.pageButton}
+                  className="px-4 py-2 border border-[var(--color-border)] rounded-lg bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:bg-[var(--color-border)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
                   onClick={() => handlePageChange(currentPage - 1)}
                   disabled={currentPage === 1}
                 >
@@ -560,8 +582,10 @@ const ShopPage = () => {
                   (page) => (
                     <button
                       key={page}
-                      className={`${styles.pageButton} ${
-                        currentPage === page ? styles.active : ""
+                      className={`px-4 py-2 border border-[var(--color-border)] rounded-lg transition-colors duration-200 ${
+                        currentPage === page
+                          ? "bg-[var(--color-brand-primary)] text-[var(--color-brand-primary-text)] border-[var(--color-brand-primary)]"
+                          : "bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:bg-[var(--color-border)]"
                       }`}
                       onClick={() => handlePageChange(page)}
                     >
@@ -570,7 +594,7 @@ const ShopPage = () => {
                   )
                 )}
                 <button
-                  className={styles.pageButton}
+                  className="px-4 py-2 border border-[var(--color-border)] rounded-lg bg-[var(--color-surface)] text-[var(--color-text-primary)] hover:bg-[var(--color-border)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
                   onClick={() => handlePageChange(currentPage + 1)}
                   disabled={currentPage === totalPages}
                 >
