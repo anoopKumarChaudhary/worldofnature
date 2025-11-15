@@ -1,0 +1,279 @@
+/* This is the new page background, matching your footer */
+.pageWrapper {
+    font-family: var(--font-sans);
+    background-color: var(--brand-dark);
+    color: var(--brand-light);
+    /* Default text is light */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    width: 100%;
+}
+
+/* This container matches your footer's container perfectly */
+.container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+    .container {
+        max-width: 640px;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        max-width: 1024px;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
+
+@media (min-width: 1280px) {
+    .container {
+        max-width: 1280px;
+    }
+}
+
+/* --- Page Header --- */
+.header {
+    text-align: center;
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--contact-border);
+    /* Dark theme border */
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--brand-light);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.025em;
+}
+
+.subtitle {
+    font-size: 1.125rem;
+    color: var(--brand-grey-light);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+    font-weight: 300;
+    /* Matches footer.newsletterTagline */
+}
+
+/* --- Main Content Grid --- */
+.mainGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    width: 100%;
+    padding: 4rem 0;
+}
+
+@media (min-width: 1024px) {
+    .mainGrid {
+        grid-template-columns: 1fr 1.25fr;
+        gap: 4rem;
+    }
+}
+
+/* --- Section Titles --- */
+.sectionTitle {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--brand-light);
+    /* Light text */
+    margin-bottom: 1rem;
+}
+
+.infoText {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--brand-grey-light);
+    /* Light grey text */
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+}
+
+/* --- Left Column: Info --- */
+.infoColumn {
+    width: 100%;
+}
+
+.infoList {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.infoItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+}
+
+.infoIcon {
+    flex-shrink: 0;
+    width: 1.75rem;
+    height: 1.75rem;
+    color: var(--brand-green);
+    /* Softer green icon */
+    margin-top: 0.125rem;
+    transition: transform 0.3s ease;
+}
+
+.infoItem:hover .infoIcon {
+    transform: scale(1.1);
+    /* Matches footer.socialLink hover */
+}
+
+.infoTitle {
+    font-size: 1.125rem;
+    font-weight: 700;
+    /* Matches footer.columnTitle */
+    color: var(--brand-light);
+    /* Light text */
+    margin-bottom: 0.25rem;
+}
+
+.infoLink,
+.infoAddress {
+    font-size: 1rem;
+    color: var(--brand-grey-light);
+    /* Light grey text */
+    text-decoration: none;
+    line-height: 1.6;
+    font-weight: 300;
+    /* Matches footer.link */
+}
+
+.infoLink {
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+}
+
+.infoItem:hover .infoLink {
+    color: var(--brand-accent);
+    /* Hover to tan */
+    transform: translateX(5px);
+    /* Matches footer.link hover */
+}
+
+/* --- Right Column: Form (Dark Theme) --- */
+.formColumn {
+    width: 100%;
+}
+
+.contactForm {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--brand-grey-light);
+    /* Light grey text */
+    margin-bottom: 0.5rem;
+}
+
+.input:focus,
+.textarea:focus {
+    border-bottom-color: var(--brand-accent);
+    /* Tan focus underline */
+}
+
+.input,
+.textarea {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    color: var(--brand-light);
+    /* Light text */
+    padding: 0.75rem 0.25rem;
+
+    background-color: transparent;
+    /* No background */
+    border: none;
+    border-bottom: 2px solid var(--contact-border);
+    /* Dark theme underline */
+    border-radius: 0;
+
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* --- Buttons --- */
+.submitButton {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ffffff;
+    background-color: var(--brand-accent);
+    border: none;
+    padding: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    /* Darker shadow */
+    margin-top: 1rem;
+}
+
+.submitButton:hover {
+    background-color: var(--brand-accent-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.whatsappButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background-color: var(--whatsapp-bg);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2);
+}
+
+.whatsappButton:hover {
+    background-color: var(--whatsapp-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+}
+
+.whatsappIconSvg {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+/* --- Map Section --- */
+.mapSection {
+    width: 100%;
+    padding: 0;
+    line-height: 0;
+    /* Removes space around iframe */
+    margin-top: 4rem;
+    /* Space between content and map */
+}

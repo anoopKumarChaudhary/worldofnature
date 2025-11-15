@@ -1,0 +1,148 @@
+/* product.module.css */
+/* Based on the dark green theme from the image */
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    padding: 1.5rem;
+    font-family: var(--font-sans, sans-serif);
+    color: var(--text-primary);
+    text-align: left;
+    transition: all 0.3s ease;
+    width: 100%;
+    /* Let the parent grid control the size */
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.imageContainer {
+    background-color: var(--image-bg);
+    border-radius: 16px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Make the container a responsive square */
+    width: 100%;
+    aspect-ratio: 1 / 1;
+}
+
+.productImage {
+    width: 100%;
+    height: 100%;
+    /* Make image fill the container */
+    object-fit: contain;
+    /* 'contain' is best for products */
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    /* Makes the content fill the remaining space */
+}
+
+.title {
+    font-size: 1.5rem;
+    /* 24px */
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 0.5rem 0;
+}
+
+.description {
+    font-size: 0.875rem;
+    /* 14px */
+    color: var(--text-secondary);
+    margin: 0 0 1.5rem 0;
+    line-height: 1.5;
+    /* Clamp the description to 2 lines */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* We set a min-height to help alignment if one card has 1 line */
+    min-height: calc(0.875rem * 1.5 * 2);
+    /* font-size * line-height * 2 lines */
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    /* Pushes footer to the bottom */
+}
+
+.priceContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.price {
+    font-size: 1.25rem;
+    /* 20px */
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.originalPrice {
+    font-size: 0.875rem;
+    color: var(--brand-grey);
+    text-decoration: line-through;
+}
+
+.cartButton {
+    background: transparent;
+    border: 1px solid var(--icon-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--icon-color);
+    /* This will color the SVG stroke */
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    /* Prevents button from shrinking */
+}
+
+.cartButton:hover {
+    background-color: var(--icon-hover-bg);
+    border-color: var(--text-primary);
+    color: var(--text-primary);
+    /* This will make the icon white */
+}
+
+.cartIcon {
+    width: 20px;
+    height: 20px;
+}
+
+/* Media Query for smaller screens */
+@media (max-width: 360px) {
+    .card {
+        padding: 1rem;
+        /* Smaller padding */
+    }
+
+    .title {
+        font-size: 1.25rem;
+        /* Smaller title */
+    }
+
+    .price {
+        font-size: 1.125rem;
+        /* Smaller price */
+    }
+}
