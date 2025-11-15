@@ -25,89 +25,155 @@
 
   /* --- 3. Semantic Theme Variables (Light Mode by Default) --- */
   /* These variables define the *purpose* of a color and will be overridden in dark mode. */
-  --background: var(--brand-light);
-  /* Light cream background */
-  --foreground: var(--brand-text-dark);
-  /* Dark text */
+  --background: var(--color-background);
+  --foreground: var(--color-text-primary);
 
-  --card-bg: #ffffff;
-  /* White cards to pop off the cream bg */
-  --card-border: var(--brand-grey-light);
-  /* Light border */
+  --card-bg: var(--color-surface);
+  --card-border: var(--color-border);
 
-  --image-bg: var(--brand-grey-light);
-  /* Placeholder bg */
+  --image-bg: var(--color-border);
 
-  --text-primary: var(--brand-text-dark);
-  /* Main text color */
-  --text-secondary: var(--brand-grey-dark);
-  /* Muted text color */
+  --text-primary: var(--color-text-primary);
+  --text-secondary: var(--color-text-secondary);
 
-  --icon-color: var(--brand-grey-dark);
-  --icon-hover-bg: #f3f4f6;
-  /* A very light grey */
+  --icon-color: var(--color-text-secondary);
+  --icon-hover-bg: var(--color-border);
 
   /* Brand-specific semantic colors */
-  --brand-primary-bg: var(--brand-green);
-  --brand-primary-text: var(--brand-text-light);
+  --brand-primary-bg: var(--color-brand-primary);
+  --brand-primary-text: var(--color-brand-primary-text);
 
-  /* Additional hardcoded colors from other files */
-  --border-grey: #e0e0e0;
-  --neutral-grey: #555;
-  --about-bg: #2a2824;
-  --about-text: #b0b0b0;
-  --about-border: #4a4a4a;
-  --about-surface: #3a3732;
-  --about-cta-bg: #1d1e1a;
-  --shop-bg: #fdfcf7;
-  --shop-text: #1a3a30;
-  --shop-grey: #555;
-  --shop-border: #e5e7eb;
-  --shop-dark: #222;
-  --shop-light-bg: #fcfcfc;
-  --shop-input-bg: #f4f4f4;
-  --shop-hover-bg: #e9e9e9;
-  --shop-green: #4caf50;
-  --shop-hover-border: #aaa;
-  --footer-border: #4b5563;
-  --footer-grey: #d1d5db;
-  --footer-white: #fff;
-  --footer-placeholder: #6b7280;
-  --footer-tagline: #adb5bd;
-  --footer-copyright: #9ca3af;
-  --contact-border: #4b5563;
+  /* Additional hardcoded colors from other files - standardized */
+  --border-grey: var(--color-border);
+  --neutral-grey: var(--color-text-secondary);
+  --about-bg: var(--color-brand-primary);
+  --about-text: var(--color-brand-primary-text);
+  --about-border: var(--color-border);
+  --about-surface: var(--color-surface);
+  --about-cta-bg: var(--color-brand-accent);
+  --shop-bg: var(--color-background);
+  --shop-text: var(--color-text-primary);
+  --shop-grey: var(--color-text-secondary);
+  --shop-border: var(--color-border);
+  --shop-dark: var(--color-text-primary);
+  --shop-light-bg: var(--color-surface);
+  --shop-input-bg: var(--color-border);
+  --shop-hover-bg: var(--color-border);
+  --shop-green: var(--color-brand-primary);
+  --shop-hover-border: var(--color-text-secondary);
+  --footer-border: var(--color-border);
+  --footer-grey: var(--color-text-secondary);
+  --footer-white: var(--color-surface);
+  --footer-placeholder: var(--color-text-secondary);
+  --footer-tagline: var(--color-text-secondary);
+  --footer-copyright: var(--color-text-secondary);
+  --contact-border: var(--color-border);
   --whatsapp-bg: #25D366;
   --whatsapp-hover: #1EAE56;
-  --navbar-hover: #f3f4f6;
+  --navbar-hover: var(--color-border);
+
+  /* GLOBAL COLOR VARIABLES
+    Light mode (default)
+  */
+  --color-background: #FAFAF8;
+  /* Main page background */
+  --color-surface: #FFFFFF;
+  /* Card, footer, and sidebar backgrounds */
+  --color-border: #E0E0E0;
+  /* Light borders and dividers */
+
+  --color-text-primary: #222222;
+  /* Headings and main text */
+  --color-text-secondary: #555555;
+  /* Descriptions, labels, sub-text */
+
+  --color-brand-primary: #3A4A3A;
+  /* Main brand color (forest green) */
+  --color-brand-primary-text: #FFFFFF;
+  /* Text on top of brand color */
+
+  --color-brand-accent: #C9A989;
+  /* Accent color (natural beige) */
+  --color-brand-accent-text: #222222;
+  /* Text on top of accent color */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     /* --- 3. Semantic Theme Variables (Dark Mode Overrides) --- */
     /* We re-define the *same* variables for dark mode */
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: var(--color-background);
+    --foreground: var(--color-text-primary);
 
-    --card-bg: #1A2A22;
-    /* Your dark card bg */
-    --card-border: #3A4D39;
-    /* Your dark card border */
+    --card-bg: var(--color-surface);
+    --card-border: var(--color-border);
 
-    --image-bg: #2B3D34;
-    /* Your dark image bg */
+    --image-bg: var(--color-border);
 
-    --text-primary: #FFFFFF;
-    --text-secondary: #a0aec0;
-    /* A light, muted grey */
+    --text-primary: var(--color-text-primary);
+    --text-secondary: var(--color-text-secondary);
 
-    --icon-color: #a0aec0;
-    --icon-hover-bg: #3A4D39;
-    /* Your icon hover bg */
+    --icon-color: var(--color-text-secondary);
+    --icon-hover-bg: var(--color-border);
 
     /* Brand-specific semantic colors can be inverted */
-    --brand-primary-bg: var(--brand-green);
-    --brand-primary-text: var(--brand-text-light);
-    /* Note: --brand-accent (tan) works well on both light and dark bgs */
+    --brand-primary-bg: var(--color-brand-primary);
+    --brand-primary-text: var(--color-brand-primary-text);
+
+    /* Additional hardcoded colors from other files - standardized */
+    --border-grey: var(--color-border);
+    --neutral-grey: var(--color-text-secondary);
+    --about-bg: var(--color-brand-primary);
+    --about-text: var(--color-brand-primary-text);
+    --about-border: var(--color-border);
+    --about-surface: var(--color-surface);
+    --about-cta-bg: var(--color-brand-accent);
+    --shop-bg: var(--color-background);
+    --shop-text: var(--color-text-primary);
+    --shop-grey: var(--color-text-secondary);
+    --shop-border: var(--color-border);
+    --shop-dark: var(--color-text-primary);
+    --shop-light-bg: var(--color-surface);
+    --shop-input-bg: var(--color-border);
+    --shop-hover-bg: var(--color-border);
+    --shop-green: var(--color-brand-primary);
+    --shop-hover-border: var(--color-text-secondary);
+    --footer-border: var(--color-border);
+    --footer-grey: var(--color-text-secondary);
+    --footer-white: var(--color-surface);
+    --footer-placeholder: var(--color-text-secondary);
+    --footer-tagline: var(--color-text-secondary);
+    --footer-copyright: var(--color-text-secondary);
+    --contact-border: var(--color-border);
+    --whatsapp-bg: #25D366;
+    --whatsapp-hover: #1EAE56;
+    --navbar-hover: var(--color-border);
+
+    /* Dark mode overrides */
+    --color-background: #1E2D2B;
+    /* Dark charcoal-green background */
+    --color-surface: #3A4A3A;
+    /* Forest green for cards/footers */
+    --color-border: #4A5A4A;
+    /* Muted green-gray border */
+
+    --color-text-primary: #F5F5F5;
+    /* Off-white main text */
+    --color-text-secondary: #B0B0B0;
+    /* Light gray for descriptions */
+
+    /* We flip the primary and accent colors in dark mode
+       for better contrast and visual appeal.
+    */
+    --color-brand-primary: #C9A989;
+    /* Beige is now the main button color */
+    --color-brand-primary-text: #222222;
+    /* Dark text on beige button */
+
+    --color-brand-accent: #8BC34A;
+    /* A brighter green for secondary accents */
+    --color-brand-accent-text: #222222;
+    /* Dark text on bright green */
   }
 }
 
@@ -119,6 +185,13 @@ body {
   /* Use your CSS variable! */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Optional: Add a smooth transition for color changes */
+body,
+.card,
+.button {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 /* This block looks like it's for a Tailwind plugin or theme config. 

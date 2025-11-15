@@ -4,7 +4,6 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import styles from "./product.module.css"; // Matches your import
 
 // You can place this icon component in a separate file or keep it here
 const CartIcon = () => (
@@ -14,7 +13,7 @@ const CartIcon = () => (
     viewBox="0 0 24 24"
     strokeWidth={1.5}
     stroke="currentColor"
-    className={styles.cartIcon}
+    className="w-5 h-5"
   >
     <path
       strokeLinecap="round"
@@ -45,37 +44,45 @@ const ProductCard: React.FC<ProductCardProps> = ({
   onAddToCart,
 }) => {
   return (
-    <div className={styles.card}>
+    <div className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-3xl p-6 font-sans text-[var(--text-primary)] text-left transition-all duration-300 w-full flex flex-col hover:-translate-y-1 hover:shadow-2xl">
       {/* Image Container */}
-      <div className={styles.imageContainer}>
+      <div className="bg-[var(--image-bg)] rounded-2xl p-4 mb-4 flex justify-center items-center w-full aspect-square">
         <Link href={`/product/${id}`}>
           <Image
             src={imageUrl}
             alt={title}
             width={300}
             height={300}
-            className={styles.productImage}
+            className="w-full h-full object-contain"
           />
         </Link>
       </div>
 
       {/* Content Container */}
-      <div className={styles.content}>
+      <div className="flex flex-col flex-grow">
         <Link href={`/product/${id}`}>
-          <h3 className={styles.title}>{title}</h3>
+          <h3 className="text-2xl font-semibold text-[var(--text-primary)] mb-2">
+            {title}
+          </h3>
         </Link>
-        <p className={styles.description}>{description}</p>
+        <p className="text-sm text-[var(--text-secondary)] mb-6 leading-relaxed line-clamp-2 min-h-[calc(0.875rem*1.5*2)]">
+          {description}
+        </p>
 
         {/* Footer with Price and Cart Button */}
-        <div className={styles.footer}>
-          <div className={styles.priceContainer}>
-            <span className={styles.price}>{price}</span>
+        <div className="flex justify-between items-center mt-auto">
+          <div className="flex flex-col items-start">
+            <span className="text-xl font-bold text-[var(--text-primary)]">
+              {price}
+            </span>
             {originalPrice && (
-              <span className={styles.originalPrice}>{originalPrice}</span>
+              <span className="text-sm text-[var(--product-grey)] line-through">
+                {originalPrice}
+              </span>
             )}
           </div>
           <button
-            className={styles.cartButton}
+            className="bg-transparent border border-[var(--icon-color)] rounded-full w-10 h-10 flex items-center justify-center cursor-pointer text-[var(--icon-color)] transition-all duration-300 flex-shrink-0 hover:bg-[var(--icon-hover-bg)] hover:border-[var(--text-primary)] hover:text-[var(--text-primary)]"
             onClick={onAddToCart}
             aria-label="Add to cart"
           >

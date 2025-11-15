@@ -1,13 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
-import styles from "./faq.module.css";
 import { motion, AnimatePresence } from "framer-motion";
 
 // --- Icon for the accordion ---
 const ChevronIcon = ({ isOpen }: { isOpen: boolean }) => (
   <svg
-    className={styles.chevronIcon}
+    className="w-5 h-5 text-[var(--color-text-secondary)] transition-transform duration-300"
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 24 24"
@@ -33,21 +32,28 @@ const FaqItem: React.FC<FaqItemProps> = ({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className={styles.faqItem}>
-      <button className={styles.faqQuestion} onClick={() => setIsOpen(!isOpen)}>
-        <span>{question}</span>
+    <div className="border border-[var(--color-border)] rounded-lg overflow-hidden bg-[var(--color-surface)]">
+      <button
+        className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-[var(--color-border)] transition-colors duration-200"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <span className="text-lg font-medium text-[var(--color-text-primary)]">
+          {question}
+        </span>
         <ChevronIcon isOpen={isOpen} />
       </button>
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className={styles.faqAnswerWrapper}
+            className="px-6 pb-4"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: [0.21, 0.49, 0.73, 1] }}
           >
-            <p className={styles.faqAnswer}>{answer}</p>
+            <p className="text-[var(--color-text-secondary)] leading-relaxed">
+              {answer}
+            </p>
           </motion.div>
         )}
       </AnimatePresence>

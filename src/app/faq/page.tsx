@@ -2,7 +2,6 @@
 
 import React from "react";
 import Link from "next/link";
-import styles from "./faq.module.css";
 import FaqItem from "../components/faq";
 
 // --- FAQ Content ---
@@ -37,13 +36,15 @@ const faqs = [
 const FaqPage = () => {
   return (
     // This page wrapper is on the LIGHT theme
-    <div className={styles.pageWrapper}>
-      <div className={styles.container}>
+    <div className="min-h-screen bg-[var(--color-background)] text-[var(--color-text-primary)]">
+      <div className="max-w-4xl mx-auto px-4 md:px-8 lg:px-16 py-16">
         {/* --- 1. Header --- */}
 
-        <header className={styles.header}>
-          <h1 className={styles.title}>Frequently Asked Questions</h1>
-          <p className={styles.subtitle}>
+        <header className="text-center mb-16">
+          <h1 className="text-4xl md:text-5xl font-bold text-[var(--color-text-primary)] mb-6">
+            Frequently Asked Questions
+          </h1>
+          <p className="text-lg md:text-xl text-[var(--color-text-secondary)] max-w-2xl mx-auto">
             Your most common questions about our products, sourcing, and
             philosophy.
           </p>
@@ -51,7 +52,7 @@ const FaqPage = () => {
 
         {/* --- 2. FAQ List --- */}
 
-        <main className={styles.faqList}>
+        <main className="space-y-4 mb-16">
           {faqs.map((faq, index) => (
             <FaqItem key={index} question={faq.question} answer={faq.answer} />
           ))}
@@ -60,14 +61,19 @@ const FaqPage = () => {
       {/* End .container */}
       {/* --- 3. Final CTA (Dark Section) --- */}
       {/* This section matches your footer, creating a seamless transition */}
-      <section className={styles.ctaSection}>
-        <div className={`${styles.container} ${styles.ctaContainer}`}>
-          <h2 className={styles.sectionTitleLight}>Still have questions?</h2>
-          <p className={styles.subtitleLight}>
+      <section className="py-16 px-4 md:px-8 lg:px-16 bg-[var(--color-brand-primary)] text-[var(--color-brand-primary-text)]">
+        <div className="max-w-4xl mx-auto text-center space-y-6">
+          <h2 className="text-3xl md:text-4xl font-bold">
+            Still have questions?
+          </h2>
+          <p className="text-lg md:text-xl opacity-90">
             We are here to help. Get in touch with our team directly for any
             question, big or small.
           </p>
-          <Link href="/contact" className={styles.ctaButton}>
+          <Link
+            href="/contact"
+            className="inline-block bg-[var(--color-brand-accent)] text-[var(--color-brand-accent-text)] px-8 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-colors duration-300"
+          >
             Contact Our Team
           </Link>
         </div>

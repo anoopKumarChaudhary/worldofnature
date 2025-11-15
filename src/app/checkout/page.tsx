@@ -73,12 +73,15 @@ export default function CheckoutPage() {
 
   if (items.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-[var(--background)] flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">
+          <h1 className="text-2xl font-bold text-[var(--color-text-primary)] mb-4">
             Your cart is empty
           </h1>
-          <Link href="/shop" className="text-green-600 hover:text-green-700">
+          <Link
+            href="/shop"
+            className="text-[var(--color-brand-primary)] hover:text-[var(--color-brand-accent)]"
+          >
             ← Back to Shop
           </Link>
         </div>
@@ -87,11 +90,13 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[var(--background)]">
       {/* Header */}
-      <div className="bg-white border-b">
+      <div className="bg-[var(--color-surface)] border-b border-[var(--color-border)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <h1 className="text-3xl font-bold text-gray-900">Checkout</h1>
+          <h1 className="text-3xl font-bold text-[var(--color-text-primary)]">
+            Checkout
+          </h1>
         </div>
       </div>
 
@@ -101,14 +106,16 @@ export default function CheckoutPage() {
           <div className="flex items-center justify-center">
             <div
               className={`flex items-center ${
-                currentStep >= 1 ? "text-green-600" : "text-gray-400"
+                currentStep >= 1
+                  ? "text-[var(--color-brand-primary)]"
+                  : "text-[var(--color-text-secondary)]"
               }`}
             >
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center border-2 ${
                   currentStep >= 1
-                    ? "border-green-600 bg-green-600 text-white"
-                    : "border-gray-300"
+                    ? "border-[var(--color-brand-primary)] bg-[var(--color-brand-primary)] text-[var(--color-brand-primary-text)]"
+                    : "border-[var(--color-border)]"
                 }`}
               >
                 1
@@ -117,19 +124,23 @@ export default function CheckoutPage() {
             </div>
             <div
               className={`w-12 h-0.5 mx-4 ${
-                currentStep >= 2 ? "bg-green-600" : "bg-gray-300"
+                currentStep >= 2
+                  ? "bg-[var(--color-brand-primary)]"
+                  : "bg-[var(--color-border)]"
               }`}
             ></div>
             <div
               className={`flex items-center ${
-                currentStep >= 2 ? "text-green-600" : "text-gray-400"
+                currentStep >= 2
+                  ? "text-[var(--color-brand-primary)]"
+                  : "text-[var(--color-text-secondary)]"
               }`}
             >
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center border-2 ${
                   currentStep >= 2
-                    ? "border-green-600 bg-green-600 text-white"
-                    : "border-gray-300"
+                    ? "border-[var(--color-brand-primary)] bg-[var(--color-brand-primary)] text-[var(--color-brand-primary-text)]"
+                    : "border-[var(--color-border)]"
                 }`}
               >
                 2
@@ -138,19 +149,23 @@ export default function CheckoutPage() {
             </div>
             <div
               className={`w-12 h-0.5 mx-4 ${
-                currentStep >= 3 ? "bg-green-600" : "bg-gray-300"
+                currentStep >= 3
+                  ? "bg-[var(--color-brand-primary)]"
+                  : "bg-[var(--color-border)]"
               }`}
             ></div>
             <div
               className={`flex items-center ${
-                currentStep >= 3 ? "text-green-600" : "text-gray-400"
+                currentStep >= 3
+                  ? "text-[var(--color-brand-primary)]"
+                  : "text-[var(--color-text-secondary)]"
               }`}
             >
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center border-2 ${
                   currentStep >= 3
-                    ? "border-green-600 bg-green-600 text-white"
-                    : "border-gray-300"
+                    ? "border-[var(--color-brand-primary)] bg-[var(--color-brand-primary)] text-[var(--color-brand-primary-text)]"
+                    : "border-[var(--color-border)]"
                 }`}
               >
                 3
@@ -164,8 +179,8 @@ export default function CheckoutPage() {
           {/* Main content */}
           <div className="lg:col-span-8">
             {currentStep === 1 && (
-              <div className="bg-white border border-gray-200 rounded-lg p-6">
-                <h2 className="text-xl font-semibold text-gray-900 mb-6">
+              <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg p-6">
+                <h2 className="text-xl font-semibold text-[var(--color-text-primary)] mb-6">
                   Shipping Information
                 </h2>
                 <form onSubmit={handleShippingSubmit} className="space-y-6">
@@ -173,7 +188,7 @@ export default function CheckoutPage() {
                     <div>
                       <label
                         htmlFor="firstName"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-sm font-medium text-[var(--color-text-primary)]"
                       >
                         First Name
                       </label>
@@ -188,13 +203,13 @@ export default function CheckoutPage() {
                             firstName: e.target.value,
                           })
                         }
-                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
+                        className="mt-1 block w-full border-[var(--color-border)] rounded-md shadow-sm focus:ring-[var(--color-brand-primary)] focus:border-[var(--color-brand-primary)]"
                       />
                     </div>
                     <div>
                       <label
                         htmlFor="lastName"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-sm font-medium text-[var(--color-text-primary)]"
                       >
                         Last Name
                       </label>
@@ -209,7 +224,7 @@ export default function CheckoutPage() {
                             lastName: e.target.value,
                           })
                         }
-                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
+                        className="mt-1 block w-full border-[var(--color-border)] rounded-md shadow-sm focus:ring-[var(--color-brand-primary)] focus:border-[var(--color-brand-primary)]"
                       />
                     </div>
                   </div>
@@ -217,7 +232,7 @@ export default function CheckoutPage() {
                   <div>
                     <label
                       htmlFor="email"
-                      className="block text-sm font-medium text-gray-700"
+                      className="block text-sm font-medium text-[var(--color-text-primary)]"
                     >
                       Email Address
                     </label>
@@ -232,14 +247,14 @@ export default function CheckoutPage() {
                           email: e.target.value,
                         })
                       }
-                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
+                      className="mt-1 block w-full border-[var(--color-border)] rounded-md shadow-sm focus:ring-[var(--color-brand-primary)] focus:border-[var(--color-brand-primary)]"
                     />
                   </div>
 
                   <div>
                     <label
                       htmlFor="phone"
-                      className="block text-sm font-medium text-gray-700"
+                      className="block text-sm font-medium text-[var(--color-text-primary)]"
                     >
                       Phone Number
                     </label>
@@ -254,14 +269,14 @@ export default function CheckoutPage() {
                           phone: e.target.value,
                         })
                       }
-                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
+                      className="mt-1 block w-full border-[var(--color-border)] rounded-md shadow-sm focus:ring-[var(--color-brand-primary)] focus:border-[var(--color-brand-primary)]"
                     />
                   </div>
 
                   <div>
                     <label
                       htmlFor="address"
-                      className="block text-sm font-medium text-gray-700"
+                      className="block text-sm font-medium text-[var(--color-text-primary)]"
                     >
                       Street Address
                     </label>
@@ -276,7 +291,7 @@ export default function CheckoutPage() {
                           address: e.target.value,
                         })
                       }
-                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
+                      className="mt-1 block w-full border-[var(--color-border)] rounded-md shadow-sm focus:ring-[var(--color-brand-primary)] focus:border-[var(--color-brand-primary)]"
                     />
                   </div>
 
@@ -284,7 +299,7 @@ export default function CheckoutPage() {
                     <div>
                       <label
                         htmlFor="city"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-sm font-medium text-[var(--color-text-primary)]"
                       >
                         City
                       </label>
@@ -299,13 +314,13 @@ export default function CheckoutPage() {
                             city: e.target.value,
                           })
                         }
-                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
+                        className="mt-1 block w-full border-[var(--color-border)] rounded-md shadow-sm focus:ring-[var(--color-brand-primary)] focus:border-[var(--color-brand-primary)]"
                       />
                     </div>
                     <div>
                       <label
                         htmlFor="state"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-sm font-medium text-[var(--color-text-primary)]"
                       >
                         State
                       </label>
@@ -320,13 +335,13 @@ export default function CheckoutPage() {
                             state: e.target.value,
                           })
                         }
-                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
+                        className="mt-1 block w-full border-[var(--color-border)] rounded-md shadow-sm focus:ring-[var(--color-brand-primary)] focus:border-[var(--color-brand-primary)]"
                       />
                     </div>
                     <div>
                       <label
                         htmlFor="zipCode"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-sm font-medium text-[var(--color-text-primary)]"
                       >
                         ZIP Code
                       </label>
@@ -341,7 +356,7 @@ export default function CheckoutPage() {
                             zipCode: e.target.value,
                           })
                         }
-                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
+                        className="mt-1 block w-full border-[var(--color-border)] rounded-md shadow-sm focus:ring-[var(--color-brand-primary)] focus:border-[var(--color-brand-primary)]"
                       />
                     </div>
                   </div>
@@ -349,7 +364,7 @@ export default function CheckoutPage() {
                   <div className="flex justify-end">
                     <button
                       type="submit"
-                      className="px-6 py-3 bg-green-600 text-white rounded-md hover:bg-green-700"
+                      className="px-6 py-3 bg-[var(--color-brand-primary)] text-[var(--color-brand-primary-text)] rounded-md hover:bg-[var(--color-brand-accent)]"
                     >
                       Continue to Payment
                     </button>
@@ -359,15 +374,15 @@ export default function CheckoutPage() {
             )}
 
             {currentStep === 2 && (
-              <div className="bg-white border border-gray-200 rounded-lg p-6">
-                <h2 className="text-xl font-semibold text-gray-900 mb-6">
+              <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg p-6">
+                <h2 className="text-xl font-semibold text-[var(--color-text-primary)] mb-6">
                   Payment Information
                 </h2>
                 <form onSubmit={handlePaymentSubmit} className="space-y-6">
                   <div>
                     <label
                       htmlFor="nameOnCard"
-                      className="block text-sm font-medium text-gray-700"
+                      className="block text-sm font-medium text-[var(--color-text-primary)]"
                     >
                       Name on Card
                     </label>
@@ -382,14 +397,14 @@ export default function CheckoutPage() {
                           nameOnCard: e.target.value,
                         })
                       }
-                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
+                      className="mt-1 block w-full border-[var(--color-border)] rounded-md shadow-sm focus:ring-[var(--color-brand-primary)] focus:border-[var(--color-brand-primary)]"
                     />
                   </div>
 
                   <div>
                     <label
                       htmlFor="cardNumber"
-                      className="block text-sm font-medium text-gray-700"
+                      className="block text-sm font-medium text-[var(--color-text-primary)]"
                     >
                       Card Number
                     </label>
@@ -405,7 +420,7 @@ export default function CheckoutPage() {
                           cardNumber: e.target.value,
                         })
                       }
-                      className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
+                      className="mt-1 block w-full border-[var(--color-border)] rounded-md shadow-sm focus:ring-[var(--color-brand-primary)] focus:border-[var(--color-brand-primary)]"
                     />
                   </div>
 
@@ -413,7 +428,7 @@ export default function CheckoutPage() {
                     <div>
                       <label
                         htmlFor="expiryDate"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-sm font-medium text-[var(--color-text-primary)]"
                       >
                         Expiry Date
                       </label>
@@ -429,13 +444,13 @@ export default function CheckoutPage() {
                             expiryDate: e.target.value,
                           })
                         }
-                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
+                        className="mt-1 block w-full border-[var(--color-border)] rounded-md shadow-sm focus:ring-[var(--color-brand-primary)] focus:border-[var(--color-brand-primary)]"
                       />
                     </div>
                     <div>
                       <label
                         htmlFor="cvv"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-sm font-medium text-[var(--color-text-primary)]"
                       >
                         CVV
                       </label>
@@ -451,7 +466,7 @@ export default function CheckoutPage() {
                             cvv: e.target.value,
                           })
                         }
-                        className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
+                        className="mt-1 block w-full border-[var(--color-border)] rounded-md shadow-sm focus:ring-[var(--color-brand-primary)] focus:border-[var(--color-brand-primary)]"
                       />
                     </div>
                   </div>
@@ -464,11 +479,11 @@ export default function CheckoutPage() {
                       onChange={(e) =>
                         setBillingSameAsShipping(e.target.checked)
                       }
-                      className="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
+                      className="h-4 w-4 text-[var(--color-brand-primary)] focus:ring-[var(--color-brand-primary)] border-[var(--color-border)] rounded"
                     />
                     <label
                       htmlFor="billingSame"
-                      className="ml-2 text-sm text-gray-700"
+                      className="ml-2 text-sm text-[var(--color-text-primary)]"
                     >
                       Billing address is the same as shipping address
                     </label>
@@ -478,13 +493,13 @@ export default function CheckoutPage() {
                     <button
                       type="button"
                       onClick={() => setCurrentStep(1)}
-                      className="px-6 py-3 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50"
+                      className="px-6 py-3 border border-[var(--color-border)] text-[var(--color-text-primary)] rounded-md hover:bg-[var(--color-border)]"
                     >
                       Back to Shipping
                     </button>
                     <button
                       type="submit"
-                      className="px-6 py-3 bg-green-600 text-white rounded-md hover:bg-green-700"
+                      className="px-6 py-3 bg-[var(--color-brand-primary)] text-[var(--color-brand-primary-text)] rounded-md hover:bg-[var(--color-brand-accent)]"
                     >
                       Review Order
                     </button>
@@ -496,8 +511,8 @@ export default function CheckoutPage() {
             {currentStep === 3 && (
               <div className="space-y-6">
                 {/* Order review */}
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h2 className="text-xl font-semibold text-gray-900 mb-6">
+                <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg p-6">
+                  <h2 className="text-xl font-semibold text-[var(--color-text-primary)] mb-6">
                     Review Your Order
                   </h2>
 
@@ -515,19 +530,19 @@ export default function CheckoutPage() {
                           className="rounded-md"
                         />
                         <div className="flex-1">
-                          <h3 className="text-sm font-medium text-gray-900">
+                          <h3 className="text-sm font-medium text-[var(--color-text-primary)]">
                             {item.name}
                           </h3>
                           {item.size && (
-                            <p className="text-sm text-gray-500">
+                            <p className="text-sm text-[var(--color-text-secondary)]">
                               Size: {item.size}
                             </p>
                           )}
-                          <p className="text-sm text-gray-500">
+                          <p className="text-sm text-[var(--color-text-secondary)]">
                             Quantity: {item.quantity}
                           </p>
                         </div>
-                        <p className="text-sm font-medium text-gray-900">
+                        <p className="text-sm font-medium text-[var(--color-text-primary)]">
                           ${(item.price * item.quantity).toFixed(2)}
                         </p>
                       </div>
@@ -536,11 +551,11 @@ export default function CheckoutPage() {
                 </div>
 
                 {/* Shipping info */}
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h3 className="text-lg font-medium text-gray-900 mb-4">
+                <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg p-6">
+                  <h3 className="text-lg font-medium text-[var(--color-text-primary)] mb-4">
                     Shipping Address
                   </h3>
-                  <p className="text-gray-700">
+                  <p className="text-[var(--color-text-primary)]">
                     {shippingInfo.firstName} {shippingInfo.lastName}
                     <br />
                     {shippingInfo.address}
@@ -555,11 +570,11 @@ export default function CheckoutPage() {
                 </div>
 
                 {/* Payment info */}
-                <div className="bg-white border border-gray-200 rounded-lg p-6">
-                  <h3 className="text-lg font-medium text-gray-900 mb-4">
+                <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg p-6">
+                  <h3 className="text-lg font-medium text-[var(--color-text-primary)] mb-4">
                     Payment Method
                   </h3>
-                  <p className="text-gray-700">
+                  <p className="text-[var(--color-text-primary)]">
                     **** **** **** {paymentInfo.cardNumber.slice(-4)}
                     <br />
                     Expires {paymentInfo.expiryDate}
@@ -569,13 +584,13 @@ export default function CheckoutPage() {
                 <div className="flex justify-between">
                   <button
                     onClick={() => setCurrentStep(2)}
-                    className="px-6 py-3 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50"
+                    className="px-6 py-3 border border-[var(--color-border)] text-[var(--color-text-primary)] rounded-md hover:bg-[var(--color-border)]"
                   >
                     Back to Payment
                   </button>
                   <button
                     onClick={handlePlaceOrder}
-                    className="px-6 py-3 bg-green-600 text-white rounded-md hover:bg-green-700"
+                    className="px-6 py-3 bg-[var(--color-brand-primary)] text-[var(--color-brand-primary-text)] rounded-md hover:bg-[var(--color-brand-accent)]"
                   >
                     Place Order
                   </button>
@@ -586,8 +601,8 @@ export default function CheckoutPage() {
 
           {/* Order summary sidebar */}
           <div className="lg:col-span-4 mt-8 lg:mt-0">
-            <div className="bg-white border border-gray-200 rounded-lg p-6 sticky top-6">
-              <h2 className="text-lg font-medium text-gray-900 mb-6">
+            <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg p-6 sticky top-6">
+              <h2 className="text-lg font-medium text-[var(--color-text-primary)] mb-6">
                 Order Summary
               </h2>
 
@@ -597,35 +612,49 @@ export default function CheckoutPage() {
                     key={`${item.id}-${item.size}`}
                     className="flex justify-between text-sm"
                   >
-                    <span className="text-gray-600">
+                    <span className="text-[var(--color-text-secondary)]">
                       {item.name} {item.size && `(${item.size})`} ×{" "}
                       {item.quantity}
                     </span>
-                    <span className="text-gray-900">
+                    <span className="text-[var(--color-text-primary)]">
                       ${(item.price * item.quantity).toFixed(2)}
                     </span>
                   </div>
                 ))}
 
-                <div className="border-t border-gray-200 pt-4 space-y-2">
+                <div className="border-t border-[var(--color-border)] pt-4 space-y-2">
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Subtotal</span>
-                    <span className="text-gray-900">${total.toFixed(2)}</span>
+                    <span className="text-[var(--color-text-secondary)]">
+                      Subtotal
+                    </span>
+                    <span className="text-[var(--color-text-primary)]">
+                      ${total.toFixed(2)}
+                    </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Shipping</span>
-                    <span className="text-gray-900">Free</span>
+                    <span className="text-[var(--color-text-secondary)]">
+                      Shipping
+                    </span>
+                    <span className="text-[var(--color-text-primary)]">
+                      Free
+                    </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Tax</span>
-                    <span className="text-gray-900">${tax.toFixed(2)}</span>
+                    <span className="text-[var(--color-text-secondary)]">
+                      Tax
+                    </span>
+                    <span className="text-[var(--color-text-primary)]">
+                      ${tax.toFixed(2)}
+                    </span>
                   </div>
                 </div>
 
-                <div className="border-t border-gray-200 pt-4">
+                <div className="border-t border-[var(--color-border)] pt-4">
                   <div className="flex justify-between text-lg font-semibold">
-                    <span className="text-gray-900">Total</span>
-                    <span className="text-gray-900">
+                    <span className="text-[var(--color-text-primary)]">
+                      Total
+                    </span>
+                    <span className="text-[var(--color-text-primary)]">
                       ${finalTotal.toFixed(2)}
                     </span>
                   </div>
@@ -633,15 +662,19 @@ export default function CheckoutPage() {
               </div>
 
               {/* Security badges */}
-              <div className="mt-6 pt-6 border-t border-gray-200">
+              <div className="mt-6 pt-6 border-t border-[var(--color-border)]">
                 <div className="flex items-center justify-center space-x-4">
                   <div className="text-center">
                     <div className="text-2xl mb-1">🔒</div>
-                    <p className="text-xs text-gray-500">Secured by Stripe</p>
+                    <p className="text-xs text-[var(--color-text-secondary)]">
+                      Secured by Stripe
+                    </p>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl mb-1">💳</div>
-                    <p className="text-xs text-gray-500">SSL Encrypted</p>
+                    <p className="text-xs text-[var(--color-text-secondary)]">
+                      SSL Encrypted
+                    </p>
                   </div>
                 </div>
               </div>

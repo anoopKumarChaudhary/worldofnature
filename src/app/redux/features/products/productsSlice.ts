@@ -38,7 +38,7 @@ const initialState: ProductsState = {
       name: "Organic Green Tea",
       price: 24.99,
       originalPrice: 29.99,
-      images: ["/won3.png", "/wonh1.JPG", "/wonh2.jpeg"],
+      images: ["/won1.JPG", "/won2.jpg", "/won3.JPG"],
       description:
         "Premium organic green tea sourced from sustainable farms in Japan. Known for its delicate flavor and numerous health benefits.",
       ingredients: "100% Organic Green Tea Leaves",
@@ -73,7 +73,7 @@ const initialState: ProductsState = {
       id: "2",
       name: "Wild Forest Honey",
       price: 18.99,
-      images: ["/wonf1.JPG", "/wonh4.jpeg", "/wonh5.jpeg"],
+      images: ["/won4.JPG", "/won5.JPG", "/won6.JPG"],
       description:
         "Raw, unfiltered honey harvested from wild forest bees. Rich in natural enzymes and antioxidants.",
       ingredients: "100% Pure Wild Forest Honey",

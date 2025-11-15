@@ -1,92 +1,118 @@
 // components/Footer.js
 import React from "react";
 import Link from "next/link";
-import styles from "./footer.module.css";
 import { Facebook, FacebookIcon, Instagram, Twitter } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className={styles.footer}>
-      <div className={styles.container}>
+    <footer className="bg-[var(--footer-white)] text-[var(--footer-grey)] font-sans antialiased">
+      <div className="w-full mx-auto px-4 sm:max-w-xl sm:px-6 lg:max-w-4xl lg:px-8 xl:max-w-6xl">
         {/* Newsletter Section */}
-        <div className={styles.footerNewsletter}>
-          <h3 className={styles.newsletterTitle}>Join Our Fresh List</h3>
-          <p className={styles.newsletterTagline}>
+        <div className="text-center py-12 border-b border-[var(--footer-border)]">
+          <h3 className="text-3xl font-bold text-[var(--footer-white)] mb-2">
+            Join Our Fresh List
+          </h3>
+          <p className="text-[var(--footer-tagline)] mb-6 text-lg font-light">
             Get 10% off your first order, plus exclusive offers and farm-fresh
             recipes.
           </p>
-          <form className={styles.newsletterForm}>
+          <form className="flex max-w-md mx-auto shadow-lg">
             <input
               type="email"
               placeholder="Enter your email"
-              className={styles.newsletterInput}
+              className="flex-grow px-4 py-3 rounded-l-md outline-none bg-[var(--footer-white)] text-[var(--footer-grey)] text-base placeholder-[var(--footer-placeholder)]"
               required
             />
-            <button type="submit" className={styles.newsletterButton}>
+            <button
+              type="submit"
+              className="px-6 py-3 bg-[var(--color-brand-accent)] text-[var(--color-brand-accent-text)] font-bold rounded-r-md cursor-pointer transition-colors duration-300 hover:bg-[var(--brand-accent-hover)] text-base"
+            >
               Subscribe
             </button>
           </form>
         </div>
 
         {/* Main Footer Grid */}
-        <div className={styles.gridContainer}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 py-16">
           {/* Column 1: Brand */}
-          <div className={styles.brandColumn}>
-            <Link href="/" className={styles.logo}>
+          <div className="col-span-full sm:col-span-1">
+            <Link
+              href="/"
+              className="text-3xl font-bold text-[var(--footer-white)] mb-4 block no-underline leading-9 transition-colors duration-300"
+            >
               World Of Nature
             </Link>
-            <p className={styles.tagline}>Good for you, good for the planet.</p>
-            <div className={styles.socialIcons}>
+            <p className="text-[var(--footer-tagline)] font-light">
+              Good for you, good for the planet.
+            </p>
+            <div className="flex gap-5 mt-6">
               <Link
                 href="#"
-                className={styles.socialLink}
+                className="text-[var(--footer-grey)] transition-all duration-300 hover:text-[var(--footer-white)] hover:scale-110 hover:-translate-y-1"
                 aria-label="Facebook"
               >
-                <Facebook size={48} strokeWidth={2} />
+                <Facebook size={24} strokeWidth={2} />
               </Link>
               <Link
                 href="#"
-                className={styles.socialLink}
+                className="text-[var(--footer-grey)] transition-all duration-300 hover:text-[var(--footer-white)] hover:scale-110 hover:-translate-y-1"
                 aria-label="Instagram"
               >
-                <Instagram size={48} strokeWidth={2} />
+                <Instagram size={24} strokeWidth={2} />
               </Link>
               <Link
                 href="#"
-                className={styles.socialLink}
+                className="text-[var(--footer-grey)] transition-all duration-300 hover:text-[var(--footer-white)] hover:scale-110 hover:-translate-y-1"
                 aria-label="Pinterest"
               >
-                <Twitter size={48} strokeWidth={2} />
+                <Twitter size={24} strokeWidth={2} />
               </Link>
             </div>
           </div>
 
           {/* Column 2: Our Products */}
           <div>
-            <h4 className={styles.columnTitle}>Our Products</h4>
-            <ul className={styles.linkList}>
+            <h4 className="text-xl font-bold text-[var(--footer-white)] mb-5">
+              Our Products
+            </h4>
+            <ul className="list-none p-0 m-0 flex flex-col gap-3">
               <li>
-                <Link href="/shop/ghee-oils" className={styles.link}>
+                <Link
+                  href="/shop/ghee-oils"
+                  className="text-[var(--footer-grey)] transition-all duration-300 hover:text-[var(--footer-white)] hover:translate-x-1 no-underline font-light"
+                >
                   Ghee & Oils
                 </Link>
               </li>
               <li>
-                <Link href="/shop/honey" className={styles.link}>
+                <Link
+                  href="/shop/honey"
+                  className="text-[var(--footer-grey)] transition-all duration-300 hover:text-[var(--footer-white)] hover:translate-x-1 no-underline font-light"
+                >
                   Honey & Sweeteners
                 </Link>
               </li>
               <li>
-                <Link href="/shop/teas" className={styles.link}>
+                <Link
+                  href="/shop/teas"
+                  className="text-[var(--footer-grey)] transition-all duration-300 hover:text-[var(--footer-white)] hover:translate-x-1 no-underline font-light"
+                >
                   Organic Teas
                 </Link>
               </li>
               <li>
-                <Link href="/shop/seeds" className={styles.link}>
+                <Link
+                  href="/shop/seeds"
+                  className="text-[var(--footer-grey)] transition-all duration-300 hover:text-[var(--footer-white)] hover:translate-x-1 no-underline font-light"
+                >
                   Seeds & Grains
                 </Link>
               </li>
               <li>
-                <Link href="/shop/mustard-spices" className={styles.link}>
+                <Link
+                  href="/shop/mustard-spices"
+                  className="text-[var(--footer-grey)] transition-all duration-300 hover:text-[var(--footer-white)] hover:translate-x-1 no-underline font-light"
+                >
                   Spices & Mustards
                 </Link>
               </li>
@@ -95,30 +121,47 @@ const Footer = () => {
 
           {/* Column 3: Shop Collections */}
           <div>
-            <h4 className={styles.columnTitle}>Shop Collections</h4>
-            <ul className={styles.linkList}>
+            <h4 className="text-xl font-bold text-[var(--footer-white)] mb-5">
+              Shop Collections
+            </h4>
+            <ul className="list-none p-0 m-0 flex flex-col gap-3">
               <li>
-                <Link href="/collections/pantry" className={styles.link}>
+                <Link
+                  href="/collections/pantry"
+                  className="text-[var(--footer-grey)] transition-all duration-300 hover:text-[var(--footer-white)] hover:translate-x-1 no-underline font-light"
+                >
                   Pantry Staples
                 </Link>
               </li>
               <li>
-                <Link href="/collections/wellness" className={styles.link}>
+                <Link
+                  href="/collections/wellness"
+                  className="text-[var(--footer-grey)] transition-all duration-300 hover:text-[var(--footer-white)] hover:translate-x-1 no-underline font-light"
+                >
                   Health & Wellness
                 </Link>
               </li>
               <li>
-                <Link href="/collections/best-sellers" className={styles.link}>
+                <Link
+                  href="/collections/best-sellers"
+                  className="text-[var(--footer-grey)] transition-all duration-300 hover:text-[var(--footer-white)] hover:translate-x-1 no-underline font-light"
+                >
                   Best Sellers
                 </Link>
               </li>
               <li>
-                <Link href="/collections/new" className={styles.link}>
+                <Link
+                  href="/collections/new"
+                  className="text-[var(--footer-grey)] transition-all duration-300 hover:text-[var(--footer-white)] hover:translate-x-1 no-underline font-light"
+                >
                   New Arrivals
                 </Link>
               </li>
               <li>
-                <Link href="/collections/bundles" className={styles.link}>
+                <Link
+                  href="/collections/bundles"
+                  className="text-[var(--footer-grey)] transition-all duration-300 hover:text-[var(--footer-white)] hover:translate-x-1 no-underline font-light"
+                >
                   Bundles & Sets
                 </Link>
               </li>
@@ -127,30 +170,47 @@ const Footer = () => {
 
           {/* Column 4: Our Company */}
           <div>
-            <h4 className={styles.columnTitle}>Our Company</h4>
-            <ul className={styles.linkList}>
+            <h4 className="text-xl font-bold text-[var(--footer-white)] mb-5">
+              Our Company
+            </h4>
+            <ul className="list-none p-0 m-0 flex flex-col gap-3">
               <li>
-                <Link href="/our-story" className={styles.link}>
+                <Link
+                  href="/our-story"
+                  className="text-[var(--footer-grey)] transition-all duration-300 hover:text-[var(--footer-white)] hover:translate-x-1 no-underline font-light"
+                >
                   Our Story
                 </Link>
               </li>
               <li>
-                <Link href="/farms" className={styles.link}>
+                <Link
+                  href="/farms"
+                  className="text-[var(--footer-grey)] transition-all duration-300 hover:text-[var(--footer-white)] hover:translate-x-1 no-underline font-light"
+                >
                   Our Farms
                 </Link>
               </li>
               <li>
-                <Link href="/sustainability" className={styles.link}>
+                <Link
+                  href="/sustainability"
+                  className="text-[var(--footer-grey)] transition-all duration-300 hover:text-[var(--footer-white)] hover:translate-x-1 no-underline font-light"
+                >
                   Sustainability
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className={styles.link}>
+                <Link
+                  href="/blog"
+                  className="text-[var(--footer-grey)] transition-all duration-300 hover:text-[var(--footer-white)] hover:translate-x-1 no-underline font-light"
+                >
                   Blog
                 </Link>
               </li>
               <li>
-                <Link href="/careers" className={styles.link}>
+                <Link
+                  href="/careers"
+                  className="text-[var(--footer-grey)] transition-all duration-300 hover:text-[var(--footer-white)] hover:translate-x-1 no-underline font-light"
+                >
                   Careers
                 </Link>
               </li>
@@ -159,30 +219,47 @@ const Footer = () => {
 
           {/* Column 5: Customer Service */}
           <div>
-            <h4 className={styles.columnTitle}>Customer Service</h4>
-            <ul className={styles.linkList}>
+            <h4 className="text-xl font-bold text-[var(--footer-white)] mb-5">
+              Customer Service
+            </h4>
+            <ul className="list-none p-0 m-0 flex flex-col gap-3">
               <li>
-                <Link href="/contact" className={styles.link}>
+                <Link
+                  href="/contact"
+                  className="text-[var(--footer-grey)] transition-all duration-300 hover:text-[var(--footer-white)] hover:translate-x-1 no-underline font-light"
+                >
                   Contact Us
                 </Link>
               </li>
               <li>
-                <Link href="/faq" className={styles.link}>
+                <Link
+                  href="/faq"
+                  className="text-[var(--footer-grey)] transition-all duration-300 hover:text-[var(--footer-white)] hover:translate-x-1 no-underline font-light"
+                >
                   FAQ
                 </Link>
               </li>
               <li>
-                <Link href="/account" className={styles.link}>
+                <Link
+                  href="/account"
+                  className="text-[var(--footer-grey)] transition-all duration-300 hover:text-[var(--footer-white)] hover:translate-x-1 no-underline font-light"
+                >
                   My Account
                 </Link>
               </li>
               <li>
-                <Link href="/shipping" className={styles.link}>
+                <Link
+                  href="/shipping"
+                  className="text-[var(--footer-grey)] transition-all duration-300 hover:text-[var(--footer-white)] hover:translate-x-1 no-underline font-light"
+                >
                   Shipping & Returns
                 </Link>
               </li>
               <li>
-                <Link href="/privacy" className={styles.link}>
+                <Link
+                  href="/privacy"
+                  className="text-[var(--footer-grey)] transition-all duration-300 hover:text-[var(--footer-white)] hover:translate-x-1 no-underline font-light"
+                >
                   Privacy Policy
                 </Link>
               </li>
@@ -191,12 +268,12 @@ const Footer = () => {
         </div>
 
         {/* Footer Bottom */}
-        <div className={styles.footerBottom}>
-          <p className={styles.copyright}>
+        <div className="flex flex-col-reverse md:flex-row justify-between items-center gap-6 mt-4 pt-8 border-t border-[var(--footer-border)]">
+          <p className="text-[var(--footer-copyright)] text-sm text-center">
             &copy; {new Date().getFullYear()} World Of Nature. All Rights
             Reserved.
           </p>
-          <div className={styles.paymentIcons}>
+          <div className="flex items-center gap-3 text-[var(--footer-grey)]">
             <svg
               fill="currentColor"
               viewBox="0 0 60 38"

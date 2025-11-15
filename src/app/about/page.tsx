@@ -2,7 +2,6 @@
 
 import React from "react";
 import Link from "next/link";
-import styles from "./about.module.css";
 import { motion } from "framer-motion";
 // NEW: Import icons from lucide-react
 import { BadgeCheck, Warehouse, Users } from "lucide-react";
@@ -70,22 +69,22 @@ const fadeInFromRight = {
 
 export default function AboutPage() {
   return (
-    <div className={styles.pageWrapper}>
+    <div className="min-h-screen bg-[var(--color-background)] text-[var(--color-text-primary)]">
       {/* Hero section remains the same */}
-      <header className={styles.hero}>
-        <div className={styles.heroGrid}>
+      <header className="py-16 px-4 md:px-8 lg:px-16 bg-[var(--color-surface)]">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <motion.div
-            className={styles.heroContent}
+            className="space-y-6"
             variants={heroText}
             initial="hidden"
             animate="visible"
           >
-            <h1 className={styles.heroTitle}>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-text-primary)] leading-tight">
               From Soil to Soul.
               <br />
               This is Our Story.
             </h1>
-            <p className={styles.heroSubtitle}>
+            <p className="text-lg md:text-xl text-[var(--color-text-secondary)] leading-relaxed">
               We believe that real food is powerful medicine—and a deeper
               connection to the world around us. World of Nature began with a
               simple desire: find the purest organic essentials and share them
@@ -94,7 +93,7 @@ export default function AboutPage() {
           </motion.div>
 
           <motion.div
-            className={styles.heroImageWrapper}
+            className="flex justify-center lg:justify-end"
             variants={heroImage}
             initial="hidden"
             animate="visible"
@@ -102,7 +101,7 @@ export default function AboutPage() {
             <img
               src="/i3.png"
               alt="Sunlit organic farm landscape"
-              className={styles.heroImage}
+              className="w-full max-w-md lg:max-w-lg h-auto rounded-lg shadow-lg"
               loading="lazy"
               decoding="async"
               sizes="(max-width: 1024px) 100vw, 600px"
@@ -114,18 +113,21 @@ export default function AboutPage() {
       <main>
         {/* Added motion.section wrapper for philosophy */}
         <motion.section
-          className={styles.whiteSection}
+          className="py-16 px-4 md:px-8 lg:px-16 bg-[var(--color-surface)]"
           aria-labelledby="philosophy"
           variants={fadeInOnScroll}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }} // Triggers when 30% is visible
         >
-          <div className={`${styles.container} ${styles.missionSection}`}>
-            <h2 id="philosophy" className={styles.sectionTitle}>
+          <div className="max-w-4xl mx-auto text-center space-y-6">
+            <h2
+              id="philosophy"
+              className="text-3xl md:text-4xl font-bold text-[var(--color-text-primary)]"
+            >
               Our Guiding Philosophy
             </h2>
-            <p className={styles.lede}>
+            <p className="text-lg md:text-xl text-[var(--color-text-secondary)] leading-relaxed max-w-3xl mx-auto">
               To inspire a healthier world by connecting people to real food.
               We’re not just selling products— we’re fostering a movement back
               to nature, championing transparency, and proving that what’s good
@@ -135,13 +137,13 @@ export default function AboutPage() {
         </motion.section>
 
         <section
-          className={`${styles.container} ${styles.valuesSection}`}
+          className="py-16 px-4 md:px-8 lg:px-16 bg-[var(--color-background)]"
           aria-labelledby="values"
         >
           {/* Animate the section title */}
           <motion.h2
             id="values"
-            className={styles.sectionTitle}
+            className="text-3xl md:text-4xl font-bold text-[var(--color-text-primary)] text-center mb-12"
             variants={fadeInOnScroll}
             initial="hidden"
             whileInView="visible"
@@ -152,7 +154,7 @@ export default function AboutPage() {
 
           {/* Animate the grid with stagger */}
           <motion.ul
-            className={styles.valuesGrid}
+            className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             role="list"
             variants={staggerContainer}
             initial="hidden"
@@ -160,33 +162,48 @@ export default function AboutPage() {
             viewport={{ once: true, amount: 0.2 }}
           >
             {/* Added motion.li and variant */}
-            <motion.li className={styles.valueItem} variants={staggerItem}>
+            <motion.li
+              className="bg-[var(--color-surface)] p-6 rounded-lg shadow-md text-center space-y-4"
+              variants={staggerItem}
+            >
               {/* NEW: Replaced with lucide-react icon */}
-              <BadgeCheck className={styles.icon} />
-              <h3 className={styles.valueTitle}>Uncompromising Purity</h3>
-              <p className={styles.valueText}>
+              <BadgeCheck className="w-12 h-12 text-[var(--color-brand-primary)] mx-auto" />
+              <h3 className="text-xl font-semibold text-[var(--color-text-primary)]">
+                Uncompromising Purity
+              </h3>
+              <p className="text-[var(--color-text-secondary)] leading-relaxed">
                 If it isn’t 100% organic, lab-tested, and free from anything
                 artificial, we don’t offer it.
               </p>
             </motion.li>
 
             {/* Added motion.li and variant */}
-            <motion.li className={styles.valueItem} variants={staggerItem}>
+            <motion.li
+              className="bg-[var(--color-surface)] p-6 rounded-lg shadow-md text-center space-y-4"
+              variants={staggerItem}
+            >
               {/* NEW: Replaced with lucide-react icon */}
-              <Warehouse className={styles.icon} />
-              <h3 className={styles.valueTitle}>Regenerative Sourcing</h3>
-              <p className={styles.valueText}>
+              <Warehouse className="w-12 h-12 text-[var(--color-brand-primary)] mx-auto" />
+              <h3 className="text-xl font-semibold text-[var(--color-text-primary)]">
+                Regenerative Sourcing
+              </h3>
+              <p className="text-[var(--color-text-secondary)] leading-relaxed">
                 We partner with farms that go beyond organic—rebuilding soil
                 health and promoting biodiversity.
               </p>
             </motion.li>
 
             {/* Added motion.li and variant */}
-            <motion.li className={styles.valueItem} variants={staggerItem}>
+            <motion.li
+              className="bg-[var(--color-surface)] p-6 rounded-lg shadow-md text-center space-y-4"
+              variants={staggerItem}
+            >
               {/* NEW: Replaced with lucide-react icon */}
-              <Users className={styles.icon} />
-              <h3 className={styles.valueTitle}>Honest Transparency</h3>
-              <p className={styles.valueText}>
+              <Users className="w-12 h-12 text-[var(--color-brand-primary)] mx-auto" />
+              <h3 className="text-xl font-semibold text-[var(--color-text-primary)]">
+                Honest Transparency
+              </h3>
+              <p className="text-[var(--color-text-secondary)] leading-relaxed">
                 You deserve to know where your food comes from. Every product is
                 traceable back to source.
               </p>
@@ -196,73 +213,79 @@ export default function AboutPage() {
 
         {/* Added motion.section to animate the two columns */}
         <motion.section
-          className={`${styles.container} ${styles.twoColumnSection}`}
+          className="py-16 px-4 md:px-8 lg:px-16 bg-[var(--color-surface)]"
           aria-labelledby="process"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
         >
-          {/* Animate image from left */}
-          <motion.div
-            className={styles.twoColumnImage}
-            variants={fadeInFromLeft}
-          >
-            <img
-              src="/i4.png"
-              alt="Farmer’s hands holding honeycomb"
-              loading="lazy"
-              decoding="async"
-              sizes="(max-width: 1024px) 100vw, 560px"
-            />
-          </motion.div>
-          {/* Animate content from right */}
-          <motion.div
-            className={styles.twoColumnContent}
-            variants={fadeInFromRight}
-          >
-            <h2 id="process" className={styles.sectionTitle}>
-              The Journey to Your Table
-            </h2>
-            <p className={styles.twoColumnLargeText}>
-              We don’t just find suppliers. We build partnerships.
-            </p>
-            <p className={styles.infoText}>
-              Our team travels to pristine regions to meet farmers who share our
-              values. Together we ensure every batch of honey, every drop of
-              oil, and every tea leaf is harvested at its peak and minimally
-              processed to preserve its natural power.
-            </p>
-            <Link
-              href="/shop"
-              className={styles.secondaryButtonDark}
-              aria-label="Shop products shaped by our process"
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Animate image from left */}
+            <motion.div
+              className="flex justify-center lg:justify-start"
+              variants={fadeInFromLeft}
             >
-              Shop Our Process
-            </Link>
-          </motion.div>
+              <img
+                src="/i4.png"
+                alt="Farmer’s hands holding honeycomb"
+                className="w-full max-w-md lg:max-w-lg h-auto rounded-lg shadow-lg"
+                loading="lazy"
+                decoding="async"
+                sizes="(max-width: 1024px) 100vw, 560px"
+              />
+            </motion.div>
+            {/* Animate content from right */}
+            <motion.div
+              className="space-y-6 text-center lg:text-left"
+              variants={fadeInFromRight}
+            >
+              <h2
+                id="process"
+                className="text-3xl md:text-4xl font-bold text-[var(--color-text-primary)]"
+              >
+                The Journey to Your Table
+              </h2>
+              <p className="text-xl md:text-2xl font-semibold text-[var(--color-brand-primary)]">
+                We don’t just find suppliers. We build partnerships.
+              </p>
+              <p className="text-lg text-[var(--color-text-secondary)] leading-relaxed">
+                Our team travels to pristine regions to meet farmers who share
+                our values. Together we ensure every batch of honey, every drop
+                of oil, and every tea leaf is harvested at its peak and
+                minimally processed to preserve its natural power.
+              </p>
+              <Link
+                href="/shop"
+                className="inline-block bg-[var(--color-brand-primary)] text-[var(--color-brand-primary-text)] px-8 py-3 rounded-lg font-semibold hover:bg-[var(--color-brand-accent)] transition-colors duration-300"
+                aria-label="Shop products shaped by our process"
+              >
+                Shop Our Process
+              </Link>
+            </motion.div>
+          </div>
         </motion.section>
       </main>
 
       {/* Animate the final CTA section */}
       <motion.section
-        className={styles.ctaSection}
+        className="py-16 px-4 md:px-8 lg:px-16 bg-[var(--color-brand-primary)] text-[var(--color-brand-primary-text)]"
         aria-labelledby="cta"
         variants={fadeInOnScroll}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
       >
-        <div className={`${styles.container} ${styles.ctaContainer}`}>
-          <h2 id="cta" className={styles.sectionTitleLight}>
+        <div className="max-w-4xl mx-auto text-center space-y-6">
+          <h2 id="cta" className="text-3xl md:text-4xl font-bold">
             Feel the Difference
           </h2>
-          <p className={styles.subtitleLight}>
+          <p className="text-lg md:text-xl opacity-90">
             Start your journey back to nature. Explore our collections and taste
             the purity for yourself.
           </p>
           <Link
             href="/shop"
-            className={styles.ctaButton}
+            className="inline-block bg-[var(--color-brand-accent)] text-[var(--color-brand-accent-text)] px-8 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-colors duration-300"
             aria-label="Shop all products"
           >
             Shop All Products
