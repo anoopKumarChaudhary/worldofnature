@@ -34,7 +34,7 @@ export default function CartPage() {
 
   if (items.length === 0) {
     return (
-      <div className="min-h-screen bg-[var(--background)] flex items-center justify-center">
+      <div className="min-h-screen bg-[var(--color-background)] flex items-center justify-center">
         <div className="text-center">
           <div className="text-6xl mb-4">🛒</div>
           <h1 className="text-2xl font-bold text-[var(--color-text-primary)] mb-4">
@@ -45,7 +45,7 @@ export default function CartPage() {
           </p>
           <Link
             href="/shop"
-            className={`inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-[var(--color-brand-primary-text)] bg-[var(--color-brand-primary)] hover:bg-[var(--color-brand-accent)]`}
+            className={`inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-[var(--color-primary-text)] bg-[var(--color-primary-bg)] hover:bg-[var(--color-accent-hover-bg)]`}
           >
             Continue Shopping
           </Link>
@@ -55,12 +55,12 @@ export default function CartPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[var(--background)]">
+    <div className="min-h-screen bg-cart">
       {/* Header */}
-      <div className="bg-[var(--color-surface)] border-b border-[var(--color-border)]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div className="bg-surface border-b border-border">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-16 py-6 md:py-8">
           <div className="flex items-center justify-between">
-            <h1 className="text-3xl font-bold text-[var(--color-text-primary)]">
+            <h1 className="text-2xl md:text-3xl font-bold text-text-primary">
               Shopping Cart
             </h1>
             <button
@@ -73,7 +73,7 @@ export default function CartPage() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-16 py-8 md:py-12">
         <div className="lg:grid lg:grid-cols-12 lg:gap-x-8">
           {/* Cart items */}
           <div className="lg:col-span-8">
@@ -230,7 +230,7 @@ export default function CartPage() {
               <div className="mt-6 space-y-4">
                 <Link
                   href="/checkout"
-                  className={`w-full flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-[var(--color-brand-primary-text)] bg-[var(--color-brand-primary)] hover:bg-[var(--color-brand-accent)]`}
+                  className={`w-full flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-[var(--color-primary-text)] bg-[var(--color-primary-bg)] hover:bg-[var(--color-accent-hover-bg)]`}
                 >
                   Proceed to Checkout
                 </Link>

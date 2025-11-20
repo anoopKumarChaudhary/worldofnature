@@ -74,7 +74,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-login flex flex-col justify-center py-8 md:py-12 px-4 md:px-8 lg:px-16">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="text-center">
           <Link href="/" className="inline-block">
@@ -84,15 +84,15 @@ export default function LoginPage() {
               alt="World of Nature"
             />
           </Link>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-foreground">
             {isLogin ? "Sign in to your account" : "Create your account"}
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
+          <p className="mt-2 text-center text-sm text-text-secondary">
             {isLogin ? "Don't have an account? " : "Already have an account? "}
             <button
               type="button"
               onClick={() => setIsLogin(!isLogin)}
-              className="font-medium text-green-600 hover:text-green-500"
+              className="font-medium text-primary-bg hover:text-cta-hover"
             >
               {isLogin ? "Sign up" : "Sign in"}
             </button>
@@ -101,7 +101,7 @@ export default function LoginPage() {
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+        <div className="bg-surface py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <form className="space-y-6" onSubmit={handleSubmit}>
             {!isLogin && (
               <>
@@ -109,7 +109,7 @@ export default function LoginPage() {
                   <div>
                     <label
                       htmlFor="firstName"
-                      className="block text-sm font-medium text-gray-700"
+                      className="block text-sm font-medium text-text-primary"
                     >
                       First Name
                     </label>
@@ -123,10 +123,8 @@ export default function LoginPage() {
                         value={formData.firstName}
                         onChange={handleInputChange}
                         className={`appearance-none block w-full px-3 py-2 border ${
-                          errors.firstName
-                            ? "border-red-300"
-                            : "border-gray-300"
-                        } rounded-md placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm`}
+                          errors.firstName ? "border-red-300" : "border-border"
+                        } rounded-md placeholder-muted focus:outline-none focus:ring-primary-bg focus:border-primary-bg sm:text-sm`}
                       />
                       {errors.firstName && (
                         <p className="mt-1 text-sm text-red-600">
@@ -139,7 +137,7 @@ export default function LoginPage() {
                   <div>
                     <label
                       htmlFor="lastName"
-                      className="block text-sm font-medium text-gray-700"
+                      className="block text-sm font-medium text-text-primary"
                     >
                       Last Name
                     </label>
@@ -153,8 +151,8 @@ export default function LoginPage() {
                         value={formData.lastName}
                         onChange={handleInputChange}
                         className={`appearance-none block w-full px-3 py-2 border ${
-                          errors.lastName ? "border-red-300" : "border-gray-300"
-                        } rounded-md placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm`}
+                          errors.lastName ? "border-red-300" : "border-border"
+                        } rounded-md placeholder-muted focus:outline-none focus:ring-primary-bg focus:border-primary-bg sm:text-sm`}
                       />
                       {errors.lastName && (
                         <p className="mt-1 text-sm text-red-600">
@@ -170,7 +168,7 @@ export default function LoginPage() {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-text-primary"
               >
                 Email address
               </label>
@@ -184,8 +182,8 @@ export default function LoginPage() {
                   value={formData.email}
                   onChange={handleInputChange}
                   className={`appearance-none block w-full px-3 py-2 border ${
-                    errors.email ? "border-red-300" : "border-gray-300"
-                  } rounded-md placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm`}
+                    errors.email ? "border-red-300" : "border-border"
+                  } rounded-md placeholder-muted focus:outline-none focus:ring-primary-bg focus:border-primary-bg sm:text-sm`}
                 />
                 {errors.email && (
                   <p className="mt-1 text-sm text-red-600">{errors.email}</p>
@@ -196,7 +194,7 @@ export default function LoginPage() {
             <div>
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-text-primary"
               >
                 Password
               </label>
@@ -210,8 +208,8 @@ export default function LoginPage() {
                   value={formData.password}
                   onChange={handleInputChange}
                   className={`appearance-none block w-full px-3 py-2 border ${
-                    errors.password ? "border-red-300" : "border-gray-300"
-                  } rounded-md placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm`}
+                    errors.password ? "border-red-300" : "border-border"
+                  } rounded-md placeholder-muted focus:outline-none focus:ring-primary-bg focus:border-primary-bg sm:text-sm`}
                 />
                 {errors.password && (
                   <p className="mt-1 text-sm text-red-600">{errors.password}</p>
@@ -223,7 +221,7 @@ export default function LoginPage() {
               <div>
                 <label
                   htmlFor="confirmPassword"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-text-primary"
                 >
                   Confirm Password
                 </label>
@@ -239,8 +237,8 @@ export default function LoginPage() {
                     className={`appearance-none block w-full px-3 py-2 border ${
                       errors.confirmPassword
                         ? "border-red-300"
-                        : "border-gray-300"
-                    } rounded-md placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm`}
+                        : "border-border"
+                    } rounded-md placeholder-muted focus:outline-none focus:ring-primary-bg focus:border-primary-bg sm:text-sm`}
                   />
                   {errors.confirmPassword && (
                     <p className="mt-1 text-sm text-red-600">
@@ -258,11 +256,11 @@ export default function LoginPage() {
                     id="remember-me"
                     name="remember-me"
                     type="checkbox"
-                    className="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
+                    className="h-4 w-4 text-primary-bg focus:ring-primary-bg border-border rounded"
                   />
                   <label
                     htmlFor="remember-me"
-                    className="ml-2 block text-sm text-gray-900"
+                    className="ml-2 block text-sm text-foreground"
                   >
                     Remember me
                   </label>
@@ -271,7 +269,7 @@ export default function LoginPage() {
                 <div className="text-sm">
                   <a
                     href="#"
-                    className="font-medium text-green-600 hover:text-green-500"
+                    className="font-medium text-primary-bg hover:text-cta-hover"
                   >
                     Forgot your password?
                   </a>
@@ -282,7 +280,7 @@ export default function LoginPage() {
             <div>
               <button
                 type="submit"
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-primary-text bg-primary-bg hover:bg-cta-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-bg"
               >
                 {isLogin ? "Sign in" : "Create account"}
               </button>
@@ -292,10 +290,10 @@ export default function LoginPage() {
           <div className="mt-6">
             <div className="relative">
               <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-300" />
+                <div className="w-full border-t border-border" />
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-gray-500">
+                <span className="px-2 bg-surface text-muted">
                   Or continue with
                 </span>
               </div>
@@ -305,7 +303,7 @@ export default function LoginPage() {
               <div>
                 <button
                   type="button"
-                  className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                  className="w-full inline-flex justify-center py-2 px-4 border border-border rounded-md shadow-sm bg-surface text-sm font-medium text-muted hover:bg-card-bg"
                 >
                   <svg className="w-5 h-5" viewBox="0 0 24 24">
                     <path
@@ -332,7 +330,7 @@ export default function LoginPage() {
               <div>
                 <button
                   type="button"
-                  className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                  className="w-full inline-flex justify-center py-2 px-4 border border-border rounded-md shadow-sm bg-surface text-sm font-medium text-muted hover:bg-card-bg"
                 >
                   <svg
                     className="w-5 h-5"

@@ -2,253 +2,159 @@
 
 import React from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
-// NEW: Import icons from lucide-react
+// Animations (framer-motion) have been removed
 import { BadgeCheck, Warehouse, Users } from "lucide-react";
 
-// --- Original Hero Animations ---
-const heroText = {
-  hidden: { opacity: 0, x: -40 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.7 },
-  },
-};
-
-const heroImage = {
-  hidden: { opacity: 0, x: 40 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.7, delay: 0.15 },
-  },
-};
-
-// --- Animation Variants for Scrolling ---
-
-// A simple fade-in from the bottom
-const fadeInOnScroll = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6 },
-  },
-};
-
-// Parent container for staggering child animations
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2, // Each child will animate 0.2s after the previous
-    },
-  },
-};
-
-// Child item animation for the staggered grid
-const staggerItem = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-};
-
-// For the two-column "Process" section
-const fadeInFromLeft = {
-  hidden: { opacity: 0, x: -30 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.7 } },
-};
-
-const fadeInFromRight = {
-  hidden: { opacity: 0, x: 30 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.7 } },
-};
-
-// --- REMOVED: Old SVG Icon Components ---
+// All animation variants have been removed
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-[var(--color-background)] text-[var(--color-text-primary)]">
-      {/* Hero section remains the same */}
-      <header className="py-16 px-4 md:px-8 lg:px-16 bg-[var(--color-surface)]">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-          <motion.div
-            className="space-y-6"
-            variants={heroText}
-            initial="hidden"
-            animate="visible"
-          >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-text-primary)] leading-tight">
+    // Base theme colors
+    <div className="min-h-screen bg-[#c8cfc0] text-[#5A5750]">
+      {/* --- Hero Section --- */}
+      <header className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-[#FCFCF9]">
+        {/* Professional responsiveness (md:grid-cols-2) */}
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
+          <div className="space-y-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#2B2A26] leading-tight">
               From Soil to Soul.
               <br />
               This is Our Story.
             </h1>
-            <p className="text-lg md:text-xl text-[var(--color-text-secondary)] leading-relaxed">
+            <p className="text-lg md:text-xl text-[#5A5750] leading-relaxed">
               We believe that real food is powerful medicine—and a deeper
               connection to the world around us. World of Nature began with a
               simple desire: find the purest organic essentials and share them
               with our community.
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            className="flex justify-center lg:justify-end"
-            variants={heroImage}
-            initial="hidden"
-            animate="visible"
-          >
+          <div className="flex justify-center md:justify-end">
             <img
-              src="/i3.png"
+              src="/won6.JPG"
               alt="Sunlit organic farm landscape"
-              className="w-full max-w-md lg:max-w-lg h-auto rounded-lg shadow-lg"
+              // UPDATED: Removed shadow-lg for a cleaner look
+              className="w-full max-w-md lg:max-w-lg h-auto rounded-lg"
               loading="lazy"
               decoding="async"
-              sizes="(max-width: 1024px) 100vw, 600px"
+              sizes="(max-width: 767px) 100vw, (max-width: 1024px) 50vw, 600px"
             />
-          </motion.div>
+          </div>
         </div>
       </header>
 
       <main>
-        {/* Added motion.section wrapper for philosophy */}
-        <motion.section
-          className="py-16 px-4 md:px-8 lg:px-16 bg-[var(--color-surface)]"
+        {/* --- Philosophy Section --- */}
+        <section
+          className="py-16 px-4 sm:px-6 lg:px-8 bg-[#FCFCF9]"
           aria-labelledby="philosophy"
-          variants={fadeInOnScroll}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }} // Triggers when 30% is visible
         >
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <h2
               id="philosophy"
-              className="text-3xl md:text-4xl font-bold text-[var(--color-text-primary)]"
+              className="text-3xl md:text-4xl font-bold text-[#2B2A26]"
             >
               Our Guiding Philosophy
             </h2>
-            <p className="text-lg md:text-xl text-[var(--color-text-secondary)] leading-relaxed max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-[#5A5750] leading-relaxed max-w-3xl mx-auto">
               To inspire a healthier world by connecting people to real food.
               We’re not just selling products— we’re fostering a movement back
               to nature, championing transparency, and proving that what’s good
               for you can be good for the planet.
             </p>
           </div>
-        </motion.section>
+        </section>
 
+        {/* --- Core Values Section --- */}
         <section
-          className="py-16 px-4 md:px-8 lg:px-16 bg-[var(--color-background)]"
+          className="py-16 px-4 sm:px-6 lg:px-8 bg-[#c8cfc0]" // Alternating background
           aria-labelledby="values"
         >
-          {/* Animate the section title */}
-          <motion.h2
+          <h2
             id="values"
-            className="text-3xl md:text-4xl font-bold text-[var(--color-text-primary)] text-center mb-12"
-            variants={fadeInOnScroll}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.5 }}
+            className="text-3xl md:text-4xl font-bold text-[#2B2A26] text-center mb-12"
           >
             Our Core Values
-          </motion.h2>
+          </h2>
 
-          {/* Animate the grid with stagger */}
-          <motion.ul
-            className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          {/* Professional responsiveness (md:grid-cols-3) */}
+          <ul
+            className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8"
             role="list"
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
           >
-            {/* Added motion.li and variant */}
-            <motion.li
-              className="bg-[var(--color-surface)] p-6 rounded-lg shadow-md text-center space-y-4"
-              variants={staggerItem}
+            <li
+              // UPDATED: shadow-lg to shadow-md for a cleaner UI
+              className="bg-[#FCFCF9] p-6 rounded-lg shadow-md text-center space-y-4"
             >
-              {/* NEW: Replaced with lucide-react icon */}
-              <BadgeCheck className="w-12 h-12 text-[var(--color-brand-primary)] mx-auto" />
-              <h3 className="text-xl font-semibold text-[var(--color-text-primary)]">
+              <BadgeCheck className="w-12 h-12 text-[#4A5D43] mx-auto" />
+              <h3 className="text-xl font-semibold text-[#2B2A26]">
                 Uncompromising Purity
               </h3>
-              <p className="text-[var(--color-text-secondary)] leading-relaxed">
+              <p className="text-[#5A5750] leading-relaxed">
                 If it isn’t 100% organic, lab-tested, and free from anything
                 artificial, we don’t offer it.
               </p>
-            </motion.li>
+            </li>
 
-            {/* Added motion.li and variant */}
-            <motion.li
-              className="bg-[var(--color-surface)] p-6 rounded-lg shadow-md text-center space-y-4"
-              variants={staggerItem}
+            <li
+              // UPDATED: shadow-lg to shadow-md
+              className="bg-[#FCFCF9] p-6 rounded-lg shadow-md text-center space-y-4"
             >
-              {/* NEW: Replaced with lucide-react icon */}
-              <Warehouse className="w-12 h-12 text-[var(--color-brand-primary)] mx-auto" />
-              <h3 className="text-xl font-semibold text-[var(--color-text-primary)]">
+              <Warehouse className="w-12 h-12 text-[#4A5D43] mx-auto" />
+              <h3 className="text-xl font-semibold text-[#2B2A26]">
                 Regenerative Sourcing
               </h3>
-              <p className="text-[var(--color-text-secondary)] leading-relaxed">
+              <p className="text-[#5A5750] leading-relaxed">
                 We partner with farms that go beyond organic—rebuilding soil
                 health and promoting biodiversity.
               </p>
-            </motion.li>
+            </li>
 
-            {/* Added motion.li and variant */}
-            <motion.li
-              className="bg-[var(--color-surface)] p-6 rounded-lg shadow-md text-center space-y-4"
-              variants={staggerItem}
+            <li
+              // UPDATED: shadow-lg to shadow-md
+              className="bg-[#FCFCF9] p-6 rounded-lg shadow-md text-center space-y-4"
             >
-              {/* NEW: Replaced with lucide-react icon */}
-              <Users className="w-12 h-12 text-[var(--color-brand-primary)] mx-auto" />
-              <h3 className="text-xl font-semibold text-[var(--color-text-primary)]">
+              <Users className="w-12 h-12 text-[#4A5D43] mx-auto" />
+              <h3 className="text-xl font-semibold text-[#2B2A26]">
                 Honest Transparency
               </h3>
-              <p className="text-[var(--color-text-secondary)] leading-relaxed">
+              <p className="text-[#5A5750] leading-relaxed">
                 You deserve to know where your food comes from. Every product is
                 traceable back to source.
               </p>
-            </motion.li>
-          </motion.ul>
+            </li>
+          </ul>
         </section>
 
-        {/* Added motion.section to animate the two columns */}
-        <motion.section
-          className="py-16 px-4 md:px-8 lg:px-16 bg-[var(--color-surface)]"
+        {/* --- Process Section --- */}
+        <section
+          className="py-16 px-4 sm:px-6 lg:px-8 bg-[#FCFCF9]"
           aria-labelledby="process"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
         >
-          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Animate image from left */}
-            <motion.div
-              className="flex justify-center lg:justify-start"
-              variants={fadeInFromLeft}
-            >
+          {/* Professional responsiveness (md:grid-cols-2) */}
+          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div className="flex justify-center md:justify-start">
               <img
                 src="/i4.png"
                 alt="Farmer’s hands holding honeycomb"
-                className="w-full max-w-md lg:max-w-lg h-auto rounded-lg shadow-lg"
+                // UPDATED: Removed shadow-lg
+                className="w-full max-w-md lg:max-w-lg h-auto rounded-lg"
                 loading="lazy"
                 decoding="async"
-                sizes="(max-width: 1024px) 100vw, 560px"
+                sizes="(max-width: 767px) 100vw, (max-width: 1024px) 50vw, 560px"
               />
-            </motion.div>
-            {/* Animate content from right */}
-            <motion.div
-              className="space-y-6 text-center lg:text-left"
-              variants={fadeInFromRight}
-            >
+            </div>
+            <div className="space-y-6 text-center md:text-left">
               <h2
                 id="process"
-                className="text-3xl md:text-4xl font-bold text-[var(--color-text-primary)]"
+                className="text-3xl md:text-4xl font-bold text-[#2B2A26]"
               >
                 The Journey to Your Table
               </h2>
-              <p className="text-xl md:text-2xl font-semibold text-[var(--color-brand-primary)]">
+              <p className="text-xl md:text-2xl font-semibold text-[#4A5D43]">
                 We don’t just find suppliers. We build partnerships.
               </p>
-              <p className="text-lg text-[var(--color-text-secondary)] leading-relaxed">
+              <p className="text-lg text-[#5A5750] leading-relaxed">
                 Our team travels to pristine regions to meet farmers who share
                 our values. Together we ensure every batch of honey, every drop
                 of oil, and every tea leaf is harvested at its peak and
@@ -256,24 +162,20 @@ export default function AboutPage() {
               </p>
               <Link
                 href="/shop"
-                className="inline-block bg-[var(--color-brand-primary)] text-[var(--color-brand-primary-text)] px-8 py-3 rounded-lg font-semibold hover:bg-[var(--color-brand-accent)] transition-colors duration-300"
+                className="inline-block bg-[#4A5D43] text-[#FCFCF9] px-8 py-3 rounded-lg font-semibold hover:bg-[#3A4A35] transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#4A5D43] focus-visible:ring-offset-[#FCFCF9]"
                 aria-label="Shop products shaped by our process"
               >
                 Shop Our Process
               </Link>
-            </motion.div>
+            </div>
           </div>
-        </motion.section>
+        </section>
       </main>
 
-      {/* Animate the final CTA section */}
-      <motion.section
-        className="py-16 px-4 md:px-8 lg:px-16 bg-[var(--color-brand-primary)] text-[var(--color-brand-primary-text)]"
+      {/* --- Final CTA Section --- */}
+      <section
+        className="py-16 px-4 sm:px-6 lg:px-8 bg-[#2B2A26] text-[#FCFCF9]" // Dark Espresso Background
         aria-labelledby="cta"
-        variants={fadeInOnScroll}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
       >
         <div className="max-w-4xl mx-auto text-center space-y-6">
           <h2 id="cta" className="text-3xl md:text-4xl font-bold">
@@ -285,13 +187,13 @@ export default function AboutPage() {
           </p>
           <Link
             href="/shop"
-            className="inline-block bg-[var(--color-brand-accent)] text-[var(--color-brand-accent-text)] px-8 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-colors duration-300"
+            className="inline-block bg-[#4A5D43] text-[#FCFCF9] px-8 py-3 rounded-lg font-semibold hover:bg-[#3A4A35] transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#4A5D43] focus-visible:ring-offset-[#2B2A26]"
             aria-label="Shop all products"
           >
             Shop All Products
           </Link>
         </div>
-      </motion.section>
+      </section>
     </div>
   );
 }

@@ -1,124 +1,252 @@
-/* Import Tailwind */
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* --- 1. Static Brand Color Palette --- */
-/* These are your brand's core, unchanging hex codes. */
+/* Brand palette: "Fresh & Organic"
+  (No changes here, your palette is great!)
+*/
 :root {
-  --brand-light: #F8F5F0;
-  /* Warm, creamy background */
-  --brand-dark: #3A4D39;
-  /* Deep forest green for text/backgrounds */
-  --brand-green: #6A8D73;
-  /* Softer, natural green for accents/surfaces */
-  --brand-accent: #D4A373;
-  /* Earthy tan/terracotta for buttons (CTA) */
-  --brand-accent-hover: #c9935f;
-  /* Darker accent for hover */
-  --brand-white: #FFFFFF;
-  --brand-black: #222222;
+  /* Core Greens (Light & Fresh) - Expanded */
+  --brand-mint-50: #F5FBF7;
+  --brand-mint-100: #EBF3ED;
+  --brand-mint-200: #D7E7DB;
+  --brand-mint-300: #C2D1C5;
+  --brand-mint-400: #AEBBAF;
+  --brand-mint-500: #9AA599;
+  --brand-sage-200: #D7E0D7;
+  --brand-sage-300: #C2D1C5;
+  --brand-sage-400: #AEBBAF;
+  --brand-sage-500: #8DA88C;
+  --brand-sage-600: #6D8573;
+  --brand-sage-700: #4A674E;
+  --brand-sage-800: #3A543E;
+  --brand-pine-600: #5A7A5F;
+  --brand-pine-700: #4A674E;
+  --brand-pine-800: #3A543E;
+  --brand-pine-900: #29382B;
 
-  /* Text & Neutrals */
-  --brand-text-dark: #2C2F24;
-  /* Dark, earthy text */
-  --brand-text-light: #F8F5F0;
-  /* Light, creamy text */
-  --brand-grey-light: #E0E0E0;
-  /* Light borders */
-  --brand-grey-dark: #6c757d;
-  /* Subtitles, secondary text */
+  /* Neutrals (Clean & Warm) - Expanded with Light Greens */
+  --brand-eggshell: #F9F9F8;
+  --brand-linen: #F2F0ED;
+  --brand-linen-100: #F7F5F2;
+  --brand-linen-200: #F2F0ED;
+  --brand-linen-300: #EDEAE7;
+  --brand-stone-100: #EBF3ED;
+  --brand-stone-200: #D7E7DB;
+  --brand-stone-300: #C2D1C5;
+  --brand-stone: #8DA88C;
+  --brand-stone-500: #AEBBAF;
+  --brand-stone-600: #9AA599;
+  --brand-ash: #C2D1C5;
+  --brand-ash-100: #EBF3ED;
+  --brand-ash-200: #D7E7DB;
 
-  /* Utilities */
-  --brand-whatsapp: #25D366;
-  --brand-whatsapp-hover: #1EAE56;
+  /* Accent (Action & Energy) - Expanded */
+  --brand-peach-200: #FDE2D5;
+  --brand-peach-300: #FBD4C0;
+  --brand-peach-400: #FCAE89;
+  --brand-peach-500: #F0926F;
+  --brand-peach-600: #E58A6A;
+  --brand-peach-700: #D17A5D;
+
+  /* Additional Colors for Variety */
+  --brand-lavender-100: #F0F0FF;
+  --brand-lavender-200: #E0E0FF;
+  --brand-lavender-300: #D0D0FF;
+  --brand-cream: #FFF8E1;
+  --brand-cream-100: #FFFBF0;
+  --brand-cream-200: #FFF5E0;
+  --brand-warm-gray-100: #F5F5F5;
+  --brand-warm-gray-200: #E8E8E8;
+  --brand-warm-gray-300: #D1D1D1;
+
+  /* Gradients */
+  --gradient-mint-to-sage: linear-gradient(135deg, #EBF3ED 0%, #C2D1C5 100%);
+  --gradient-peach-to-mint: linear-gradient(135deg, #FCAE89 0%, #EBF3ED 100%);
+  --gradient-sage-to-pine: linear-gradient(135deg, #8DA88C 0%, #4A674E 100%);
+  --gradient-linen-to-cream: linear-gradient(135deg, #F2F0ED 0%, #FFF8E1 100%);
+
+  /* Utilities (Unchanged) */
+  --brand-success: #25D366;
+  --brand-success-hover: #1EAE56;
+
+  /* Fonts (preserve yours) */
+  --font-sans: var(--font-inter, 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial);
+  --font-heading: var(--font-manrope, 'Manrope', system-ui, -apple-system, "Segoe UI", Roboto);
 }
 
-/* --- 2. Font Definitions --- */
+/* ----------------------------------------------------------------- */
+/* Semantic tokens (Light Mode) - UPDATED FOR "COLOR ZONING"    */
+/* ----------------------------------------------------------------- */
 :root {
-  --font-sans: var(--font-inter, 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif');
-  --font-heading: var(--font-manrope, 'Manrope', 'ui-sans-serif', 'system-ui', 'sans-serif');
+  /* Base backgrounds */
+  --background: var(--brand-eggshell);
+  /* The DEFAULT background for most pages */
+  --surface: #FFFFFF;
+  --card-bg: var(--brand-linen-100);
+  /* Lightened card bg */
+  --subtle-bg: var(--brand-mint-100);
+
+  /* Page-specific backgrounds for "Color Zoning" - MORE VARIETY */
+  --bg-home: var(--brand-mint-50);
+  /* Branded Zone: Your signature light mint */
+  --bg-about: var(--brand-sage-200);
+  /* Branded Zone: Your signature light sage */
+  --bg-shop: var(--brand-eggshell);
+  /* Neutral Zone: Clean eggshell, lets products pop */
+  --bg-product: var(--brand-linen-100);
+  /* Neutral Zone: Warm linen, also for products */
+  --bg-cart: var(--brand-lavender-100);
+  /* Action Zone: Use light lavender for the cart */
+  --bg-checkout: var(--brand-cream-100);
+  /* Action Zone: Use warm cream for checkout flow */
+  --bg-order-confirmation: var(--brand-peach-200);
+  /* Success Zone: Soft peach for celebration */
+  --bg-utility: var(--brand-linen-200);
+  /* Neutral Zone: For login, FAQ, contact, etc. */
+
+
+  /* Section backgrounds */
+  --bg-hero: var(--gradient-mint-to-sage);
+  --bg-testimonials: var(--brand-sage-200);
+  --bg-cta: var(--gradient-peach-to-mint);
+  --bg-footer: var(--brand-pine-800);
+
+  /* Text colors */
+  --text-primary: var(--brand-pine-700);
+  --text-secondary: var(--brand-stone);
+  --foreground: var(--brand-pine-900);
+  --muted: var(--brand-ash);
+  --border: var(--brand-sage-300);
+
+  /* Primary CTA (Call to Action) */
+  --primary-bg: var(--brand-peach-400);
+  --primary-text: var(--brand-pine-900);
+
+  /* Accent (Secondary buttons, info, etc.) */
+  --accent-bg: var(--brand-pine-700);
+  --accent-text: #FFFFFF;
+
+  /* Hovers */
+  --cta-hover: var(--brand-peach-600);
+  --accent-hover: var(--brand-sage-500);
 }
 
-/* --- 3. Semantic Theme (Light Mode by Default) --- */
-/* These variables define the *purpose* of a color and will 
-   be overridden by [data-theme="dark"]. */
-:root {
-  --background: var(--brand-light);
-  /* Main page background */
-  --foreground: var(--brand-text-dark);
-  /* Default text color */
-  --surface: var(--brand-white);
-  /* Card, modal, footer backgrounds */
-  --border: var(--brand-grey-light);
-  /* Dividers and borders */
+/* ----------------------------------------------------------------- */
+/* Dark theme overrides - FIXED BROKEN BACKGROUNDS               */
+/* ----------------------------------------------------------------- */
+.dark {
+  /* Base backgrounds */
+  --background: var(--brand-pine-900);
+  /* The DEFAULT dark background */
+  --surface: var(--brand-pine-800);
+  /* Cards/surfaces are slightly lighter */
+  --card-bg: var(--brand-pine-800);
+  --subtle-bg: var(--brand-pine-700);
 
-  --text-primary: var(--brand-text-dark);
-  /* Headings, main text */
-  --text-secondary: var(--brand-grey-dark);
-  /* Subtitles, labels, descriptions */
+  /* Page-specific backgrounds for "Color Zoning" - FIXED */
+  /* These MUST be dark colors to work on dark mode */
+  --bg-home: var(--brand-pine-900);
+  /* Branded Zone: Richest dark for home */
+  --bg-about: var(--brand-pine-800);
+  /* Branded Zone: Slightly lighter for readability */
+  --bg-shop: var(--brand-pine-900);
+  /* Neutral Zone: Use default dark bg */
+  --bg-product: var(--brand-pine-800);
+  /* Neutral Zone: Slightly lighter surface */
+  --bg-cart: var(--brand-sage-800);
+  /* Action Zone: A dark, muted sage */
+  --bg-checkout: var(--brand-sage-700);
+  /* Action Zone: A slightly lighter dark sage */
+  --bg-order-confirmation: var(--brand-peach-700);
+  /* Success Zone: A dark, celebratory peach */
+  --bg-utility: var(--brand-pine-800);
+  /* Neutral Zone: For login, FAQ, etc. */
 
-  --icon-color: var(--brand-grey-dark);
-  --icon-hover-bg: var(--brand-grey-light);
+  /* Section backgrounds */
+  --bg-hero: var(--gradient-sage-to-pine);
+  --bg-testimonials: var(--brand-pine-700);
+  --bg-cta: var(--gradient-peach-to-mint);
+  --bg-footer: var(--brand-pine-900);
 
-  /* Button & Action Colors */
-  --primary-bg: var(--brand-dark);
-  /* Main button background */
-  --primary-text: var(--brand-text-light);
-  /* Text on main button */
+  /* Text colors */
+  --text-primary: var(--brand-eggshell);
+  --text-secondary: var(--brand-ash);
+  --foreground: #FFFFFF;
+  --muted: var(--brand-stone);
+  --border: var(--brand-pine-700);
 
-  --accent-bg: var(--brand-accent);
-  /* Secondary button background */
-  --accent-text: var(--brand-text-dark);
-  /* Text on accent button */
-  --accent-hover-bg: var(--brand-accent-hover);
+  /* Primary CTA (The peach POPS on the dark green) */
+  --primary-bg: var(--brand-peach-400);
+  --primary-text: var(--brand-pine-900);
 
-  --whatsapp-bg: var(--brand-whatsapp);
-  --whatsapp-hover: var(--brand-whatsapp-hover);
+  /* Accent (Use the lighter sage for contrast) */
+  --accent-bg: var(--brand-sage-500);
+  --accent-text: var(--brand-pine-900);
+
+  /* Hovers */
+  --cta-hover: var(--brand-peach-600);
+  --accent-hover: var(--brand-sage-300);
 }
 
-/* --- 4. Semantic Theme (Dark Mode Overrides) --- */
-[data-theme="dark"] {
-  --background: var(--brand-dark);
-  --foreground: var(--brand-text-light);
-  --surface: var(--brand-green);
-  --border: var(--brand-green);
+/* ----------------------------------------------------------------- */
+/* Usage helpers (small set of components)                      */
+/* (Kept your new, stronger card style!)                        */
+/* ----------------------------------------------------------------- */
 
-  --text-primary: var(--brand-text-light);
-  --text-secondary: var(--brand-grey-light);
-
-  --icon-color: var(--brand-grey-light);
-  --icon-hover-bg: var(--brand-dark);
-
-  /* Flip primary and accent for dark mode */
-  --primary-bg: var(--brand-accent);
-  --primary-text: var(--brand-text-dark);
-
-  --accent-bg: var(--brand-light);
-  --accent-text: var(--brand-text-dark);
-  --accent-hover-bg: var(--brand-grey-light);
+.button-primary {
+  background: var(--primary-bg);
+  color: var(--primary-text);
+  font-weight: 600;
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid transparent;
 }
 
-/* --- 5. Base Body Styles --- */
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.3s ease, color 0.3s ease;
+.button-primary:hover,
+.button-primary:focus {
+  background: var(--cta-hover);
+  outline: none;
 }
 
-/* Apply heading font */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-heading);
+.button-accent {
+  background: var(--accent-bg);
+  color: var(--accent-text);
+  font-weight: 500;
+  padding: 0.5rem 0.9rem;
+  border-radius: 0.45rem;
+}
+
+.button-accent:hover {
+  background: var(--accent-hover);
+}
+
+/* Your new card style */
+.card {
+  background: var(--surface);
   color: var(--text-primary);
+  border: 2px solid var(--border);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 12px 40px rgba(41, 56, 43, 0.12), 0 4px 16px rgba(41, 56, 43, 0.08);
 }
 
-/* --- 6. Utility Transitions --- */
-.color-transition {
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+.dark .card {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2), 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.badge {
+  display: inline-block;
+  background: var(--brand-sage-500);
+  color: #fff;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* subtle focus ring that's brand-aware */
+:focus {
+  outline: 3px solid color-mix(in srgb, var(--primary-bg) 30%, transparent);
+  outline-offset: 2px;
 }

@@ -1,70 +1,30 @@
 "use client";
 
 import React, { useState, ChangeEvent, FormEvent } from "react";
-import Link from "next/link";
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Loader2,
+  CheckCircle,
+  AlertCircle,
+  Facebook,
+  Instagram,
+  Twitter,
+} from "lucide-react";
 
 // --- Type definition for our form state ---
 interface FormData {
   name: string;
   email: string;
-  subject: string;
+  reason: string;
   message: string;
 }
 
-// --- Icons (strokeWidth changed to 1.5 for a finer look) ---
-const PhoneIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth={1.5}
-    stroke="currentColor"
-    className="w-6 h-6 text-[var(--color-text-secondary)]"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-1.49 1.49c-1.82-3.313-4.69-6.182-7.903-7.903l1.49-1.49c.362-.362.527-.833.417-1.173L6.963 3.102A1.125 1.125 0 005.87 2.25H4.5A2.25 2.25 0 002.25 4.5v2.25z"
-    />
-  </svg>
-);
-const EmailIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth={1.5}
-    stroke="currentColor"
-    className="w-6 h-6 text-[var(--color-text-secondary)]"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
-    />
-  </svg>
-);
-const LocationIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth={1.5}
-    stroke="currentColor"
-    className="w-6 h-6 text-[var(--color-text-secondary)]"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
-    />
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
-    />
-  </svg>
-);
+// --- Type for submission state ---
+type SubmissionState = "idle" | "submitting" | "success" | "error";
+
+// --- WhatsApp Icon (self-contained) ---
 const WhatsAppIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -76,221 +36,300 @@ const WhatsAppIcon = () => (
   </svg>
 );
 
+// --- Main Contact Page Component ---
 const ContactPage = () => {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
-    subject: "",
+    reason: "general",
     message: "",
   });
+  const [submissionState, setSubmissionState] =
+    useState<SubmissionState>("idle");
 
   const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle form submission logic here
+    setSubmissionState("submitting");
+    await new Promise((resolve) => setTimeout(resolve, 1500));
     console.log("Form Data Submitted:", formData);
-    alert("Thank you for your message! We will get back to you soon.");
-    setFormData({ name: "", email: "", subject: "", message: "" });
+    setSubmissionState("success");
+    setFormData({ name: "", email: "", reason: "general", message: "" });
   };
 
+  // --- Local Theme Definition (Earthy Sage, Cream & Moss) ---
+  const style = {
+    "--color-background": "#c8cfc0", // User's Muted Sage/Olive
+    "--color-surface": "#FCFCF9", // Creamy, warm white
+    "--color-text-primary": "#2B2A26", // Warm "Espresso" black
+    "--color-text-secondary": "#5A5750", // Warm "Gray-brown"
+    "--color-border": "#DEDCD5", // Warm, light gray border
+    "--color-brand-primary": "#4A5D43", // Deep "Moss" Green
+    "--color-brand-primary-hover": "#3A4A35", // Darker Moss Green
+    "--color-brand-primary-text": "#FCFCF9", // Creamy white text
+    "--color-brand-secondary": "#4A5D43", // Moss Green (for icons/links)
+    "--color-brand-whatsapp": "#25D366",
+    "--color-brand-whatsapp-hover": "#20b45a",
+    "--color-success-bg": "#E6F7F0",
+    "--color-success-text": "#00875A",
+    "--color-error-bg": "#FFF0F0",
+    "--color-error-text": "#D92D20",
+  } as React.CSSProperties;
+
   return (
-    <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-16 py-8">
-      {/* --- Header --- */}
-      <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold text-[var(--color-text-primary)] mb-4">
-          Contact Us
-        </h1>
-        <p className="text-lg md:text-xl text-[var(--color-text-secondary)] max-w-2xl mx-auto">
-          Have a question about our products, or just want to say hello? We’d
-          love to hear from you.
-        </p>
-      </div>
-
-      {/* --- Main Content Grid --- */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        {/* --- Left Column: Info --- */}
-        <div className="space-y-6">
-          <h2 className="text-2xl md:text-3xl font-bold text-[var(--color-text-primary)]">
-            Our Office
-          </h2>
-          <p className="text-[var(--color-text-secondary)] leading-relaxed">
-            Get in touch with us directly for any enquiries.
+    // --- Apply Local Theme ---
+    <div
+      style={style}
+      className="bg-[var(--color-background)] text-[var(--color-text-secondary)]"
+    >
+      {/* UPDATED: Smoothed out responsive padding for all screen sizes */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 lg:py-20">
+        {/* --- Header --- */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold text-[var(--color-text-primary)] mb-4">
+            Contact Us
+          </h1>
+          <p className="text-lg md:text-xl max-w-2xl mx-auto">
+            Have a question? We’d love to hear from you. Get in touch with our
+            team directly.
           </p>
+        </div>
 
-          <div className="space-y-6">
-            <a
-              href="https://wa.me/9528295991" // <-- Add your WhatsApp number here
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-[#25D366] hover:bg-[#1EAE56] text-white px-6 py-3 rounded-lg font-semibold transition-colors duration-300"
-            >
-              <WhatsAppIcon />
-              <span>Chat on WhatsApp</span>
-            </a>
+        {/* --- Main Content Grid --- */}
+        {/* UPDATED: Changed to md:grid-cols-2 to activate side-by-side on tablets */}
+        {/* UPDATED: Added responsive gap */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+          {/* --- Left Column: Info --- */}
+          <div className="space-y-8">
+            <h2 className="text-2xl md:text-3xl font-bold text-[var(--color-text-primary)]">
+              Contact Information
+            </h2>
 
-            <div className="flex items-start gap-4">
-              <EmailIcon />
-              <div>
-                <h3 className="text-lg font-semibold text-[var(--color-text-primary)]">
-                  Email us
-                </h3>
-                <a
-                  href="mailto:apeywon@gmail.com"
-                  className="text-[var(--color-brand-primary)] hover:underline"
-                >
-                  support@worldofnature.com
-                </a>
+            {/* --- Info Blocks --- */}
+            <div className="space-y-6">
+              <div className="flex items-start gap-4">
+                <Mail className="w-6 h-6 text-[var(--color-brand-secondary)] mt-1 flex-shrink-0" />
+                <div>
+                  <h3 className="text-lg font-semibold text-[var(--color-text-primary)]">
+                    Email us
+                  </h3>
+                  <a
+                    href="mailto:support@worldofnature.com"
+                    className="text-[var(--color-brand-secondary)] hover:underline"
+                  >
+                    support@worldofnature.com
+                  </a>
+                </div>
               </div>
-            </div>
 
-            <div className="flex items-start gap-4">
-              <PhoneIcon />
-              <div>
-                <h3 className="text-lg font-semibold text-[var(--color-text-primary)]">
-                  Call us
-                </h3>
-                <a
-                  href="tel:+919528295991"
-                  className="text-[var(--color-brand-primary)] hover:underline"
-                >
-                  +919528295991
-                </a>{" "}
-                <br></br>
-                <a
-                  href="tel:+23057814480"
-                  className="text-[var(--color-brand-primary)] hover:underline"
-                >
-                  +23057814480
-                </a>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4">
-              <LocationIcon />
-              <div>
-                <h3 className="text-lg font-semibold text-[var(--color-text-primary)]">
-                  Visit our office
-                </h3>
-                <p className="text-[var(--color-text-secondary)]">
-                  123 Green Valley, Organic Farms Rd,
+              <div className="flex items-start gap-4">
+                <Phone className="w-6 h-6 text-[var(--color-brand-secondary)] mt-1 flex-shrink-0" />
+                <div>
+                  <h3 className="text-lg font-semibold text-[var(--color-text-primary)]">
+                    Call us
+                  </h3>
+                  <a
+                    href="tel:+919528295991"
+                    className="text-[var(--color-brand-secondary)] hover:underline"
+                  >
+                    +919528295991
+                  </a>
                   <br />
-                  Nature City, India 400001
+                  <a
+                    href="tel:+23057814480"
+                    className="text-[var(--color-brand-secondary)] hover:underline"
+                  >
+                    +23057814480
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <MapPin className="w-6 h-6 text-[var(--color-brand-secondary)] mt-1 flex-shrink-0" />
+                <div>
+                  <h3 className="text-lg font-semibold text-[var(--color-text-primary)]">
+                    Visit our office
+                  </h3>
+                  <p className="text-[var(--color-text-secondary)]">
+                    123 Green Valley, Organic Farms Rd,
+                    <br />
+                    Nature City, India 400001
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* --- Business Hours & Socials --- */}
+            <div className="pt-6 border-t border-[var(--color-border)] space-y-6">
+              <div>
+                <h3 className="text-lg font-semibold text-[var(--color-text-primary)] mb-3">
+                  Business Hours
+                </h3>
+                <p>
+                  Monday - Friday: 9:00 AM - 6:00 PM (IST)
+                  <br />
+                  Saturday: 10:00 AM - 3:00 PM (IST)
+                  <br />
+                  Sunday: Closed
                 </p>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-[var(--color-text-primary)] mb-3">
+                  Follow Us
+                </h3>
+                <div className="flex gap-5">
+                  <a
+                    href="#"
+                    aria-label="Facebook"
+                    className="text-[var(--color-text-secondary)] transition-colors duration-300 hover:text-[var(--color-text-primary)]"
+                  >
+                    <Facebook size={24} />
+                  </a>
+                  <a
+                    href="#"
+                    aria-label="Instagram"
+                    className="text-[var(--color-text-secondary)] transition-colors duration-300 hover:text-[var(--color-text-primary)]"
+                  >
+                    <Instagram size={24} />
+                  </a>
+                  <a
+                    href="#"
+                    aria-label="Twitter"
+                    className="text-[var(--color-text-secondary)] transition-colors duration-300 hover:text-[var(--color-text-primary)]"
+                  >
+                    <Twitter size={24} />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
+
+          {/* --- Right Column: Form --- */}
+          <div className="space-y-6 bg-[var(--color-surface)] p-6 md:p-8 rounded-lg shadow-sm border border-[var(--color-border)]">
+            <h2 className="text-2xl md:text-3xl font-bold text-[var(--color-text-primary)]">
+              Send us a Message
+            </h2>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {/* --- Form Fields --- */}
+              <div className="space-y-2">
+                <label
+                  htmlFor="name"
+                  className="block text-sm font-medium text-[var(--color-text-primary)]"
+                >
+                  Name*
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  className="w-full px-4 py-3 border border-[var(--color-border)] rounded-lg focus:outline-none focus:border-[var(--color-brand-primary)] focus:ring-2 focus:ring-[var(--color-brand-primary)]/50 bg-[var(--color-surface)] text-[var(--color-text-primary)]"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-[var(--color-text-primary)]"
+                >
+                  Email*
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  className="w-full px-4 py-3 border border-[var(--color-border)] rounded-lg focus:outline-none focus:border-[var(--color-brand-primary)] focus:ring-2 focus:ring-[var(--color-brand-primary)]/50 bg-[var(--color-surface)] text-[var(--color-text-primary)]"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label
+                  htmlFor="reason"
+                  className="block text-sm font-medium text-[var(--color-text-primary)]"
+                >
+                  Reason for Contact*
+                </label>
+                <select
+                  id="reason"
+                  name="reason"
+                  className="w-full px-4 py-3 border border-[var(--color-border)] rounded-lg focus:outline-none focus:border-[var(--color-brand-primary)] focus:ring-2 focus:ring-[var(--color-brand-primary)]/50 bg-[var(--color-surface)] text-[var(--color-text-primary)]"
+                  value={formData.reason}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="general">General Inquiry</option>
+                  <option value="order">Order Support</option>
+                  <option value="product">Product Question</option>
+                  <option value="wholesale">Wholesale Inquiry</option>
+                  <option value="press">Press & Media</option>
+                </select>
+              </div>
+
+              <div className="space-y-2">
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium text-[var(--color-text-primary)]"
+                >
+                  Your Message*
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={5}
+                  className="w-full px-4 py-3 border border-[var(--color-border)] rounded-lg focus:outline-none focus:border-[var(--color-brand-primary)] focus:ring-2 focus:ring-[var(--color-brand-primary)]/50 bg-[var(--color-surface)] text-[var(--color-text-primary)] resize-vertical"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                ></textarea>
+              </div>
+
+              {/* --- Submit Button --- */}
+              <button
+                type="submit"
+                className="w-full bg-[var(--color-brand-primary)] text-[var(--color-brand-primary-text)] py-3 px-6 rounded-lg font-semibold hover:bg-[var(--color-brand-primary-hover)] transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-2 flex items-center justify-center disabled:opacity-70"
+                disabled={submissionState === "submitting"}
+              >
+                {submissionState === "submitting" ? (
+                  <>
+                    <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                    Submitting...
+                  </>
+                ) : (
+                  "Send Message"
+                )}
+              </button>
+
+              {/* --- Submission State Message --- */}
+              {submissionState === "success" && (
+                <div className="flex items-center gap-2 rounded-md bg-[var(--color-success-bg)] p-3 text-sm text-[var(--color-success-text)]">
+                  <CheckCircle className="w-5 h-5 flex-shrink-0" />
+                  <span>
+                    Thank you! Your message has been sent successfully.
+                  </span>
+                </div>
+              )}
+              {submissionState === "error" && (
+                <div className="flex items-center gap-2 rounded-md bg-[var(--color-error-bg)] p-3 text-sm text-[var(--color-error-text)]">
+                  <AlertCircle className="w-5 h-5 flex-shrink-0" />
+                  <span>
+                    Oops! Something went wrong. Please try again later.
+                  </span>
+                </div>
+              )}
+            </form>
+          </div>
         </div>
-
-        {/* --- Right Column: Form --- */}
-        <div className="space-y-6">
-          <h2 className="text-2xl md:text-3xl font-bold text-[var(--color-text-primary)]">
-            Get In Touch For Enquiries
-          </h2>
-          <p className="text-[var(--color-text-secondary)] leading-relaxed">
-            For questions about orders or purchasing, feel free to ask.
-          </p>
-
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="space-y-2">
-              <label
-                htmlFor="name"
-                className="block text-sm font-medium text-[var(--color-text-primary)]"
-              >
-                Name*
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                className="w-full px-4 py-3 border border-[var(--color-border)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-primary)] bg-[var(--color-surface)] text-[var(--color-text-primary)]"
-                value={formData.name}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-[var(--color-text-primary)]"
-              >
-                Email*
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                className="w-full px-4 py-3 border border-[var(--color-border)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-primary)] bg-[var(--color-surface)] text-[var(--color-text-primary)]"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label
-                htmlFor="subject"
-                className="block text-sm font-medium text-[var(--color-text-primary)]"
-              >
-                Subject
-              </label>
-              <input
-                type="text"
-                id="subject"
-                name="subject"
-                className="w-full px-4 py-3 border border-[var(--color-border)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-primary)] bg-[var(--color-surface)] text-[var(--color-text-primary)]"
-                value={formData.subject}
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label
-                htmlFor="message"
-                className="block text-sm font-medium text-[var(--color-text-primary)]"
-              >
-                Your Message*
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                rows={5}
-                className="w-full px-4 py-3 border border-[var(--color-border)] rounded-lg focus:outline-none focus:ring-2 focus:ring-[var(--color-brand-primary)] bg-[var(--color-surface)] text-[var(--color-text-primary)] resize-vertical"
-                value={formData.message}
-                onChange={handleChange}
-                required
-              ></textarea>
-            </div>
-
-            <button
-              type="submit"
-              className="w-full bg-[var(--color-brand-primary)] text-[var(--color-brand-primary-text)] py-3 px-6 rounded-lg font-semibold hover:bg-[var(--color-brand-accent)] transition-colors duration-300"
-            >
-              Send Message
-            </button>
-          </form>
-        </div>
-      </div>
-
-      {/* --- Map Section (Optional) --- */}
-      {/* This is where you would put your map embed code */}
-      <div className="mt-12">
-        {/* Example of an embedded Google Map */}
-        {/* <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d106.8195613!3d-6.1947413!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f43a6a3b2a3b%3A0x1e7b231a2c3a2a3b!2sNational%20Monument!5e0!3m2!1sen!2sid!4v1621234567890!5m2!1sen!2sid"
-          width="100%"
-          height="450"
-          style={{ border: 0 }}
-          allowFullScreen={false}
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-        ></iframe> */}
       </div>
     </div>
   );

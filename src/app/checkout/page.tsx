@@ -73,15 +73,12 @@ export default function CheckoutPage() {
 
   if (items.length === 0) {
     return (
-      <div className="min-h-screen bg-[var(--background)] flex items-center justify-center">
+      <div className="min-h-screen bg-checkout flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-[var(--color-text-primary)] mb-4">
+          <h1 className="text-2xl font-bold text-text-primary mb-4">
             Your cart is empty
           </h1>
-          <Link
-            href="/shop"
-            className="text-[var(--color-brand-primary)] hover:text-[var(--color-brand-accent)]"
-          >
+          <Link href="/shop" className="text-primary-bg hover:text-accent-bg">
             ← Back to Shop
           </Link>
         </div>
@@ -90,32 +87,30 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[var(--background)]">
+    <div className="min-h-screen bg-checkout">
       {/* Header */}
-      <div className="bg-[var(--color-surface)] border-b border-[var(--color-border)]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <h1 className="text-3xl font-bold text-[var(--color-text-primary)]">
+      <div className="bg-surface border-b border-border">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-16 py-6 md:py-8">
+          <h1 className="text-2xl md:text-3xl font-bold text-text-primary">
             Checkout
           </h1>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-16 py-8 md:py-12">
         {/* Progress indicator */}
         <div className="mb-8">
           <div className="flex items-center justify-center">
             <div
               className={`flex items-center ${
-                currentStep >= 1
-                  ? "text-[var(--color-brand-primary)]"
-                  : "text-[var(--color-text-secondary)]"
+                currentStep >= 1 ? "text-primary-bg" : "text-text-secondary"
               }`}
             >
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center border-2 ${
                   currentStep >= 1
-                    ? "border-[var(--color-brand-primary)] bg-[var(--color-brand-primary)] text-[var(--color-brand-primary-text)]"
-                    : "border-[var(--color-border)]"
+                    ? "border-primary-bg bg-primary-bg text-primary-text"
+                    : "border-border"
                 }`}
               >
                 1
@@ -124,23 +119,19 @@ export default function CheckoutPage() {
             </div>
             <div
               className={`w-12 h-0.5 mx-4 ${
-                currentStep >= 2
-                  ? "bg-[var(--color-brand-primary)]"
-                  : "bg-[var(--color-border)]"
+                currentStep >= 2 ? "bg-primary-bg" : "bg-border"
               }`}
             ></div>
             <div
               className={`flex items-center ${
-                currentStep >= 2
-                  ? "text-[var(--color-brand-primary)]"
-                  : "text-[var(--color-text-secondary)]"
+                currentStep >= 2 ? "text-primary-bg" : "text-text-secondary"
               }`}
             >
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center border-2 ${
                   currentStep >= 2
-                    ? "border-[var(--color-brand-primary)] bg-[var(--color-brand-primary)] text-[var(--color-brand-primary-text)]"
-                    : "border-[var(--color-border)]"
+                    ? "border-primary-bg bg-primary-bg text-primary-text"
+                    : "border-border"
                 }`}
               >
                 2
@@ -149,23 +140,19 @@ export default function CheckoutPage() {
             </div>
             <div
               className={`w-12 h-0.5 mx-4 ${
-                currentStep >= 3
-                  ? "bg-[var(--color-brand-primary)]"
-                  : "bg-[var(--color-border)]"
+                currentStep >= 3 ? "bg-primary-bg" : "bg-border"
               }`}
             ></div>
             <div
               className={`flex items-center ${
-                currentStep >= 3
-                  ? "text-[var(--color-brand-primary)]"
-                  : "text-[var(--color-text-secondary)]"
+                currentStep >= 3 ? "text-primary-bg" : "text-text-secondary"
               }`}
             >
               <div
                 className={`w-8 h-8 rounded-full flex items-center justify-center border-2 ${
                   currentStep >= 3
-                    ? "border-[var(--color-brand-primary)] bg-[var(--color-brand-primary)] text-[var(--color-brand-primary-text)]"
-                    : "border-[var(--color-border)]"
+                    ? "border-primary-bg bg-primary-bg text-primary-text"
+                    : "border-border"
                 }`}
               >
                 3
@@ -179,8 +166,8 @@ export default function CheckoutPage() {
           {/* Main content */}
           <div className="lg:col-span-8">
             {currentStep === 1 && (
-              <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg p-6">
-                <h2 className="text-xl font-semibold text-[var(--color-text-primary)] mb-6">
+              <div className="bg-surface border border-border rounded-lg p-6">
+                <h2 className="text-xl font-semibold text-text-primary mb-6">
                   Shipping Information
                 </h2>
                 <form onSubmit={handleShippingSubmit} className="space-y-6">
@@ -188,7 +175,7 @@ export default function CheckoutPage() {
                     <div>
                       <label
                         htmlFor="firstName"
-                        className="block text-sm font-medium text-[var(--color-text-primary)]"
+                        className="block text-sm font-medium text-text-primary"
                       >
                         First Name
                       </label>
@@ -203,13 +190,13 @@ export default function CheckoutPage() {
                             firstName: e.target.value,
                           })
                         }
-                        className="mt-1 block w-full border-[var(--color-border)] rounded-md shadow-sm focus:ring-[var(--color-brand-primary)] focus:border-[var(--color-brand-primary)]"
+                        className="mt-1 block w-full border-border rounded-md shadow-sm focus:ring-primary-bg focus:border-primary-bg"
                       />
                     </div>
                     <div>
                       <label
                         htmlFor="lastName"
-                        className="block text-sm font-medium text-[var(--color-text-primary)]"
+                        className="block text-sm font-medium text-text-primary"
                       >
                         Last Name
                       </label>
@@ -224,7 +211,7 @@ export default function CheckoutPage() {
                             lastName: e.target.value,
                           })
                         }
-                        className="mt-1 block w-full border-[var(--color-border)] rounded-md shadow-sm focus:ring-[var(--color-brand-primary)] focus:border-[var(--color-brand-primary)]"
+                        className="mt-1 block w-full border-border rounded-md shadow-sm focus:ring-primary-bg focus:border-primary-bg"
                       />
                     </div>
                   </div>
@@ -232,7 +219,7 @@ export default function CheckoutPage() {
                   <div>
                     <label
                       htmlFor="email"
-                      className="block text-sm font-medium text-[var(--color-text-primary)]"
+                      className="block text-sm font-medium text-text-primary"
                     >
                       Email Address
                     </label>
@@ -247,14 +234,14 @@ export default function CheckoutPage() {
                           email: e.target.value,
                         })
                       }
-                      className="mt-1 block w-full border-[var(--color-border)] rounded-md shadow-sm focus:ring-[var(--color-brand-primary)] focus:border-[var(--color-brand-primary)]"
+                      className="mt-1 block w-full border-border rounded-md shadow-sm focus:ring-primary-bg focus:border-primary-bg"
                     />
                   </div>
 
                   <div>
                     <label
                       htmlFor="phone"
-                      className="block text-sm font-medium text-[var(--color-text-primary)]"
+                      className="block text-sm font-medium text-text-primary"
                     >
                       Phone Number
                     </label>
@@ -269,14 +256,14 @@ export default function CheckoutPage() {
                           phone: e.target.value,
                         })
                       }
-                      className="mt-1 block w-full border-[var(--color-border)] rounded-md shadow-sm focus:ring-[var(--color-brand-primary)] focus:border-[var(--color-brand-primary)]"
+                      className="mt-1 block w-full border-border rounded-md shadow-sm focus:ring-primary-bg focus:border-primary-bg"
                     />
                   </div>
 
                   <div>
                     <label
                       htmlFor="address"
-                      className="block text-sm font-medium text-[var(--color-text-primary)]"
+                      className="block text-sm font-medium text-text-primary"
                     >
                       Street Address
                     </label>
@@ -291,7 +278,7 @@ export default function CheckoutPage() {
                           address: e.target.value,
                         })
                       }
-                      className="mt-1 block w-full border-[var(--color-border)] rounded-md shadow-sm focus:ring-[var(--color-brand-primary)] focus:border-[var(--color-brand-primary)]"
+                      className="mt-1 block w-full border-border rounded-md shadow-sm focus:ring-primary-bg focus:border-primary-bg"
                     />
                   </div>
 
@@ -299,7 +286,7 @@ export default function CheckoutPage() {
                     <div>
                       <label
                         htmlFor="city"
-                        className="block text-sm font-medium text-[var(--color-text-primary)]"
+                        className="block text-sm font-medium text-text-primary"
                       >
                         City
                       </label>
@@ -314,13 +301,13 @@ export default function CheckoutPage() {
                             city: e.target.value,
                           })
                         }
-                        className="mt-1 block w-full border-[var(--color-border)] rounded-md shadow-sm focus:ring-[var(--color-brand-primary)] focus:border-[var(--color-brand-primary)]"
+                        className="mt-1 block w-full border-border rounded-md shadow-sm focus:ring-primary-bg focus:border-primary-bg"
                       />
                     </div>
                     <div>
                       <label
                         htmlFor="state"
-                        className="block text-sm font-medium text-[var(--color-text-primary)]"
+                        className="block text-sm font-medium text-text-primary"
                       >
                         State
                       </label>
@@ -335,13 +322,13 @@ export default function CheckoutPage() {
                             state: e.target.value,
                           })
                         }
-                        className="mt-1 block w-full border-[var(--color-border)] rounded-md shadow-sm focus:ring-[var(--color-brand-primary)] focus:border-[var(--color-brand-primary)]"
+                        className="mt-1 block w-full border-border rounded-md shadow-sm focus:ring-primary-bg focus:border-primary-bg"
                       />
                     </div>
                     <div>
                       <label
                         htmlFor="zipCode"
-                        className="block text-sm font-medium text-[var(--color-text-primary)]"
+                        className="block text-sm font-medium text-text-primary"
                       >
                         ZIP Code
                       </label>
@@ -356,7 +343,7 @@ export default function CheckoutPage() {
                             zipCode: e.target.value,
                           })
                         }
-                        className="mt-1 block w-full border-[var(--color-border)] rounded-md shadow-sm focus:ring-[var(--color-brand-primary)] focus:border-[var(--color-brand-primary)]"
+                        className="mt-1 block w-full border-border rounded-md shadow-sm focus:ring-primary-bg focus:border-primary-bg"
                       />
                     </div>
                   </div>
@@ -364,7 +351,7 @@ export default function CheckoutPage() {
                   <div className="flex justify-end">
                     <button
                       type="submit"
-                      className="px-6 py-3 bg-[var(--color-brand-primary)] text-[var(--color-brand-primary-text)] rounded-md hover:bg-[var(--color-brand-accent)]"
+                      className="px-6 py-3 bg-primary-bg text-primary-text rounded-md hover:bg-accent-bg"
                     >
                       Continue to Payment
                     </button>
@@ -374,15 +361,15 @@ export default function CheckoutPage() {
             )}
 
             {currentStep === 2 && (
-              <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg p-6">
-                <h2 className="text-xl font-semibold text-[var(--color-text-primary)] mb-6">
+              <div className="bg-surface border border-border rounded-lg p-6">
+                <h2 className="text-xl font-semibold text-text-primary mb-6">
                   Payment Information
                 </h2>
                 <form onSubmit={handlePaymentSubmit} className="space-y-6">
                   <div>
                     <label
                       htmlFor="nameOnCard"
-                      className="block text-sm font-medium text-[var(--color-text-primary)]"
+                      className="block text-sm font-medium text-text-primary"
                     >
                       Name on Card
                     </label>
@@ -397,14 +384,14 @@ export default function CheckoutPage() {
                           nameOnCard: e.target.value,
                         })
                       }
-                      className="mt-1 block w-full border-[var(--color-border)] rounded-md shadow-sm focus:ring-[var(--color-brand-primary)] focus:border-[var(--color-brand-primary)]"
+                      className="mt-1 block w-full border-border rounded-md shadow-sm focus:ring-primary-bg focus:border-primary-bg"
                     />
                   </div>
 
                   <div>
                     <label
                       htmlFor="cardNumber"
-                      className="block text-sm font-medium text-[var(--color-text-primary)]"
+                      className="block text-sm font-medium text-text-primary"
                     >
                       Card Number
                     </label>
@@ -420,7 +407,7 @@ export default function CheckoutPage() {
                           cardNumber: e.target.value,
                         })
                       }
-                      className="mt-1 block w-full border-[var(--color-border)] rounded-md shadow-sm focus:ring-[var(--color-brand-primary)] focus:border-[var(--color-brand-primary)]"
+                      className="mt-1 block w-full border-border rounded-md shadow-sm focus:ring-primary-bg focus:border-primary-bg"
                     />
                   </div>
 
@@ -428,7 +415,7 @@ export default function CheckoutPage() {
                     <div>
                       <label
                         htmlFor="expiryDate"
-                        className="block text-sm font-medium text-[var(--color-text-primary)]"
+                        className="block text-sm font-medium text-text-primary"
                       >
                         Expiry Date
                       </label>
@@ -444,13 +431,13 @@ export default function CheckoutPage() {
                             expiryDate: e.target.value,
                           })
                         }
-                        className="mt-1 block w-full border-[var(--color-border)] rounded-md shadow-sm focus:ring-[var(--color-brand-primary)] focus:border-[var(--color-brand-primary)]"
+                        className="mt-1 block w-full border-border rounded-md shadow-sm focus:ring-primary-bg focus:border-primary-bg"
                       />
                     </div>
                     <div>
                       <label
                         htmlFor="cvv"
-                        className="block text-sm font-medium text-[var(--color-text-primary)]"
+                        className="block text-sm font-medium text-text-primary"
                       >
                         CVV
                       </label>
@@ -466,7 +453,7 @@ export default function CheckoutPage() {
                             cvv: e.target.value,
                           })
                         }
-                        className="mt-1 block w-full border-[var(--color-border)] rounded-md shadow-sm focus:ring-[var(--color-brand-primary)] focus:border-[var(--color-brand-primary)]"
+                        className="mt-1 block w-full border-border rounded-md shadow-sm focus:ring-primary-bg focus:border-primary-bg"
                       />
                     </div>
                   </div>
@@ -479,11 +466,11 @@ export default function CheckoutPage() {
                       onChange={(e) =>
                         setBillingSameAsShipping(e.target.checked)
                       }
-                      className="h-4 w-4 text-[var(--color-brand-primary)] focus:ring-[var(--color-brand-primary)] border-[var(--color-border)] rounded"
+                      className="h-4 w-4 text-primary-bg focus:ring-primary-bg border-border rounded"
                     />
                     <label
                       htmlFor="billingSame"
-                      className="ml-2 text-sm text-[var(--color-text-primary)]"
+                      className="ml-2 text-sm text-text-primary"
                     >
                       Billing address is the same as shipping address
                     </label>
@@ -493,13 +480,13 @@ export default function CheckoutPage() {
                     <button
                       type="button"
                       onClick={() => setCurrentStep(1)}
-                      className="px-6 py-3 border border-[var(--color-border)] text-[var(--color-text-primary)] rounded-md hover:bg-[var(--color-border)]"
+                      className="px-6 py-3 border border-border text-text-primary rounded-md hover:bg-border"
                     >
                       Back to Shipping
                     </button>
                     <button
                       type="submit"
-                      className="px-6 py-3 bg-[var(--color-brand-primary)] text-[var(--color-brand-primary-text)] rounded-md hover:bg-[var(--color-brand-accent)]"
+                      className="px-6 py-3 bg-primary-bg text-primary-text rounded-md hover:bg-accent-bg"
                     >
                       Review Order
                     </button>
@@ -511,8 +498,8 @@ export default function CheckoutPage() {
             {currentStep === 3 && (
               <div className="space-y-6">
                 {/* Order review */}
-                <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg p-6">
-                  <h2 className="text-xl font-semibold text-[var(--color-text-primary)] mb-6">
+                <div className="bg-surface border border-border rounded-lg p-6">
+                  <h2 className="text-xl font-semibold text-text-primary mb-6">
                     Review Your Order
                   </h2>
 
@@ -530,19 +517,19 @@ export default function CheckoutPage() {
                           className="rounded-md"
                         />
                         <div className="flex-1">
-                          <h3 className="text-sm font-medium text-[var(--color-text-primary)]">
+                          <h3 className="text-sm font-medium text-text-primary">
                             {item.name}
                           </h3>
                           {item.size && (
-                            <p className="text-sm text-[var(--color-text-secondary)]">
+                            <p className="text-sm text-text-secondary">
                               Size: {item.size}
                             </p>
                           )}
-                          <p className="text-sm text-[var(--color-text-secondary)]">
+                          <p className="text-sm text-text-secondary">
                             Quantity: {item.quantity}
                           </p>
                         </div>
-                        <p className="text-sm font-medium text-[var(--color-text-primary)]">
+                        <p className="text-sm font-medium text-text-primary">
                           ${(item.price * item.quantity).toFixed(2)}
                         </p>
                       </div>
@@ -551,11 +538,11 @@ export default function CheckoutPage() {
                 </div>
 
                 {/* Shipping info */}
-                <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg p-6">
-                  <h3 className="text-lg font-medium text-[var(--color-text-primary)] mb-4">
+                <div className="bg-surface border border-border rounded-lg p-6">
+                  <h3 className="text-lg font-medium text-text-primary mb-4">
                     Shipping Address
                   </h3>
-                  <p className="text-[var(--color-text-primary)]">
+                  <p className="text-text-primary">
                     {shippingInfo.firstName} {shippingInfo.lastName}
                     <br />
                     {shippingInfo.address}
@@ -570,11 +557,11 @@ export default function CheckoutPage() {
                 </div>
 
                 {/* Payment info */}
-                <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg p-6">
-                  <h3 className="text-lg font-medium text-[var(--color-text-primary)] mb-4">
+                <div className="bg-surface border border-border rounded-lg p-6">
+                  <h3 className="text-lg font-medium text-text-primary mb-4">
                     Payment Method
                   </h3>
-                  <p className="text-[var(--color-text-primary)]">
+                  <p className="text-text-primary">
                     **** **** **** {paymentInfo.cardNumber.slice(-4)}
                     <br />
                     Expires {paymentInfo.expiryDate}
@@ -584,13 +571,13 @@ export default function CheckoutPage() {
                 <div className="flex justify-between">
                   <button
                     onClick={() => setCurrentStep(2)}
-                    className="px-6 py-3 border border-[var(--color-border)] text-[var(--color-text-primary)] rounded-md hover:bg-[var(--color-border)]"
+                    className="px-6 py-3 border border-border text-text-primary rounded-md hover:bg-border"
                   >
                     Back to Payment
                   </button>
                   <button
                     onClick={handlePlaceOrder}
-                    className="px-6 py-3 bg-[var(--color-brand-primary)] text-[var(--color-brand-primary-text)] rounded-md hover:bg-[var(--color-brand-accent)]"
+                    className="px-6 py-3 bg-primary-bg text-primary-text rounded-md hover:bg-accent-bg"
                   >
                     Place Order
                   </button>
@@ -601,8 +588,8 @@ export default function CheckoutPage() {
 
           {/* Order summary sidebar */}
           <div className="lg:col-span-4 mt-8 lg:mt-0">
-            <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg p-6 sticky top-6">
-              <h2 className="text-lg font-medium text-[var(--color-text-primary)] mb-6">
+            <div className="bg-surface border border-border rounded-lg p-6 sticky top-6">
+              <h2 className="text-lg font-medium text-text-primary mb-6">
                 Order Summary
               </h2>
 
@@ -612,49 +599,37 @@ export default function CheckoutPage() {
                     key={`${item.id}-${item.size}`}
                     className="flex justify-between text-sm"
                   >
-                    <span className="text-[var(--color-text-secondary)]">
+                    <span className="text-text-secondary">
                       {item.name} {item.size && `(${item.size})`} ×{" "}
                       {item.quantity}
                     </span>
-                    <span className="text-[var(--color-text-primary)]">
+                    <span className="text-text-primary">
                       ${(item.price * item.quantity).toFixed(2)}
                     </span>
                   </div>
                 ))}
 
-                <div className="border-t border-[var(--color-border)] pt-4 space-y-2">
+                <div className="border-t border-border pt-4 space-y-2">
                   <div className="flex justify-between">
-                    <span className="text-[var(--color-text-secondary)]">
-                      Subtotal
-                    </span>
-                    <span className="text-[var(--color-text-primary)]">
+                    <span className="text-text-secondary">Subtotal</span>
+                    <span className="text-text-primary">
                       ${total.toFixed(2)}
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-[var(--color-text-secondary)]">
-                      Shipping
-                    </span>
-                    <span className="text-[var(--color-text-primary)]">
-                      Free
-                    </span>
+                    <span className="text-text-secondary">Shipping</span>
+                    <span className="text-text-primary">Free</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-[var(--color-text-secondary)]">
-                      Tax
-                    </span>
-                    <span className="text-[var(--color-text-primary)]">
-                      ${tax.toFixed(2)}
-                    </span>
+                    <span className="text-text-secondary">Tax</span>
+                    <span className="text-text-primary">${tax.toFixed(2)}</span>
                   </div>
                 </div>
 
-                <div className="border-t border-[var(--color-border)] pt-4">
+                <div className="border-t border-border pt-4">
                   <div className="flex justify-between text-lg font-semibold">
-                    <span className="text-[var(--color-text-primary)]">
-                      Total
-                    </span>
-                    <span className="text-[var(--color-text-primary)]">
+                    <span className="text-text-primary">Total</span>
+                    <span className="text-text-primary">
                       ${finalTotal.toFixed(2)}
                     </span>
                   </div>
@@ -662,19 +637,17 @@ export default function CheckoutPage() {
               </div>
 
               {/* Security badges */}
-              <div className="mt-6 pt-6 border-t border-[var(--color-border)]">
+              <div className="mt-6 pt-6 border-t border-border">
                 <div className="flex items-center justify-center space-x-4">
                   <div className="text-center">
                     <div className="text-2xl mb-1">🔒</div>
-                    <p className="text-xs text-[var(--color-text-secondary)]">
+                    <p className="text-xs text-text-secondary">
                       Secured by Stripe
                     </p>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl mb-1">💳</div>
-                    <p className="text-xs text-[var(--color-text-secondary)]">
-                      SSL Encrypted
-                    </p>
+                    <p className="text-xs text-text-secondary">SSL Encrypted</p>
                   </div>
                 </div>
               </div>

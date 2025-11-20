@@ -327,14 +327,14 @@ const ShopPage = () => {
   };
 
   return (
-    <section className="bg-[var(--color-background)] text-[var(--color-text-primary)] py-16 px-4">
+    <section className="bg-shop text-text-primary py-12 md:py-16 lg:py-20 px-4 md:px-8 lg:px-16">
       <div className="max-w-7xl mx-auto">
         {/* --- 1. Shop Header --- */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-[var(--color-text-primary)] mb-4">
+        <div className="text-center mb-8 md:mb-12">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary mb-4">
             Shop All Products
           </h1>
-          <p className="text-lg md:text-xl text-[var(--color-text-secondary)] max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-text-secondary max-w-2xl mx-auto leading-relaxed">
             Browse our full collection of organic, sustainably-sourced goods.
           </p>
         </div>

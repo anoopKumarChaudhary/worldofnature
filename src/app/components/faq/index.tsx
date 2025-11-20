@@ -1,26 +1,9 @@
+// components/faq.tsx (or FaqItem.tsx)
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useId } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
-// --- Icon for the accordion ---
-const ChevronIcon = ({ isOpen }: { isOpen: boolean }) => (
-  <svg
-    className="w-5 h-5 text-[var(--color-text-secondary)] transition-transform duration-300"
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-    style={{ transform: isOpen ? "rotate(180deg)" : "rotate(0deg)" }}
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M19 9l-7 7-7-7"
-    />
-  </svg>
-);
+import { ChevronDown } from "lucide-react";
 
 // --- Type definition for the props ---
 interface FaqItemProps {
@@ -30,30 +13,46 @@ interface FaqItemProps {
 
 const FaqItem: React.FC<FaqItemProps> = ({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const answerId = useId();
 
   return (
     <div className="border border-[var(--color-border)] rounded-lg overflow-hidden bg-[var(--color-surface)]">
+      {/* --- Question Button --- */}
       <button
-        className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-[var(--color-border)] transition-colors duration-200"
+        className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-[var(--color-border)]/50 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-secondary)] focus-visible:ring-offset-2"
         onClick={() => setIsOpen(!isOpen)}
+        aria-expanded={isOpen}
+        aria-controls={answerId}
       >
         <span className="text-lg font-medium text-[var(--color-text-primary)]">
           {question}
         </span>
-        <ChevronIcon isOpen={isOpen} />
+        <ChevronDown
+          className={`w-5 h-5 text-[var(--color-text-secondary)] transition-transform duration-300 flex-shrink-0 ${
+            isOpen ? "rotate-180" : ""
+          }`}
+        />
       </button>
+
+      {/* --- Animated Answer Section --- */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="px-6 pb-4"
+            id={answerId}
+            className="overflow-hidden" // Padding is now inside the motion div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: [0.21, 0.49, 0.73, 1] }}
+            // "Smoothest" spring animation for a natural feel
+            transition={{ type: "spring", stiffness: 400, damping: 40 }}
           >
-            <p className="text-[var(--color-text-secondary)] leading-relaxed">
-              {answer}
-            </p>
+            {/* "Extra line" + content wrapper for clean padding */}
+            <div className="px-6 pb-5">
+              <hr className="border-[var(--color-border)]" />
+              <p className="pt-4 text-[var(--color-text-secondary)] leading-relaxed">
+                {answer}
+              </p>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

@@ -33,10 +33,10 @@ export default function ProductDetailPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-800 mb-4">
+          <h1 className="text-2xl font-bold text-foreground mb-4">
             Product Not Found
           </h1>
-          <Link href="/shop" className="text-green-600 hover:text-green-700">
+          <Link href="/shop" className="text-primary-bg hover:text-cta-hover">
             ← Back to Shop
           </Link>
         </div>
@@ -66,20 +66,20 @@ export default function ProductDetailPage() {
       : 0;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-product">
       {/* Breadcrumb */}
-      <div className="bg-white border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div className="bg-surface border-b border-border">
+        <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-16 py-4 md:py-6">
           <nav className="flex" aria-label="Breadcrumb">
             <ol className="flex items-center space-x-4">
               <li>
-                <Link href="/" className="text-gray-400 hover:text-gray-500">
+                <Link href="/" className="text-muted hover:text-text-secondary">
                   Home
                 </Link>
               </li>
               <li>
                 <svg
-                  className="flex-shrink-0 h-5 w-5 text-gray-300"
+                  className="flex-shrink-0 h-5 w-5 text-border"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -93,14 +93,14 @@ export default function ProductDetailPage() {
               <li>
                 <Link
                   href="/shop"
-                  className="text-gray-400 hover:text-gray-500"
+                  className="text-muted hover:text-text-secondary"
                 >
                   Shop
                 </Link>
               </li>
               <li>
                 <svg
-                  className="flex-shrink-0 h-5 w-5 text-gray-300"
+                  className="flex-shrink-0 h-5 w-5 text-border"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -112,14 +112,16 @@ export default function ProductDetailPage() {
                 </svg>
               </li>
               <li>
-                <span className="text-gray-500">{selectedProduct.name}</span>
+                <span className="text-text-secondary">
+                  {selectedProduct.name}
+                </span>
               </li>
             </ol>
           </nav>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-16 py-8 md:py-12">
         <div className="lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start">
           {/* Image gallery */}
           <div className="w-full">
@@ -158,7 +160,7 @@ export default function ProductDetailPage() {
 
           {/* Product info */}
           <div className="mt-10 px-4 sm:px-0 sm:mt-16 lg:mt-0">
-            <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+            <h1 className="text-3xl font-bold tracking-tight text-foreground">
               {selectedProduct.name}
             </h1>
 
@@ -169,9 +171,7 @@ export default function ProductDetailPage() {
                   <svg
                     key={rating}
                     className={`${
-                      averageRating > rating
-                        ? "text-yellow-400"
-                        : "text-gray-300"
+                      averageRating > rating ? "text-yellow-400" : "text-border"
                     } h-5 w-5 flex-shrink-0`}
                     fill="currentColor"
                     viewBox="0 0 20 20"
@@ -180,7 +180,7 @@ export default function ProductDetailPage() {
                   </svg>
                 ))}
               </div>
-              <p className="ml-2 text-sm text-gray-500">
+              <p className="ml-2 text-sm text-muted">
                 {averageRating.toFixed(1)} ({selectedProduct.reviews.length}{" "}
                 reviews)
               </p>
@@ -188,10 +188,10 @@ export default function ProductDetailPage() {
 
             {/* Price */}
             <div className="mt-4">
-              <p className="text-3xl font-bold text-gray-900">
+              <p className="text-3xl font-bold text-foreground">
                 ${selectedProduct.price}
                 {selectedProduct.originalPrice && (
-                  <span className="ml-2 text-lg text-gray-500 line-through">
+                  <span className="ml-2 text-lg text-muted line-through">
                     ${selectedProduct.originalPrice}
                   </span>
                 )}
@@ -201,7 +201,7 @@ export default function ProductDetailPage() {
             {/* Description */}
             <div className="mt-6">
               <h3 className="sr-only">Description</h3>
-              <p className="text-base text-gray-700">
+              <p className="text-base text-text-primary">
                 {selectedProduct.description}
               </p>
             </div>
@@ -210,17 +210,17 @@ export default function ProductDetailPage() {
             {selectedProduct.sizes.length > 0 && (
               <div className="mt-8">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-sm font-medium text-gray-900">Size</h3>
+                  <h3 className="text-sm font-medium text-foreground">Size</h3>
                 </div>
                 <fieldset className="mt-2">
                   <div className="grid grid-cols-3 gap-3">
                     {selectedProduct.sizes.map((size) => (
                       <label
                         key={size.value}
-                        className={`relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none cursor-pointer ${
+                        className={`relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-card-bg focus:outline-none cursor-pointer ${
                           selectedSize === size.value
-                            ? "bg-green-50 border-green-500 text-green-600"
-                            : "border-gray-300 text-gray-900"
+                            ? "bg-brand-success/20 border-brand-success text-brand-success"
+                            : "border-border text-foreground"
                         }`}
                       >
                         <input
@@ -242,19 +242,21 @@ export default function ProductDetailPage() {
             {/* Quantity */}
             <div className="mt-8">
               <div className="flex items-center justify-between">
-                <h3 className="text-sm font-medium text-gray-900">Quantity</h3>
+                <h3 className="text-sm font-medium text-foreground">
+                  Quantity
+                </h3>
               </div>
               <div className="mt-2 flex items-center">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="flex items-center justify-center w-8 h-8 rounded-full border border-gray-300 hover:bg-gray-50"
+                  className="flex items-center justify-center w-8 h-8 rounded-full border border-border hover:bg-card-bg"
                 >
                   -
                 </button>
-                <span className="mx-4 text-gray-900">{quantity}</span>
+                <span className="mx-4 text-foreground">{quantity}</span>
                 <button
                   onClick={() => setQuantity(quantity + 1)}
-                  className="flex items-center justify-center w-8 h-8 rounded-full border border-gray-300 hover:bg-gray-50"
+                  className="flex items-center justify-center w-8 h-8 rounded-full border border-border hover:bg-card-bg"
                 >
                   +
                 </button>
@@ -266,10 +268,10 @@ export default function ProductDetailPage() {
               <button
                 onClick={handleAddToCart}
                 disabled={!selectedProduct.inStock}
-                className={`w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white ${
+                className={`w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-primary-text ${
                   selectedProduct.inStock
-                    ? "bg-green-600 hover:bg-green-700"
-                    : "bg-gray-400 cursor-not-allowed"
+                    ? "bg-primary-bg hover:bg-cta-hover"
+                    : "bg-muted cursor-not-allowed"
                 }`}
               >
                 {selectedProduct.inStock ? "Add to Cart" : "Out of Stock"}
@@ -278,27 +280,29 @@ export default function ProductDetailPage() {
 
             {/* Product details */}
             <div className="mt-8">
-              <div className="border-t border-gray-200 pt-8">
-                <h3 className="text-sm font-medium text-gray-900">
+              <div className="border-t border-border pt-8">
+                <h3 className="text-sm font-medium text-foreground">
                   Ingredients
                 </h3>
-                <p className="mt-2 text-sm text-gray-600">
+                <p className="mt-2 text-sm text-text-secondary">
                   {selectedProduct.ingredients}
                 </p>
               </div>
 
-              <div className="border-t border-gray-200 pt-8 mt-8">
-                <h3 className="text-sm font-medium text-gray-900">Sourcing</h3>
-                <p className="mt-2 text-sm text-gray-600">
+              <div className="border-t border-border pt-8 mt-8">
+                <h3 className="text-sm font-medium text-foreground">
+                  Sourcing
+                </h3>
+                <p className="mt-2 text-sm text-text-secondary">
                   {selectedProduct.sourcing}
                 </p>
               </div>
 
-              <div className="border-t border-gray-200 pt-8 mt-8">
-                <h3 className="text-sm font-medium text-gray-900">
+              <div className="border-t border-border pt-8 mt-8">
+                <h3 className="text-sm font-medium text-foreground">
                   Taste Profile
                 </h3>
-                <p className="mt-2 text-sm text-gray-600">
+                <p className="mt-2 text-sm text-text-secondary">
                   {selectedProduct.tasteProfile}
                 </p>
               </div>
@@ -308,12 +312,12 @@ export default function ProductDetailPage() {
 
         {/* Reviews */}
         <div className="mt-16">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8">
+          <h2 className="text-2xl font-bold text-foreground mb-8">
             Customer Reviews
           </h2>
           <div className="space-y-6">
             {selectedProduct.reviews.map((review) => (
-              <div key={review.id} className="border-b border-gray-200 pb-6">
+              <div key={review.id} className="border-b border-border pb-6">
                 <div className="flex items-center">
                   <div className="flex items-center">
                     {[0, 1, 2, 3, 4].map((rating) => (
@@ -322,7 +326,7 @@ export default function ProductDetailPage() {
                         className={`${
                           review.rating > rating
                             ? "text-yellow-400"
-                            : "text-gray-300"
+                            : "text-border"
                         } h-4 w-4 flex-shrink-0`}
                         fill="currentColor"
                         viewBox="0 0 20 20"
@@ -331,12 +335,12 @@ export default function ProductDetailPage() {
                       </svg>
                     ))}
                   </div>
-                  <p className="ml-2 text-sm text-gray-600">
+                  <p className="ml-2 text-sm text-text-secondary">
                     {review.userName}
                   </p>
-                  <p className="ml-2 text-sm text-gray-400">{review.date}</p>
+                  <p className="ml-2 text-sm text-muted">{review.date}</p>
                 </div>
-                <p className="mt-2 text-gray-700">{review.comment}</p>
+                <p className="mt-2 text-text-primary">{review.comment}</p>
               </div>
             ))}
           </div>
