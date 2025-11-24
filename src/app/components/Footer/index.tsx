@@ -1,317 +1,318 @@
-// components/Footer.js
+"use client";
+
+import React from "react";
 import Link from "next/link";
-import { Facebook, Instagram, Twitter } from "lucide-react";
+import {
+  Facebook,
+  Instagram,
+  Twitter,
+  Youtube,
+  Mail,
+  Phone,
+  MapPin,
+  Heart,
+} from "lucide-react";
 
 const Footer = () => {
-  return (
-    // UPDATED: Main background to a dark, natural green.
-    <footer className="bg-brand-pine-900 font-sans antialiased">
-      <div className="w-full mx-auto px-4 sm:max-w-xl sm:px-6 lg:max-w-4xl lg:px-8 xl:max-w-6xl">
-        {/* Newsletter Section */}
-        <div className="text-center py-12 border-b border-brand-pine-700">
-          <h3 className="text-3xl font-bold text-brand-linen-100 mb-2">
-            Join Our Fresh List
-          </h3>
-          <p className="text-brand-sage-200 mb-6 text-lg font-light">
-            Get 10% off your first order, plus exclusive offers and farm-fresh
-            recipes.
-          </p>
-          <form className="flex max-w-md mx-auto shadow-lg">
-            <label htmlFor="footer-email" className="sr-only">
-              Enter your email
-            </label>
-            {/* UPDATED: Input colors to match the dark theme */}
-            <input
-              type="email"
-              id="footer-email"
-              placeholder="Enter your email"
-              className="flex-grow px-4 py-3 rounded-l-md outline-none bg-brand-pine-800 text-brand-linen-100 text-base placeholder-brand-sage-200 focus:ring-2 focus:ring-brand-mint-400 focus:ring-inset"
-              required
-            />
-            {/* UPDATED: Button colors to a bright, minty accent */}
-            <button
-              type="submit"
-              className="px-6 py-3 bg-brand-mint-400 text-brand-pine-900 font-bold rounded-r-md cursor-pointer transition-colors duration-300 hover:bg-brand-mint-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-mint-400 text-base"
-            >
-              Subscribe
-            </button>
-          </form>
-        </div>
+  const currentYear = new Date().getFullYear();
 
-        {/* Main Footer Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 py-16">
-          {/* Column 1: Brand */}
-          <div className="col-span-full sm:col-span-1">
+  const footerSections = [
+    {
+      title: "Shop",
+      links: [
+        { href: "/shop", label: "All Products" },
+        { href: "/shop/oils", label: "Ghee & Oils" },
+        { href: "/shop/honey", label: "Raw Honey" },
+        { href: "/shop/teas", label: "Artisanal Teas" },
+        { href: "/shop/seeds", label: "Seeds & Spices" },
+        { href: "/shop/bundles", label: "Gift Bundles" },
+      ],
+    },
+    {
+      title: "About",
+      links: [
+        { href: "/about", label: "Our Story" },
+        { href: "/farmers", label: "Our Farmers" },
+        { href: "/sustainability", label: "Sustainability" },
+        { href: "/certifications", label: "Certifications" },
+        { href: "/blog", label: "Blog" },
+        { href: "/careers", label: "Careers" },
+      ],
+    },
+    {
+      title: "Support",
+      links: [
+        { href: "/faq", label: "FAQ" },
+        { href: "/shipping", label: "Shipping Info" },
+        { href: "/returns", label: "Returns & Exchanges" },
+        { href: "/contact", label: "Contact Us" },
+        { href: "/size-guide", label: "Size Guide" },
+        { href: "/track-order", label: "Track Order" },
+      ],
+    },
+    {
+      title: "Legal",
+      links: [
+        { href: "/privacy", label: "Privacy Policy" },
+        { href: "/terms", label: "Terms of Service" },
+        { href: "/accessibility", label: "Accessibility" },
+        { href: "/cookies", label: "Cookie Policy" },
+        { href: "/disclaimer", label: "Disclaimer" },
+      ],
+    },
+  ];
+
+  const socialLinks = [
+    {
+      href: "https://facebook.com",
+      icon: Facebook,
+      label: "Follow us on Facebook",
+    },
+    {
+      href: "https://instagram.com",
+      icon: Instagram,
+      label: "Follow us on Instagram",
+    },
+    {
+      href: "https://twitter.com",
+      icon: Twitter,
+      label: "Follow us on Twitter",
+    },
+    {
+      href: "https://youtube.com",
+      icon: Youtube,
+      label: "Subscribe to our YouTube channel",
+    },
+  ];
+
+  return (
+    <footer
+      className="bg-brand-primary-900 text-brand-primary-100"
+      role="contentinfo"
+    >
+      {/* Main Footer Content */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 lg:gap-12">
+          {/* Brand Section */}
+          <div className="lg:col-span-2 space-y-6">
             <Link
               href="/"
-              className="text-3xl font-bold text-brand-linen-100 mb-4 block no-underline leading-9 transition-colors duration-300"
+              className="flex items-center space-x-2"
+              aria-label="World of Nature - Go to homepage"
             >
-              World Of Nature
+              <div className="w-10 h-10 bg-brand-primary-700 rounded-lg flex items-center justify-center">
+                <span className="text-brand-accent-300 font-bold text-xl">
+                  W
+                </span>
+              </div>
+              <span className="text-2xl font-bold text-brand-accent-100">
+                World of Nature
+              </span>
             </Link>
-            <p className="text-brand-sage-200 font-light">
-              Good for you, good for the planet.
+
+            <p className="text-brand-primary-200 leading-relaxed max-w-md">
+              Pure, potent, and certified organic essentials from nature's
+              finest. We bring you the highest quality organic products directly
+              from sustainable farms.
             </p>
-            {/* UPDATED: Social icon colors and focus states */}
-            <div className="flex gap-5 mt-6">
-              <Link
-                href="#"
-                className="text-brand-sage-200 transition-all duration-300 hover:text-brand-mint-400 hover:scale-110 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-mint-400 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-pine-900 rounded-sm"
-                aria-label="Facebook"
-              >
-                <Facebook size={24} strokeWidth={2} />
-              </Link>
-              <Link
-                href="#"
-                className="text-brand-sage-200 transition-all duration-300 hover:text-brand-mint-400 hover:scale-110 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-mint-400 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-pine-900 rounded-sm"
-                aria-label="Instagram"
-              >
-                <Instagram size={24} strokeWidth={2} />
-              </Link>
-              <Link
-                href="#"
-                className="text-brand-sage-200 transition-all duration-300 hover:text-brand-mint-400 hover:scale-110 hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-mint-400 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-pine-900 rounded-sm"
-                aria-label="Twitter"
-              >
-                <Twitter size={24} strokeWidth={2} />
-              </Link>
+
+            {/* Contact Info */}
+            <div className="space-y-3">
+              <div className="flex items-center space-x-3">
+                <MapPin
+                  size={18}
+                  className="text-brand-accent-400 flex-shrink-0"
+                />
+                <span className="text-sm">
+                  123 Organic Valley, Nature City, NC 12345
+                </span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Phone
+                  size={18}
+                  className="text-brand-accent-400 flex-shrink-0"
+                />
+                <a
+                  href="tel:+1234567890"
+                  className="text-sm hover:text-brand-accent-400 transition-colors duration-200"
+                >
+                  (123) 456-7890
+                </a>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Mail
+                  size={18}
+                  className="text-brand-accent-400 flex-shrink-0"
+                />
+                <a
+                  href="mailto:hello@worldofnature.com"
+                  className="text-sm hover:text-brand-accent-400 transition-colors duration-200"
+                >
+                  hello@worldofnature.com
+                </a>
+              </div>
+            </div>
+
+            {/* Social Links */}
+            <div className="flex space-x-4">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.href}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 text-brand-primary-200 hover:text-brand-accent-400 hover:bg-brand-primary-800 rounded-lg transition-all duration-200 hover:scale-110"
+                  aria-label={social.label}
+                >
+                  <social.icon size={20} />
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Column 2: Our Products */}
-          <div>
-            <h4 className="text-xl font-bold text-brand-linen-100 mb-5">
-              Our Products
-            </h4>
-            {/* UPDATED: Link colors and focus states for dark theme */}
-            <ul className="list-none p-0 m-0 flex flex-col gap-3">
-              <li>
-                <Link
-                  href="/shop/ghee-oils"
-                  className="text-brand-sage-200 transition-all duration-300 hover:text-brand-linen-100 hover:translate-x-1 focus-visible:text-brand-linen-100 focus-visible:underline focus-visible:translate-x-1 outline-none no-underline font-light"
-                >
-                  Ghee & Oils
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/shop/honey"
-                  className="text-brand-sage-200 transition-all duration-300 hover:text-brand-linen-100 hover:translate-x-1 focus-visible:text-brand-linen-100 focus-visible:underline focus-visible:translate-x-1 outline-none no-underline font-light"
-                >
-                  Honey & Sweeteners
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/shop/teas"
-                  className="text-brand-sage-200 transition-all duration-300 hover:text-brand-linen-100 hover:translate-x-1 focus-visible:text-brand-linen-100 focus-visible:underline focus-visible:translate-x-1 outline-none no-underline font-light"
-                >
-                  Organic Teas
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/shop/seeds"
-                  className="text-brand-sage-200 transition-all duration-300 hover:text-brand-linen-100 hover:translate-x-1 focus-visible:text-brand-linen-100 focus-visible:underline focus-visible:translate-x-1 outline-none no-underline font-light"
-                >
-                  Seeds & Grains
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/shop/mustard-spices"
-                  className="text-brand-sage-200 transition-all duration-300 hover:text-brand-linen-100 hover:translate-x-1 focus-visible:text-brand-linen-100 focus-visible:underline focus-visible:translate-x-1 outline-none no-underline font-light"
-                >
-                  Spices & Mustards
-                </Link>
-              </li>
-            </ul>
-          </div>
+          {/* Footer Links */}
+          {footerSections.map((section) => (
+            <div key={section.title} className="space-y-4">
+              <h3 className="text-lg font-semibold text-brand-accent-100">
+                {section.title}
+              </h3>
+              <ul className="space-y-3">
+                {section.links.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-brand-primary-200 hover:text-brand-accent-400 transition-colors duration-200 text-sm"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
 
-          {/* Column 3: Shop Collections */}
-          <div>
-            <h4 className="text-xl font-bold text-brand-linen-100 mb-5">
-              Shop Collections
-            </h4>
-            <ul className="list-none p-0 m-0 flex flex-col gap-3">
-              <li>
-                <Link
-                  href="/collections/pantry"
-                  className="text-brand-sage-200 transition-all duration-300 hover:text-brand-linen-100 hover:translate-x-1 focus-visible:text-brand-linen-100 focus-visible:underline focus-visible:translate-x-1 outline-none no-underline font-light"
-                >
-                  Pantry Staples
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/collections/wellness"
-                  className="text-brand-sage-200 transition-all duration-300 hover:text-brand-linen-100 hover:translate-x-1 focus-visible:text-brand-linen-100 focus-visible:underline focus-visible:translate-x-1 outline-none no-underline font-light"
-                >
-                  Health & Wellness
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/collections/best-sellers"
-                  className="text-brand-sage-200 transition-all duration-300 hover:text-brand-linen-100 hover:translate-x-1 focus-visible:text-brand-linen-100 focus-visible:underline focus-visible:translate-x-1 outline-none no-underline font-light"
-                >
-                  Best Sellers
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/collections/new"
-                  className="text-brand-sage-200 transition-all duration-300 hover:text-brand-linen-100 hover:translate-x-1 focus-visible:text-brand-linen-100 focus-visible:underline focus-visible:translate-x-1 outline-none no-underline font-light"
-                >
-                  New Arrivals
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/collections/bundles"
-                  className="text-brand-sage-200 transition-all duration-300 hover:text-brand-linen-100 hover:translate-x-1 focus-visible:text-brand-linen-100 focus-visible:underline focus-visible:translate-x-1 outline-none no-underline font-light"
-                >
-                  Bundles & Sets
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 4: Our Company */}
-          <div>
-            <h4 className="text-xl font-bold text-brand-linen-100 mb-5">
-              Our Company
-            </h4>
-            <ul className="list-none p-0 m-0 flex flex-col gap-3">
-              <li>
-                <Link
-                  href="/our-story"
-                  className="text-brand-sage-200 transition-all duration-300 hover:text-brand-linen-100 hover:translate-x-1 focus-visible:text-brand-linen-100 focus-visible:underline focus-visible:translate-x-1 outline-none no-underline font-light"
-                >
-                  Our Story
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/farms"
-                  className="text-brand-sage-200 transition-all duration-300 hover:text-brand-linen-100 hover:translate-x-1 focus-visible:text-brand-linen-100 focus-visible:underline focus-visible:translate-x-1 outline-none no-underline font-light"
-                >
-                  Our Farms
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/sustainability"
-                  className="text-brand-sage-200 transition-all duration-300 hover:text-brand-linen-100 hover:translate-x-1 focus-visible:text-brand-linen-100 focus-visible:underline focus-visible:translate-x-1 outline-none no-underline font-light"
-                >
-                  Sustainability
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/blog"
-                  className="text-brand-sage-200 transition-all duration-300 hover:text-brand-linen-100 hover:translate-x-1 focus-visible:text-brand-linen-100 focus-visible:underline focus-visible:translate-x-1 outline-none no-underline font-light"
-                >
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/careers"
-                  className="text-brand-sage-200 transition-all duration-300 hover:text-brand-linen-100 hover:translate-x-1 focus-visible:text-brand-linen-100 focus-visible:underline focus-visible:translate-x-1 outline-none no-underline font-light"
-                >
-                  Careers
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 5: Customer Service */}
-          <div>
-            <h4 className="text-xl font-bold text-brand-linen-100 mb-5">
-              Customer Service
-            </h4>
-            <ul className="list-none p-0 m-0 flex flex-col gap-3">
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-brand-sage-200 transition-all duration-300 hover:text-brand-linen-100 hover:translate-x-1 focus-visible:text-brand-linen-100 focus-visible:underline focus-visible:translate-x-1 outline-none no-underline font-light"
-                >
-                  Contact Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/faq"
-                  className="text-brand-sage-200 transition-all duration-300 hover:text-brand-linen-100 hover:translate-x-1 focus-visible:text-brand-linen-100 focus-visible:underline focus-visible:translate-x-1 outline-none no-underline font-light"
-                >
-                  FAQ
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/account"
-                  className="text-brand-sage-200 transition-all duration-300 hover:text-brand-linen-100 hover:translate-x-1 focus-visible:text-brand-linen-100 focus-visible:underline focus-visible:translate-x-1 outline-none no-underline font-light"
-                >
-                  My Account
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/shipping"
-                  className="text-brand-sage-200 transition-all duration-300 hover:text-brand-linen-100 hover:translate-x-1 focus-visible:text-brand-linen-100 focus-visible:underline focus-visible:translate-x-1 outline-none no-underline font-light"
-                >
-                  Shipping & Returns
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/privacy"
-                  className="text-brand-sage-200 transition-all duration-300 hover:text-brand-linen-100 hover:translate-x-1 focus-visible:text-brand-linen-100 focus-visible:underline focus-visible:translate-x-1 outline-none no-underline font-light"
-                >
-                  Privacy Policy
-                </Link>
-              </li>
-            </ul>
+      {/* Newsletter Section */}
+      <div className="border-t border-brand-primary-800">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="max-w-2xl mx-auto text-center space-y-4">
+            <h3 className="text-xl font-semibold text-brand-accent-100">
+              Stay Connected
+            </h3>
+            <p className="text-brand-primary-200">
+              Get exclusive offers, organic recipes, and wellness tips delivered
+              to your inbox.
+            </p>
+            <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+              <label htmlFor="newsletter-email" className="sr-only">
+                Enter your email address
+              </label>
+              <input
+                id="newsletter-email"
+                type="email"
+                placeholder="Enter your email"
+                className="form-input flex-1 bg-brand-primary-800 border-brand-primary-700 text-brand-accent-100 placeholder-brand-primary-400 focus:border-brand-accent-500 focus:ring-brand-accent-500"
+                required
+                aria-describedby="newsletter-help"
+              />
+              <button
+                type="submit"
+                className="btn bg-brand-accent-500 text-brand-primary-900 hover:bg-brand-accent-400 whitespace-nowrap"
+                aria-label="Subscribe to newsletter"
+              >
+                Subscribe
+              </button>
+            </form>
+            <p id="newsletter-help" className="text-xs text-brand-primary-400">
+              We respect your privacy. Unsubscribe at any time.
+            </p>
           </div>
         </div>
+      </div>
 
-        {/* Footer Bottom */}
-        <div className="flex flex-col-reverse md:flex-row justify-between items-center gap-6 mt-4 pt-8 border-t border-brand-pine-700">
-          <p className="text-brand-sage-200 text-sm text-center">
-            &copy; {new Date().getFullYear()} World Of Nature. All Rights
-            Reserved.
-          </p>
-          <div className="flex items-center gap-3 text-brand-sage-200">
-            {/* Payment SVGs are decorative, so they remain hidden from screen readers */}
-            <svg
-              fill="currentColor"
-              viewBox="0 0 60 38"
-              xmlns="http://www.w3.org/2000/svg"
-              height="24"
-              aria-hidden="true"
-            >
-              <path d="M57.6,1.8H2.4C1.1,1.8,0,2.9,0,4.2v29.6c0,1.3,1.1,2.4,2.4,2.4h55.3c1.3,0,2.4-1.1,2.4-2.4V4.2 C60,2.9,58.9,1.8,57.6,1.8z M48.8,26.4c0,0.6-0.5,1-1,1H12.2c-0.6,0-1-0.5-1-1v-4.3c0-0.6,0.5-1,1-1h35.5c0.6,0,1,0.5,1,1V26.4z M48.8,17c0,0.6-0.5,1-1,1H12.2c-0.6,0-1-0.5-1-1v-4.3c0-0.6,0.5-1,1-1h35.5c0.6,0,1,0.5,1,1V17z" />
-            </svg>
-            <svg
-              fill="currentColor"
-              viewBox="0 0 60 38"
-              xmlns="http://www.w3.org/2000/svg"
-              height="24"
-              aria-hidden="true"
-            >
-              <path d="M30,1.8C14.5,1.8,1.8,14.5,1.8,30c0,15.5,12.8,28.2,28.2,28.2S58.2,45.5,58.2,30C58.2,14.5,45.5,1.8,30,1.8z M30,49.5 c-10.8,0-19.5-8.8-19.5-19.5S19.2,10.5,30,10.5S49.5,19.2,49.5,30S40.8,49.5,30,49.5z" />{" "}
-              <path d="M30,13.8c-8.9,0-16.2,7.3-16.2,16.2c0,8.9,7.3,16.2,16.2,16.2c8.9,0,16.2-7.3,16.2-16.2C46.2,21.1,38.9,13.8,30,13.8z M30,40.2c-5.6,0-10.2-4.6-10.2-10.2s4.6-10.2,10.2-10.2s10.2,4.6,10.2,10.2S35.6,40.2,30,40.2z" />{" "}
-              <path d="M22.1,30c0-4.3,3.5-7.9,7.9-7.9c1.7,0,3.3,0.6,4.6,1.5c-0.5-1.1-1.4-1.9-2.5-2.5c-1.4-0.7-3-1,4.6-1 C23,20.1,18,24.5,18,30s5,9.9,10.5,9.9c1.6,0,3.1-0.3,4.6-1c-1.1-0.6-2-1.4-2.5-2.5C25.4,35.7,22.1,33.2,22.1,30z" />
-            </svg>
-            <svg
-              fill="currentColor"
-              viewBox="0 0 60 38"
-              xmlns="http://www.w3.org/2000/svg"
-              height="24"
-              aria-hidden="true"
-            >
-              <path d="M57.6,1.8H2.4C1.1,1.8,0,2.9,0,4.2v29.6c0,1.3,1.1,2.4,2.4,2.4h55.3c1.3,0,2.4-1.1,2.4-2.4V4.2 C60,2.9,58.9,1.8,57.6,1.8z M19.8,30.5c-1.8,0-3.2-0.6-4.2-1.7c-1-1.1-1.5-2.7-1.5-4.7c0-1.9,0.5-3.4,1.4-4.5 c1-1.1,2.3-1.6,4.1-1.6c1.8,0,3.2,0.5,4.1,1.5c0.9,1,1.4,2.5,1.4,4.6c0,2.2-0.5,3.7-1.5,4.8C23,29.9,21.6,30.5,19.8,30.5z M45.1,30.5c-1.8,0-3.2-0.6-4.2-1.7c-1-1.1-1.5-2.7-1.5-4.7c0-1.9,0.5-3.4,1.4-4.5c1-1.1,2.3-1.6,4.1-1.6 c1.8,0,3.2,0.5,4.1,1.5c0.9,1,1.4,2.5,1.4,4.6c0,2.2-0.5,3.7-1.5,4.8C48.3,29.9,46.9,30.5,45.1,30.5z M32.5,30.1 c-1.3,0-2.3-0.5-3-1.4l-0.2-0.9h-0.1c-0.2,0.7-0.5,1.2-0.9,1.6c-0.4,0.4-0.9,0.6-1.6,0.6c-0.9,0-1.6-0.3-2.1-0.8 c-0.5-0.5-0.8-1.2-0.8-2v-7.8h2.9v7.1c0,0.6,0.2,1,0.5,1.2c0.3,0.2,0.7,0.3,1.1,0.3c0.6,0,1-0.2,1.3-0.5 c0.3-0.3,0.5-0.7,0.5-1.3v-6.8h2.9V30.1z M53,22.1c0,1.3-0.3,2.3-0.9,3c-0.6,0.7-1.4,1.1-2.4,1.1c-0.6,0-1.1-0.2-1.5-0.5 c-0.4-0.3-0.7-0.7-0.8-1.2l0.2-0.8h-2.8v4.8c0,1.3-0.3,2.3-0.9,3c-0.6,0.7-1.4,1.1-2.4,1.1c-0.6,0-1.1-0.2-1.5-0.5 c-0.4-0.3-0.7-0.7-0.8-1.2l0.2-0.8h-2.8v4.8h-2.9V18.3h5.7c1.3,0,2.3,0.5,3,1.4c0.8,0.9,1.1,2.1,1.1,3.4H53z M50.1,22.1 c0-0.6-0.2-1-0.5-1.2c-0.3-0.2-0.7-0.3-1.1-0.3h-2.8v3.1h2.8c0.4,0,0.8-0.1,1.1-0.3c0.3-0.2,0.5-0.6,0.5-1.2V22.1z" />
-            </svg>
+      {/* Bottom Bar */}
+      <div className="border-t border-brand-primary-800">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex items-center space-x-4 text-sm text-brand-primary-400">
+              <span>© {currentYear} World of Nature. All rights reserved.</span>
+              <span className="hidden md:inline">•</span>
+              <span>
+                Made with{" "}
+                <Heart size={14} className="inline text-brand-error" /> for
+                nature
+              </span>
+            </div>
+
+            <div className="flex items-center space-x-6 text-sm">
+              <Link
+                href="/privacy"
+                className="text-brand-primary-400 hover:text-brand-accent-400 transition-colors duration-200"
+              >
+                Privacy
+              </Link>
+              <Link
+                href="/terms"
+                className="text-brand-primary-400 hover:text-brand-accent-400 transition-colors duration-200"
+              >
+                Terms
+              </Link>
+              <Link
+                href="/accessibility"
+                className="text-brand-primary-400 hover:text-brand-accent-400 transition-colors duration-200"
+              >
+                Accessibility
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Trust Badges */}
+      <div className="border-t border-brand-primary-800 bg-brand-deep-forest">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex flex-wrap items-center justify-center gap-6 opacity-80">
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 bg-brand-primary-700 rounded-full flex items-center justify-center">
+                <span className="text-brand-accent-300 font-bold text-xs">
+                  ✓
+                </span>
+              </div>
+              <span className="text-xs text-brand-primary-200">
+                100% Organic
+              </span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 bg-brand-primary-700 rounded-full flex items-center justify-center">
+                <span className="text-brand-accent-300 font-bold text-xs">
+                  🚚
+                </span>
+              </div>
+              <span className="text-xs text-brand-primary-200">
+                Free Shipping $50+
+              </span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 bg-brand-primary-700 rounded-full flex items-center justify-center">
+                <span className="text-brand-accent-300 font-bold text-xs">
+                  ↩
+                </span>
+              </div>
+              <span className="text-xs text-brand-primary-200">
+                30-Day Returns
+              </span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <div className="w-8 h-8 bg-brand-primary-700 rounded-full flex items-center justify-center">
+                <span className="text-brand-accent-300 font-bold text-xs">
+                  🔒
+                </span>
+              </div>
+              <span className="text-xs text-brand-primary-200">
+                Secure Checkout
+              </span>
+            </div>
           </div>
         </div>
       </div>

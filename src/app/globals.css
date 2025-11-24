@@ -2,251 +2,197 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Brand palette: "Fresh & Organic"
-  (No changes here, your palette is great!)
-*/
 :root {
-  /* Core Greens (Light & Fresh) - Expanded */
-  --brand-mint-50: #F5FBF7;
-  --brand-mint-100: #EBF3ED;
-  --brand-mint-200: #D7E7DB;
-  --brand-mint-300: #C2D1C5;
-  --brand-mint-400: #AEBBAF;
-  --brand-mint-500: #9AA599;
-  --brand-sage-200: #D7E0D7;
-  --brand-sage-300: #C2D1C5;
-  --brand-sage-400: #AEBBAF;
-  --brand-sage-500: #8DA88C;
-  --brand-sage-600: #6D8573;
-  --brand-sage-700: #4A674E;
-  --brand-sage-800: #3A543E;
-  --brand-pine-600: #5A7A5F;
-  --brand-pine-700: #4A674E;
-  --brand-pine-800: #3A543E;
-  --brand-pine-900: #29382B;
+  /* 
+    Brand Palette: "Ethereal Earth"
+    A premium, organic aesthetic with deep moss greens, soft terracotta, and warm creams.
+  */
 
-  /* Neutrals (Clean & Warm) - Expanded with Light Greens */
-  --brand-eggshell: #F9F9F8;
-  --brand-linen: #F2F0ED;
-  --brand-linen-100: #F7F5F2;
-  --brand-linen-200: #F2F0ED;
-  --brand-linen-300: #EDEAE7;
-  --brand-stone-100: #EBF3ED;
-  --brand-stone-200: #D7E7DB;
-  --brand-stone-300: #C2D1C5;
-  --brand-stone: #8DA88C;
-  --brand-stone-500: #AEBBAF;
-  --brand-stone-600: #9AA599;
-  --brand-ash: #C2D1C5;
-  --brand-ash-100: #EBF3ED;
-  --brand-ash-200: #D7E7DB;
+  /* Primary: Deep Moss Green */
+  --brand-primary-900: #14281D;
+  /* Deepest Forest */
+  --brand-primary-800: #1E3528;
+  /* Dark Moss */
+  --brand-primary-700: #2D4A3A;
+  /* Rich Green */
+  --brand-primary-600: #416252;
+  /* Muted Green */
+  --brand-primary-500: #5A7D6B;
+  /* Sage */
+  --brand-primary-400: #7B9C8B;
+  /* Light Sage */
+  --brand-primary-300: #A3C2B4;
+  /* Mist */
+  --brand-primary-200: #CDE0D7;
+  /* Pale Mist */
+  --brand-primary-100: #E6F0EB;
+  /* White Green */
+  --brand-primary-50: #F4F9F6;
+  /* Subtle Tint */
 
-  /* Accent (Action & Energy) - Expanded */
-  --brand-peach-200: #FDE2D5;
-  --brand-peach-300: #FBD4C0;
-  --brand-peach-400: #FCAE89;
-  --brand-peach-500: #F0926F;
-  --brand-peach-600: #E58A6A;
-  --brand-peach-700: #D17A5D;
+  /* Secondary: Soft Terracotta & Clay */
+  --brand-secondary-900: #4A2820;
+  /* Dark Earth */
+  --brand-secondary-800: #6D3B2E;
+  /* Burnt Clay */
+  --brand-secondary-700: #8F4F3D;
+  /* Terracotta */
+  --brand-secondary-600: #B56B56;
+  /* Warm Brick */
+  --brand-secondary-500: #D68C76;
+  /* Soft Clay */
+  --brand-secondary-400: #EBB09E;
+  /* Blush */
+  --brand-secondary-100: #FDF2EE;
+  /* Pale Blush */
 
-  /* Additional Colors for Variety */
-  --brand-lavender-100: #F0F0FF;
-  --brand-lavender-200: #E0E0FF;
-  --brand-lavender-300: #D0D0FF;
-  --brand-cream: #FFF8E1;
-  --brand-cream-100: #FFFBF0;
-  --brand-cream-200: #FFF5E0;
-  --brand-warm-gray-100: #F5F5F5;
-  --brand-warm-gray-200: #E8E8E8;
-  --brand-warm-gray-300: #D1D1D1;
+  /* Accent: Warm Gold & Sand */
+  --brand-accent-600: #9C7C36;
+  /* Antique Gold */
+  --brand-accent-500: #C4A052;
+  /* Muted Gold */
+  --brand-accent-400: #E0C075;
+  /* Sand */
+  --brand-accent-300: #F2DDB0;
+  /* Pale Sand */
+  --brand-accent-100: #FAF6EB;
+  /* Cream */
 
-  /* Gradients */
-  --gradient-mint-to-sage: linear-gradient(135deg, #EBF3ED 0%, #C2D1C5 100%);
-  --gradient-peach-to-mint: linear-gradient(135deg, #FCAE89 0%, #EBF3ED 100%);
-  --gradient-sage-to-pine: linear-gradient(135deg, #8DA88C 0%, #4A674E 100%);
-  --gradient-linen-to-cream: linear-gradient(135deg, #F2F0ED 0%, #FFF8E1 100%);
+  /* Neutrals */
+  --brand-neutral-900: #1A1A1A;
+  --brand-neutral-800: #2D2D2D;
+  --brand-neutral-100: #F7F7F7;
+  --brand-white: #FFFFFF;
 
-  /* Utilities (Unchanged) */
-  --brand-success: #25D366;
-  --brand-success-hover: #1EAE56;
+  /* Semantic Tokens (Light Mode) */
+  --background: var(--brand-accent-100);
+  /* Cream background */
+  --surface: var(--brand-white);
+  --surface-subtle: var(--brand-primary-50);
+  --foreground: var(--brand-primary-900);
 
-  /* Fonts (preserve yours) */
-  --font-sans: var(--font-inter, 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial);
-  --font-heading: var(--font-manrope, 'Manrope', system-ui, -apple-system, "Segoe UI", Roboto);
+  --border: var(--brand-primary-200);
+  --border-subtle: var(--brand-primary-100);
+
+  /* Interactive */
+  --primary-bg: var(--brand-primary-800);
+  --primary-text: var(--brand-accent-100);
+  --primary-hover: var(--brand-primary-700);
+
+  --secondary-bg: var(--brand-secondary-600);
+  --secondary-text: var(--brand-white);
+  --secondary-hover: var(--brand-secondary-500);
+
+  --accent-bg: var(--brand-accent-400);
+  --accent-text: var(--brand-primary-900);
+
+  /* Status */
+  --success: #5A7D6B;
+  --error: #8F4F3D;
 }
 
-/* ----------------------------------------------------------------- */
-/* Semantic tokens (Light Mode) - UPDATED FOR "COLOR ZONING"    */
-/* ----------------------------------------------------------------- */
-:root {
-  /* Base backgrounds */
-  --background: var(--brand-eggshell);
-  /* The DEFAULT background for most pages */
-  --surface: #FFFFFF;
-  --card-bg: var(--brand-linen-100);
-  /* Lightened card bg */
-  --subtle-bg: var(--brand-mint-100);
-
-  /* Page-specific backgrounds for "Color Zoning" - MORE VARIETY */
-  --bg-home: var(--brand-mint-50);
-  /* Branded Zone: Your signature light mint */
-  --bg-about: var(--brand-sage-200);
-  /* Branded Zone: Your signature light sage */
-  --bg-shop: var(--brand-eggshell);
-  /* Neutral Zone: Clean eggshell, lets products pop */
-  --bg-product: var(--brand-linen-100);
-  /* Neutral Zone: Warm linen, also for products */
-  --bg-cart: var(--brand-lavender-100);
-  /* Action Zone: Use light lavender for the cart */
-  --bg-checkout: var(--brand-cream-100);
-  /* Action Zone: Use warm cream for checkout flow */
-  --bg-order-confirmation: var(--brand-peach-200);
-  /* Success Zone: Soft peach for celebration */
-  --bg-utility: var(--brand-linen-200);
-  /* Neutral Zone: For login, FAQ, contact, etc. */
-
-
-  /* Section backgrounds */
-  --bg-hero: var(--gradient-mint-to-sage);
-  --bg-testimonials: var(--brand-sage-200);
-  --bg-cta: var(--gradient-peach-to-mint);
-  --bg-footer: var(--brand-pine-800);
-
-  /* Text colors */
-  --text-primary: var(--brand-pine-700);
-  --text-secondary: var(--brand-stone);
-  --foreground: var(--brand-pine-900);
-  --muted: var(--brand-ash);
-  --border: var(--brand-sage-300);
-
-  /* Primary CTA (Call to Action) */
-  --primary-bg: var(--brand-peach-400);
-  --primary-text: var(--brand-pine-900);
-
-  /* Accent (Secondary buttons, info, etc.) */
-  --accent-bg: var(--brand-pine-700);
-  --accent-text: #FFFFFF;
-
-  /* Hovers */
-  --cta-hover: var(--brand-peach-600);
-  --accent-hover: var(--brand-sage-500);
-}
-
-/* ----------------------------------------------------------------- */
-/* Dark theme overrides - FIXED BROKEN BACKGROUNDS               */
-/* ----------------------------------------------------------------- */
 .dark {
-  /* Base backgrounds */
-  --background: var(--brand-pine-900);
-  /* The DEFAULT dark background */
-  --surface: var(--brand-pine-800);
-  /* Cards/surfaces are slightly lighter */
-  --card-bg: var(--brand-pine-800);
-  --subtle-bg: var(--brand-pine-700);
+  /* Semantic Tokens (Dark Mode) */
+  --background: var(--brand-primary-900);
+  --surface: var(--brand-primary-800);
+  --surface-subtle: var(--brand-primary-700);
+  --foreground: var(--brand-accent-100);
 
-  /* Page-specific backgrounds for "Color Zoning" - FIXED */
-  /* These MUST be dark colors to work on dark mode */
-  --bg-home: var(--brand-pine-900);
-  /* Branded Zone: Richest dark for home */
-  --bg-about: var(--brand-pine-800);
-  /* Branded Zone: Slightly lighter for readability */
-  --bg-shop: var(--brand-pine-900);
-  /* Neutral Zone: Use default dark bg */
-  --bg-product: var(--brand-pine-800);
-  /* Neutral Zone: Slightly lighter surface */
-  --bg-cart: var(--brand-sage-800);
-  /* Action Zone: A dark, muted sage */
-  --bg-checkout: var(--brand-sage-700);
-  /* Action Zone: A slightly lighter dark sage */
-  --bg-order-confirmation: var(--brand-peach-700);
-  /* Success Zone: A dark, celebratory peach */
-  --bg-utility: var(--brand-pine-800);
-  /* Neutral Zone: For login, FAQ, etc. */
+  --border: var(--brand-primary-700);
+  --border-subtle: var(--brand-primary-800);
 
-  /* Section backgrounds */
-  --bg-hero: var(--gradient-sage-to-pine);
-  --bg-testimonials: var(--brand-pine-700);
-  --bg-cta: var(--gradient-peach-to-mint);
-  --bg-footer: var(--brand-pine-900);
+  /* Interactive */
+  --primary-bg: var(--brand-accent-500);
+  --primary-text: var(--brand-primary-900);
+  --primary-hover: var(--brand-accent-400);
 
-  /* Text colors */
-  --text-primary: var(--brand-eggshell);
-  --text-secondary: var(--brand-ash);
-  --foreground: #FFFFFF;
-  --muted: var(--brand-stone);
-  --border: var(--brand-pine-700);
-
-  /* Primary CTA (The peach POPS on the dark green) */
-  --primary-bg: var(--brand-peach-400);
-  --primary-text: var(--brand-pine-900);
-
-  /* Accent (Use the lighter sage for contrast) */
-  --accent-bg: var(--brand-sage-500);
-  --accent-text: var(--brand-pine-900);
-
-  /* Hovers */
-  --cta-hover: var(--brand-peach-600);
-  --accent-hover: var(--brand-sage-300);
+  --secondary-bg: var(--brand-secondary-700);
+  --secondary-text: var(--brand-white);
+  --secondary-hover: var(--brand-secondary-600);
 }
 
-/* ----------------------------------------------------------------- */
-/* Usage helpers (small set of components)                      */
-/* (Kept your new, stronger card style!)                        */
-/* ----------------------------------------------------------------- */
+/* Global Styles */
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
 
-.button-primary {
-  background: var(--primary-bg);
-  color: var(--primary-text);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
   font-weight: 600;
-  padding: 0.6rem 1rem;
-  border-radius: 0.5rem;
-  border: 1px solid transparent;
+  letter-spacing: -0.02em;
 }
 
-.button-primary:hover,
-.button-primary:focus {
-  background: var(--cta-hover);
-  outline: none;
+/* Glassmorphism Utility */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.button-accent {
-  background: var(--accent-bg);
-  color: var(--accent-text);
-  font-weight: 500;
-  padding: 0.5rem 0.9rem;
-  border-radius: 0.45rem;
+.dark .glass {
+  background: rgba(30, 53, 40, 0.7);
+  /* Dark Moss with opacity */
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.button-accent:hover {
-  background: var(--accent-hover);
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-/* Your new card style */
-.card {
-  background: var(--surface);
-  color: var(--text-primary);
-  border: 2px solid var(--border);
-  padding: 1.5rem;
-  border-radius: 1rem;
-  box-shadow: 0 12px 40px rgba(41, 56, 43, 0.12), 0 4px 16px rgba(41, 56, 43, 0.08);
+::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-.dark .card {
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2), 0 4px 16px rgba(0, 0, 0, 0.12);
+::-webkit-scrollbar-thumb {
+  background: var(--brand-primary-300);
+  border-radius: 4px;
 }
 
-.badge {
-  display: inline-block;
-  background: var(--brand-sage-500);
-  color: #fff;
-  padding: 0.2rem 0.5rem;
-  border-radius: 999px;
-  font-size: 0.75rem;
-  font-weight: 500;
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-primary-400);
 }
 
-/* subtle focus ring that's brand-aware */
-:focus {
-  outline: 3px solid color-mix(in srgb, var(--primary-bg) 30%, transparent);
-  outline-offset: 2px;
+/* Animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
 }

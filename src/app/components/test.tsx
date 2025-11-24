@@ -96,7 +96,7 @@
         -->
         <section class="relative h-[70vh] min-h-[400px] bg-gray-400 flex items-center justify-center text-center text-white" 
                  style="background-image: url('https://placehold.co/1600x900/3A4D39/F8F5F0?text=Imagine+a+lush+organic+farm+here'); background-size: cover; background-position: center;">
-            <div class="absolute inset-0 bg-black opacity-40"></div> <!-- Overlay for text readability -->
+            <div class="absolute inset-0" style="background-color: rgba(26, 58, 26, 0.4);"></div> <!-- Overlay for text readability -->
             <div class="relative z-10 p-6">
                 <h1 class="text-4xl md:text-6xl font-bold hero-text-shadow mb-4">Pure. Natural. Delivered.</h1>
                 <p class="text-lg md:text-xl max-w-2xl mx-auto hero-text-shadow mb-8">
@@ -241,21 +241,21 @@
                     <!-- Category 1 -->
                     <a href="#" class="relative rounded-lg overflow-hidden h-64 group">
                         <img src="https://placehold.co/600x400/6A8D73/FFFFFF?text=Fresh+Produce" alt="Fresh Produce" class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                        <div class="absolute inset-0 flex items-center justify-center" style="background-color: rgba(44, 62, 31, 0.4);">
                             <h3 class="text-white text-2xl font-bold hero-text-shadow">Fresh Produce</h3>
                         </div>
                     </a>
                     <!-- Category 2 -->
                     <a href="#" class="relative rounded-lg overflow-hidden h-64 group">
                         <img src="https://placehold.co/600x400/3A4D39/FFFFFF?text=Pantry+Staples" alt="Pantry Staples" class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                        <div class="absolute inset-0 flex items-center justify-center" style="background-color: rgba(26, 58, 26, 0.4);">
                             <h3 class="text-white text-2xl font-bold hero-text-shadow">Pantry Staples</h3>
                         </div>
                     </a>
                     <!-- Category 3 -->
                     <a href="#" class="relative rounded-lg overflow-hidden h-64 group">
                         <img src="https://placehold.co/600x400/D4A373/FFFFFF?text=Health+&+Wellness" alt="Health & Wellness" class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                        <div class="absolute inset-0 flex items-center justify-center" style="background-color: rgba(15, 36, 16, 0.4);">
                             <h3 class="text-white text-2xl font-bold hero-text-shadow">Health & Wellness</h3>
                         </div>
                     </a>

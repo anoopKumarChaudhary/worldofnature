@@ -1,16 +1,8 @@
-# TODO: Add Search Functionality to Shop Page
+# TODO: Fix Add to Cart Functionality in ProductCard
 
-## Tasks
+## Steps to Complete
 
-- [ ] Add search input field to shop page above the shop layout
-- [ ] Add searchTerm state to ShopPage component
-- [ ] Update filteredProducts logic to include search filtering
-- [ ] Add CSS styles for search input in shop.module.css
-- [ ] Ensure search resets pagination to page 1
-- [ ] Test search functionality on dev server
-
-## Notes
-
-- Search should be case-insensitive and match title or description
-- Position search input after shopHeader, before shopLayout
-- Use existing CSS variables for consistency
+- [ ] Import useAppDispatch and addToCart in src/app/shop/page.tsx
+- [ ] Modify handleAddToCart function to dispatch addToCart action with combined product and quantity data
+- [ ] Test the add to cart functionality
+- [ ] Verify cart page displays added items correctly

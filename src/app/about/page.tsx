@@ -2,196 +2,252 @@
 
 import React from "react";
 import Link from "next/link";
-// Animations (framer-motion) have been removed
-import { BadgeCheck, Warehouse, Users } from "lucide-react";
-
-// All animation variants have been removed
+import {
+  BadgeCheck,
+  Warehouse,
+  Users,
+  ArrowRight,
+  Leaf,
+  Sprout,
+} from "lucide-react";
 
 export default function AboutPage() {
-  return (
-    // Base theme colors
-    <div className="min-h-screen bg-[#c8cfc0] text-[#5A5750]">
-      {/* --- Hero Section --- */}
-      <header className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-[#FCFCF9]">
-        {/* Professional responsiveness (md:grid-cols-2) */}
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
-          <div className="space-y-6">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#2B2A26] leading-tight">
-              From Soil to Soul.
-              <br />
-              This is Our Story.
-            </h1>
-            <p className="text-lg md:text-xl text-[#5A5750] leading-relaxed">
-              We believe that real food is powerful medicine—and a deeper
-              connection to the world around us. World of Nature began with a
-              simple desire: find the purest organic essentials and share them
-              with our community.
-            </p>
-          </div>
+  const backgroundImage = "/d1.png";
 
-          <div className="flex justify-center md:justify-end">
-            <img
-              src="/won6.JPG"
-              alt="Sunlit organic farm landscape"
-              // UPDATED: Removed shadow-lg for a cleaner look
-              className="w-full max-w-md lg:max-w-lg h-auto rounded-lg"
-              loading="lazy"
-              decoding="async"
-              sizes="(max-width: 767px) 100vw, (max-width: 1024px) 50vw, 600px"
-            />
+  return (
+    <div className="min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white overflow-x-hidden pb-20">
+      {/* --- STYLES & ANIMATIONS --- */}
+      <style jsx>{`
+        @keyframes blob {
+          0% {
+            transform: translate(0px, 0px) scale(1);
+          }
+          33% {
+            transform: translate(30px, -50px) scale(1.1);
+          }
+          66% {
+            transform: translate(-20px, 20px) scale(0.9);
+          }
+          100% {
+            transform: translate(0px, 0px) scale(1);
+          }
+        }
+        .animate-blob {
+          animation: blob 10s infinite;
+        }
+        .animate-fade-up {
+          animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        @keyframes fadeUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
+
+      {/* --- BACKGROUND LAYERS --- */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div
+          className="absolute inset-0 opacity-[0.06] mix-blend-multiply"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          }}
+        />
+        <div className="absolute inset-0 z-0">
+          <img
+            src={backgroundImage}
+            alt=""
+            className="w-full h-full object-cover grayscale opacity-[0.1] mix-blend-multiply"
+          />
+        </div>
+        <div className="absolute top-0 -right-20 w-[800px] h-[800px] bg-[#BC5633] rounded-full mix-blend-multiply filter blur-[120px] opacity-20 animate-blob" />
+        <div className="absolute bottom-0 -left-20 w-[600px] h-[600px] bg-[#1A2118] rounded-full mix-blend-overlay filter blur-[120px] opacity-10 animate-blob animation-delay-2000" />
+      </div>
+
+      {/* --- HERO SECTION --- */}
+      <header className="relative pt-32 pb-16 px-6 lg:px-12 z-10">
+        <div className="container mx-auto max-w-7xl">
+          <div className="flex flex-col lg:flex-row gap-12 items-center">
+            {/* Text Content */}
+            <div className="lg:w-1/2 animate-fade-up">
+              <div className="inline-flex items-center gap-3 mb-6 bg-white/40 backdrop-blur-md px-4 py-2 rounded-full border border-[#1A2118]/5">
+                <div className="h-2 w-2 bg-[#BC5633] rounded-full animate-pulse"></div>
+                <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#1A2118]">
+                  Our Story
+                </span>
+              </div>
+
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-medium tracking-tight text-[#1A2118] mb-8 leading-[0.9]">
+                From Soil <br /> to{" "}
+                <span className="italic text-[#596157]">Soul.</span>
+              </h1>
+
+              <p className="text-xl text-[#596157] max-w-xl leading-relaxed font-light mb-10 border-l border-[#1A2118]/20 pl-6">
+                We believe that real food is powerful medicine—and a deeper
+                connection to the world around us. World of Nature began with a
+                simple desire: find the purest organic essentials.
+              </p>
+
+              <div className="flex gap-6">
+                <div className="flex flex-col gap-1">
+                  <span className="text-3xl font-serif font-bold text-[#1A2118]">
+                    2025
+                  </span>
+                  <span className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/40">
+                    Established
+                  </span>
+                </div>
+                <div className="w-px h-12 bg-[#1A2118]/10"></div>
+                <div className="flex flex-col gap-1">
+                  <span className="text-3xl font-serif font-bold text-[#1A2118]">
+                    100%
+                  </span>
+                  <span className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/40">
+                    Traceable
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Image Card */}
+            <div
+              className="lg:w-1/2 relative animate-fade-up"
+              style={{ animationDelay: "0.2s" }}
+            >
+              <div className="relative aspect-[4/3] bg-[#E8E6DF] rounded-[3rem] overflow-hidden shadow-2xl shadow-[#1A2118]/10 border-[8px] border-white">
+                <img
+                  src="/won6.JPG"
+                  alt="Organic Farm"
+                  className="w-full h-full object-cover scale-105 hover:scale-100 transition-transform duration-[1.5s]"
+                />
+                <div className="absolute inset-0 bg-[#1A2118]/10 mix-blend-multiply pointer-events-none" />
+              </div>
+
+              {/* Floating Badge */}
+              <div className="absolute -bottom-6 -left-6 bg-[#1A2118] text-[#F2F0EA] p-6 rounded-[2rem] shadow-xl hidden md:block">
+                <Leaf className="w-8 h-8 text-[#BC5633] mb-2" />
+                <p className="text-xs font-bold uppercase tracking-widest opacity-60">
+                  Sourced from
+                </p>
+                <p className="font-serif text-xl">Pristine Valleys</p>
+              </div>
+            </div>
           </div>
         </div>
       </header>
 
-      <main>
-        {/* --- Philosophy Section --- */}
-        <section
-          className="py-16 px-4 sm:px-6 lg:px-8 bg-[#FCFCF9]"
-          aria-labelledby="philosophy"
-        >
-          <div className="max-w-4xl mx-auto text-center space-y-6">
-            <h2
-              id="philosophy"
-              className="text-3xl md:text-4xl font-bold text-[#2B2A26]"
-            >
-              Our Guiding Philosophy
-            </h2>
-            <p className="text-lg md:text-xl text-[#5A5750] leading-relaxed max-w-3xl mx-auto">
-              To inspire a healthier world by connecting people to real food.
-              We’re not just selling products— we’re fostering a movement back
-              to nature, championing transparency, and proving that what’s good
-              for you can be good for the planet.
-            </p>
-          </div>
-        </section>
-
-        {/* --- Core Values Section --- */}
-        <section
-          className="py-16 px-4 sm:px-6 lg:px-8 bg-[#c8cfc0]" // Alternating background
-          aria-labelledby="values"
-        >
-          <h2
-            id="values"
-            className="text-3xl md:text-4xl font-bold text-[#2B2A26] text-center mb-12"
-          >
-            Our Core Values
+      {/* --- PHILOSOPHY SECTION --- */}
+      <section className="relative py-24 px-6 lg:px-12 z-10">
+        <div className="container mx-auto max-w-4xl text-center">
+          <Sprout className="w-12 h-12 text-[#1A2118]/20 mx-auto mb-8" />
+          <h2 className="text-3xl md:text-5xl font-serif font-medium text-[#1A2118] mb-8 leading-tight">
+            "To inspire a healthier world by connecting people to real food.
+            We’re fostering a movement back to nature."
           </h2>
+          <div className="h-px w-24 bg-[#BC5633] mx-auto mb-8"></div>
+          <p className="text-[#596157]">The World of Nature Manifesto</p>
+        </div>
+      </section>
 
-          {/* Professional responsiveness (md:grid-cols-3) */}
-          <ul
-            className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8"
-            role="list"
-          >
-            <li
-              // UPDATED: shadow-lg to shadow-md for a cleaner UI
-              className="bg-[#FCFCF9] p-6 rounded-lg shadow-md text-center space-y-4"
-            >
-              <BadgeCheck className="w-12 h-12 text-[#4A5D43] mx-auto" />
-              <h3 className="text-xl font-semibold text-[#2B2A26]">
+      {/* --- CORE VALUES (One UI Cards) --- */}
+      <section className="relative py-16 px-6 lg:px-12 z-10">
+        <div className="container mx-auto max-w-7xl">
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Value 1 */}
+            <div className="bg-white/60 backdrop-blur-xl border border-white/40 p-10 rounded-[2.5rem] hover:bg-white hover:-translate-y-2 transition-all duration-500 shadow-sm hover:shadow-xl group">
+              <div className="w-16 h-16 bg-[#F2F0EA] rounded-[1.5rem] flex items-center justify-center mb-8 group-hover:bg-[#1A2118] transition-colors duration-500">
+                <BadgeCheck className="w-8 h-8 text-[#1A2118] group-hover:text-[#BC5633] transition-colors duration-500" />
+              </div>
+              <h3 className="text-2xl font-serif font-bold text-[#1A2118] mb-4">
                 Uncompromising Purity
               </h3>
-              <p className="text-[#5A5750] leading-relaxed">
+              <p className="text-[#596157] leading-relaxed">
                 If it isn’t 100% organic, lab-tested, and free from anything
                 artificial, we don’t offer it.
               </p>
-            </li>
+            </div>
 
-            <li
-              // UPDATED: shadow-lg to shadow-md
-              className="bg-[#FCFCF9] p-6 rounded-lg shadow-md text-center space-y-4"
-            >
-              <Warehouse className="w-12 h-12 text-[#4A5D43] mx-auto" />
-              <h3 className="text-xl font-semibold text-[#2B2A26]">
+            {/* Value 2 */}
+            <div className="bg-white/60 backdrop-blur-xl border border-white/40 p-10 rounded-[2.5rem] hover:bg-white hover:-translate-y-2 transition-all duration-500 shadow-sm hover:shadow-xl group">
+              <div className="w-16 h-16 bg-[#F2F0EA] rounded-[1.5rem] flex items-center justify-center mb-8 group-hover:bg-[#1A2118] transition-colors duration-500">
+                <Warehouse className="w-8 h-8 text-[#1A2118] group-hover:text-[#BC5633] transition-colors duration-500" />
+              </div>
+              <h3 className="text-2xl font-serif font-bold text-[#1A2118] mb-4">
                 Regenerative Sourcing
               </h3>
-              <p className="text-[#5A5750] leading-relaxed">
+              <p className="text-[#596157] leading-relaxed">
                 We partner with farms that go beyond organic—rebuilding soil
                 health and promoting biodiversity.
               </p>
-            </li>
+            </div>
 
-            <li
-              // UPDATED: shadow-lg to shadow-md
-              className="bg-[#FCFCF9] p-6 rounded-lg shadow-md text-center space-y-4"
-            >
-              <Users className="w-12 h-12 text-[#4A5D43] mx-auto" />
-              <h3 className="text-xl font-semibold text-[#2B2A26]">
+            {/* Value 3 */}
+            <div className="bg-white/60 backdrop-blur-xl border border-white/40 p-10 rounded-[2.5rem] hover:bg-white hover:-translate-y-2 transition-all duration-500 shadow-sm hover:shadow-xl group">
+              <div className="w-16 h-16 bg-[#F2F0EA] rounded-[1.5rem] flex items-center justify-center mb-8 group-hover:bg-[#1A2118] transition-colors duration-500">
+                <Users className="w-8 h-8 text-[#1A2118] group-hover:text-[#BC5633] transition-colors duration-500" />
+              </div>
+              <h3 className="text-2xl font-serif font-bold text-[#1A2118] mb-4">
                 Honest Transparency
               </h3>
-              <p className="text-[#5A5750] leading-relaxed">
+              <p className="text-[#596157] leading-relaxed">
                 You deserve to know where your food comes from. Every product is
                 traceable back to source.
               </p>
-            </li>
-          </ul>
-        </section>
-
-        {/* --- Process Section --- */}
-        <section
-          className="py-16 px-4 sm:px-6 lg:px-8 bg-[#FCFCF9]"
-          aria-labelledby="process"
-        >
-          {/* Professional responsiveness (md:grid-cols-2) */}
-          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div className="flex justify-center md:justify-start">
-              <img
-                src="/i4.png"
-                alt="Farmer’s hands holding honeycomb"
-                // UPDATED: Removed shadow-lg
-                className="w-full max-w-md lg:max-w-lg h-auto rounded-lg"
-                loading="lazy"
-                decoding="async"
-                sizes="(max-width: 767px) 100vw, (max-width: 1024px) 50vw, 560px"
-              />
-            </div>
-            <div className="space-y-6 text-center md:text-left">
-              <h2
-                id="process"
-                className="text-3xl md:text-4xl font-bold text-[#2B2A26]"
-              >
-                The Journey to Your Table
-              </h2>
-              <p className="text-xl md:text-2xl font-semibold text-[#4A5D43]">
-                We don’t just find suppliers. We build partnerships.
-              </p>
-              <p className="text-lg text-[#5A5750] leading-relaxed">
-                Our team travels to pristine regions to meet farmers who share
-                our values. Together we ensure every batch of honey, every drop
-                of oil, and every tea leaf is harvested at its peak and
-                minimally processed to preserve its natural power.
-              </p>
-              <Link
-                href="/shop"
-                className="inline-block bg-[#4A5D43] text-[#FCFCF9] px-8 py-3 rounded-lg font-semibold hover:bg-[#3A4A35] transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#4A5D43] focus-visible:ring-offset-[#FCFCF9]"
-                aria-label="Shop products shaped by our process"
-              >
-                Shop Our Process
-              </Link>
             </div>
           </div>
-        </section>
-      </main>
+        </div>
+      </section>
 
-      {/* --- Final CTA Section --- */}
-      <section
-        className="py-16 px-4 sm:px-6 lg:px-8 bg-[#2B2A26] text-[#FCFCF9]" // Dark Espresso Background
-        aria-labelledby="cta"
-      >
-        <div className="max-w-4xl mx-auto text-center space-y-6">
-          <h2 id="cta" className="text-3xl md:text-4xl font-bold">
-            Feel the Difference
-          </h2>
-          <p className="text-lg md:text-xl opacity-90">
-            Start your journey back to nature. Explore our collections and taste
-            the purity for yourself.
-          </p>
-          <Link
-            href="/shop"
-            className="inline-block bg-[#4A5D43] text-[#FCFCF9] px-8 py-3 rounded-lg font-semibold hover:bg-[#3A4A35] transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#4A5D43] focus-visible:ring-offset-[#2B2A26]"
-            aria-label="Shop all products"
-          >
-            Shop All Products
-          </Link>
+      {/* --- PROCESS SECTION --- */}
+      <section className="relative py-24 px-6 lg:px-12 z-10">
+        <div className="container mx-auto max-w-7xl">
+          <div className="bg-[#1A2118] text-[#F2F0EA] rounded-[3rem] p-8 lg:p-16 overflow-hidden relative shadow-2xl">
+            {/* Background Decor */}
+            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#BC5633] rounded-full mix-blend-overlay filter blur-[120px] opacity-30 pointer-events-none" />
+            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/noise.png')] opacity-10 mix-blend-overlay pointer-events-none"></div>
+
+            <div className="relative z-10 grid lg:grid-cols-2 gap-16 items-center">
+              <div className="relative">
+                <div className="aspect-square rounded-[2.5rem] overflow-hidden border border-white/10">
+                  <img
+                    src="/i4.png"
+                    alt="Process"
+                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
+                  />
+                </div>
+                {/* Decorative Ring */}
+                <div className="absolute -inset-4 border border-white/5 rounded-[3rem] pointer-events-none" />
+              </div>
+
+              <div className="space-y-8">
+                <h2 className="text-4xl lg:text-6xl font-serif font-medium tracking-tight leading-tight">
+                  The Journey to <br />
+                  <span className="text-[#BC5633] italic">Your Table.</span>
+                </h2>
+
+                <p className="text-lg text-[#F2F0EA]/70 leading-relaxed font-light">
+                  Our team travels to pristine regions to meet farmers who share
+                  our values. Together we ensure every batch of honey, every
+                  drop of oil, and every tea leaf is harvested at its peak and
+                  minimally processed.
+                </p>
+
+                <div className="pt-4">
+                  <Link
+                    href="/shop"
+                    className="inline-flex h-16 px-10 items-center gap-3 bg-[#F2F0EA] text-[#1A2118] rounded-[2rem] font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-lg"
+                  >
+                    Shop Our Process <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </div>

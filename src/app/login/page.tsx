@@ -3,10 +3,20 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import {
+  Eye,
+  EyeOff,
+  Mail,
+  Lock,
+  User,
+  ArrowRight,
+  ArrowLeft,
+} from "lucide-react";
 
 export default function LoginPage() {
   const router = useRouter();
   const [isLogin, setIsLogin] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -15,11 +25,11 @@ export default function LoginPage() {
     lastName: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: "" }));
     }
@@ -41,12 +51,8 @@ export default function LoginPage() {
     }
 
     if (!isLogin) {
-      if (!formData.firstName) {
-        newErrors.firstName = "First name is required";
-      }
-      if (!formData.lastName) {
-        newErrors.lastName = "Last name is required";
-      }
+      if (!formData.firstName) newErrors.firstName = "First name is required";
+      if (!formData.lastName) newErrors.lastName = "Last name is required";
       if (!formData.confirmPassword) {
         newErrors.confirmPassword = "Please confirm your password";
       } else if (formData.password !== formData.confirmPassword) {
@@ -58,294 +64,311 @@ export default function LoginPage() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!validateForm()) return;
 
-    if (!validateForm()) {
-      return;
-    }
+    setIsLoading(true);
+    // Simulate network request
+    await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    // Simulate authentication
-    console.log(isLogin ? "Logging in..." : "Registering...", formData);
-
-    // Simulate successful login/registration
-    alert(isLogin ? "Login successful!" : "Registration successful!");
+    setIsLoading(false);
     router.push("/");
   };
 
+  const backgroundImage = "/d1.png";
+
   return (
-    <div className="min-h-screen bg-login flex flex-col justify-center py-8 md:py-12 px-4 md:px-8 lg:px-16">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="text-center">
-          <Link href="/" className="inline-block">
-            <img
-              className="mx-auto h-12 w-auto"
-              src="/wonlogo.jpg"
-              alt="World of Nature"
-            />
-          </Link>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-foreground">
-            {isLogin ? "Sign in to your account" : "Create your account"}
-          </h2>
-          <p className="mt-2 text-center text-sm text-text-secondary">
-            {isLogin ? "Don't have an account? " : "Already have an account? "}
-            <button
-              type="button"
-              onClick={() => setIsLogin(!isLogin)}
-              className="font-medium text-primary-bg hover:text-cta-hover"
-            >
-              {isLogin ? "Sign up" : "Sign in"}
-            </button>
-          </p>
+    <div className="min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 overflow-hidden relative">
+      {/* --- STYLES & ANIMATIONS --- */}
+      <style jsx>{`
+        @keyframes blob {
+          0% {
+            transform: translate(0px, 0px) scale(1);
+          }
+          33% {
+            transform: translate(30px, -50px) scale(1.1);
+          }
+          66% {
+            transform: translate(-20px, 20px) scale(0.9);
+          }
+          100% {
+            transform: translate(0px, 0px) scale(1);
+          }
+        }
+        .animate-blob {
+          animation: blob 10s infinite;
+        }
+        .animate-fade-up {
+          animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        @keyframes fadeUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
+
+      {/* --- BACKGROUND LAYERS --- */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div
+          className="absolute inset-0 opacity-[0.06] mix-blend-multiply"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          }}
+        />
+        <div className="absolute inset-0 z-0">
+          <img
+            src={backgroundImage}
+            alt=""
+            className="w-full h-full object-cover grayscale opacity-[0.1] mix-blend-multiply"
+          />
         </div>
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#BC5633] rounded-full mix-blend-multiply filter blur-[120px] opacity-20 animate-blob" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#1A2118] rounded-full mix-blend-overlay filter blur-[120px] opacity-10 animate-blob animation-delay-2000" />
       </div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-surface py-8 px-4 shadow sm:rounded-lg sm:px-10">
-          <form className="space-y-6" onSubmit={handleSubmit}>
-            {!isLogin && (
-              <>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label
-                      htmlFor="firstName"
-                      className="block text-sm font-medium text-text-primary"
-                    >
-                      First Name
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        id="firstName"
-                        name="firstName"
-                        type="text"
-                        autoComplete="given-name"
-                        required={!isLogin}
-                        value={formData.firstName}
-                        onChange={handleInputChange}
-                        className={`appearance-none block w-full px-3 py-2 border ${
-                          errors.firstName ? "border-red-300" : "border-border"
-                        } rounded-md placeholder-muted focus:outline-none focus:ring-primary-bg focus:border-primary-bg sm:text-sm`}
-                      />
-                      {errors.firstName && (
-                        <p className="mt-1 text-sm text-red-600">
-                          {errors.firstName}
-                        </p>
-                      )}
-                    </div>
-                  </div>
+      <div className="relative z-10 w-full max-w-lg animate-fade-up">
+        {/* Back Home Link */}
+        <div className="absolute -top-16 left-0">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#1A2118]/60 hover:text-[#BC5633] transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" /> Back Home
+          </Link>
+        </div>
 
-                  <div>
-                    <label
-                      htmlFor="lastName"
-                      className="block text-sm font-medium text-text-primary"
-                    >
-                      Last Name
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        id="lastName"
-                        name="lastName"
-                        type="text"
-                        autoComplete="family-name"
-                        required={!isLogin}
-                        value={formData.lastName}
-                        onChange={handleInputChange}
-                        className={`appearance-none block w-full px-3 py-2 border ${
-                          errors.lastName ? "border-red-300" : "border-border"
-                        } rounded-md placeholder-muted focus:outline-none focus:ring-primary-bg focus:border-primary-bg sm:text-sm`}
-                      />
-                      {errors.lastName && (
-                        <p className="mt-1 text-sm text-red-600">
-                          {errors.lastName}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </>
+        {/* Main Card */}
+        <div className="bg-white/70 backdrop-blur-2xl border border-white/40 rounded-[3rem] p-8 md:p-12 shadow-2xl shadow-[#1A2118]/10 relative overflow-hidden">
+          {/* Top Decoration */}
+          <div className="absolute top-0 right-0 w-32 h-32 bg-[#BC5633] rounded-full mix-blend-overlay filter blur-[50px] opacity-20 pointer-events-none" />
+
+          <div className="text-center mb-10">
+            <Link
+              href="/"
+              className="inline-block mb-6 hover:scale-105 transition-transform"
+            >
+              <div className="w-16 h-16 bg-[#1A2118] rounded-[1.2rem] flex items-center justify-center shadow-lg mx-auto">
+                <span className="text-2xl font-bold text-white">W</span>
+              </div>
+            </Link>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#1A2118] mb-3">
+              {isLogin ? "Welcome Back" : "Join the Harvest"}
+            </h2>
+            <p className="text-[#596157] text-sm font-medium">
+              {isLogin
+                ? "Sign in to continue your journey."
+                : "Create an account to start foraging."}
+            </p>
+          </div>
+
+          <form className="space-y-5" onSubmit={handleSubmit}>
+            {!isLogin && (
+              <div className="grid grid-cols-2 gap-4">
+                <Input
+                  label="First Name"
+                  name="firstName"
+                  value={formData.firstName}
+                  onChange={handleInputChange}
+                  error={errors.firstName}
+                  icon={<User className="w-5 h-5 text-[#1A2118]/40" />}
+                />
+                <Input
+                  label="Last Name"
+                  name="lastName"
+                  value={formData.lastName}
+                  onChange={handleInputChange}
+                  error={errors.lastName}
+                />
+              </div>
             )}
 
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-text-primary"
-              >
-                Email address
-              </label>
-              <div className="mt-1">
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  className={`appearance-none block w-full px-3 py-2 border ${
-                    errors.email ? "border-red-300" : "border-border"
-                  } rounded-md placeholder-muted focus:outline-none focus:ring-primary-bg focus:border-primary-bg sm:text-sm`}
-                />
-                {errors.email && (
-                  <p className="mt-1 text-sm text-red-600">{errors.email}</p>
-                )}
-              </div>
-            </div>
+            <Input
+              label="Email Address"
+              name="email"
+              type="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              error={errors.email}
+              icon={<Mail className="w-5 h-5 text-[#1A2118]/40" />}
+            />
 
-            <div>
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium text-text-primary"
+            <div className="relative">
+              <Input
+                label="Password"
+                name="password"
+                type={showPassword ? "text" : "password"}
+                value={formData.password}
+                onChange={handleInputChange}
+                error={errors.password}
+                icon={<Lock className="w-5 h-5 text-[#1A2118]/40" />}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-4 top-[2.8rem] text-[#1A2118]/40 hover:text-[#1A2118] transition-colors"
               >
-                Password
-              </label>
-              <div className="mt-1">
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  autoComplete={isLogin ? "current-password" : "new-password"}
-                  required
-                  value={formData.password}
-                  onChange={handleInputChange}
-                  className={`appearance-none block w-full px-3 py-2 border ${
-                    errors.password ? "border-red-300" : "border-border"
-                  } rounded-md placeholder-muted focus:outline-none focus:ring-primary-bg focus:border-primary-bg sm:text-sm`}
-                />
-                {errors.password && (
-                  <p className="mt-1 text-sm text-red-600">{errors.password}</p>
+                {showPassword ? (
+                  <EyeOff className="w-5 h-5" />
+                ) : (
+                  <Eye className="w-5 h-5" />
                 )}
-              </div>
+              </button>
             </div>
 
             {!isLogin && (
-              <div>
-                <label
-                  htmlFor="confirmPassword"
-                  className="block text-sm font-medium text-text-primary"
-                >
-                  Confirm Password
-                </label>
-                <div className="mt-1">
-                  <input
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    type="password"
-                    autoComplete="new-password"
-                    required={!isLogin}
-                    value={formData.confirmPassword}
-                    onChange={handleInputChange}
-                    className={`appearance-none block w-full px-3 py-2 border ${
-                      errors.confirmPassword
-                        ? "border-red-300"
-                        : "border-border"
-                    } rounded-md placeholder-muted focus:outline-none focus:ring-primary-bg focus:border-primary-bg sm:text-sm`}
-                  />
-                  {errors.confirmPassword && (
-                    <p className="mt-1 text-sm text-red-600">
-                      {errors.confirmPassword}
-                    </p>
-                  )}
-                </div>
-              </div>
+              <Input
+                label="Confirm Password"
+                name="confirmPassword"
+                type={showPassword ? "text" : "password"}
+                value={formData.confirmPassword}
+                onChange={handleInputChange}
+                error={errors.confirmPassword}
+                icon={<Lock className="w-5 h-5 text-[#1A2118]/40" />}
+              />
             )}
 
             {isLogin && (
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
+              <div className="flex items-center justify-between pt-2">
+                <label className="flex items-center cursor-pointer">
                   <input
-                    id="remember-me"
-                    name="remember-me"
                     type="checkbox"
-                    className="h-4 w-4 text-primary-bg focus:ring-primary-bg border-border rounded"
+                    className="w-4 h-4 rounded border-[#1A2118]/20 text-[#1A2118] focus:ring-[#BC5633]"
                   />
-                  <label
-                    htmlFor="remember-me"
-                    className="ml-2 block text-sm text-foreground"
-                  >
+                  <span className="ml-2 text-xs font-bold text-[#596157]">
                     Remember me
-                  </label>
-                </div>
-
-                <div className="text-sm">
-                  <a
-                    href="#"
-                    className="font-medium text-primary-bg hover:text-cta-hover"
-                  >
-                    Forgot your password?
-                  </a>
-                </div>
+                  </span>
+                </label>
+                <a
+                  href="#"
+                  className="text-xs font-bold text-[#BC5633] hover:text-[#A44626] transition-colors"
+                >
+                  Forgot Password?
+                </a>
               </div>
             )}
 
-            <div>
+            <div className="pt-4">
               <button
                 type="submit"
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-primary-text bg-primary-bg hover:bg-cta-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-bg"
+                disabled={isLoading}
+                className="group w-full h-14 bg-[#1A2118] text-white rounded-[1.5rem] font-bold text-sm uppercase tracking-widest hover:bg-[#BC5633] hover:shadow-lg hover:shadow-[#BC5633]/20 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                {isLogin ? "Sign in" : "Create account"}
+                {isLoading ? (
+                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                ) : (
+                  <>
+                    {isLogin ? "Sign In" : "Create Account"}
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </>
+                )}
               </button>
             </div>
           </form>
 
-          <div className="mt-6">
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-border" />
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-surface text-muted">
-                  Or continue with
-                </span>
-              </div>
+          <div className="mt-8 text-center">
+            <div className="relative flex py-2 items-center">
+              <div className="flex-grow border-t border-[#1A2118]/10"></div>
+              <span className="flex-shrink-0 mx-4 text-[#1A2118]/40 text-xs font-bold uppercase tracking-widest">
+                Or continue with
+              </span>
+              <div className="flex-grow border-t border-[#1A2118]/10"></div>
             </div>
 
-            <div className="mt-6 grid grid-cols-2 gap-3">
-              <div>
-                <button
-                  type="button"
-                  className="w-full inline-flex justify-center py-2 px-4 border border-border rounded-md shadow-sm bg-surface text-sm font-medium text-muted hover:bg-card-bg"
-                >
-                  <svg className="w-5 h-5" viewBox="0 0 24 24">
-                    <path
-                      fill="currentColor"
-                      d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-                    />
-                    <path
-                      fill="currentColor"
-                      d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-                    />
-                    <path
-                      fill="currentColor"
-                      d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-                    />
-                    <path
-                      fill="currentColor"
-                      d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-                    />
-                  </svg>
-                  <span className="ml-2">Google</span>
-                </button>
-              </div>
-
-              <div>
-                <button
-                  type="button"
-                  className="w-full inline-flex justify-center py-2 px-4 border border-border rounded-md shadow-sm bg-surface text-sm font-medium text-muted hover:bg-card-bg"
-                >
+            <div className="mt-6 grid grid-cols-2 gap-4">
+              <SocialButton
+                icon={
                   <svg
                     className="w-5 h-5"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
+                    <path
+                      d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                      fill="#34A853"
+                    />
+                    <path
+                      d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                      fill="#FBBC05"
+                    />
+                    <path
+                      d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                      fill="#EA4335"
+                    />
+                  </svg>
+                }
+                label="Google"
+              />
+              <SocialButton
+                icon={
+                  <svg
+                    className="w-5 h-5 text-[#1DA1F2]"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >
-                    <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                    <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.195a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.84 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
                   </svg>
-                  <span className="ml-2">Twitter</span>
-                </button>
-              </div>
+                }
+                label="Twitter"
+              />
             </div>
+
+            <p className="mt-8 text-sm text-[#596157]">
+              {isLogin
+                ? "Don't have an account? "
+                : "Already have an account? "}
+              <button
+                type="button"
+                onClick={() => setIsLogin(!isLogin)}
+                className="font-bold text-[#1A2118] hover:text-[#BC5633] transition-colors underline underline-offset-4 decoration-[#BC5633]/30"
+              >
+                {isLogin ? "Sign up" : "Sign in"}
+              </button>
+            </p>
           </div>
         </div>
       </div>
     </div>
   );
 }
+
+// --- COMPONENTS ---
+
+const Input = ({ label, error, icon, ...props }: any) => (
+  <div className="space-y-2">
+    <label className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/60 ml-4">
+      {label}
+    </label>
+    <div className="relative">
+      <input
+        {...props}
+        className={`w-full px-6 py-4 bg-[#F2F0EA]/50 border rounded-[1.5rem] text-[#1A2118] focus:bg-white focus:ring-4 focus:ring-[#BC5633]/5 outline-none transition-all duration-300 placeholder-[#1A2118]/30 ${
+          error
+            ? "border-red-400 focus:border-red-400"
+            : "border-transparent focus:border-[#BC5633]/20"
+        }`}
+      />
+      {icon && (
+        <div className="absolute right-6 top-1/2 -translate-y-1/2">{icon}</div>
+      )}
+    </div>
+    {error && <p className="text-xs text-red-500 font-medium ml-4">{error}</p>}
+  </div>
+);
+
+const SocialButton = ({ icon, label }: any) => (
+  <button
+    type="button"
+    className="flex items-center justify-center gap-3 py-3.5 px-4 bg-white border border-[#1A2118]/5 rounded-[1.2rem] hover:bg-[#F2F0EA] hover:-translate-y-0.5 transition-all shadow-sm"
+  >
+    {icon}
+    <span className="text-sm font-bold text-[#1A2118]">{label}</span>
+  </button>
+);

@@ -5,8 +5,17 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../redux/store";
 import { clearCart } from "../redux/features/cart/cartSlice";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
+import {
+  Check,
+  CreditCard,
+  Truck,
+  ShieldCheck,
+  ArrowRight,
+  ArrowLeft,
+  MapPin,
+  Package,
+} from "lucide-react";
 
 interface ShippingInfo {
   firstName: string;
@@ -17,7 +26,6 @@ interface ShippingInfo {
   city: string;
   state: string;
   zipCode: string;
-  country: string;
 }
 
 interface PaymentInfo {
@@ -41,7 +49,6 @@ export default function CheckoutPage() {
     city: "",
     state: "",
     zipCode: "",
-    country: "United States",
   });
   const [paymentInfo, setPaymentInfo] = useState<PaymentInfo>({
     cardNumber: "",
@@ -49,7 +56,6 @@ export default function CheckoutPage() {
     cvv: "",
     nameOnCard: "",
   });
-  const [billingSameAsShipping, setBillingSameAsShipping] = useState(true);
 
   const tax = total * 0.08;
   const finalTotal = total + tax;
@@ -57,29 +63,46 @@ export default function CheckoutPage() {
   const handleShippingSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setCurrentStep(2);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handlePaymentSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setCurrentStep(3);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handlePlaceOrder = () => {
-    // Simulate order placement
     const orderNumber = `ORD-${Date.now()}`;
     dispatch(clearCart());
     router.push(`/order-confirmation?order=${orderNumber}`);
   };
 
+  // --- EMPTY CART STATE ---
   if (items.length === 0) {
     return (
-      <div className="min-h-screen bg-checkout flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-text-primary mb-4">
+      <div className="min-h-screen bg-[#F2F0EA] text-[#1A2118] flex items-center justify-center relative overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-[0.06] mix-blend-multiply"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          }}
+        />
+        <div className="relative z-10 text-center p-10 bg-white/60 backdrop-blur-xl rounded-[3rem] border border-[#1A2118]/5 shadow-2xl">
+          <div className="w-24 h-24 bg-[#F2F0EA] rounded-[2rem] flex items-center justify-center mx-auto mb-6 shadow-inner">
+            <Truck className="w-10 h-10 text-[#BC5633]" />
+          </div>
+          <h1 className="text-3xl font-serif font-bold text-[#1A2118] mb-2">
             Your cart is empty
           </h1>
-          <Link href="/shop" className="text-primary-bg hover:text-accent-bg">
-            ← Back to Shop
+          <p className="text-[#596157] mb-8">
+            Time to fill it with nature's best.
+          </p>
+          <Link
+            href="/shop"
+            className="inline-flex items-center gap-2 h-14 px-8 bg-[#1A2118] text-white rounded-full font-bold text-sm uppercase tracking-widest hover:bg-[#BC5633] transition-colors shadow-lg"
+          >
+            Continue Shopping
           </Link>
         </div>
       </div>
@@ -87,568 +110,392 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="min-h-screen bg-checkout">
-      {/* Header */}
-      <div className="bg-surface border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-16 py-6 md:py-8">
-          <h1 className="text-2xl md:text-3xl font-bold text-text-primary">
+    <div className="min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white pb-20 overflow-x-hidden">
+      {/* --- BACKGROUND LAYERS --- */}
+      <style jsx>{`
+        @keyframes blob {
+          0% {
+            transform: translate(0px, 0px) scale(1);
+          }
+          33% {
+            transform: translate(30px, -50px) scale(1.1);
+          }
+          66% {
+            transform: translate(-20px, 20px) scale(0.9);
+          }
+          100% {
+            transform: translate(0px, 0px) scale(1);
+          }
+        }
+        .animate-blob {
+          animation: blob 10s infinite;
+        }
+      `}</style>
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <div
+          className="absolute inset-0 opacity-[0.06] mix-blend-multiply"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          }}
+        />
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#BC5633] rounded-full mix-blend-multiply filter blur-[120px] opacity-20 animate-blob" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#1A2118] rounded-full mix-blend-overlay filter blur-[120px] opacity-10 animate-blob" />
+      </div>
+
+      {/* --- HEADER --- */}
+      <div className="relative pt-32 pb-8 px-6 lg:px-12 z-10">
+        <div className="container mx-auto max-w-7xl">
+          <h1 className="text-5xl md:text-6xl font-serif font-medium tracking-tight text-[#1A2118] mb-8">
             Checkout
           </h1>
+
+          {/* Stepper */}
+          <div className="inline-flex bg-white/70 backdrop-blur-xl rounded-full p-1.5 shadow-lg border border-white/40 mb-12">
+            {[
+              { id: 1, label: "Shipping", icon: MapPin },
+              { id: 2, label: "Payment", icon: CreditCard },
+              { id: 3, label: "Review", icon: Check },
+            ].map((step, idx) => (
+              <div key={step.id} className="flex items-center">
+                <div
+                  className={`flex items-center gap-2 px-6 py-3 rounded-full transition-all duration-500 ${
+                    currentStep === step.id
+                      ? "bg-[#1A2118] text-white shadow-md"
+                      : currentStep > step.id
+                      ? "text-[#1A2118] bg-[#BC5633]/10"
+                      : "text-[#1A2118]/40"
+                  }`}
+                >
+                  <step.icon className="w-4 h-4" />
+                  <span className="text-xs font-bold uppercase tracking-widest hidden sm:inline">
+                    {step.label}
+                  </span>
+                </div>
+                {idx < 2 && (
+                  <div
+                    className={`w-8 h-0.5 mx-2 ${
+                      currentStep > step.id ? "bg-[#BC5633]" : "bg-[#1A2118]/10"
+                    }`}
+                  />
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-16 py-8 md:py-12">
-        {/* Progress indicator */}
-        <div className="mb-8">
-          <div className="flex items-center justify-center">
-            <div
-              className={`flex items-center ${
-                currentStep >= 1 ? "text-primary-bg" : "text-text-secondary"
-              }`}
-            >
-              <div
-                className={`w-8 h-8 rounded-full flex items-center justify-center border-2 ${
-                  currentStep >= 1
-                    ? "border-primary-bg bg-primary-bg text-primary-text"
-                    : "border-border"
-                }`}
-              >
-                1
-              </div>
-              <span className="ml-2 text-sm font-medium">Shipping</span>
-            </div>
-            <div
-              className={`w-12 h-0.5 mx-4 ${
-                currentStep >= 2 ? "bg-primary-bg" : "bg-border"
-              }`}
-            ></div>
-            <div
-              className={`flex items-center ${
-                currentStep >= 2 ? "text-primary-bg" : "text-text-secondary"
-              }`}
-            >
-              <div
-                className={`w-8 h-8 rounded-full flex items-center justify-center border-2 ${
-                  currentStep >= 2
-                    ? "border-primary-bg bg-primary-bg text-primary-text"
-                    : "border-border"
-                }`}
-              >
-                2
-              </div>
-              <span className="ml-2 text-sm font-medium">Payment</span>
-            </div>
-            <div
-              className={`w-12 h-0.5 mx-4 ${
-                currentStep >= 3 ? "bg-primary-bg" : "bg-border"
-              }`}
-            ></div>
-            <div
-              className={`flex items-center ${
-                currentStep >= 3 ? "text-primary-bg" : "text-text-secondary"
-              }`}
-            >
-              <div
-                className={`w-8 h-8 rounded-full flex items-center justify-center border-2 ${
-                  currentStep >= 3
-                    ? "border-primary-bg bg-primary-bg text-primary-text"
-                    : "border-border"
-                }`}
-              >
-                3
-              </div>
-              <span className="ml-2 text-sm font-medium">Review</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="lg:grid lg:grid-cols-12 lg:gap-x-8">
-          {/* Main content */}
-          <div className="lg:col-span-8">
-            {currentStep === 1 && (
-              <div className="bg-surface border border-border rounded-lg p-6">
-                <h2 className="text-xl font-semibold text-text-primary mb-6">
-                  Shipping Information
-                </h2>
-                <form onSubmit={handleShippingSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label
-                        htmlFor="firstName"
-                        className="block text-sm font-medium text-text-primary"
-                      >
-                        First Name
-                      </label>
-                      <input
-                        type="text"
-                        id="firstName"
-                        required
+      <div className="relative z-10 px-6 lg:px-12">
+        <div className="container mx-auto max-w-7xl">
+          <div className="lg:grid lg:grid-cols-12 lg:gap-12 items-start">
+            {/* --- MAIN FORM AREA --- */}
+            <div className="lg:col-span-8">
+              {currentStep === 1 && (
+                <div className="bg-white/80 backdrop-blur-xl border border-white rounded-[3rem] p-8 md:p-12 shadow-2xl shadow-[#1A2118]/5">
+                  <h2 className="text-2xl font-serif font-bold text-[#1A2118] mb-8">
+                    Shipping Details
+                  </h2>
+                  <form onSubmit={handleShippingSubmit} className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <Input
+                        label="First Name"
+                        placeholder="e.g. Jane"
                         value={shippingInfo.firstName}
-                        onChange={(e) =>
+                        onChange={(e: any) =>
                           setShippingInfo({
                             ...shippingInfo,
                             firstName: e.target.value,
                           })
                         }
-                        className="mt-1 block w-full border-border rounded-md shadow-sm focus:ring-primary-bg focus:border-primary-bg"
                       />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor="lastName"
-                        className="block text-sm font-medium text-text-primary"
-                      >
-                        Last Name
-                      </label>
-                      <input
-                        type="text"
-                        id="lastName"
-                        required
+                      <Input
+                        label="Last Name"
+                        placeholder="e.g. Doe"
                         value={shippingInfo.lastName}
-                        onChange={(e) =>
+                        onChange={(e: any) =>
                           setShippingInfo({
                             ...shippingInfo,
                             lastName: e.target.value,
                           })
                         }
-                        className="mt-1 block w-full border-border rounded-md shadow-sm focus:ring-primary-bg focus:border-primary-bg"
                       />
                     </div>
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-medium text-text-primary"
-                    >
-                      Email Address
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      required
-                      value={shippingInfo.email}
-                      onChange={(e) =>
-                        setShippingInfo({
-                          ...shippingInfo,
-                          email: e.target.value,
-                        })
-                      }
-                      className="mt-1 block w-full border-border rounded-md shadow-sm focus:ring-primary-bg focus:border-primary-bg"
-                    />
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="phone"
-                      className="block text-sm font-medium text-text-primary"
-                    >
-                      Phone Number
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      required
-                      value={shippingInfo.phone}
-                      onChange={(e) =>
-                        setShippingInfo({
-                          ...shippingInfo,
-                          phone: e.target.value,
-                        })
-                      }
-                      className="mt-1 block w-full border-border rounded-md shadow-sm focus:ring-primary-bg focus:border-primary-bg"
-                    />
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="address"
-                      className="block text-sm font-medium text-text-primary"
-                    >
-                      Street Address
-                    </label>
-                    <input
-                      type="text"
-                      id="address"
-                      required
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <Input
+                        label="Email Address"
+                        placeholder="jane@example.com"
+                        type="email"
+                        value={shippingInfo.email}
+                        onChange={(e: any) =>
+                          setShippingInfo({
+                            ...shippingInfo,
+                            email: e.target.value,
+                          })
+                        }
+                      />
+                      <Input
+                        label="Phone Number"
+                        placeholder="+1 (555) 000-0000"
+                        type="tel"
+                        value={shippingInfo.phone}
+                        onChange={(e: any) =>
+                          setShippingInfo({
+                            ...shippingInfo,
+                            phone: e.target.value,
+                          })
+                        }
+                      />
+                    </div>
+                    <Input
+                      label="Street Address"
+                      placeholder="123 Organic Way, Apt 4B"
                       value={shippingInfo.address}
-                      onChange={(e) =>
+                      onChange={(e: any) =>
                         setShippingInfo({
                           ...shippingInfo,
                           address: e.target.value,
                         })
                       }
-                      className="mt-1 block w-full border-border rounded-md shadow-sm focus:ring-primary-bg focus:border-primary-bg"
                     />
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div>
-                      <label
-                        htmlFor="city"
-                        className="block text-sm font-medium text-text-primary"
-                      >
-                        City
-                      </label>
-                      <input
-                        type="text"
-                        id="city"
-                        required
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      <Input
+                        label="City"
+                        placeholder="Nature Valley"
                         value={shippingInfo.city}
-                        onChange={(e) =>
+                        onChange={(e: any) =>
                           setShippingInfo({
                             ...shippingInfo,
                             city: e.target.value,
                           })
                         }
-                        className="mt-1 block w-full border-border rounded-md shadow-sm focus:ring-primary-bg focus:border-primary-bg"
                       />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor="state"
-                        className="block text-sm font-medium text-text-primary"
-                      >
-                        State
-                      </label>
-                      <input
-                        type="text"
-                        id="state"
-                        required
+                      <Input
+                        label="State"
+                        placeholder="CA"
                         value={shippingInfo.state}
-                        onChange={(e) =>
+                        onChange={(e: any) =>
                           setShippingInfo({
                             ...shippingInfo,
                             state: e.target.value,
                           })
                         }
-                        className="mt-1 block w-full border-border rounded-md shadow-sm focus:ring-primary-bg focus:border-primary-bg"
                       />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor="zipCode"
-                        className="block text-sm font-medium text-text-primary"
-                      >
-                        ZIP Code
-                      </label>
-                      <input
-                        type="text"
-                        id="zipCode"
-                        required
+                      <Input
+                        label="ZIP Code"
+                        placeholder="90210"
                         value={shippingInfo.zipCode}
-                        onChange={(e) =>
+                        onChange={(e: any) =>
                           setShippingInfo({
                             ...shippingInfo,
                             zipCode: e.target.value,
                           })
                         }
-                        className="mt-1 block w-full border-border rounded-md shadow-sm focus:ring-primary-bg focus:border-primary-bg"
                       />
                     </div>
-                  </div>
+                    <div className="flex justify-end pt-6">
+                      <button
+                        type="submit"
+                        className="btn-primary h-14 px-8 bg-[#1A2118] text-white rounded-[2rem] font-bold text-sm uppercase tracking-widest hover:bg-[#3A4D39] transition-all shadow-lg flex items-center gap-3"
+                      >
+                        Continue to Payment <ArrowRight className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              )}
 
-                  <div className="flex justify-end">
-                    <button
-                      type="submit"
-                      className="px-6 py-3 bg-primary-bg text-primary-text rounded-md hover:bg-accent-bg"
-                    >
-                      Continue to Payment
-                    </button>
-                  </div>
-                </form>
-              </div>
-            )}
-
-            {currentStep === 2 && (
-              <div className="bg-surface border border-border rounded-lg p-6">
-                <h2 className="text-xl font-semibold text-text-primary mb-6">
-                  Payment Information
-                </h2>
-                <form onSubmit={handlePaymentSubmit} className="space-y-6">
-                  <div>
-                    <label
-                      htmlFor="nameOnCard"
-                      className="block text-sm font-medium text-text-primary"
-                    >
-                      Name on Card
-                    </label>
-                    <input
-                      type="text"
-                      id="nameOnCard"
-                      required
+              {currentStep === 2 && (
+                <div className="bg-white/80 backdrop-blur-xl border border-white rounded-[3rem] p-8 md:p-12 shadow-2xl shadow-[#1A2118]/5">
+                  <h2 className="text-2xl font-serif font-bold text-[#1A2118] mb-8">
+                    Payment Method
+                  </h2>
+                  <form onSubmit={handlePaymentSubmit} className="space-y-6">
+                    <Input
+                      label="Name on Card"
+                      placeholder="JANE DOE"
                       value={paymentInfo.nameOnCard}
-                      onChange={(e) =>
+                      onChange={(e: any) =>
                         setPaymentInfo({
                           ...paymentInfo,
                           nameOnCard: e.target.value,
                         })
                       }
-                      className="mt-1 block w-full border-border rounded-md shadow-sm focus:ring-primary-bg focus:border-primary-bg"
                     />
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="cardNumber"
-                      className="block text-sm font-medium text-text-primary"
-                    >
-                      Card Number
-                    </label>
-                    <input
-                      type="text"
-                      id="cardNumber"
-                      required
-                      placeholder="1234 5678 9012 3456"
+                    <Input
+                      label="Card Number"
+                      placeholder="0000 0000 0000 0000"
                       value={paymentInfo.cardNumber}
-                      onChange={(e) =>
+                      onChange={(e: any) =>
                         setPaymentInfo({
                           ...paymentInfo,
                           cardNumber: e.target.value,
                         })
                       }
-                      className="mt-1 block w-full border-border rounded-md shadow-sm focus:ring-primary-bg focus:border-primary-bg"
+                      icon={
+                        <CreditCard className="w-5 h-5 text-[#1A2118]/40" />
+                      }
                     />
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-6">
-                    <div>
-                      <label
-                        htmlFor="expiryDate"
-                        className="block text-sm font-medium text-text-primary"
-                      >
-                        Expiry Date
-                      </label>
-                      <input
-                        type="text"
-                        id="expiryDate"
-                        required
+                    <div className="grid grid-cols-2 gap-6">
+                      <Input
+                        label="Expiry Date"
                         placeholder="MM/YY"
                         value={paymentInfo.expiryDate}
-                        onChange={(e) =>
+                        onChange={(e: any) =>
                           setPaymentInfo({
                             ...paymentInfo,
                             expiryDate: e.target.value,
                           })
                         }
-                        className="mt-1 block w-full border-border rounded-md shadow-sm focus:ring-primary-bg focus:border-primary-bg"
                       />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor="cvv"
-                        className="block text-sm font-medium text-text-primary"
-                      >
-                        CVV
-                      </label>
-                      <input
-                        type="text"
-                        id="cvv"
-                        required
+                      <Input
+                        label="CVV"
                         placeholder="123"
+                        type="password"
                         value={paymentInfo.cvv}
-                        onChange={(e) =>
+                        onChange={(e: any) =>
                           setPaymentInfo({
                             ...paymentInfo,
                             cvv: e.target.value,
                           })
                         }
-                        className="mt-1 block w-full border-border rounded-md shadow-sm focus:ring-primary-bg focus:border-primary-bg"
                       />
+                    </div>
+                    <div className="flex justify-between pt-6">
+                      <button
+                        type="button"
+                        onClick={() => setCurrentStep(1)}
+                        className="h-14 px-8 bg-white border border-[#1A2118]/10 text-[#1A2118] rounded-[2rem] font-bold text-sm uppercase tracking-widest hover:bg-[#F2F0EA] transition-colors flex items-center gap-3"
+                      >
+                        <ArrowLeft className="w-4 h-4" /> Back
+                      </button>
+                      <button
+                        type="submit"
+                        className="h-14 px-8 bg-[#1A2118] text-white rounded-[2rem] font-bold text-sm uppercase tracking-widest hover:bg-[#3A4D39] transition-all shadow-lg flex items-center gap-3"
+                      >
+                        Review Order <ArrowRight className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              )}
+
+              {currentStep === 3 && (
+                <div className="space-y-6">
+                  {/* Items Review */}
+                  <div className="bg-white/80 backdrop-blur-xl border border-white rounded-[3rem] p-8 shadow-lg">
+                    <h2 className="text-2xl font-serif font-bold text-[#1A2118] mb-6">
+                      Review Items
+                    </h2>
+                    <div className="space-y-4">
+                      {items.map((item) => (
+                        <div
+                          key={`${item.id}-${item.size}`}
+                          className="flex items-center gap-4 p-4 bg-[#F2F0EA]/50 rounded-[1.5rem] border border-[#1A2118]/5"
+                        >
+                          <div className="w-16 h-16 bg-white rounded-[1rem] overflow-hidden shadow-sm">
+                            <img
+                              src={item.image}
+                              alt={item.name}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                          <div className="flex-1">
+                            <h3 className="font-bold text-[#1A2118]">
+                              {item.name}
+                            </h3>
+                            <p className="text-sm text-[#596157]">
+                              Qty: {item.quantity}{" "}
+                              {item.size && `• ${item.size}`}
+                            </p>
+                          </div>
+                          <p className="font-bold text-[#1A2118]">
+                            ${(item.price * item.quantity).toFixed(2)}
+                          </p>
+                        </div>
+                      ))}
                     </div>
                   </div>
 
-                  <div className="flex items-center">
-                    <input
-                      id="billingSame"
-                      type="checkbox"
-                      checked={billingSameAsShipping}
-                      onChange={(e) =>
-                        setBillingSameAsShipping(e.target.checked)
-                      }
-                      className="h-4 w-4 text-primary-bg focus:ring-primary-bg border-border rounded"
-                    />
-                    <label
-                      htmlFor="billingSame"
-                      className="ml-2 text-sm text-text-primary"
-                    >
-                      Billing address is the same as shipping address
-                    </label>
-                  </div>
-
-                  <div className="flex justify-between">
-                    <button
-                      type="button"
-                      onClick={() => setCurrentStep(1)}
-                      className="px-6 py-3 border border-border text-text-primary rounded-md hover:bg-border"
-                    >
-                      Back to Shipping
-                    </button>
-                    <button
-                      type="submit"
-                      className="px-6 py-3 bg-primary-bg text-primary-text rounded-md hover:bg-accent-bg"
-                    >
-                      Review Order
-                    </button>
-                  </div>
-                </form>
-              </div>
-            )}
-
-            {currentStep === 3 && (
-              <div className="space-y-6">
-                {/* Order review */}
-                <div className="bg-surface border border-border rounded-lg p-6">
-                  <h2 className="text-xl font-semibold text-text-primary mb-6">
-                    Review Your Order
-                  </h2>
-
-                  <div className="space-y-4">
-                    {items.map((item) => (
-                      <div
-                        key={`${item.id}-${item.size}`}
-                        className="flex items-center space-x-4"
+                  {/* Shipping Review */}
+                  <div className="bg-white/80 backdrop-blur-xl border border-white rounded-[3rem] p-8 shadow-lg">
+                    <div className="flex justify-between items-start mb-4">
+                      <h3 className="text-xl font-serif font-bold text-[#1A2118]">
+                        Shipping To
+                      </h3>
+                      <button
+                        onClick={() => setCurrentStep(1)}
+                        className="text-xs font-bold text-[#BC5633] uppercase tracking-widest"
                       >
-                        <Image
-                          src={item.image}
-                          alt={item.name}
-                          width={64}
-                          height={64}
-                          className="rounded-md"
-                        />
-                        <div className="flex-1">
-                          <h3 className="text-sm font-medium text-text-primary">
-                            {item.name}
-                          </h3>
-                          {item.size && (
-                            <p className="text-sm text-text-secondary">
-                              Size: {item.size}
-                            </p>
-                          )}
-                          <p className="text-sm text-text-secondary">
-                            Quantity: {item.quantity}
-                          </p>
-                        </div>
-                        <p className="text-sm font-medium text-text-primary">
-                          ${(item.price * item.quantity).toFixed(2)}
-                        </p>
-                      </div>
-                    ))}
+                        Edit
+                      </button>
+                    </div>
+                    <div className="text-[#596157] leading-relaxed">
+                      <p className="font-bold text-[#1A2118]">
+                        {shippingInfo.firstName} {shippingInfo.lastName}
+                      </p>
+                      <p>{shippingInfo.address}</p>
+                      <p>
+                        {shippingInfo.city}, {shippingInfo.state}{" "}
+                        {shippingInfo.zipCode}
+                      </p>
+                      <p className="mt-2">{shippingInfo.email}</p>
+                    </div>
+                  </div>
+
+                  <div className="flex justify-between pt-4">
+                    <button
+                      onClick={() => setCurrentStep(2)}
+                      className="h-14 px-8 bg-white border border-[#1A2118]/10 text-[#1A2118] rounded-[2rem] font-bold text-sm uppercase tracking-widest hover:bg-[#F2F0EA] transition-colors flex items-center gap-3"
+                    >
+                      <ArrowLeft className="w-4 h-4" /> Back
+                    </button>
+                    <button
+                      onClick={handlePlaceOrder}
+                      className="h-14 px-8 bg-[#BC5633] text-white rounded-[2rem] font-bold text-sm uppercase tracking-widest hover:bg-[#A34528] transition-all shadow-lg shadow-[#BC5633]/20 flex items-center gap-3"
+                    >
+                      Place Order <Package className="w-4 h-4" />
+                    </button>
                   </div>
                 </div>
+              )}
+            </div>
 
-                {/* Shipping info */}
-                <div className="bg-surface border border-border rounded-lg p-6">
-                  <h3 className="text-lg font-medium text-text-primary mb-4">
-                    Shipping Address
-                  </h3>
-                  <p className="text-text-primary">
-                    {shippingInfo.firstName} {shippingInfo.lastName}
-                    <br />
-                    {shippingInfo.address}
-                    <br />
-                    {shippingInfo.city}, {shippingInfo.state}{" "}
-                    {shippingInfo.zipCode}
-                    <br />
-                    {shippingInfo.email}
-                    <br />
-                    {shippingInfo.phone}
-                  </p>
-                </div>
+            {/* --- ORDER SUMMARY SIDEBAR --- */}
+            <div className="lg:col-span-4 mt-12 lg:mt-0">
+              <div className="sticky top-32 bg-[#1A2118] text-[#F2F0EA] rounded-[2.5rem] p-8 shadow-2xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-40 h-40 bg-[#BC5633] rounded-full mix-blend-overlay filter blur-[60px] opacity-40 pointer-events-none" />
 
-                {/* Payment info */}
-                <div className="bg-surface border border-border rounded-lg p-6">
-                  <h3 className="text-lg font-medium text-text-primary mb-4">
-                    Payment Method
-                  </h3>
-                  <p className="text-text-primary">
-                    **** **** **** {paymentInfo.cardNumber.slice(-4)}
-                    <br />
-                    Expires {paymentInfo.expiryDate}
-                  </p>
-                </div>
+                <h2 className="text-2xl font-serif font-bold mb-8 relative z-10">
+                  Order Summary
+                </h2>
 
-                <div className="flex justify-between">
-                  <button
-                    onClick={() => setCurrentStep(2)}
-                    className="px-6 py-3 border border-border text-text-primary rounded-md hover:bg-border"
-                  >
-                    Back to Payment
-                  </button>
-                  <button
-                    onClick={handlePlaceOrder}
-                    className="px-6 py-3 bg-primary-bg text-primary-text rounded-md hover:bg-accent-bg"
-                  >
-                    Place Order
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Order summary sidebar */}
-          <div className="lg:col-span-4 mt-8 lg:mt-0">
-            <div className="bg-surface border border-border rounded-lg p-6 sticky top-6">
-              <h2 className="text-lg font-medium text-text-primary mb-6">
-                Order Summary
-              </h2>
-
-              <div className="space-y-4">
-                {items.map((item) => (
-                  <div
-                    key={`${item.id}-${item.size}`}
-                    className="flex justify-between text-sm"
-                  >
-                    <span className="text-text-secondary">
-                      {item.name} {item.size && `(${item.size})`} ×{" "}
-                      {item.quantity}
-                    </span>
-                    <span className="text-text-primary">
-                      ${(item.price * item.quantity).toFixed(2)}
-                    </span>
-                  </div>
-                ))}
-
-                <div className="border-t border-border pt-4 space-y-2">
+                <div className="space-y-4 text-sm font-medium text-[#F2F0EA]/70 relative z-10">
                   <div className="flex justify-between">
-                    <span className="text-text-secondary">Subtotal</span>
-                    <span className="text-text-primary">
-                      ${total.toFixed(2)}
-                    </span>
+                    <span>Subtotal</span>
+                    <span className="text-[#F2F0EA]">${total.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-text-secondary">Shipping</span>
-                    <span className="text-text-primary">Free</span>
+                    <span>Shipping</span>
+                    <span className="text-[#BC5633]">Free</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-text-secondary">Tax</span>
-                    <span className="text-text-primary">${tax.toFixed(2)}</span>
+                    <span>Tax (Est.)</span>
+                    <span>${tax.toFixed(2)}</span>
+                  </div>
+
+                  <div className="border-t border-white/10 pt-6 mt-6 pb-2">
+                    <div className="flex justify-between items-end">
+                      <span className="text-[#F2F0EA]/50 uppercase tracking-widest text-xs">
+                        Total
+                      </span>
+                      <span className="text-3xl font-serif font-bold text-[#F2F0EA]">
+                        ${finalTotal.toFixed(2)}
+                      </span>
+                    </div>
                   </div>
                 </div>
 
-                <div className="border-t border-border pt-4">
-                  <div className="flex justify-between text-lg font-semibold">
-                    <span className="text-text-primary">Total</span>
-                    <span className="text-text-primary">
-                      ${finalTotal.toFixed(2)}
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Security badges */}
-              <div className="mt-6 pt-6 border-t border-border">
-                <div className="flex items-center justify-center space-x-4">
-                  <div className="text-center">
-                    <div className="text-2xl mb-1">🔒</div>
-                    <p className="text-xs text-text-secondary">
-                      Secured by Stripe
-                    </p>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-2xl mb-1">💳</div>
-                    <p className="text-xs text-text-secondary">SSL Encrypted</p>
-                  </div>
+                <div className="mt-8 pt-6 border-t border-white/10 flex items-center gap-3 justify-center text-[#F2F0EA]/40 text-xs uppercase tracking-widest">
+                  <ShieldCheck className="w-4 h-4" /> SSL Secure Payment
                 </div>
               </div>
             </div>
@@ -658,3 +505,22 @@ export default function CheckoutPage() {
     </div>
   );
 }
+
+// --- REUSABLE INPUT COMPONENT ---
+const Input = ({ label, icon, ...props }: any) => (
+  <div className="space-y-2">
+    <label className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/60 ml-4">
+      {label}
+    </label>
+    <div className="relative">
+      <input
+        {...props}
+        required
+        className="w-full px-6 py-4 bg-[#F2F0EA]/50 border border-transparent rounded-[1.5rem] text-[#1A2118] focus:bg-white focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all duration-300 placeholder-[#1A2118]/30"
+      />
+      {icon && (
+        <div className="absolute right-6 top-1/2 -translate-y-1/2">{icon}</div>
+      )}
+    </div>
+  </div>
+);

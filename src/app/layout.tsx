@@ -5,16 +5,11 @@ import { Manrope, Inter } from "next/font/google"; // Import new font
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-// We no longer import static pages here
 
 // Import Redux Provider
 import ReduxProvider from "./redux/provider";
-import AboutPage from "./about/page";
 import FaqPage from "./faq/page";
 import ContactPage from "./components/Contact";
-// import AboutPage from "./about/page";
-// import FaqPage from "./faq/page";
-// import ContactPage from "./components/Contact";
 
 // Setup Fonts
 const inter = Inter({
@@ -41,11 +36,9 @@ export default function RootLayout({
         {/* Wrap everything in ReduxProvider */}
         <ReduxProvider>
           <Navbar />
-          {/* 'children' is the magic prop that renders
-            the current page (e.g., page.tsx, about/page.tsx, etc.)
-          */}
           <main>{children}</main>
-
+          <FaqPage />
+          <ContactPage />
           <Footer />
         </ReduxProvider>
       </body>

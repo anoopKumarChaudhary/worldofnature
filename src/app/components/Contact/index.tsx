@@ -1,333 +1,226 @@
 "use client";
 
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React from "react";
 import {
   Phone,
   Mail,
   MapPin,
-  Loader2,
-  CheckCircle,
-  AlertCircle,
   Facebook,
   Instagram,
   Twitter,
+  MessageCircle,
+  ArrowRight,
+  Clock,
+  Globe,
 } from "lucide-react";
 
-// --- Type definition for our form state ---
-interface FormData {
-  name: string;
-  email: string;
-  reason: string;
-  message: string;
-}
-
-// --- Type for submission state ---
-type SubmissionState = "idle" | "submitting" | "success" | "error";
-
-// --- WhatsApp Icon (self-contained) ---
-const WhatsAppIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="currentColor"
-    viewBox="0 0 24 24"
-    className="w-6 h-6 text-white"
-  >
-    <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.06 21.94L7.31 20.59C8.76 21.39 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.01 4.88C17.11 2.97 14.63 2 12.04 2ZM17.46 15.58C17.18 16.22 16.03 16.87 15.3 16.96C14.66 17.05 13.9 17.06 13.26 16.87C12.55 16.66 11.23 16.14 9.88 14.9C8.23 13.38 7.1 11.75 6.81 11.08C6.52 10.41 7.13 10.15 7.32 9.96C7.5 9.79 7.7 9.61 7.91 9.37C8.1 9.15 8.19 8.97 8.35 8.68C8.5 8.38 8.41 8.14 8.28 7.91C8.16 7.68 7.53 6.09 7.28 5.48C7.03 4.88 6.77 4.97 6.55 4.96C6.33 4.96 6.08 4.95 5.84 4.95C5.6 4.95 5.28 5.04 5 5.3C4.72 5.56 4.1 6.13 4.1 7.35C4.1 8.57 5.03 9.74 5.17 9.92C5.3 10.1 6.78 12.44 9.12 13.4C11.19 14.25 11.81 14.47 12.42 14.42C13.21 14.35 14.4 13.73 14.67 13.04C14.94 12.35 14.94 11.77 14.85 11.64C14.76 11.51 14.6 11.42 14.32 11.28C14.04 11.14 12.9 10.6 12.63 10.5C12.36 10.4 12.18 10.36 12.05 10.6C11.91 10.84 11.49 11.42 11.35 11.59C11.21 11.76 11.07 11.8 10.8 11.7C10.53 11.61 9.62 11.29 8.53 10.3C7.65 9.53 7.03 8.59 6.84 8.24C6.65 7.9 6.74 7.75 6.87 7.63C6.99 7.51 7.13 7.34 7.27 7.18C7.41 7.02 7.47 6.9 7.56 6.76C7.65 6.62 7.6 6.48 7.53 6.34C7.47 6.2 6.9 4.95 6.9 4.95" />
-  </svg>
-);
-
-// --- Main Contact Page Component ---
 const ContactPage = () => {
-  const [formData, setFormData] = useState<FormData>({
-    name: "",
-    email: "",
-    reason: "general",
-    message: "",
-  });
-  const [submissionState, setSubmissionState] =
-    useState<SubmissionState>("idle");
-
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+  // Direct WhatsApp Link Handler
+  const handleWhatsAppClick = () => {
+    const phoneNumber = "919528295991"; // Replace with your actual number
+    const message = "Hello! I'm interested in your organic products.";
+    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+      message
+    )}`;
+    window.open(url, "_blank");
   };
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setSubmissionState("submitting");
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    console.log("Form Data Submitted:", formData);
-    setSubmissionState("success");
-    setFormData({ name: "", email: "", reason: "general", message: "" });
-  };
-
-  // --- Local Theme Definition (Earthy Sage, Cream & Moss) ---
-  const style = {
-    "--color-background": "#c8cfc0", // User's Muted Sage/Olive
-    "--color-surface": "#FCFCF9", // Creamy, warm white
-    "--color-text-primary": "#2B2A26", // Warm "Espresso" black
-    "--color-text-secondary": "#5A5750", // Warm "Gray-brown"
-    "--color-border": "#DEDCD5", // Warm, light gray border
-    "--color-brand-primary": "#4A5D43", // Deep "Moss" Green
-    "--color-brand-primary-hover": "#3A4A35", // Darker Moss Green
-    "--color-brand-primary-text": "#FCFCF9", // Creamy white text
-    "--color-brand-secondary": "#4A5D43", // Moss Green (for icons/links)
-    "--color-brand-whatsapp": "#25D366",
-    "--color-brand-whatsapp-hover": "#20b45a",
-    "--color-success-bg": "#E6F7F0",
-    "--color-success-text": "#00875A",
-    "--color-error-bg": "#FFF0F0",
-    "--color-error-text": "#D92D20",
-  } as React.CSSProperties;
 
   return (
-    // --- Apply Local Theme ---
-    <div
-      style={style}
-      className="bg-[var(--color-background)] text-[var(--color-text-secondary)]"
-    >
-      {/* UPDATED: Smoothed out responsive padding for all screen sizes */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 lg:py-20">
-        {/* --- Header --- */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-[var(--color-text-primary)] mb-4">
-            Contact Us
+    <div className="min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white overflow-x-hidden pb-20">
+      {/* --- STYLES & ANIMATIONS --- */}
+      <style jsx>{`
+        @keyframes blob {
+          0% {
+            transform: translate(0px, 0px) scale(1);
+          }
+          33% {
+            transform: translate(30px, -50px) scale(1.1);
+          }
+          66% {
+            transform: translate(-20px, 20px) scale(0.9);
+          }
+          100% {
+            transform: translate(0px, 0px) scale(1);
+          }
+        }
+        .animate-blob {
+          animation: blob 10s infinite;
+        }
+        .animate-fade-up {
+          animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        @keyframes fadeUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
+
+      {/* --- BACKGROUND LAYERS (Cleaned up) --- */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        {/* Noise Texture Overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.06] mix-blend-multiply"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          }}
+        />
+
+        {/* Ambient Blobs */}
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#BC5633] rounded-full mix-blend-multiply filter blur-[120px] opacity-20 animate-blob" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#1A2118] rounded-full mix-blend-overlay filter blur-[120px] opacity-10 animate-blob animation-delay-2000" />
+      </div>
+
+      {/* --- HEADER --- */}
+      <section className="relative pt-32 pb-16 px-6 lg:px-12 z-10">
+        <div className="container mx-auto max-w-7xl text-center">
+          <div className="inline-flex items-center gap-3 mb-6 bg-white/40 backdrop-blur-md px-4 py-2 rounded-full border border-[#1A2118]/5">
+            <div className="h-2 w-2 bg-[#BC5633] rounded-full animate-pulse"></div>
+            <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#1A2118]">
+              Support Center
+            </span>
+          </div>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-medium tracking-tight text-[#1A2118] mb-6">
+            We're Here to Help <br />
+            <span className="italic text-[#596157]">Naturally.</span>
           </h1>
-          <p className="text-lg md:text-xl max-w-2xl mx-auto">
-            Have a question? We’d love to hear from you. Get in touch with our
-            team directly.
+          <p className="text-xl text-[#596157] max-w-2xl mx-auto font-light">
+            Have a question about our organic sourcing or need help with an
+            order? Reach out directly.
           </p>
         </div>
+      </section>
 
-        {/* --- Main Content Grid --- */}
-        {/* UPDATED: Changed to md:grid-cols-2 to activate side-by-side on tablets */}
-        {/* UPDATED: Added responsive gap */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-          {/* --- Left Column: Info --- */}
-          <div className="space-y-8">
-            <h2 className="text-2xl md:text-3xl font-bold text-[var(--color-text-primary)]">
-              Contact Information
-            </h2>
-
-            {/* --- Info Blocks --- */}
-            <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <Mail className="w-6 h-6 text-[var(--color-brand-secondary)] mt-1 flex-shrink-0" />
+      <div className="relative z-10 px-6 lg:px-12">
+        <div className="container mx-auto max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            {/* --- LEFT COLUMN: CONTACT CARDS --- */}
+            <div className="lg:col-span-7 space-y-6 animate-fade-up">
+              {/* Email Card */}
+              <div className="group bg-white/60 backdrop-blur-xl border border-white/40 rounded-[2.5rem] p-8 flex items-start gap-6 hover:bg-white transition-all duration-300 shadow-sm hover:shadow-lg hover:-translate-y-1">
+                <div className="w-14 h-14 rounded-[1.2rem] bg-[#BC5633]/10 flex items-center justify-center flex-shrink-0 text-[#BC5633] group-hover:scale-110 transition-transform duration-300">
+                  <Mail size={24} />
+                </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-[var(--color-text-primary)]">
-                    Email us
+                  <h3 className="text-xl font-serif font-bold text-[#1A2118] mb-1">
+                    Email Us
                   </h3>
+                  <p className="text-[#596157] text-sm mb-2">
+                    For general inquiries and orders
+                  </p>
                   <a
                     href="mailto:support@worldofnature.com"
-                    className="text-[var(--color-brand-secondary)] hover:underline"
+                    className="text-lg font-medium text-[#1A2118] hover:text-[#BC5633] transition-colors border-b border-[#BC5633]/30 pb-0.5"
                   >
                     support@worldofnature.com
                   </a>
                 </div>
               </div>
 
-              <div className="flex items-start gap-4">
-                <Phone className="w-6 h-6 text-[var(--color-brand-secondary)] mt-1 flex-shrink-0" />
-                <div>
-                  <h3 className="text-lg font-semibold text-[var(--color-text-primary)]">
-                    Call us
-                  </h3>
-                  <a
-                    href="tel:+919528295991"
-                    className="text-[var(--color-brand-secondary)] hover:underline"
-                  >
-                    +919528295991
-                  </a>
-                  <br />
-                  <a
-                    href="tel:+23057814480"
-                    className="text-[var(--color-brand-secondary)] hover:underline"
-                  >
-                    +23057814480
-                  </a>
+              {/* Phone Card (Highlighted Dark Style) */}
+              <div className="group bg-[#1A2118] text-[#F2F0EA] rounded-[2.5rem] p-8 flex items-start gap-6 relative overflow-hidden shadow-2xl hover:-translate-y-1 transition-transform duration-300">
+                {/* Glow Effect */}
+                <div className="absolute top-0 right-0 w-40 h-40 bg-[#BC5633] rounded-full mix-blend-overlay filter blur-[60px] opacity-30 group-hover:opacity-50 transition-opacity" />
+
+                <div className="w-14 h-14 rounded-[1.2rem] bg-[#F2F0EA]/10 flex items-center justify-center flex-shrink-0 text-[#BC5633] group-hover:scale-110 transition-transform duration-300 border border-[#F2F0EA]/5 relative z-10">
+                  <Phone size={24} />
+                </div>
+                <div className="relative z-10">
+                  <h3 className="text-xl font-serif font-bold mb-1">Call Us</h3>
+                  <p className="text-[#F2F0EA]/60 text-sm mb-4 flex items-center gap-2">
+                    <Clock size={12} /> Mon-Fri from 9am to 6pm
+                  </p>
+                  <div className="flex flex-col gap-1">
+                    <a
+                      href="tel:+919528295991"
+                      className="text-2xl font-bold text-[#F2F0EA] hover:text-[#BC5633] transition-colors"
+                    >
+                      +91 95282 95991
+                    </a>
+                    <a
+                      href="tel:+23057814480"
+                      className="text-lg font-medium text-[#F2F0EA]/60 hover:text-[#BC5633] transition-colors"
+                    >
+                      +230 5781 4480
+                    </a>
+                  </div>
                 </div>
               </div>
 
-              <div className="flex items-start gap-4">
-                <MapPin className="w-6 h-6 text-[var(--color-brand-secondary)] mt-1 flex-shrink-0" />
+              {/* Office Card */}
+              <div className="group bg-white/60 backdrop-blur-xl border border-white/40 rounded-[2.5rem] p-8 flex items-start gap-6 hover:bg-white transition-all duration-300 shadow-sm hover:shadow-lg hover:-translate-y-1">
+                <div className="w-14 h-14 rounded-[1.2rem] bg-[#1A2118]/5 flex items-center justify-center flex-shrink-0 text-[#1A2118] group-hover:scale-110 transition-transform duration-300">
+                  <MapPin size={24} />
+                </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-[var(--color-text-primary)]">
-                    Visit our office
+                  <h3 className="text-xl font-serif font-bold text-[#1A2118] mb-1">
+                    Farm Office
                   </h3>
-                  <p className="text-[var(--color-text-secondary)]">
+                  <p className="text-[#596157] leading-relaxed">
                     123 Green Valley, Organic Farms Rd,
                     <br />
                     Nature City, India 400001
                   </p>
+                  <div className="mt-3 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#BC5633]">
+                    <Globe size={14} /> Get Directions
+                  </div>
                 </div>
+              </div>
+
+              {/* Social Row */}
+              <div className="pt-6 flex gap-4">
+                {[Facebook, Instagram, Twitter].map((Icon, idx) => (
+                  <a
+                    key={idx}
+                    href="#"
+                    className="w-14 h-14 rounded-[1.2rem] bg-white border border-[#1A2118]/10 flex items-center justify-center text-[#1A2118] hover:bg-[#1A2118] hover:text-white transition-all duration-300 shadow-sm hover:shadow-lg hover:-translate-y-1"
+                  >
+                    <Icon size={22} />
+                  </a>
+                ))}
               </div>
             </div>
 
-            {/* --- Business Hours & Socials --- */}
-            <div className="pt-6 border-t border-[var(--color-border)] space-y-6">
-              <div>
-                <h3 className="text-lg font-semibold text-[var(--color-text-primary)] mb-3">
-                  Business Hours
-                </h3>
-                <p>
-                  Monday - Friday: 9:00 AM - 6:00 PM (IST)
-                  <br />
-                  Saturday: 10:00 AM - 3:00 PM (IST)
-                  <br />
-                  Sunday: Closed
-                </p>
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-[var(--color-text-primary)] mb-3">
-                  Follow Us
-                </h3>
-                <div className="flex gap-5">
-                  <a
-                    href="#"
-                    aria-label="Facebook"
-                    className="text-[var(--color-text-secondary)] transition-colors duration-300 hover:text-[var(--color-text-primary)]"
+            {/* --- RIGHT COLUMN: WHATSAPP --- */}
+            <div className="lg:col-span-5 space-y-8 lg:sticky lg:top-32">
+              {/* WhatsApp Card (Visually Stunning) */}
+              <div className="relative group overflow-hidden bg-[#25D366] rounded-[3rem] p-10 text-center shadow-[0_20px_50px_-12px_rgba(37,211,102,0.3)] hover:-translate-y-2 transition-all duration-500">
+                {/* Background Texture inside Card */}
+                <div className="absolute inset-0 opacity-20 mix-blend-overlay bg-[url('https://www.transparenttextures.com/patterns/noise.png')] pointer-events-none"></div>
+                <div className="absolute -top-20 -right-20 w-60 h-60 bg-white rounded-full mix-blend-overlay filter blur-[60px] opacity-30 pointer-events-none"></div>
+
+                <div className="relative z-10 flex flex-col items-center">
+                  <div className="w-20 h-20 bg-white rounded-[1.5rem] flex items-center justify-center mb-6 shadow-xl group-hover:scale-110 transition-transform duration-500">
+                    <MessageCircle size={36} className="text-[#25D366]" />
+                  </div>
+
+                  <h2 className="text-3xl font-serif font-bold text-[#075E54] mb-4">
+                    Chat on WhatsApp
+                  </h2>
+
+                  <p className="text-[#075E54]/80 mb-8 leading-relaxed font-medium">
+                    The fastest way to reach us. Ask about products, track
+                    orders, or just say hello!
+                  </p>
+
+                  <button
+                    onClick={handleWhatsAppClick}
+                    className="w-full h-16 bg-white text-[#075E54] rounded-[1.5rem] font-bold text-lg uppercase tracking-wide hover:bg-[#DCF8C6] transition-colors shadow-lg flex items-center justify-center gap-3"
                   >
-                    <Facebook size={24} />
-                  </a>
-                  <a
-                    href="#"
-                    aria-label="Instagram"
-                    className="text-[var(--color-text-secondary)] transition-colors duration-300 hover:text-[var(--color-text-primary)]"
-                  >
-                    <Instagram size={24} />
-                  </a>
-                  <a
-                    href="#"
-                    aria-label="Twitter"
-                    className="text-[var(--color-text-secondary)] transition-colors duration-300 hover:text-[var(--color-text-primary)]"
-                  >
-                    <Twitter size={24} />
-                  </a>
+                    Start Chat <ArrowRight size={20} />
+                  </button>
+
+                  <p className="mt-6 text-[10px] font-bold uppercase tracking-widest text-[#075E54]/60">
+                    Replies typically in minutes
+                  </p>
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* --- Right Column: Form --- */}
-          <div className="space-y-6 bg-[var(--color-surface)] p-6 md:p-8 rounded-lg shadow-sm border border-[var(--color-border)]">
-            <h2 className="text-2xl md:text-3xl font-bold text-[var(--color-text-primary)]">
-              Send us a Message
-            </h2>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* --- Form Fields --- */}
-              <div className="space-y-2">
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium text-[var(--color-text-primary)]"
-                >
-                  Name*
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  className="w-full px-4 py-3 border border-[var(--color-border)] rounded-lg focus:outline-none focus:border-[var(--color-brand-primary)] focus:ring-2 focus:ring-[var(--color-brand-primary)]/50 bg-[var(--color-surface)] text-[var(--color-text-primary)]"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-
-              <div className="space-y-2">
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-[var(--color-text-primary)]"
-                >
-                  Email*
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  className="w-full px-4 py-3 border border-[var(--color-border)] rounded-lg focus:outline-none focus:border-[var(--color-brand-primary)] focus:ring-2 focus:ring-[var(--color-brand-primary)]/50 bg-[var(--color-surface)] text-[var(--color-text-primary)]"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-
-              <div className="space-y-2">
-                <label
-                  htmlFor="reason"
-                  className="block text-sm font-medium text-[var(--color-text-primary)]"
-                >
-                  Reason for Contact*
-                </label>
-                <select
-                  id="reason"
-                  name="reason"
-                  className="w-full px-4 py-3 border border-[var(--color-border)] rounded-lg focus:outline-none focus:border-[var(--color-brand-primary)] focus:ring-2 focus:ring-[var(--color-brand-primary)]/50 bg-[var(--color-surface)] text-[var(--color-text-primary)]"
-                  value={formData.reason}
-                  onChange={handleChange}
-                  required
-                >
-                  <option value="general">General Inquiry</option>
-                  <option value="order">Order Support</option>
-                  <option value="product">Product Question</option>
-                  <option value="wholesale">Wholesale Inquiry</option>
-                  <option value="press">Press & Media</option>
-                </select>
-              </div>
-
-              <div className="space-y-2">
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium text-[var(--color-text-primary)]"
-                >
-                  Your Message*
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={5}
-                  className="w-full px-4 py-3 border border-[var(--color-border)] rounded-lg focus:outline-none focus:border-[var(--color-brand-primary)] focus:ring-2 focus:ring-[var(--color-brand-primary)]/50 bg-[var(--color-surface)] text-[var(--color-text-primary)] resize-vertical"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                ></textarea>
-              </div>
-
-              {/* --- Submit Button --- */}
-              <button
-                type="submit"
-                className="w-full bg-[var(--color-brand-primary)] text-[var(--color-brand-primary-text)] py-3 px-6 rounded-lg font-semibold hover:bg-[var(--color-brand-primary-hover)] transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-brand-primary)] focus-visible:ring-offset-2 flex items-center justify-center disabled:opacity-70"
-                disabled={submissionState === "submitting"}
-              >
-                {submissionState === "submitting" ? (
-                  <>
-                    <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                    Submitting...
-                  </>
-                ) : (
-                  "Send Message"
-                )}
-              </button>
-
-              {/* --- Submission State Message --- */}
-              {submissionState === "success" && (
-                <div className="flex items-center gap-2 rounded-md bg-[var(--color-success-bg)] p-3 text-sm text-[var(--color-success-text)]">
-                  <CheckCircle className="w-5 h-5 flex-shrink-0" />
-                  <span>
-                    Thank you! Your message has been sent successfully.
-                  </span>
-                </div>
-              )}
-              {submissionState === "error" && (
-                <div className="flex items-center gap-2 rounded-md bg-[var(--color-error-bg)] p-3 text-sm text-[var(--color-error-text)]">
-                  <AlertCircle className="w-5 h-5 flex-shrink-0" />
-                  <span>
-                    Oops! Something went wrong. Please try again later.
-                  </span>
-                </div>
-              )}
-            </form>
           </div>
         </div>
       </div>
