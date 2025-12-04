@@ -354,8 +354,17 @@ export default function ContactPage() {
   );
 }
 
+interface ContactInputProps {
+  label: string;
+  name: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder?: string;
+  type?: string;
+}
+
 // --- REUSABLE INPUT COMPONENT FOR CLEANER JSX ---
-const Input = ({ label, ...props }: any) => (
+const Input = ({ label, ...props }: ContactInputProps) => (
   <div className="space-y-2">
     <label className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/60 ml-4">
       {label}

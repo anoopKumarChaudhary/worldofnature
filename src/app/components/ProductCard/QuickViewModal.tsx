@@ -32,6 +32,28 @@ interface QuickViewModalProps {
   onToggleWishlist: (id: string) => void;
 }
 
+// Badge Component
+const Badge = ({
+  type,
+  label,
+}: {
+  type: "sale" | "new" | "best";
+  label: string;
+}) => {
+  const styles = {
+    sale: "bg-[#BC5633] text-white",
+    new: "bg-[#1A2118] text-white",
+    best: "bg-white/90 text-[#BC5633] border border-[#BC5633]/20",
+  };
+  return (
+    <span
+      className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-sm backdrop-blur-md ${styles[type]}`}
+    >
+      {label}
+    </span>
+  );
+};
+
 const QuickViewModal: React.FC<QuickViewModalProps> = ({
   isOpen,
   onClose,
@@ -68,28 +90,6 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({
   const handleWishlistToggle = () => {
     setIsWishlisted(!isWishlisted);
     onToggleWishlist(product.id);
-  };
-
-  // Badge Component Internal
-  const Badge = ({
-    type,
-    label,
-  }: {
-    type: "sale" | "new" | "best";
-    label: string;
-  }) => {
-    const styles = {
-      sale: "bg-[#BC5633] text-white",
-      new: "bg-[#1A2118] text-white",
-      best: "bg-white/90 text-[#BC5633] border border-[#BC5633]/20",
-    };
-    return (
-      <span
-        className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-sm backdrop-blur-md ${styles[type]}`}
-      >
-        {label}
-      </span>
-    );
   };
 
   if (!isOpen) return null;

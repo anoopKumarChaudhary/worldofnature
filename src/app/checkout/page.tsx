@@ -200,7 +200,7 @@ export default function CheckoutPage() {
                         label="First Name"
                         placeholder="e.g. Jane"
                         value={shippingInfo.firstName}
-                        onChange={(e: any) =>
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                           setShippingInfo({
                             ...shippingInfo,
                             firstName: e.target.value,
@@ -211,7 +211,7 @@ export default function CheckoutPage() {
                         label="Last Name"
                         placeholder="e.g. Doe"
                         value={shippingInfo.lastName}
-                        onChange={(e: any) =>
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                           setShippingInfo({
                             ...shippingInfo,
                             lastName: e.target.value,
@@ -225,7 +225,7 @@ export default function CheckoutPage() {
                         placeholder="jane@example.com"
                         type="email"
                         value={shippingInfo.email}
-                        onChange={(e: any) =>
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                           setShippingInfo({
                             ...shippingInfo,
                             email: e.target.value,
@@ -237,7 +237,7 @@ export default function CheckoutPage() {
                         placeholder="+1 (555) 000-0000"
                         type="tel"
                         value={shippingInfo.phone}
-                        onChange={(e: any) =>
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                           setShippingInfo({
                             ...shippingInfo,
                             phone: e.target.value,
@@ -249,7 +249,7 @@ export default function CheckoutPage() {
                       label="Street Address"
                       placeholder="123 Organic Way, Apt 4B"
                       value={shippingInfo.address}
-                      onChange={(e: any) =>
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                         setShippingInfo({
                           ...shippingInfo,
                           address: e.target.value,
@@ -261,7 +261,7 @@ export default function CheckoutPage() {
                         label="City"
                         placeholder="Nature Valley"
                         value={shippingInfo.city}
-                        onChange={(e: any) =>
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                           setShippingInfo({
                             ...shippingInfo,
                             city: e.target.value,
@@ -272,7 +272,7 @@ export default function CheckoutPage() {
                         label="State"
                         placeholder="CA"
                         value={shippingInfo.state}
-                        onChange={(e: any) =>
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                           setShippingInfo({
                             ...shippingInfo,
                             state: e.target.value,
@@ -283,7 +283,7 @@ export default function CheckoutPage() {
                         label="ZIP Code"
                         placeholder="90210"
                         value={shippingInfo.zipCode}
-                        onChange={(e: any) =>
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                           setShippingInfo({
                             ...shippingInfo,
                             zipCode: e.target.value,
@@ -313,7 +313,7 @@ export default function CheckoutPage() {
                       label="Name on Card"
                       placeholder="JANE DOE"
                       value={paymentInfo.nameOnCard}
-                      onChange={(e: any) =>
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                         setPaymentInfo({
                           ...paymentInfo,
                           nameOnCard: e.target.value,
@@ -324,7 +324,7 @@ export default function CheckoutPage() {
                       label="Card Number"
                       placeholder="0000 0000 0000 0000"
                       value={paymentInfo.cardNumber}
-                      onChange={(e: any) =>
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                         setPaymentInfo({
                           ...paymentInfo,
                           cardNumber: e.target.value,
@@ -339,7 +339,7 @@ export default function CheckoutPage() {
                         label="Expiry Date"
                         placeholder="MM/YY"
                         value={paymentInfo.expiryDate}
-                        onChange={(e: any) =>
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                           setPaymentInfo({
                             ...paymentInfo,
                             expiryDate: e.target.value,
@@ -351,7 +351,7 @@ export default function CheckoutPage() {
                         placeholder="123"
                         type="password"
                         value={paymentInfo.cvv}
-                        onChange={(e: any) =>
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                           setPaymentInfo({
                             ...paymentInfo,
                             cvv: e.target.value,
@@ -506,8 +506,17 @@ export default function CheckoutPage() {
   );
 }
 
+interface InputProps {
+  label: string;
+  icon?: React.ReactNode;
+  value: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder?: string;
+  type?: string;
+}
+
 // --- REUSABLE INPUT COMPONENT ---
-const Input = ({ label, icon, ...props }: any) => (
+const Input = ({ label, icon, ...props }: InputProps) => (
   <div className="space-y-2">
     <label className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/60 ml-4">
       {label}

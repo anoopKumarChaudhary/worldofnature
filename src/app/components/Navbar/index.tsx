@@ -2,6 +2,9 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../redux/features/auth/authSlice";
+import { RootState, AppDispatch } from "../../redux/store";
 import {
   Search,
   ShoppingCart,
@@ -16,9 +19,14 @@ import {
   ShoppingBag,
   Info,
   HelpCircle,
+  LogOut,
 } from "lucide-react";
 
 const Navbar = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { user, isAuthenticated } = useSelector(
+    (state: RootState) => state.auth
+  );
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -39,7 +47,6 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    setMounted(true);
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
 
     // Check local storage on mount
@@ -58,6 +65,10 @@ const Navbar = () => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    setMounted(true);
   }, []);
 
   useEffect(() => {
@@ -170,11 +181,26 @@ const Navbar = () => {
                 href="/wishlist"
                 label="Wishlist"
               />
-              <IconButton
-                icon={<User size={20} />}
-                href="/login"
-                label="Profile"
-              />
+              {isAuthenticated ? (
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    {user?.firstName}
+                  </span>
+                  <button
+                    onClick={() => dispatch(logout())}
+                    className="w-10 h-10 flex items-center justify-center rounded-full text-gray-600 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/10 active:scale-90 transition-all duration-300"
+                    aria-label="Logout"
+                  >
+                    <LogOut size={20} />
+                  </button>
+                </div>
+              ) : (
+                <IconButton
+                  icon={<User size={20} />}
+                  href="/login"
+                  label="Profile"
+                />
+              )}
             </div>
 
             {/* Cart with Badge */}
@@ -276,15 +302,28 @@ const Navbar = () => {
                 Wishlist
               </span>
             </Link>
-            <Link
-              href="/login"
-              className="flex flex-col items-center justify-center p-4 rounded-[1.5rem] bg-white dark:bg-[#1E1E1E] border border-gray-50 dark:border-white/5 shadow-sm"
-            >
-              <User size={24} className="text-blue-500 mb-2" />
-              <span className="text-sm font-medium text-gray-600 dark:text-gray-300">
-                Account
-              </span>
-            </Link>
+            {isAuthenticated ? (
+              <Link
+                href="#"
+                onClick={() => dispatch(logout())}
+                className="flex flex-col items-center justify-center p-4 rounded-[1.5rem] bg-white dark:bg-[#1E1E1E] border border-gray-50 dark:border-white/5 shadow-sm"
+              >
+                <LogOut size={24} className="text-red-500 mb-2" />
+                <span className="text-sm font-medium text-gray-600 dark:text-gray-300">
+                  Logout
+                </span>
+              </Link>
+            ) : (
+              <Link
+                href="/login"
+                className="flex flex-col items-center justify-center p-4 rounded-[1.5rem] bg-white dark:bg-[#1E1E1E] border border-gray-50 dark:border-white/5 shadow-sm"
+              >
+                <User size={24} className="text-blue-500 mb-2" />
+                <span className="text-sm font-medium text-gray-600 dark:text-gray-300">
+                  Account
+                </span>
+              </Link>
+            )}
           </div>
         </div>
       </div>
@@ -295,8 +334,15 @@ const Navbar = () => {
   );
 };
 
+interface IconButtonProps {
+  icon: React.ReactNode;
+  onClick?: () => void;
+  href?: string;
+  label: string;
+}
+
 // Reusable Icon Button Component
-const IconButton = ({ icon, onClick, href, label }: any) => {
+const IconButton = ({ icon, onClick, href, label }: IconButtonProps) => {
   const content = (
     <div className="w-10 h-10 flex items-center justify-center rounded-full text-gray-600 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/10 active:scale-90 transition-all duration-300 cursor-pointer">
       {icon}

@@ -1,8 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { login, register, clearError } from "../redux/features/auth/authSlice";
+import { RootState } from "../redux/store";
+import type { AppDispatch } from "../redux/store";
 import {
   Eye,
   EyeOff,
@@ -15,6 +19,13 @@ import {
 
 export default function LoginPage() {
   const router = useRouter();
+  const dispatch = useDispatch<AppDispatch>();
+
+  // 1. We get isAuthenticated here at the top level
+  const { isLoading, error, isAuthenticated } = useSelector(
+    (state: RootState) => state.auth
+  );
+
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -25,13 +36,16 @@ export default function LoginPage() {
     lastName: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [isLoading, setIsLoading] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: "" }));
+    }
+    // Clear Redux error when user starts typing
+    if (error) {
+      dispatch(clearError());
     }
   };
 
@@ -68,13 +82,26 @@ export default function LoginPage() {
     e.preventDefault();
     if (!validateForm()) return;
 
-    setIsLoading(true);
-    // Simulate network request
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    setIsLoading(false);
-    router.push("/");
+    if (isLogin) {
+      dispatch(login({ email: formData.email, password: formData.password }));
+    } else {
+      dispatch(
+        register({
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          password: formData.password,
+        })
+      );
+    }
   };
+
+  // 2. FIXED: Uses the top-level isAuthenticated variable
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.push("/");
+    }
+  }, [isAuthenticated, router]); // Added isAuthenticated to dependencies
 
   const backgroundImage = "/d1.png";
 
@@ -254,6 +281,12 @@ export default function LoginPage() {
               </div>
             )}
 
+            {error && (
+              <div className="text-center">
+                <p className="text-xs text-red-500 font-medium">{error}</p>
+              </div>
+            )}
+
             <div className="pt-4">
               <button
                 type="submit"
@@ -339,9 +372,24 @@ export default function LoginPage() {
   );
 }
 
+interface InputProps {
+  label: string;
+  name: string;
+  type?: string;
+  value: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  error?: string;
+  icon?: React.ReactNode;
+}
+
+interface SocialButtonProps {
+  icon: React.ReactNode;
+  label: string;
+}
+
 // --- COMPONENTS ---
 
-const Input = ({ label, error, icon, ...props }: any) => (
+const Input = ({ label, error, icon, ...props }: InputProps) => (
   <div className="space-y-2">
     <label className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/60 ml-4">
       {label}
@@ -363,7 +411,7 @@ const Input = ({ label, error, icon, ...props }: any) => (
   </div>
 );
 
-const SocialButton = ({ icon, label }: any) => (
+const SocialButton = ({ icon, label }: SocialButtonProps) => (
   <button
     type="button"
     className="flex items-center justify-center gap-3 py-3.5 px-4 bg-white border border-[#1A2118]/5 rounded-[1.2rem] hover:bg-[#F2F0EA] hover:-translate-y-0.5 transition-all shadow-sm"

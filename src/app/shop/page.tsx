@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import ProductCard from "../components/ProductCard";
+import { useAppDispatch } from "../redux/hooks";
+import { addToCart } from "../redux/features/cart/cartSlice";
 import {
   Filter,
   Grid3X3,
@@ -20,6 +22,7 @@ import {
 } from "lucide-react";
 
 const ShopPage = () => {
+  const dispatch = useAppDispatch();
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [sortBy, setSortBy] = useState("featured");
@@ -36,7 +39,7 @@ const ShopPage = () => {
     product: { id: string; name: string; price: number; image: string },
     quantity: number = 1
   ) => {
-    console.log(`Added ${quantity} x ${product.name} to cart`);
+    dispatch(addToCart({ ...product, quantity }));
   };
 
   const handleToggleWishlist = (id: string) => {
