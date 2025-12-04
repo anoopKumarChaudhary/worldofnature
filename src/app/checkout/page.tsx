@@ -6,15 +6,16 @@ import { RootState, AppDispatch } from "../redux/store";
 import { clearCart } from "../redux/features/cart/cartSlice";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { ordersAPI } from "../services/api";
 import {
   Check,
-  CreditCard,
   Truck,
   ShieldCheck,
   ArrowRight,
   ArrowLeft,
   MapPin,
   Package,
+  DollarSign,
 } from "lucide-react";
 
 interface ShippingInfo {
@@ -29,10 +30,7 @@ interface ShippingInfo {
 }
 
 interface PaymentInfo {
-  cardNumber: string;
-  expiryDate: string;
-  cvv: string;
-  nameOnCard: string;
+  paymentMethod: "COD";
 }
 
 export default function CheckoutPage() {
@@ -51,10 +49,7 @@ export default function CheckoutPage() {
     zipCode: "",
   });
   const [paymentInfo, setPaymentInfo] = useState<PaymentInfo>({
-    cardNumber: "",
-    expiryDate: "",
-    cvv: "",
-    nameOnCard: "",
+    paymentMethod: "COD",
   });
 
   const tax = total * 0.08;
@@ -72,10 +67,30 @@ export default function CheckoutPage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const handlePlaceOrder = () => {
-    const orderNumber = `ORD-${Date.now()}`;
-    dispatch(clearCart());
-    router.push(`/order-confirmation?order=${orderNumber}`);
+  const handlePlaceOrder = async () => {
+    try {
+      const orderData = {
+        items: items.map((item) => ({
+          id: item.id,
+          name: item.name,
+          price: item.price,
+          image: item.image,
+          quantity: item.quantity,
+          size: item.size,
+        })),
+        shippingInfo,
+        subtotal: total,
+        tax: total * 0.08,
+        shipping: 0,
+      };
+
+      const order = await ordersAPI.createOrder(orderData);
+      dispatch(clearCart());
+      router.push(`/order-confirmation?order=${order.orderNumber}`);
+    } catch (error) {
+      console.error("Failed to place order:", error);
+      alert("Failed to place order. Please try again.");
+    }
   };
 
   // --- EMPTY CART STATE ---
@@ -153,7 +168,7 @@ export default function CheckoutPage() {
           <div className="inline-flex bg-white/70 backdrop-blur-xl rounded-full p-1.5 shadow-lg border border-white/40 mb-12">
             {[
               { id: 1, label: "Shipping", icon: MapPin },
-              { id: 2, label: "Payment", icon: CreditCard },
+              { id: 2, label: "Payment", icon: DollarSign },
               { id: 3, label: "Review", icon: Check },
             ].map((step, idx) => (
               <div key={step.id} className="flex items-center">
@@ -308,56 +323,32 @@ export default function CheckoutPage() {
                   <h2 className="text-2xl font-serif font-bold text-[#1A2118] mb-8">
                     Payment Method
                   </h2>
-                  <form onSubmit={handlePaymentSubmit} className="space-y-6">
-                    <Input
-                      label="Name on Card"
-                      placeholder="JANE DOE"
-                      value={paymentInfo.nameOnCard}
-                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                        setPaymentInfo({
-                          ...paymentInfo,
-                          nameOnCard: e.target.value,
-                        })
-                      }
-                    />
-                    <Input
-                      label="Card Number"
-                      placeholder="0000 0000 0000 0000"
-                      value={paymentInfo.cardNumber}
-                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                        setPaymentInfo({
-                          ...paymentInfo,
-                          cardNumber: e.target.value,
-                        })
-                      }
-                      icon={
-                        <CreditCard className="w-5 h-5 text-[#1A2118]/40" />
-                      }
-                    />
-                    <div className="grid grid-cols-2 gap-6">
-                      <Input
-                        label="Expiry Date"
-                        placeholder="MM/YY"
-                        value={paymentInfo.expiryDate}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                          setPaymentInfo({
-                            ...paymentInfo,
-                            expiryDate: e.target.value,
-                          })
-                        }
-                      />
-                      <Input
-                        label="CVV"
-                        placeholder="123"
-                        type="password"
-                        value={paymentInfo.cvv}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                          setPaymentInfo({
-                            ...paymentInfo,
-                            cvv: e.target.value,
-                          })
-                        }
-                      />
+                  <div className="space-y-6">
+                    <div className="bg-[#F2F0EA]/50 rounded-[2rem] p-6 border border-[#1A2118]/10">
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="w-12 h-12 bg-[#BC5633] rounded-full flex items-center justify-center">
+                          <DollarSign className="w-6 h-6 text-white" />
+                        </div>
+                        <div>
+                          <h3 className="font-bold text-[#1A2118] text-lg">
+                            Cash on Delivery
+                          </h3>
+                          <p className="text-[#596157] text-sm">
+                            Pay when your order arrives at your doorstep
+                          </p>
+                        </div>
+                      </div>
+                      <div className="bg-white/50 rounded-[1rem] p-4">
+                        <p className="text-sm text-[#1A2118]/70">
+                          <strong>Payment Method:</strong> Cash on Delivery
+                          (COD)
+                        </p>
+                        <p className="text-sm text-[#1A2118]/70 mt-2">
+                          <strong>Note:</strong> Please have exact change ready.
+                          Our delivery partner will collect the payment upon
+                          delivery.
+                        </p>
+                      </div>
                     </div>
                     <div className="flex justify-between pt-6">
                       <button
@@ -368,13 +359,13 @@ export default function CheckoutPage() {
                         <ArrowLeft className="w-4 h-4" /> Back
                       </button>
                       <button
-                        type="submit"
+                        onClick={() => setCurrentStep(3)}
                         className="h-14 px-8 bg-[#1A2118] text-white rounded-[2rem] font-bold text-sm uppercase tracking-widest hover:bg-[#3A4D39] transition-all shadow-lg flex items-center gap-3"
                       >
                         Review Order <ArrowRight className="w-4 h-4" />
                       </button>
                     </div>
-                  </form>
+                  </div>
                 </div>
               )}
 

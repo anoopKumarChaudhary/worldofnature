@@ -1,10 +1,11 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import Link from "next/link";
+import { ordersAPI, Order } from "../services/api";
 import {
   Check,
   Package,
@@ -18,10 +19,53 @@ import {
 function OrderConfirmationContent() {
   const searchParams = useSearchParams();
   const orderNumber = searchParams.get("order") || "Unknown";
-  const { items, total } = useSelector((state: RootState) => state.cart);
+  const [order, setOrder] = useState<Order | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  const tax = total * 0.08;
-  const finalTotal = total + tax;
+  useEffect(() => {
+    const fetchOrder = async () => {
+      if (orderNumber && orderNumber !== "Unknown") {
+        try {
+          const orderData = await ordersAPI.getOrder(orderNumber);
+          setOrder(orderData);
+        } catch (error) {
+          console.error("Failed to fetch order:", error);
+        }
+      }
+      setLoading(false);
+    };
+
+    fetchOrder();
+  }, [orderNumber]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#F2F0EA] flex items-center justify-center">
+        <div className="w-12 h-12 border-4 border-[#1A2118]/10 border-t-[#1A2118] rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
+  if (!order) {
+    return (
+      <div className="min-h-screen bg-[#F2F0EA] flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-[#1A2118] mb-4">
+            Order Not Found
+          </h1>
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 h-14 px-8 bg-[#1A2118] text-white rounded-[2rem] font-bold text-sm uppercase tracking-widest hover:bg-[#BC5633] transition-colors shadow-lg"
+          >
+            Back Home
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  const tax = order.tax;
+  const finalTotal = order.total;
 
   return (
     <div className="min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white pb-20 overflow-x-hidden">
@@ -130,7 +174,7 @@ function OrderConfirmationContent() {
                 <h3 className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/40 mb-4">
                   Items Ordered
                 </h3>
-                {items.map((item) => (
+                {order.items.map((item) => (
                   <div
                     key={`${item.id}-${item.size}`}
                     className="flex items-center gap-5"
@@ -161,19 +205,21 @@ function OrderConfirmationContent() {
               <div className="space-y-3 text-sm font-medium text-[#596157]">
                 <div className="flex justify-between">
                   <span>Subtotal</span>
-                  <span>${total.toFixed(2)}</span>
+                  <span>${order.subtotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Shipping</span>
-                  <span className="text-[#BC5633]">Free</span>
+                  <span className="text-[#BC5633]">
+                    ${order.shipping.toFixed(2)}
+                  </span>
                 </div>
                 <div className="flex justify-between">
                   <span>Tax</span>
-                  <span>${tax.toFixed(2)}</span>
+                  <span>${order.tax.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-xl font-bold text-[#1A2118] pt-4 mt-4 border-t border-[#1A2118]/10">
                   <span>Total</span>
-                  <span>${finalTotal.toFixed(2)}</span>
+                  <span>${order.total.toFixed(2)}</span>
                 </div>
               </div>
             </div>
