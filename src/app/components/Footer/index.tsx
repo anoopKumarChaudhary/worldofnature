@@ -12,6 +12,7 @@ import {
   MapPin,
   Heart,
 } from "lucide-react";
+import { newsletterAPI } from "../../services/api";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -204,7 +205,21 @@ const Footer = () => {
               Get exclusive offers, organic recipes, and wellness tips delivered
               to your inbox.
             </p>
-            <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+            <form
+              className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
+              onSubmit={async (e) => {
+                e.preventDefault();
+                const email = (e.currentTarget.elements.namedItem("newsletter-email") as HTMLInputElement).value;
+                try {
+                  await newsletterAPI.subscribe(email);
+                  alert("Subscribed successfully!");
+                  (e.target as HTMLFormElement).reset();
+                } catch (error) {
+                  console.error("Failed to subscribe:", error);
+                  alert("Failed to subscribe. Please try again.");
+                }
+              }}
+            >
               <label htmlFor="newsletter-email" className="sr-only">
                 Enter your email address
               </label>

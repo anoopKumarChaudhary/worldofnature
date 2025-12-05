@@ -14,6 +14,7 @@ import {
   Clock,
   Globe,
 } from "lucide-react";
+import { contactAPI } from "../services/api";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -37,13 +38,19 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({ name: "", email: "", subject: "", message: "" });
-    }, 3000);
+    try {
+      await contactAPI.sendMessage(formData);
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      }, 3000);
+    } catch (error) {
+      console.error("Failed to send message:", error);
+      setIsSubmitting(false);
+      // Ideally show error message to user
+    }
   };
 
   const backgroundImage = "/d1.png";

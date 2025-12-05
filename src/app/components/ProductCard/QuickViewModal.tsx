@@ -20,8 +20,8 @@ interface QuickViewModalProps {
     imageUrl: string;
     title: string;
     description: string;
-    price: string;
-    originalPrice?: string;
+    price: string | number;
+    originalPrice?: string | number;
     rating?: number;
     reviewCount?: number;
     isBestseller?: boolean;
@@ -65,6 +65,16 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
+
+  const formatPrice = (p: string | number) => {
+    if (typeof p === "number") {
+      return `$${p.toFixed(2)}`;
+    }
+    return p;
+  };
+
+  const displayPrice = formatPrice(product.price);
+  const displayOriginalPrice = product.originalPrice ? formatPrice(product.originalPrice) : undefined;
 
   // Lock body scroll
   useEffect(() => {
@@ -181,11 +191,11 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({
 
             <div className="flex items-baseline gap-3 mb-8">
               <span className="text-2xl font-bold text-[#1A2118]">
-                {product.price}
+                {displayPrice}
               </span>
-              {product.originalPrice && (
+              {displayOriginalPrice && (
                 <span className="text-lg text-[#1A2118]/30 line-through decoration-1">
-                  {product.originalPrice}
+                  {displayOriginalPrice}
                 </span>
               )}
             </div>

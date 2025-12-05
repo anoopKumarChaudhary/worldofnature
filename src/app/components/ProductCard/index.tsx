@@ -17,8 +17,8 @@ interface ProductCardProps {
   imageUrl: string;
   title: string;
   description: string;
-  price: string;
-  originalPrice?: string;
+  price: string | number;
+  originalPrice?: string | number;
   rating?: number;
   reviewCount?: number;
   isBestseller?: boolean;
@@ -59,6 +59,21 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const [isAdding, setIsAdding] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
+  const formatPrice = (p: string | number) => {
+    if (typeof p === "number") {
+      return `$${p.toFixed(2)}`;
+    }
+    return p;
+  };
+
+  const getPriceValue = (p: string | number) => {
+    if (typeof p === "number") return p;
+    return parseFloat(p.replace(/[^0-9.]/g, ""));
+  };
+
+  const displayPrice = formatPrice(price);
+  const displayOriginalPrice = originalPrice ? formatPrice(originalPrice) : undefined;
+
   const handleWishlistToggle = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -71,7 +86,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
     e.stopPropagation();
     setIsAdding(true);
 
-    const priceNum = parseFloat(price.replace(/[^0-9.]/g, ""));
+    const priceNum = getPriceValue(price);
     onAddToCart(
       { id, name: title, price: priceNum, image: imageUrl },
       quantity
@@ -187,11 +202,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
               </p>
               <div className="flex items-baseline gap-3">
                 <span className="text-3xl font-serif font-bold text-[#1A2118]">
-                  {price}
+                  {displayPrice}
                 </span>
-                {originalPrice && (
+                {displayOriginalPrice && (
                   <span className="text-lg text-[#1A2118]/40 line-through decoration-1">
-                    {originalPrice}
+                    {displayOriginalPrice}
                   </span>
                 )}
               </div>
@@ -369,11 +384,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
               </p>
               <div className="flex items-baseline gap-2">
                 <span className="text-lg font-bold text-[#1A2118]">
-                  {price}
+                  {displayPrice}
                 </span>
-                {originalPrice && (
+                {displayOriginalPrice && (
                   <span className="text-xs text-[#1A2118]/40 line-through">
-                    {originalPrice}
+                    {displayOriginalPrice}
                   </span>
                 )}
               </div>
@@ -399,7 +414,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           isNew,
         }}
         onAddToCart={(title, qty) => {
-          const priceNum = parseFloat(price.replace(/[^0-9.]/g, ""));
+          const priceNum = getPriceValue(price);
           onAddToCart(
             { id, name: title, price: priceNum, image: imageUrl },
             qty

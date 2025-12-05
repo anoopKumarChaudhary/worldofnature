@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { addToCart } from "./redux/features/cart/cartSlice";
+import { productsAPI, Product } from "./services/api";
 import {
   ArrowRight,
   Star,
@@ -20,9 +21,33 @@ import {
 const HomePage = () => {
   const dispatch = useDispatch();
   const [activeCategory, setActiveCategory] = useState("honey");
+  const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const handleAddToCart = (product: any) => {
-    dispatch(addToCart({ ...product, quantity: 1 }));
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const products = await productsAPI.getProducts({ isBestseller: true });
+        setFeaturedProducts(products);
+      } catch (error) {
+        console.error("Failed to fetch products:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const handleAddToCart = (product: Product) => {
+    dispatch(
+      addToCart({
+        id: product._id,
+        name: product.title,
+        price: product.price,
+        image: product.imageUrl,
+        quantity: 1,
+      })
+    );
   };
 
   const categories = [
@@ -377,7 +402,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* --- 4. FEATURED PRODUCT (Unchanged) --- */}
+      {/* --- 4. FEATURED PRODUCT --- */}
       <section className="py-20 bg-[#1A2118] text-[#F2F0EA] relative rounded-t-[3rem]">
         <div className="container mx-auto px-6">
           <div className="flex flex-col items-center text-center mb-20">
@@ -388,125 +413,65 @@ const HomePage = () => {
               Hand-picked products that define our commitment to purity.
             </p>
           </div>
-          <div className="flex overflow-x-auto gap-8 pb-12 snap-x scrollbar-hide">
-            {/* Card 1 */}
-            <div className="min-w-[300px] md:min-w-[400px] snap-center bg-[#252E22] rounded-[2rem] p-6 hover:bg-[#323A31] transition-colors group cursor-pointer border border-[#F2F0EA]/5">
-              <div className="h-[350px] w-full bg-[#1A2118] rounded-[1.5rem] overflow-hidden mb-6 relative">
-                <img
-                  src="/won23.JPG"
-                  className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute top-4 right-4 bg-[#BC5633] text-white text-[10px] font-bold uppercase px-2 py-1 rounded">
-                  Bestseller
-                </div>
-              </div>
-              <div className="flex justify-between items-start">
-                <div>
-                  <h3 className="text-2xl font-serif mb-1">Forest Honey</h3>
-                  <p className="text-sm text-[#F2F0EA]/50">Raw, Unprocessed</p>
-                </div>
-                <span className="text-lg font-bold">$18.00</span>
-              </div>
-              <div className="mt-6 pt-6 border-t border-[#F2F0EA]/10 flex justify-between items-center">
-                <div className="flex gap-1">
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <Star
-                      key={i}
-                      className="w-3 h-3 fill-[#BC5633] text-[#BC5633]"
+          {loading ? (
+            <div className="flex justify-center py-12">
+              <div className="w-10 h-10 border-2 border-[#BC5633] border-t-transparent rounded-full animate-spin"></div>
+            </div>
+          ) : (
+            <div className="flex overflow-x-auto gap-8 pb-12 snap-x scrollbar-hide">
+              {featuredProducts.map((product) => (
+                <div
+                  key={product._id}
+                  className="min-w-[300px] md:min-w-[400px] snap-center bg-[#252E22] rounded-[2rem] p-6 hover:bg-[#323A31] transition-colors group cursor-pointer border border-[#F2F0EA]/5"
+                >
+                  <div className="h-[350px] w-full bg-[#1A2118] rounded-[1.5rem] overflow-hidden mb-6 relative">
+                    <img
+                      src={product.imageUrl}
+                      className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700"
                     />
-                  ))}
+                    {product.isBestseller && (
+                      <div className="absolute top-4 right-4 bg-[#BC5633] text-white text-[10px] font-bold uppercase px-2 py-1 rounded">
+                        Bestseller
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <h3 className="text-2xl font-serif mb-1">
+                        {product.title}
+                      </h3>
+                      <p className="text-sm text-[#F2F0EA]/50 line-clamp-1">
+                        {product.description}
+                      </p>
+                    </div>
+                    <span className="text-lg font-bold">
+                      ${product.price.toFixed(2)}
+                    </span>
+                  </div>
+                  <div className="mt-6 pt-6 border-t border-[#F2F0EA]/10 flex justify-between items-center">
+                    <div className="flex gap-1">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className={`w-3 h-3 ${
+                            i < Math.floor(product.rating)
+                              ? "fill-[#BC5633] text-[#BC5633]"
+                              : "text-[#F2F0EA]/20"
+                          }`}
+                        />
+                      ))}
+                    </div>
+                    <button
+                      onClick={() => handleAddToCart(product)}
+                      className="text-xs font-bold uppercase tracking-widest hover:text-[#BC5633] transition-colors"
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
                 </div>
-                <button
-                  onClick={() =>
-                    handleAddToCart({
-                      id: "1",
-                      title: "Honey",
-                      price: 18,
-                      image: "/won23.JPG",
-                    })
-                  }
-                  className="text-xs font-bold uppercase tracking-widest hover:text-[#BC5633] transition-colors"
-                >
-                  Add to Cart
-                </button>
-              </div>
+              ))}
             </div>
-            {/* Card 2 */}
-            <div className="min-w-[300px] md:min-w-[400px] snap-center bg-[#F2F0EA] rounded-[2rem] p-6 text-[#1A2118] group cursor-pointer relative">
-              <div className="h-[350px] w-full bg-[#E6E2D6] rounded-[1.5rem] overflow-hidden mb-6 relative">
-                <img
-                  src="/won32.JPG"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-              </div>
-              <div className="flex justify-between items-start">
-                <div>
-                  <h3 className="text-2xl font-serif mb-1">A2 Bilona Ghee</h3>
-                  <p className="text-sm text-[#1A2118]/60">Traditional Vedic</p>
-                </div>
-                <span className="text-lg font-bold">$24.50</span>
-              </div>
-              <div className="mt-6 pt-6 border-t border-[#1A2118]/10 flex justify-between items-center">
-                <span className="text-xs font-bold uppercase tracking-widest text-[#BC5633]">
-                  New Arrival
-                </span>
-                <button
-                  onClick={() =>
-                    handleAddToCart({
-                      id: "2",
-                      title: "Ghee",
-                      price: 24.5,
-                      image: "/won32.JPG",
-                    })
-                  }
-                  className="w-10 h-10 bg-[#1A2118] rounded-full flex items-center justify-center text-white hover:bg-[#BC5633] transition-colors"
-                >
-                  <Plus className="w-5 h-5" />
-                </button>
-              </div>
-            </div>
-            {/* Card 3 */}
-            <div className="min-w-[300px] md:min-w-[400px] snap-center bg-[#252E22] rounded-[2rem] p-6 hover:bg-[#323A31] transition-colors group cursor-pointer border border-[#F2F0EA]/5">
-              <div className="h-[350px] w-full bg-[#1A2118] rounded-[1.5rem] overflow-hidden mb-6 relative">
-                <img
-                  src="/won25.JPG"
-                  className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700"
-                />
-              </div>
-              <div className="flex justify-between items-start">
-                <div>
-                  <h3 className="text-2xl font-serif mb-1">
-                    Lakadong Turmeric
-                  </h3>
-                  <p className="text-sm text-[#F2F0EA]/50">High Curcumin</p>
-                </div>
-                <span className="text-lg font-bold">$14.00</span>
-              </div>
-              <div className="mt-6 pt-6 border-t border-[#F2F0EA]/10 flex justify-between items-center">
-                <div className="flex gap-1">
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <Star
-                      key={i}
-                      className="w-3 h-3 fill-[#BC5633] text-[#BC5633]"
-                    />
-                  ))}
-                </div>
-                <button
-                  onClick={() =>
-                    handleAddToCart({
-                      id: "3",
-                      title: "Turmeric",
-                      price: 14,
-                      image: "/won25.JPG",
-                    })
-                  }
-                  className="text-xs font-bold uppercase tracking-widest hover:text-[#BC5633] transition-colors"
-                >
-                  Add to Cart
-                </button>
-              </div>
-            </div>
-          </div>
+          )}
         </div>
       </section>
 

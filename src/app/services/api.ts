@@ -24,6 +24,21 @@ export interface AuthResponse {
   user: User;
 }
 
+export interface Product {
+  _id: string;
+  title: string;
+  description: string;
+  price: number;
+  imageUrl: string;
+  category: string;
+  rating: number;
+  reviewCount: number;
+  isBestseller?: boolean;
+  isNew?: boolean;
+  isOnSale?: boolean;
+  originalPrice?: number;
+}
+
 export interface OrderItem {
   id: string;
   name: string;
@@ -107,13 +122,43 @@ export const authAPI = {
   },
 };
 
+export const productsAPI = {
+  getProducts: async (params?: any): Promise<Product[]> => {
+    const queryString = params
+      ? "?" + new URLSearchParams(params).toString()
+      : "";
+    const response = await fetch(`${API_BASE_URL}/products${queryString}`);
+    if (!response.ok) throw new Error("Failed to fetch products");
+    return response.json();
+  },
+
+  getProduct: async (id: string): Promise<Product> => {
+    const response = await fetch(`${API_BASE_URL}/products/${id}`);
+    if (!response.ok) throw new Error("Failed to fetch product");
+    return response.json();
+  },
+
+  getCategories: async (): Promise<string[]> => {
+    const response = await fetch(`${API_BASE_URL}/products/categories`);
+    if (!response.ok) throw new Error("Failed to fetch categories");
+    return response.json();
+  },
+};
+
 export const ordersAPI = {
   createOrder: async (orderData: OrderData): Promise<Order> => {
+    const token = localStorage.getItem("access_token");
+    const headers: HeadersInit = {
+      "Content-Type": "application/json",
+    };
+
+    if (token) {
+      headers["Authorization"] = `Bearer ${token}`;
+    }
+
     const response = await fetch(`${API_BASE_URL}/orders`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers,
       body: JSON.stringify(orderData),
     });
 
@@ -137,6 +182,103 @@ export const ordersAPI = {
       throw new Error(errorData.message || "Order not found");
     }
 
+    return response.json();
+  },
+};
+
+export const contactAPI = {
+  sendMessage: async (data: {
+    name: string;
+    email: string;
+    subject: string;
+    message: string;
+  }) => {
+    const response = await fetch(`${API_BASE_URL}/contact`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    if (!response.ok) throw new Error("Failed to send message");
+    return response.json();
+  },
+};
+
+export const newsletterAPI = {
+  subscribe: async (email: string) => {
+    const response = await fetch(`${API_BASE_URL}/newsletter`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email }),
+    });
+    if (!response.ok) throw new Error("Failed to subscribe");
+    return response.json();
+  },
+};
+
+export const wishlistAPI = {
+  getWishlist: async (userId: string) => {
+    const token = localStorage.getItem("access_token");
+    const response = await fetch(`${API_BASE_URL}/wishlist/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (!response.ok) throw new Error("Failed to fetch wishlist");
+    return response.json();
+  },
+  addToWishlist: async (userId: string, productId: string) => {
+    const token = localStorage.getItem("access_token");
+    const response = await fetch(`${API_BASE_URL}/wishlist/${userId}/add`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ productId }),
+    });
+    if (!response.ok) throw new Error("Failed to add to wishlist");
+    return response.json();
+  },
+  removeFromWishlist: async (userId: string, productId: string) => {
+    const token = localStorage.getItem("access_token");
+    const response = await fetch(
+      `${API_BASE_URL}/wishlist/${userId}/remove/${productId}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    if (!response.ok) throw new Error("Failed to remove from wishlist");
+    return response.json();
+  },
+};
+
+export const reviewsAPI = {
+  create: async (data: {
+    productId: string;
+    rating: number;
+    comment: string;
+    user: string;
+  }) => {
+    const token = localStorage.getItem("access_token");
+    const response = await fetch(`${API_BASE_URL}/reviews`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+    });
+    if (!response.ok) throw new Error("Failed to create review");
+    return response.json();
+  },
+  getByProduct: async (productId: string) => {
+    const response = await fetch(
+      `${API_BASE_URL}/reviews/product/${productId}`
+    );
+    if (!response.ok) throw new Error("Failed to fetch reviews");
     return response.json();
   },
 };

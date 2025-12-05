@@ -5,6 +5,7 @@ import Link from "next/link";
 import ProductCard from "../components/ProductCard";
 import { useAppDispatch } from "../redux/hooks";
 import { addToCart } from "../redux/features/cart/cartSlice";
+import { productsAPI, Product } from "../services/api";
 import {
   Filter,
   Grid3X3,
@@ -30,10 +31,27 @@ const ShopPage = () => {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 2000]);
   const [selectedRating, setSelectedRating] = useState<number | null>(null);
+  
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
 
   // --- LOAD MORE STATE ---
   const ITEMS_PER_PAGE = 6;
   const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const data = await productsAPI.getProducts();
+        setProducts(data);
+      } catch (error) {
+        console.error("Failed to fetch products:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProducts();
+  }, []);
 
   const handleAddToCart = (
     product: { id: string; name: string; price: number; image: string },
@@ -62,222 +80,6 @@ const ShopPage = () => {
     { value: "rating", label: "Highest Rated" },
   ];
 
-  const products = [
-    {
-      id: "1",
-      imageUrl: "/won8.JPG",
-      title: "Organic Coconut Oil",
-      description:
-        "Cold-Pressed from fresh, handpicked coconuts. Rich in MCTs for energy & immunity.",
-      price: "₹349.00",
-      originalPrice: "₹450.00",
-      rating: 4.8,
-      reviewCount: 124,
-      isBestseller: true,
-      category: "oils",
-    },
-    {
-      id: "2",
-      imageUrl: "/won32.JPG",
-      title: "Pure A2 Cow Ghee",
-      description:
-        "Handmade from Desi Cow Milk using the traditional Bilona method.",
-      price: "₹1,250.00",
-      rating: 4.9,
-      reviewCount: 89,
-      isNew: true,
-      category: "ghee",
-    },
-    {
-      id: "3",
-      imageUrl: "/won5.JPG",
-      title: "Organic Black Mustard Oil",
-      description: "Cold-pressed goodness packed with natural heat & flavor.",
-      price: "₹220.00",
-      rating: 4.7,
-      reviewCount: 45,
-      category: "oils",
-    },
-    {
-      id: "4",
-      imageUrl: "/won19.JPG",
-      title: "Organic Yellow Mustard Oil",
-      description:
-        "Mild & aromatic cold-pressed oil. Boosts immunity and supports digestion.",
-      price: "₹240.00",
-      rating: 4.6,
-      reviewCount: 32,
-      category: "oils",
-    },
-    {
-      id: "5",
-      imageUrl: "/won13.JPG",
-      title: "Organic Black Sesame Oil",
-      description:
-        "Ancient Ayurvedic elixir. Deeply nourishes skin, hair, and joints.",
-      price: "₹499.00",
-      rating: 4.8,
-      reviewCount: 67,
-      category: "oils",
-    },
-    {
-      id: "6",
-      imageUrl: "/won23.JPG",
-      title: "Pure Multifloral Honey",
-      description:
-        "Collected from diverse wildflowers. Rich in enzymes & antioxidants.",
-      price: "₹550.00",
-      rating: 4.9,
-      reviewCount: 210,
-      isBestseller: true,
-      category: "honey",
-    },
-    {
-      id: "7",
-      imageUrl: "/won61.JPG",
-      title: "Chamomile Flower Tea",
-      description:
-        "Calming floral infusion for deep relaxation. Naturally caffeine-free.",
-      price: "₹399.00",
-      rating: 4.7,
-      reviewCount: 56,
-      category: "teas",
-    },
-    {
-      id: "8",
-      imageUrl: "/won17.JPG",
-      title: "Rosemary Herbal Tea",
-      description:
-        "Aromatic brew that awakens mind and body. Rich in antioxidants.",
-      price: "₹349.00",
-      rating: 4.5,
-      reviewCount: 42,
-      category: "teas",
-    },
-    {
-      id: "9",
-      imageUrl: "/won15.JPG",
-      title: "Peppermint Herbal Tea",
-      description:
-        "Refreshing mint infusion for instant calm. Supports digestion.",
-      price: "₹299.00",
-      rating: 4.6,
-      reviewCount: 88,
-      category: "teas",
-    },
-    {
-      id: "10",
-      imageUrl: "/won53.JPG",
-      title: "Hibiscus Flower Herbal Tea",
-      description:
-        "Vibrant crimson brew with a tangy taste. Packed with Vitamin C.",
-      price: "₹349.00",
-      rating: 4.8,
-      reviewCount: 112,
-      isOnSale: true,
-      category: "teas",
-    },
-    {
-      id: "11",
-      imageUrl: "/won34.JPG",
-      title: "Premium Pumpkin Seeds",
-      description:
-        "Crunchy powerhouse packed with Protein & Zinc. Boosts immunity.",
-      price: "₹280.00",
-      rating: 4.7,
-      reviewCount: 95,
-      category: "seeds",
-    },
-    {
-      id: "12",
-      imageUrl: "/won60.JPG",
-      title: "Premium Basil Seeds",
-      description:
-        "Cooling superfood rich in Fiber & Omega-3. Supports digestion.",
-      price: "₹199.00",
-      rating: 4.6,
-      reviewCount: 76,
-      category: "seeds",
-    },
-    {
-      id: "13",
-      imageUrl: "/won51.JPG",
-      title: "White Quinoa Seeds",
-      description:
-        "Complete plant-based protein with all 9 amino acids. Gluten-free.",
-      price: "₹320.00",
-      rating: 4.7,
-      reviewCount: 64,
-      category: "seeds",
-    },
-    {
-      id: "14",
-      imageUrl: "/won58.JPG",
-      title: "Premium Flax Seeds",
-      description:
-        "Rich source of Omega-3, Fiber & Plant Protein. Promotes heart health.",
-      price: "₹149.00",
-      rating: 4.5,
-      reviewCount: 130,
-      category: "seeds",
-    },
-    {
-      id: "15",
-      imageUrl: "/won47.JPG",
-      title: "Premium Sunflower Seeds",
-      description:
-        "Light, crunchy & rich in Vitamin E. Boosts heart health and skin glow.",
-      price: "₹249.00",
-      rating: 4.6,
-      reviewCount: 82,
-      category: "seeds",
-    },
-    {
-      id: "16",
-      imageUrl: "/won18.JPG",
-      title: "Mix Fruit Cocktail",
-      description:
-        "Vibrant blend of berries, papaya, mango & kiwi. Naturally sweet.",
-      price: "₹450.00",
-      rating: 4.8,
-      reviewCount: 54,
-      category: "seeds",
-    },
-    {
-      id: "17",
-      imageUrl: "/won43.JPG",
-      title: "Dried Papaya Cubes",
-      description:
-        "Naturally sweet tropical treat. Rich in Vitamin A, C & enzymes.",
-      price: "₹399.00",
-      rating: 4.7,
-      reviewCount: 41,
-      category: "seeds",
-    },
-    {
-      id: "18",
-      imageUrl: "/won37.JPG",
-      title: "Gond Katira",
-      description:
-        "Ancient Ayurvedic herb for cooling. Supports skin health and immunity.",
-      price: "₹299.00",
-      rating: 4.6,
-      reviewCount: 38,
-      category: "wellness",
-    },
-    {
-      id: "19",
-      imageUrl: "/won35.JPG",
-      title: "Charcoal Toothpaste",
-      description:
-        "Infused with activated charcoal for natural whitening. Fluoride-free.",
-      price: "₹249.00",
-      rating: 4.5,
-      reviewCount: 150,
-      category: "wellness",
-    },
-  ];
-
   // Filter Logic
   const filteredProducts = products.filter((product) => {
     const matchesSearch =
@@ -286,7 +88,7 @@ const ShopPage = () => {
     const matchesCategory =
       selectedCategories.length === 0 ||
       selectedCategories.includes(product.category);
-    const numericPrice = parseFloat(product.price.replace(/[^0-9.]/g, ""));
+    const numericPrice = product.price;
     const matchesPrice =
       numericPrice >= priceRange[0] && numericPrice <= priceRange[1];
     const matchesRating =
@@ -296,8 +98,8 @@ const ShopPage = () => {
 
   // Sort Logic
   const sortedProducts = [...filteredProducts].sort((a, b) => {
-    const priceA = parseFloat(a.price.replace(/[^0-9.]/g, ""));
-    const priceB = parseFloat(b.price.replace(/[^0-9.]/g, ""));
+    const priceA = a.price;
+    const priceB = b.price;
     switch (sortBy) {
       case "price-low":
         return priceA - priceB;
@@ -708,7 +510,11 @@ const ShopPage = () => {
               </p>
             </div>
 
-            {sortedProducts.length > 0 ? (
+            {loading ? (
+              <div className="flex justify-center py-24">
+                <div className="w-10 h-10 border-2 border-[#BC5633] border-t-transparent rounded-full animate-spin"></div>
+              </div>
+            ) : sortedProducts.length > 0 ? (
               <>
                 <div
                   className={`grid gap-6 ${
@@ -719,13 +525,30 @@ const ShopPage = () => {
                 >
                   {sortedProducts.slice(0, visibleCount).map((product, idx) => (
                     <div
-                      key={product.id}
+                      key={product._id}
                       className="animate-fade-in-up"
                       style={{ animationDelay: `${idx * 50}ms` }}
                     >
                       <ProductCard
-                        {...product}
-                        onAddToCart={handleAddToCart}
+                        id={product._id}
+                        title={product.title}
+                        description={product.description}
+                        price={product.price}
+                        imageUrl={product.imageUrl}
+                        rating={product.rating}
+                        reviewCount={product.reviewCount}
+                        isBestseller={product.isBestseller}
+                        isNew={product.isNew}
+                        isOnSale={product.isOnSale}
+                        originalPrice={product.originalPrice}
+                        onAddToCart={() =>
+                          handleAddToCart({
+                            id: product._id,
+                            name: product.title,
+                            price: product.price,
+                            image: product.imageUrl,
+                          })
+                        }
                         onToggleWishlist={handleToggleWishlist}
                         viewMode={viewMode}
                       />
