@@ -37,6 +37,11 @@ export interface Product {
   isNew?: boolean;
   isOnSale?: boolean;
   originalPrice?: number;
+  ingredients?: string;
+  sourcing?: string;
+  tasteProfile?: string;
+  sizes?: { value: string; label: string }[];
+  inStock?: boolean;
 }
 
 export interface OrderItem {
@@ -180,6 +185,24 @@ export const ordersAPI = {
         .json()
         .catch(() => ({ message: "Order not found" }));
       throw new Error(errorData.message || "Order not found");
+    }
+
+    return response.json();
+  },
+
+  getOrdersByUser: async (userId: string): Promise<Order[]> => {
+    const token = localStorage.getItem("access_token");
+    const response = await fetch(`${API_BASE_URL}/orders/user/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      const errorData = await response
+        .json()
+        .catch(() => ({ message: "Failed to fetch orders" }));
+      throw new Error(errorData.message || "Failed to fetch orders");
     }
 
     return response.json();

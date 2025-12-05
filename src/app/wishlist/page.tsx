@@ -6,6 +6,9 @@ import { Trash2, ShoppingBag } from "lucide-react";
 import { wishlistAPI, productsAPI } from "../services/api";
 import { useAppDispatch } from "../redux/hooks";
 import { addToCart } from "../redux/features/cart/cartSlice";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
+import { useRouter } from "next/navigation";
 
 interface WishlistItem {
   id: string;
@@ -19,27 +22,36 @@ export default function WishlistPage() {
   const [wishlistItems, setWishlistItems] = useState<WishlistItem[]>([]);
   const [loading, setLoading] = useState(true);
   const dispatch = useAppDispatch();
-
-  // Mock user ID for now, in real app get from auth context
-  const userId = "user123"; 
+  const router = useRouter();
+  const { user, isAuthenticated } = useSelector(
+    (state: RootState) => state.auth
+  );
 
   useEffect(() => {
+    if (!isAuthenticated) {
+      setLoading(false);
+      return;
+    }
+
     const fetchWishlist = async () => {
-      try {
-        const data = await wishlistAPI.getWishlist(userId);
-        setWishlistItems(data.products || []);
-      } catch (error) {
-        console.error("Failed to fetch wishlist:", error);
-      } finally {
-        setLoading(false);
+      if (user?.id) {
+        try {
+          const data = await wishlistAPI.getWishlist(user.id);
+          setWishlistItems(data.products || []);
+        } catch (error) {
+          console.error("Failed to fetch wishlist:", error);
+        } finally {
+          setLoading(false);
+        }
       }
     };
     fetchWishlist();
-  }, [userId]);
+  }, [isAuthenticated, user, router]);
 
   const handleRemove = async (productId: string) => {
+    if (!user?.id) return;
     try {
-      await wishlistAPI.removeFromWishlist(userId, productId);
+      await wishlistAPI.removeFromWishlist(user.id, productId);
       setWishlistItems((prev) => prev.filter((item) => item.id !== productId));
     } catch (error) {
       console.error("Failed to remove from wishlist:", error);
@@ -76,7 +88,19 @@ export default function WishlistPage() {
       <div className="container mx-auto max-w-6xl">
         <h1 className="text-4xl font-serif text-[#1A2118] mb-8">My Wishlist</h1>
 
-        {wishlistItems.length === 0 ? (
+        {!isAuthenticated ? (
+          <div className="text-center py-20">
+            <p className="text-xl text-[#596157] mb-6">
+              Please login to view your wishlist.
+            </p>
+            <Link
+              href="/login"
+              className="inline-block bg-[#1A2118] text-white px-8 py-3 rounded-full hover:bg-[#BC5633] transition-colors"
+            >
+              Login
+            </Link>
+          </div>
+        ) : wishlistItems.length === 0 ? (
           <div className="text-center py-20">
             <p className="text-xl text-[#596157] mb-6">
               Your wishlist is empty.

@@ -12,7 +12,11 @@ import {
   ArrowRight,
   Clock,
   Globe,
+  Send,
 } from "lucide-react";
+import { contactAPI } from "../../services/api";
+import { useState } from "react";
+import { div } from "framer-motion/client";
 
 const ContactPage = () => {
   // Direct WhatsApp Link Handler
@@ -23,6 +27,40 @@ const ContactPage = () => {
       message
     )}`;
     window.open(url, "_blank");
+    window.open(url, "_blank");
+  };
+
+  // Form State
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">(
+    "idle"
+  );
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    try {
+      await contactAPI.sendMessage(formData);
+      setSubmitStatus("success");
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch (error) {
+      console.error("Failed to send message:", error);
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   return (
@@ -220,11 +258,108 @@ const ContactPage = () => {
                   </p>
                 </div>
               </div>
+              </div>
+
+              {/* Contact Form Card */}
+              <div className="bg-white/60 backdrop-blur-xl border border-white/40 rounded-[2.5rem] p-8 lg:p-10 shadow-lg">
+                <h3 className="text-2xl font-serif font-bold text-[#1A2118] mb-6">
+                  Send us a Message
+                </h3>
+                {submitStatus === "success" ? (
+                  <div className="bg-[#3A4D39]/10 text-[#3A4D39] p-6 rounded-[1.5rem] text-center">
+                    <p className="font-bold mb-2">Message Sent!</p>
+                    <p className="text-sm">
+                      Thank you for reaching out. We'll get back to you shortly.
+                    </p>
+                    <button
+                      onClick={() => setSubmitStatus("idle")}
+                      className="mt-4 text-xs font-bold uppercase tracking-widest underline"
+                    >
+                      Send another
+                    </button>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div className="space-y-2">
+                      <label className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/60 ml-4">
+                        Name
+                      </label>
+                      <input
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                        className="w-full px-6 py-4 bg-[#F2F0EA]/50 border border-transparent rounded-[1.5rem] text-[#1A2118] focus:bg-white focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all"
+                        placeholder="Your Name"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/60 ml-4">
+                        Email
+                      </label>
+                      <input
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        className="w-full px-6 py-4 bg-[#F2F0EA]/50 border border-transparent rounded-[1.5rem] text-[#1A2118] focus:bg-white focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all"
+                        placeholder="your@email.com"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/60 ml-4">
+                        Subject
+                      </label>
+                      <input
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleChange}
+                        required
+                        className="w-full px-6 py-4 bg-[#F2F0EA]/50 border border-transparent rounded-[1.5rem] text-[#1A2118] focus:bg-white focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all"
+                        placeholder="How can we help?"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/60 ml-4">
+                        Message
+                      </label>
+                      <textarea
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        required
+                        rows={4}
+                        className="w-full px-6 py-4 bg-[#F2F0EA]/50 border border-transparent rounded-[1.5rem] text-[#1A2118] focus:bg-white focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all resize-none"
+                        placeholder="Write your message here..."
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full h-14 bg-[#1A2118] text-white rounded-[1.5rem] font-bold text-sm uppercase tracking-widest hover:bg-[#BC5633] transition-all shadow-lg flex items-center justify-center gap-3 disabled:opacity-70"
+                    >
+                      {isSubmitting ? (
+                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      ) : (
+                        <>
+                          Send Message <Send size={18} />
+                        </>
+                      )}
+                    </button>
+                    {submitStatus === "error" && (
+                      <p className="text-xs text-red-500 text-center font-bold">
+                        Failed to send message. Please try again.
+                      </p>
+                    )}
+                  </form>
+                )}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    
   );
 };
 

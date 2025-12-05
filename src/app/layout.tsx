@@ -1,6 +1,3 @@
-// src/app/layout.tsx
-"use client"; // This makes the layout a Client Component
-
 import { Manrope, Inter } from "next/font/google"; // Import new font
 import "./globals.css";
 import Navbar from "./components/Navbar";
@@ -8,8 +5,7 @@ import Footer from "./components/Footer";
 
 // Import Redux Provider
 import ReduxProvider from "./redux/provider";
-import FaqPage from "./faq/page";
-import ContactPage from "./components/Contact";
+import { Metadata } from "next";
 
 // Setup Fonts
 const inter = Inter({
@@ -21,6 +17,16 @@ const manrope = Manrope({
   subsets: ["latin"],
   variable: "--font-heading",
 });
+
+export const metadata: Metadata = {
+  title: "World of Nature | Organic Essentials",
+  description: "Discover the purest organic essentials sourced from pristine valleys. 100% traceable, regenerative, and natural.",
+  openGraph: {
+    title: "World of Nature | Organic Essentials",
+    description: "Discover the purest organic essentials sourced from pristine valleys.",
+    type: "website",
+  },
+};
 
 export default function RootLayout({
   children,
@@ -37,8 +43,6 @@ export default function RootLayout({
         <ReduxProvider>
           <Navbar />
           <main>{children}</main>
-          <FaqPage />
-          <ContactPage />
           <Footer />
         </ReduxProvider>
       </body>

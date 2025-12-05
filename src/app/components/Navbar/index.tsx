@@ -155,7 +155,7 @@ const Navbar = () => {
               <Link
                 key={item.href}
                 href={item.href}
-                className="px-6 py-2 rounded-full text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-white/10 hover:text-emerald-700 dark:hover:text-emerald-400 hover:shadow-sm transition-all duration-300"
+                className="px-6 py-2 rounded-full text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-white/10 hover:text-brand-primary-600 dark:hover:text-brand-primary-400 hover:shadow-sm transition-all duration-300"
               >
                 {item.label}
               </Link>
@@ -183,9 +183,9 @@ const Navbar = () => {
               />
               {isAuthenticated ? (
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <Link href="/profile" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#BC5633] transition-colors">
                     {user?.firstName}
-                  </span>
+                  </Link>
                   <button
                     onClick={() => dispatch(logout())}
                     className="w-10 h-10 flex items-center justify-center rounded-full text-gray-600 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/10 active:scale-90 transition-all duration-300"
@@ -212,7 +212,7 @@ const Navbar = () => {
                 size={20}
                 className="text-gray-800 dark:text-white"
               />
-              <span className="absolute top-1.5 right-1 w-4 h-4 bg-emerald-500 text-white text-[9px] font-bold flex items-center justify-center rounded-full ring-2 ring-white dark:ring-black">
+              <span className="absolute top-1.5 right-1 w-4 h-4 bg-brand-secondary-600 text-white text-[9px] font-bold flex items-center justify-center rounded-full ring-2 ring-white dark:ring-black">
                 3
               </span>
             </Link>
@@ -280,7 +280,7 @@ const Navbar = () => {
               className="flex items-center justify-between p-5 rounded-[1.5rem] bg-white dark:bg-[#1E1E1E] active:scale-[0.98] transition-transform duration-200 shadow-sm border border-gray-50 dark:border-white/5"
             >
               <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-emerald-50 dark:bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
+                <div className="w-10 h-10 rounded-full bg-brand-primary-50 dark:bg-brand-primary-500/10 flex items-center justify-center text-brand-primary-600 dark:text-brand-primary-400">
                   <item.icon size={20} />
                 </div>
                 <span className="text-lg font-medium text-gray-900 dark:text-white">

@@ -3,9 +3,9 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import ProductCard from "../components/ProductCard";
-import { useAppDispatch } from "../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { addToCart } from "../redux/features/cart/cartSlice";
-import { productsAPI, Product } from "../services/api";
+import { productsAPI, Product, wishlistAPI } from "../services/api";
 import {
   Filter,
   Grid3X3,
@@ -24,6 +24,7 @@ import {
 
 const ShopPage = () => {
   const dispatch = useAppDispatch();
+  const { user, isAuthenticated } = useAppSelector((state) => state.auth);
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [sortBy, setSortBy] = useState("featured");
@@ -33,6 +34,7 @@ const ShopPage = () => {
   const [selectedRating, setSelectedRating] = useState<number | null>(null);
   
   const [products, setProducts] = useState<Product[]>([]);
+  const [wishlistIds, setWishlistIds] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
 
   // --- LOAD MORE STATE ---
@@ -53,6 +55,14 @@ const ShopPage = () => {
     fetchProducts();
   }, []);
 
+  useEffect(() => {
+    if (isAuthenticated && user?.id) {
+      wishlistAPI.getWishlist(user.id).then((items) => {
+        setWishlistIds(items.map((item: any) => item._id));
+      });
+    }
+  }, [isAuthenticated, user]);
+
   const handleAddToCart = (
     product: { id: string; name: string; price: number; image: string },
     quantity: number = 1
@@ -60,8 +70,22 @@ const ShopPage = () => {
     dispatch(addToCart({ ...product, quantity }));
   };
 
-  const handleToggleWishlist = (id: string) => {
-    console.log(`Toggled wishlist for ${id}`);
+  const handleToggleWishlist = async (id: string) => {
+    if (!isAuthenticated || !user?.id) {
+      alert("Please login to add to wishlist");
+      return;
+    }
+    try {
+      if (wishlistIds.includes(id)) {
+        await wishlistAPI.removeFromWishlist(user.id, id);
+        setWishlistIds((prev) => prev.filter((wid) => wid !== id));
+      } else {
+        await wishlistAPI.addToWishlist(user.id, id);
+        setWishlistIds((prev) => [...prev, id]);
+      }
+    } catch (error) {
+      console.error("Failed to toggle wishlist:", error);
+    }
   };
 
   const categories = [
@@ -541,15 +565,11 @@ const ShopPage = () => {
                         isNew={product.isNew}
                         isOnSale={product.isOnSale}
                         originalPrice={product.originalPrice}
-                        onAddToCart={() =>
-                          handleAddToCart({
-                            id: product._id,
-                            name: product.title,
-                            price: product.price,
-                            image: product.imageUrl,
-                          })
+                        onAddToCart={(productData, qty) =>
+                          handleAddToCart(productData, qty)
                         }
                         onToggleWishlist={handleToggleWishlist}
+                        isWishlisted={wishlistIds.includes(product._id)}
                         viewMode={viewMode}
                       />
                     </div>

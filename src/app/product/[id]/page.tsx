@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/store";
 import { setSelectedProduct } from "../../redux/features/products/productsSlice";
 import { addToCart, CartItem } from "../../redux/features/cart/cartSlice";
+import { reviewsAPI, productsAPI, wishlistAPI } from "../../services/api";
 import Link from "next/link";
 import {
   Star,
@@ -19,7 +20,6 @@ import {
   ShieldCheck,
   Leaf,
   Truck,
-  ArrowRight,
 } from "lucide-react";
 
 export default function ProductDetailPage() {
@@ -28,20 +28,103 @@ export default function ProductDetailPage() {
   const { products, selectedProduct } = useSelector(
     (state: RootState) => state.products
   );
+  const { user, isAuthenticated } = useSelector(
+    (state: RootState) => state.auth
+  );
+  
   const [selectedSize, setSelectedSize] = useState<string>("");
   const [quantity, setQuantity] = useState<number>(1);
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
+  const [reviews, setReviews] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const productId = params.id as string;
 
   useEffect(() => {
-    const product = products.find((p) => p.id === productId);
-    dispatch(setSelectedProduct(product || null));
-    if (product && product.sizes.length > 0) {
-      setSelectedSize(product.sizes[0].value);
+    const fetchProductData = async () => {
+      setLoading(true);
+      try {
+        // 1. Try to find in Redux first
+        let product = products.find((p) => p._id === productId);
+
+        // 2. If not found, fetch from API
+        if (!product) {
+          product = await productsAPI.getProduct(productId);
+        }
+
+        dispatch(setSelectedProduct(product || null));
+
+        if (product && product.sizes && product.sizes.length > 0) {
+          setSelectedSize(product.sizes[0].value);
+        }
+
+        // 3. Fetch Reviews
+        const reviewsData = await reviewsAPI.getByProduct(productId);
+        setReviews(reviewsData);
+
+        // 4. Check Wishlist status if logged in
+        if (isAuthenticated && user?.id) {
+          const wishlist = await wishlistAPI.getWishlist(user.id);
+          const isInWishlist = wishlist.some((item: any) => item._id === productId);
+          setIsWishlisted(isInWishlist);
+        }
+      } catch (error) {
+        console.error("Failed to fetch product data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (productId) {
+      fetchProductData();
     }
-  }, [productId, products, dispatch]);
+  }, [productId, products, dispatch, isAuthenticated, user]);
+
+  const handleWishlistToggle = async () => {
+    if (!isAuthenticated || !user?.id) {
+      alert("Please login to add to wishlist");
+      return;
+    }
+
+    try {
+      if (isWishlisted) {
+        await wishlistAPI.removeFromWishlist(user.id, productId);
+        setIsWishlisted(false);
+      } else {
+        await wishlistAPI.addToWishlist(user.id, productId);
+        setIsWishlisted(true);
+      }
+    } catch (error) {
+      console.error("Failed to toggle wishlist:", error);
+    }
+  };
+
+  const handleAddToCart = () => {
+    if (!selectedProduct) return;
+    
+    setIsAdding(true);
+    const cartItem: CartItem = {
+      id: selectedProduct._id,
+      name: selectedProduct.title,
+      price: selectedProduct.price,
+      image: selectedProduct.imageUrl,
+      quantity: quantity,
+      size: selectedSize,
+    };
+    dispatch(addToCart(cartItem));
+
+    setTimeout(() => setIsAdding(false), 1500);
+  };
+
+  // --- LOADING STATE ---
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#F2F0EA] flex items-center justify-center">
+        <div className="w-10 h-10 border-2 border-[#BC5633] border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
 
   // --- EMPTY STATE ---
   if (!selectedProduct) {
@@ -68,27 +151,9 @@ export default function ProductDetailPage() {
     );
   }
 
-  const handleAddToCart = () => {
-    setIsAdding(true);
-    const cartItem: CartItem = {
-      id: selectedProduct.id,
-      name: selectedProduct.name,
-      price: selectedProduct.price,
-      image: selectedProduct.images[0],
-      quantity: quantity,
-      size: selectedSize,
-    };
-    dispatch(addToCart(cartItem));
-
-    setTimeout(() => setIsAdding(false), 1500);
-  };
-
   const averageRating =
-    selectedProduct.reviews.length > 0
-      ? selectedProduct.reviews.reduce(
-          (sum, review) => sum + review.rating,
-          0
-        ) / selectedProduct.reviews.length
+    reviews.length > 0
+      ? reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length
       : 0;
 
   return (
@@ -135,21 +200,21 @@ export default function ProductDetailPage() {
             Shop
           </Link>
           <ChevronLeft className="w-3 h-3 rotate-180" />
-          <span className="text-[#1A2118]">{selectedProduct.name}</span>
+          <span className="text-[#1A2118]">{selectedProduct.title}</span>
         </div>
       </div>
 
       <div className="relative z-10 px-6 lg:px-12">
         <div className="container mx-auto max-w-7xl">
           <div className="lg:grid lg:grid-cols-12 lg:gap-16 items-start">
-            {/* --- LEFT: IMMERSIVE IMAGE (Single Image Only) --- */}
+            {/* --- LEFT: IMMERSIVE IMAGE --- */}
             <div className="lg:col-span-7 mb-12 lg:mb-0">
               <div className="sticky top-32 space-y-6">
                 {/* Main Image Card */}
                 <div className="relative aspect-square w-full bg-white rounded-[3rem] overflow-hidden shadow-2xl shadow-[#1A2118]/5 border border-white">
                   <img
-                    src={selectedProduct.images[0]} // Only showing the first image
-                    alt={selectedProduct.name}
+                    src={selectedProduct.imageUrl}
+                    alt={selectedProduct.title}
                     className="w-full h-full object-cover mix-blend-multiply"
                   />
 
@@ -163,7 +228,7 @@ export default function ProductDetailPage() {
                   {/* Action Buttons on Image */}
                   <div className="absolute top-6 right-6 flex flex-col gap-3">
                     <button
-                      onClick={() => setIsWishlisted(!isWishlisted)}
+                      onClick={handleWishlistToggle}
                       className={`w-12 h-12 rounded-full flex items-center justify-center backdrop-blur-md transition-all shadow-sm ${
                         isWishlisted
                           ? "bg-[#BC5633] text-white"
@@ -181,8 +246,6 @@ export default function ProductDetailPage() {
                     </button>
                   </div>
                 </div>
-
-                {/* Thumbnails have been removed */}
               </div>
             </div>
 
@@ -205,12 +268,12 @@ export default function ProductDetailPage() {
                       ))}
                     </div>
                     <span className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/40 ml-2">
-                      {selectedProduct.reviews.length} Reviews
+                      {reviews.length} Reviews
                     </span>
                   </div>
 
                   <h1 className="text-4xl md:text-5xl font-serif font-medium text-[#1A2118] mb-4 leading-tight">
-                    {selectedProduct.name}
+                    {selectedProduct.title}
                   </h1>
 
                   <div className="flex items-baseline gap-4">
@@ -233,7 +296,7 @@ export default function ProductDetailPage() {
                   </p>
 
                   {/* Size Selector */}
-                  {selectedProduct.sizes.length > 0 && (
+                  {selectedProduct.sizes && selectedProduct.sizes.length > 0 && (
                     <div className="space-y-3">
                       <span className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/60 ml-2">
                         Select Size
@@ -316,7 +379,7 @@ export default function ProductDetailPage() {
                   </div>
                 </div>
 
-                {/* Product Meta Accordions (Simplified for visuals) */}
+                {/* Product Meta Accordions */}
                 <div className="mt-10 pt-8 border-t border-[#1A2118]/10 space-y-6">
                   {[
                     {
@@ -329,14 +392,16 @@ export default function ProductDetailPage() {
                       content: selectedProduct.tasteProfile,
                     },
                   ].map((item, i) => (
-                    <div key={i} className="group">
-                      <h3 className="text-lg font-serif font-bold text-[#1A2118] mb-2">
-                        {item.title}
-                      </h3>
-                      <p className="text-[#596157] font-light text-sm leading-relaxed">
-                        {item.content}
-                      </p>
-                    </div>
+                    item.content ? (
+                      <div key={i} className="group">
+                        <h3 className="text-lg font-serif font-bold text-[#1A2118] mb-2">
+                          {item.title}
+                        </h3>
+                        <p className="text-[#596157] font-light text-sm leading-relaxed">
+                          {item.content}
+                        </p>
+                      </div>
+                    ) : null
                   ))}
                 </div>
               </div>
@@ -344,7 +409,7 @@ export default function ProductDetailPage() {
           </div>
 
           {/* --- REVIEWS SECTION --- */}
-          {selectedProduct.reviews.length > 0 && (
+          {reviews.length > 0 && (
             <div className="mt-24 max-w-4xl mx-auto">
               <div className="flex items-end justify-between mb-10">
                 <h2 className="text-3xl font-serif font-bold text-[#1A2118]">
@@ -356,7 +421,7 @@ export default function ProductDetailPage() {
               </div>
 
               <div className="grid md:grid-cols-2 gap-6">
-                {selectedProduct.reviews.map((review) => (
+                {reviews.map((review) => (
                   <div
                     key={review.id}
                     className="bg-white/80 backdrop-blur-sm p-8 rounded-[2rem] border border-white shadow-sm hover:shadow-md transition-shadow"

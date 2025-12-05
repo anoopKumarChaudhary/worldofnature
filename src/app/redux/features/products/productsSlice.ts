@@ -1,28 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-export interface Product {
-  id: string;
-  name: string;
-  price: number;
-  originalPrice?: number;
-  images: string[];
-  description: string;
-  ingredients: string;
-  sourcing: string;
-  tasteProfile: string;
-  sizes: { value: string; label: string }[];
-  category: string;
-  inStock: boolean;
-  reviews: Review[];
-}
-
-export interface Review {
-  id: string;
-  userName: string;
-  rating: number;
-  comment: string;
-  date: string;
-}
+import { Product } from "../../../services/api";
 
 interface ProductsState {
   products: Product[];
@@ -32,70 +9,7 @@ interface ProductsState {
 }
 
 const initialState: ProductsState = {
-  products: [
-    {
-      id: "1",
-      name: "Organic Green Tea",
-      price: 24.99,
-      originalPrice: 29.99,
-      images: ["/won1.JPG", "/won2.jpg", "/won3.JPG"],
-      description:
-        "Premium organic green tea sourced from sustainable farms in Japan. Known for its delicate flavor and numerous health benefits.",
-      ingredients: "100% Organic Green Tea Leaves",
-      sourcing: "Sourced from certified organic farms in Kyoto, Japan",
-      tasteProfile: "Light, grassy notes with a fresh, clean finish",
-      sizes: [
-        { value: "250g", label: "250g" },
-        { value: "500g", label: "500g" },
-        { value: "1kg", label: "1kg" },
-      ],
-      category: "Tea",
-      inStock: true,
-      reviews: [
-        {
-          id: "1",
-          userName: "Sarah M.",
-          rating: 5,
-          comment:
-            "Absolutely love this tea! The flavor is so pure and refreshing.",
-          date: "2024-01-15",
-        },
-        {
-          id: "2",
-          userName: "John D.",
-          rating: 4,
-          comment: "Great quality tea. Will definitely order again.",
-          date: "2024-01-10",
-        },
-      ],
-    },
-    {
-      id: "2",
-      name: "Wild Forest Honey",
-      price: 18.99,
-      images: ["/won4.JPG", "/won5.JPG", "/won6.JPG"],
-      description:
-        "Raw, unfiltered honey harvested from wild forest bees. Rich in natural enzymes and antioxidants.",
-      ingredients: "100% Pure Wild Forest Honey",
-      sourcing: "Collected from pristine forests in the Himalayas",
-      tasteProfile: "Deep, complex sweetness with floral undertones",
-      sizes: [
-        { value: "250g", label: "250g" },
-        { value: "500g", label: "500g" },
-      ],
-      category: "Honey",
-      inStock: true,
-      reviews: [
-        {
-          id: "3",
-          userName: "Emma L.",
-          rating: 5,
-          comment: "The best honey I've ever tasted! So pure and flavorful.",
-          date: "2024-01-20",
-        },
-      ],
-    },
-  ],
+  products: [],
   selectedProduct: null,
   loading: false,
   error: null,
@@ -105,6 +19,9 @@ export const productsSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
+    setProducts: (state, action: PayloadAction<Product[]>) => {
+      state.products = action.payload;
+    },
     setSelectedProduct: (state, action: PayloadAction<Product | null>) => {
       state.selectedProduct = action.payload;
     },
@@ -117,6 +34,6 @@ export const productsSlice = createSlice({
   },
 });
 
-export const { setSelectedProduct, setLoading, setError } =
+export const { setProducts, setSelectedProduct, setLoading, setError } =
   productsSlice.actions;
 export default productsSlice.reducer;
