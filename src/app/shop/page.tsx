@@ -20,6 +20,7 @@ import {
   ArrowRight,
   Check,
   RefreshCcw,
+  ChevronUp,
 } from "lucide-react";
 
 const ShopPage = () => {
@@ -156,6 +157,19 @@ const ShopPage = () => {
     setPriceRange(newRange);
   };
 
+  // --- ACTIVE FILTERS HELPERS ---
+  const removeCategory = (catId: string) => {
+    setSelectedCategories(selectedCategories.filter((c) => c !== catId));
+  };
+  const resetPrice = () => setPriceRange([0, 2000]);
+  const resetRating = () => setSelectedRating(null);
+
+  const hasActiveFilters =
+    selectedCategories.length > 0 ||
+    priceRange[0] > 0 ||
+    priceRange[1] < 2000 ||
+    selectedRating !== null;
+
   return (
     <div className="relative min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white overflow-x-hidden pb-20">
       {/* --- STYLES & ANIMATIONS --- */}
@@ -183,6 +197,39 @@ const ShopPage = () => {
         .hide-scrollbar {
           -ms-overflow-style: none;
           scrollbar-width: none;
+        }
+
+        /* Custom Checkbox */
+        .custom-checkbox {
+          appearance: none;
+          background-color: transparent;
+          margin: 0;
+          font: inherit;
+          color: currentColor;
+          width: 1.25em;
+          height: 1.25em;
+          border: 1.5px solid #1A2118;
+          border-radius: 0.35em;
+          display: grid;
+          place-content: center;
+          transition: all 0.2s;
+        }
+        .custom-checkbox::before {
+          content: "";
+          width: 0.65em;
+          height: 0.65em;
+          transform: scale(0);
+          transition: 120ms transform ease-in-out;
+          box-shadow: inset 1em 1em white;
+          transform-origin: center;
+          clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+        }
+        .custom-checkbox:checked {
+          background-color: #1A2118;
+          border-color: #1A2118;
+        }
+        .custom-checkbox:checked::before {
+          transform: scale(1);
         }
 
         /* Dual Range Slider CSS Magic */
@@ -274,29 +321,41 @@ const ShopPage = () => {
       <div className="container mx-auto px-6 lg:px-12 relative z-10">
         {/* --- Control Bar --- */}
         <div className="sticky top-24 z-30 mb-8 transition-all duration-300">
-          <div className="bg-white/70 backdrop-blur-xl rounded-[2rem] shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-white/40 p-2 flex flex-col lg:flex-row gap-3 items-center justify-between">
-            <div className="relative w-full lg:w-96 group">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#1A2118]/40 w-5 h-5 group-focus-within:text-[#BC5633] transition-colors" />
+          <div className="flex flex-row gap-3 items-center justify-between">
+            {/* Search Input */}
+            <div className="relative flex-1 group">
+              <div className="absolute inset-0 bg-white/80 backdrop-blur-xl rounded-full shadow-sm border border-white/50 transition-all group-focus-within:border-[#BC5633]/30 group-focus-within:shadow-md" />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#1A2118]/40 w-4 h-4 group-focus-within:text-[#BC5633] transition-colors z-10" />
               <input
                 type="text"
-                placeholder="Search essentials..."
+                placeholder="Search..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-[#F2F0EA]/50 hover:bg-[#F2F0EA] focus:bg-white border-none rounded-full py-3 pl-12 pr-4 text-[#1A2118] placeholder-[#1A2118]/40 focus:ring-2 focus:ring-[#BC5633]/20 transition-all outline-none"
+                className="relative z-10 w-full bg-transparent border-none rounded-full py-3 pl-10 pr-4 text-sm font-medium text-[#1A2118] placeholder-[#1A2118]/40 focus:ring-0 transition-all outline-none"
               />
             </div>
-            <div className="flex items-center gap-3 w-full lg:w-auto justify-end">
+
+            {/* Actions */}
+            <div className="flex items-center gap-2 shrink-0">
+              {/* Mobile Filter Button */}
               <button
-                onClick={() => setIsFilterOpen(!isFilterOpen)}
-                className="lg:hidden px-4 py-3 bg-[#1A2118] text-white rounded-full flex items-center gap-2 text-sm font-bold shadow-lg active:scale-95 transition-all"
+                onClick={() => setIsFilterOpen(true)}
+                className="lg:hidden h-[46px] px-5 bg-[#1A2118] text-white rounded-full flex items-center gap-2 text-xs font-bold uppercase tracking-widest shadow-lg active:scale-95 transition-all hover:bg-[#BC5633]"
               >
-                <SlidersHorizontal className="w-4 h-4" /> Filter
+                <SlidersHorizontal className="w-4 h-4" /> 
+                <span className="hidden sm:inline">Filters</span>
+                {hasActiveFilters && (
+                  <span className="w-1.5 h-1.5 bg-[#BC5633] sm:bg-white rounded-full" />
+                )}
               </button>
+
+              {/* Desktop Sort & View */}
               <div className="relative group hidden lg:block">
+                <div className="absolute inset-0 bg-white/80 backdrop-blur-xl rounded-full shadow-sm border border-white/50" />
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="appearance-none bg-[#F2F0EA]/50 hover:bg-[#F2F0EA] px-6 py-3 pr-10 rounded-full text-sm font-bold text-[#1A2118] cursor-pointer outline-none focus:ring-2 focus:ring-[#BC5633]/20 transition-all"
+                  className="relative z-10 appearance-none bg-transparent px-5 py-3 pr-9 rounded-full text-xs font-bold uppercase tracking-wide text-[#1A2118] cursor-pointer outline-none transition-all"
                 >
                   {sortOptions.map((option) => (
                     <option key={option.value} value={option.value}>
@@ -304,28 +363,29 @@ const ShopPage = () => {
                     </option>
                   ))}
                 </select>
-                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#1A2118]/50 pointer-events-none" />
+                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[#1A2118]/50 pointer-events-none z-10" />
               </div>
-              <div className="hidden lg:flex bg-[#F2F0EA]/50 rounded-full p-1 border border-[#1A2118]/5">
+
+              <div className="hidden lg:flex bg-white/80 backdrop-blur-xl rounded-full p-1 shadow-sm border border-white/50">
                 <button
                   onClick={() => setViewMode("grid")}
-                  className={`p-2.5 rounded-full transition-all duration-300 ${
+                  className={`p-2 rounded-full transition-all duration-300 ${
                     viewMode === "grid"
-                      ? "bg-white shadow-md text-[#BC5633]"
+                      ? "bg-[#1A2118] text-white shadow-sm"
                       : "text-[#1A2118]/40 hover:text-[#1A2118]"
                   }`}
                 >
-                  <Grid3X3 className="w-5 h-5" />
+                  <Grid3X3 className="w-4 h-4" />
                 </button>
                 <button
                   onClick={() => setViewMode("list")}
-                  className={`p-2.5 rounded-full transition-all duration-300 ${
+                  className={`p-2 rounded-full transition-all duration-300 ${
                     viewMode === "list"
-                      ? "bg-white shadow-md text-[#BC5633]"
+                      ? "bg-[#1A2118] text-white shadow-sm"
                       : "text-[#1A2118]/40 hover:text-[#1A2118]"
                   }`}
                 >
-                  <List className="w-5 h-5" />
+                  <List className="w-4 h-4" />
                 </button>
               </div>
             </div>
@@ -333,24 +393,30 @@ const ShopPage = () => {
         </div>
 
         <div className="flex gap-10 items-start">
-          {/* --- Sidebar Filters --- */}
+          {/* --- Sidebar Filters (Desktop) & Bottom Sheet (Mobile) --- */}
+          
           {/* Mobile Backdrop */}
           <div 
-            className={`fixed inset-0 bg-black/40 backdrop-blur-sm z-40 lg:hidden transition-opacity duration-300 ${
+            className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-50 lg:hidden transition-opacity duration-300 ${
               isFilterOpen ? "opacity-100" : "opacity-0 pointer-events-none"
             }`}
             onClick={() => setIsFilterOpen(false)}
           />
           
           <aside
-            className={`fixed lg:sticky top-0 lg:top-40 left-0 h-full lg:h-auto w-[85vw] lg:w-80 bg-[#F2F0EA] lg:bg-white/60 backdrop-blur-2xl lg:backdrop-blur-xl z-50 lg:z-0 p-6 lg:p-8 lg:rounded-[2.5rem] lg:border lg:border-white/50 lg:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.05)] transition-transform duration-300 lg:transform-none overflow-y-auto ${
+            className={`fixed bottom-0 left-0 right-0 lg:static lg:w-80 bg-white lg:bg-white/60 backdrop-blur-2xl lg:backdrop-blur-xl z-50 lg:z-0 rounded-t-[2.5rem] lg:rounded-[2.5rem] border-t lg:border border-white/50 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] lg:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.05)] transition-transform duration-500 cubic-bezier(0.32, 0.72, 0, 1) ${
               isFilterOpen
-                ? "translate-x-0 shadow-2xl"
-                : "-translate-x-full lg:translate-x-0"
-            }`}
+                ? "translate-y-0"
+                : "translate-y-full lg:translate-y-0"
+            } max-h-[85vh] lg:max-h-none overflow-hidden flex flex-col`}
           >
+            {/* Mobile Drag Handle */}
+            <div className="lg:hidden w-full flex justify-center pt-4 pb-2" onClick={() => setIsFilterOpen(false)}>
+              <div className="w-12 h-1.5 bg-[#1A2118]/10 rounded-full" />
+            </div>
+
             {/* Header & Reset */}
-            <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center justify-between p-6 lg:p-8 pb-4 lg:pb-8 border-b lg:border-none border-[#1A2118]/5">
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-[#1A2118] rounded-[12px] text-white">
                   <Filter className="w-4 h-4" />
@@ -358,9 +424,7 @@ const ShopPage = () => {
                 <h2 className="text-lg font-bold text-[#1A2118]">Filters</h2>
               </div>
               <div className="flex items-center gap-4">
-                {(selectedCategories.length > 0 ||
-                  selectedRating ||
-                  priceRange[0] > 0) && (
+                {hasActiveFilters && (
                   <button
                     onClick={() => {
                       setSelectedCategories([]);
@@ -375,33 +439,30 @@ const ShopPage = () => {
                 )}
                 <button
                   onClick={() => setIsFilterOpen(false)}
-                  className="lg:hidden p-2 bg-white rounded-full shadow-md text-[#1A2118]"
+                  className="lg:hidden p-2 bg-[#F2F0EA] rounded-full text-[#1A2118]"
                 >
                   <X className="w-5 h-5" />
                 </button>
               </div>
             </div>
 
-            <div className="space-y-8">
+            {/* Scrollable Content */}
+            <div className="overflow-y-auto p-6 lg:p-8 space-y-8 flex-1">
               {/* Categories */}
-              <div className="bg-white/50 rounded-[1.5rem] p-4 border border-white/40">
-                <h3 className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/40 mb-4 ml-2">
+              <div className="space-y-4">
+                <h3 className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/40 ml-1">
                   Categories
                 </h3>
-                <div className="space-y-1">
+                <div className="space-y-2">
                   {categories.map((category) => (
                     <label
                       key={category.id}
-                      className={`flex items-center justify-between cursor-pointer group p-3 rounded-[1rem] transition-all duration-200 ${
-                        selectedCategories.includes(category.id)
-                          ? "bg-[#1A2118] text-white shadow-lg shadow-[#1A2118]/20"
-                          : "hover:bg-[#F2F0EA]"
-                      }`}
+                      className="flex items-center justify-between cursor-pointer group py-1"
                     >
                       <div className="flex items-center gap-3">
                         <input
                           type="checkbox"
-                          className="hidden"
+                          className="custom-checkbox"
                           checked={selectedCategories.includes(category.id)}
                           onChange={(e) => {
                             if (e.target.checked)
@@ -417,25 +478,23 @@ const ShopPage = () => {
                               );
                           }}
                         />
-                        <span className="text-sm font-medium">
+                        <span className={`text-sm font-medium transition-colors ${selectedCategories.includes(category.id) ? "text-[#1A2118]" : "text-[#596157] group-hover:text-[#1A2118]"}`}>
                           {category.name}
                         </span>
                       </div>
-                      {selectedCategories.includes(category.id) ? (
-                        <Check className="w-4 h-4" />
-                      ) : (
-                        <span className="text-xs font-bold opacity-30">
-                          {category.count}
-                        </span>
-                      )}
+                      <span className="text-xs font-bold text-[#1A2118]/20">
+                        {category.count}
+                      </span>
                     </label>
                   ))}
                 </div>
               </div>
 
+              <div className="h-px bg-[#1A2118]/5 w-full" />
+
               {/* Price Range */}
-              <div className="bg-white/50 rounded-[1.5rem] p-6 border border-white/40">
-                <div className="flex items-center justify-between mb-6">
+              <div className="space-y-6">
+                <div className="flex items-center justify-between">
                   <h3 className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/40">
                     Price Range
                   </h3>
@@ -443,7 +502,7 @@ const ShopPage = () => {
                     ₹{priceRange[0]} - ₹{priceRange[1]}
                   </span>
                 </div>
-                <div className="range-slider mb-8">
+                <div className="range-slider px-1">
                   <div className="slider-track"></div>
                   <div
                     className="slider-range"
@@ -479,9 +538,11 @@ const ShopPage = () => {
                 </div>
               </div>
 
+              <div className="h-px bg-[#1A2118]/5 w-full" />
+
               {/* Rating */}
-              <div className="bg-white/50 rounded-[1.5rem] p-4 border border-white/40">
-                <h3 className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/40 mb-4 ml-2">
+              <div className="space-y-4">
+                <h3 className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/40 ml-1">
                   Rating
                 </h3>
                 <div className="flex flex-col gap-2">
@@ -496,24 +557,15 @@ const ShopPage = () => {
                       className={`flex items-center justify-between p-3 rounded-[1rem] transition-all duration-200 border ${
                         selectedRating === rating
                           ? "bg-white border-[#BC5633] shadow-md shadow-[#BC5633]/10"
-                          : "border-transparent hover:bg-[#F2F0EA]"
+                          : "border-transparent hover:bg-white/50"
                       }`}
                     >
                       <div className="flex items-center gap-2">
-                        <span
-                          className={`text-sm font-bold ${
-                            selectedRating === rating
-                              ? "text-[#BC5633]"
-                              : "text-[#1A2118]"
-                          }`}
-                        >
-                          {rating}+ Stars
-                        </span>
                         <div className="flex">
                           {[...Array(5)].map((_, i) => (
                             <Star
                               key={i}
-                              className={`w-3 h-3 ${
+                              className={`w-3.5 h-3.5 ${
                                 i < rating
                                   ? "fill-[#BC5633] text-[#BC5633]"
                                   : "text-[#1A2118]/10"
@@ -521,6 +573,15 @@ const ShopPage = () => {
                             />
                           ))}
                         </div>
+                        <span
+                          className={`text-sm font-bold ${
+                            selectedRating === rating
+                              ? "text-[#BC5633]"
+                              : "text-[#1A2118]"
+                          }`}
+                        >
+                          & Up
+                        </span>
                       </div>
                       {selectedRating === rating && (
                         <div className="w-2 h-2 rounded-full bg-[#BC5633]" />
@@ -530,10 +591,64 @@ const ShopPage = () => {
                 </div>
               </div>
             </div>
+
+            {/* Mobile Sticky Footer */}
+            <div className="lg:hidden p-4 border-t border-[#1A2118]/5 bg-white">
+              <button
+                onClick={() => setIsFilterOpen(false)}
+                className="w-full py-4 bg-[#1A2118] text-white rounded-full font-bold uppercase tracking-widest text-sm shadow-lg active:scale-95 transition-transform"
+              >
+                Show {sortedProducts.length} Results
+              </button>
+            </div>
           </aside>
 
-          {/* --- PRODUCT GRID WITH LOAD MORE --- */}
+          {/* --- PRODUCT GRID WITH ACTIVE CHIPS --- */}
           <main className="flex-1 min-h-[60vh]">
+            {/* Active Filters Chips */}
+            {hasActiveFilters && (
+              <div className="flex flex-wrap gap-2 mb-6 animate-fade-in">
+                {selectedCategories.map((catId) => {
+                  const cat = categories.find((c) => c.id === catId);
+                  return (
+                    <button
+                      key={catId}
+                      onClick={() => removeCategory(catId)}
+                      className="flex items-center gap-2 px-3 py-1.5 bg-white border border-[#1A2118]/10 rounded-full text-xs font-bold text-[#1A2118] hover:border-[#BC5633] hover:text-[#BC5633] transition-colors shadow-sm"
+                    >
+                      {cat?.name} <X className="w-3 h-3" />
+                    </button>
+                  );
+                })}
+                {(priceRange[0] > 0 || priceRange[1] < 2000) && (
+                  <button
+                    onClick={resetPrice}
+                    className="flex items-center gap-2 px-3 py-1.5 bg-white border border-[#1A2118]/10 rounded-full text-xs font-bold text-[#1A2118] hover:border-[#BC5633] hover:text-[#BC5633] transition-colors shadow-sm"
+                  >
+                    ₹{priceRange[0]} - ₹{priceRange[1]} <X className="w-3 h-3" />
+                  </button>
+                )}
+                {selectedRating && (
+                  <button
+                    onClick={resetRating}
+                    className="flex items-center gap-2 px-3 py-1.5 bg-white border border-[#1A2118]/10 rounded-full text-xs font-bold text-[#1A2118] hover:border-[#BC5633] hover:text-[#BC5633] transition-colors shadow-sm"
+                  >
+                    {selectedRating}+ Stars <X className="w-3 h-3" />
+                  </button>
+                )}
+                <button
+                  onClick={() => {
+                    setSelectedCategories([]);
+                    setSelectedRating(null);
+                    setPriceRange([0, 2000]);
+                  }}
+                  className="text-xs font-bold text-[#BC5633] hover:underline ml-2"
+                >
+                  Clear All
+                </button>
+              </div>
+            )}
+
             <div className="flex items-center justify-between mb-6 px-2">
               <p className="text-sm text-[#1A2118]/50">
                 Showing{" "}
