@@ -1,430 +1,273 @@
+"use client";
+
 import React, { useState } from "react";
+import Link from "next/link";
 import {
-  Heart,
   Star,
+  Heart,
   ShoppingCart,
   Eye,
   Plus,
   Minus,
   Check,
-  ArrowRight,
 } from "lucide-react";
-import Link from "next/link";
-import QuickViewModal from "./QuickViewModal";
+import { useAppDispatch } from "../../redux/hooks";
+import { addToCart } from "../../redux/features/cart/cartSlice";
 
 interface ProductCardProps {
   id: string;
   imageUrl: string;
   title: string;
   description: string;
-  price: string | number;
-  originalPrice?: string | number;
-  rating?: number;
-  reviewCount?: number;
+  price: number;
+  rating: number;
+  reviewCount: number;
   isBestseller?: boolean;
   isOnSale?: boolean;
   isNew?: boolean;
-  isWishlisted?: boolean;
-  onAddToCart: (
-    product: {
-      id: string;
-      name: string;
-      price: number;
-      image: string;
-    },
+  originalPrice?: number;
+  onAddToCart?: (
+    product: { id: string; name: string; price: number; image: string },
     quantity: number
   ) => void;
-  onToggleWishlist: (id: string) => void;
+  onToggleWishlist?: (id: string) => void;
+  isWishlisted?: boolean;
   viewMode?: "grid" | "list";
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({
+const Badge = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => (
+  <span
+    className={`px-2 py-0.5 md:px-3 md:py-1 rounded-none text-[9px] md:text-[10px] font-medium uppercase tracking-[0.2em] backdrop-blur-sm border ${className}`}
+  >
+    {children}
+  </span>
+);
+
+const ProductCard = ({
   id,
   imageUrl,
   title,
   description,
   price,
+  rating,
+  reviewCount,
+  isBestseller,
+  isOnSale,
+  isNew,
   originalPrice,
-  rating = 0,
-  reviewCount = 0,
-  isBestseller = false,
-  isOnSale = false,
-  isNew = false,
-  isWishlisted: initialIsWishlisted = false,
   onAddToCart,
   onToggleWishlist,
+  isWishlisted = false,
   viewMode = "grid",
-}) => {
-  const [isWishlisted, setIsWishlisted] = useState(initialIsWishlisted);
-  const [quantity, setQuantity] = useState(1);
-  const [showQuickView, setShowQuickView] = useState(false);
-  const [isAdding, setIsAdding] = useState(false);
+}: ProductCardProps) => {
+  const dispatch = useAppDispatch();
   const [isHovered, setIsHovered] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+  const [isAdding, setIsAdding] = useState(false);
 
-  const formatPrice = (p: string | number) => {
-    if (typeof p === "number") {
-      return `$${p.toFixed(2)}`;
+  const handleAddToCart = () => {
+    setIsAdding(true);
+    if (onAddToCart) {
+      onAddToCart(
+        { id, name: title, price, image: imageUrl },
+        quantity
+      );
+    } else {
+      dispatch(
+        addToCart({
+          id,
+          name: title,
+          price,
+          image: imageUrl,
+          quantity,
+          size: "Regular", 
+        })
+      );
     }
-    return p;
+    setTimeout(() => setIsAdding(false), 1500);
   };
-
-  const getPriceValue = (p: string | number) => {
-    if (typeof p === "number") return p;
-    return parseFloat(p.replace(/[^0-9.]/g, ""));
-  };
-
-  const displayPrice = formatPrice(price);
-  const displayOriginalPrice = originalPrice ? formatPrice(originalPrice) : undefined;
 
   const handleWishlistToggle = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    setIsWishlisted(!isWishlisted);
-    onToggleWishlist(id);
+    if (onToggleWishlist) {
+      onToggleWishlist(id);
+    }
   };
 
-  const handleAddToCart = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsAdding(true);
-
-    const priceNum = getPriceValue(price);
-    onAddToCart(
-      { id, name: title, price: priceNum, image: imageUrl },
-      quantity
-    );
-
-    setTimeout(() => setIsAdding(false), 1500);
-  };
-
-  const handleQuantityChange = (e: React.MouseEvent, change: number) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setQuantity((prev) => Math.max(1, prev + change));
-  };
-
-  // --- ONE UI 8 BADGE COMPONENT ---
-  const Badge = ({
-    type,
-    label,
-  }: {
-    type: "sale" | "new" | "best";
-    label: string;
-  }) => {
-    const styles = {
-      sale: "bg-brand-secondary-600 text-white",
-      new: "bg-brand-primary-900 text-white",
-      best: "bg-white/90 text-brand-secondary-600 border border-brand-secondary-600/20",
-    };
-    return (
-      <span
-        className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-sm backdrop-blur-md ${styles[type]}`}
-      >
-        {label}
-      </span>
-    );
-  };
-
-  // --- LIST VIEW (Horizontal Card) ---
+  // --- LIST VIEW ---
   if (viewMode === "list") {
     return (
-      // Added One UI style border: border-[#1A2118]/10
-      <div className="group relative flex flex-col md:flex-row bg-white/80 backdrop-blur-xl border border-brand-primary-900/10 shadow-[0_8px_30px_rgba(0,0,0,0.04)] rounded-[2.5rem] overflow-hidden transition-all duration-500 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:-translate-y-1">
-        {/* Image Section */}
-        <div className="relative w-full md:w-80 h-64 md:h-auto overflow-hidden">
-          <Link href={`/product/${id}`} className="block w-full h-full">
-            <img
-              src={imageUrl}
-              alt={title}
-              className="w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-brand-primary-900/5 group-hover:bg-transparent transition-colors duration-500" />
-          </Link>
-
-          {/* Floating Badges */}
-          <div className="absolute top-4 left-4 flex flex-col gap-2">
-            {isOnSale && <Badge type="sale" label="Sale" />}
-            {isNew && <Badge type="new" label="New" />}
-          </div>
+      <div className="group flex gap-6 bg-white p-4 border-b border-[#1A2118]/5 hover:bg-[#F9F8F6] transition-all duration-500">
+        {/* Image */}
+        <div className="relative w-32 md:w-48 aspect-square overflow-hidden bg-[#F9F8F6]">
+          <img
+            src={imageUrl}
+            alt={title}
+            className="w-full h-full object-cover mix-blend-multiply group-hover:scale-105 transition-transform duration-700"
+          />
         </div>
 
-        {/* Content Section */}
-        <div className="flex-1 p-8 flex flex-col justify-between">
-          <div>
-            <div className="flex justify-between items-start mb-2">
-              {isBestseller && <Badge type="best" label="Bestseller" />}
-              <button
-                onClick={handleWishlistToggle}
-                className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
-                  isWishlisted
-                    ? "bg-brand-primary-50 text-brand-secondary-600"
-                    : "bg-transparent text-brand-primary-900/40 hover:bg-brand-primary-50 hover:text-brand-secondary-600"
-                }`}
-              >
-                <Heart
-                  className={`w-5 h-5 ${isWishlisted ? "fill-current" : ""}`}
-                />
-              </button>
-            </div>
-
-            <Link href={`/product/${id}`}>
-              <h3 className="text-2xl font-serif font-bold text-brand-primary-900 mb-2 group-hover:text-brand-secondary-600 transition-colors">
-                {title}
-              </h3>
-            </Link>
-
-            <div className="flex items-center gap-2 mb-4">
-              <div className="flex gap-0.5">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    className={`w-3.5 h-3.5 ${
-                      i < Math.floor(rating)
-                        ? "fill-brand-secondary-600 text-brand-secondary-600"
-                        : "text-brand-primary-900/20"
-                    }`}
-                  />
-                ))}
-              </div>
-              <span className="text-xs font-bold text-brand-primary-900/50 uppercase tracking-wide">
-                {reviewCount} Reviews
-              </span>
-            </div>
-
-            <p className="text-brand-primary-500 leading-relaxed mb-6 line-clamp-2">
-              {description}
-            </p>
+        {/* Content */}
+        <div className="flex-1 flex flex-col justify-center py-2">
+          <div className="flex justify-between items-start mb-2">
+            <h3 className="font-serif text-lg md:text-xl text-[#1A2118] group-hover:text-[#BC5633] transition-colors">
+              {title}
+            </h3>
           </div>
 
-          {/* Action Footer */}
-          <div className="flex items-end justify-between border-t border-[#1A2118]/10 pt-6">
-            <div>
-              <p className="text-xs font-bold uppercase text-brand-primary-900/40 mb-1 tracking-widest">
-                Price
-              </p>
-              <div className="flex items-baseline gap-3">
-                <span className="text-3xl font-serif font-bold text-brand-primary-900">
-                  {displayPrice}
+          <p className="text-[#596157] text-sm mb-4 line-clamp-2 max-w-lg font-light">
+            {description}
+          </p>
+
+          <div className="flex items-center justify-between mt-auto">
+            <div className="flex items-baseline gap-3">
+              <span className="text-lg font-medium text-[#1A2118]">
+                ${price}
+              </span>
+              {isOnSale && originalPrice && (
+                <span className="text-xs text-[#1A2118]/40 line-through decoration-1">
+                  ${originalPrice}
                 </span>
-                {displayOriginalPrice && (
-                  <span className="text-lg text-brand-primary-900/40 line-through decoration-1">
-                    {displayOriginalPrice}
-                  </span>
-                )}
-              </div>
+              )}
             </div>
 
-            <div className="flex items-center gap-3">
-              {/* Simple Quantity */}
-              <div className="flex items-center bg-brand-primary-50 rounded-[1.2rem] p-1">
-                <button
-                  onClick={(e) => handleQuantityChange(e, -1)}
-                  className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white shadow-sm text-brand-primary-900 transition-all"
-                >
-                  <Minus size={14} />
-                </button>
-                <span className="w-8 text-center font-bold text-sm">
-                  {quantity}
-                </span>
-                <button
-                  onClick={(e) => handleQuantityChange(e, 1)}
-                  className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white shadow-sm text-brand-primary-900 transition-all"
-                >
-                  <Plus size={14} />
-                </button>
-              </div>
-
-              <button
-                onClick={handleAddToCart}
-                className={`h-12 px-8 rounded-[1.5rem] font-bold text-sm uppercase tracking-widest transition-all duration-300 flex items-center gap-2 shadow-lg ${
-                  isAdding
-                    ? "bg-brand-primary-700 text-white w-12 px-0 justify-center"
-                    : "bg-brand-primary-900 text-white hover:bg-brand-secondary-600 hover:shadow-brand-secondary-600/30"
-                }`}
-              >
-                {isAdding ? (
-                  <Check size={20} />
-                ) : (
-                  <>
-                    Add to Cart <ArrowRight size={16} />
-                  </>
-                )}
-              </button>
-            </div>
+            <button
+              onClick={handleAddToCart}
+              className="text-xs font-bold uppercase tracking-widest text-[#1A2118] hover:text-[#BC5633] transition-colors border-b border-[#1A2118] hover:border-[#BC5633] pb-0.5"
+            >
+              {isAdding ? "Added" : "Add to Cart"}
+            </button>
           </div>
         </div>
       </div>
     );
   }
 
-  // --- GRID VIEW (One UI Card) ---
+  // --- GRID VIEW (Professional Polish) ---
   return (
-    <>
-      <div
-        // Updated border to be visible (10% opacity dark green) to match One UI 8 lines
-        className="group relative w-full bg-white rounded-[2.5rem] overflow-hidden transition-all duration-500 hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.15)] hover:-translate-y-2 border border-brand-primary-900/10"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        {/* Image Container */}
-        <div className="relative aspect-[3/4] overflow-hidden bg-brand-primary-50">
-          <Link href={`/product/${id}`}>
-            <img
-              src={imageUrl}
-              alt={title}
-              className="w-full h-full object-cover transition-transform duration-[1.5s] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110"
-            />
-            {/* Subtle Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-primary-900/40 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
-          </Link>
+    <div
+      className="group relative flex flex-col h-full bg-white rounded-[1.5rem] overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* --- IMAGE SECTION --- */}
+      <div className="relative aspect-square md:aspect-[3/4] overflow-hidden bg-[#F9F8F6]">
+        <Link href={`/product/${id}`}>
+          <img
+            src={imageUrl}
+            alt={title}
+            className="w-full h-full object-cover mix-blend-multiply transition-transform duration-1000 ease-out group-hover:scale-105"
+          />
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-[#1A2118]/0 group-hover:bg-[#1A2118]/2 transition-colors duration-500" />
+        </Link>
 
-          {/* Top Actions */}
-          <div className="absolute top-4 left-4 right-4 flex justify-between items-start z-20">
-            <div className="flex flex-col gap-2">
-              {isBestseller && <Badge type="best" label="Best" />}
-              {isOnSale && <Badge type="sale" label="Sale" />}
-            </div>
-            <button
-              onClick={handleWishlistToggle}
-              className={`w-10 h-10 rounded-full backdrop-blur-md flex items-center justify-center transition-all duration-300 shadow-sm ${
-                isWishlisted
-                  ? "bg-white text-brand-secondary-600 rotate-[360deg]"
-                  : "bg-white/30 text-white hover:bg-white hover:text-brand-secondary-600"
-              }`}
-            >
-              <Heart
-                className={`w-5 h-5 ${isWishlisted ? "fill-current" : ""}`}
-              />
-            </button>
-          </div>
+        {/* Wishlist Button (Minimal) */}
+        <button
+          onClick={handleWishlistToggle}
+          className={`absolute top-3 right-3 z-20 transition-all duration-300 ${
+            isWishlisted
+              ? "text-[#BC5633] scale-110"
+              : "text-[#1A2118]/40 hover:text-[#1A2118] hover:scale-110"
+          }`}
+        >
+          <Heart
+            className={`w-5 h-5 ${isWishlisted ? "fill-current" : ""}`}
+            strokeWidth={1.5}
+          />
+        </button>
 
-          {/* Floating Interactive Island (Bottom of Image) */}
-          <div
-            className={`absolute bottom-4 left-4 right-4 transition-all duration-500 transform ${
-              isHovered
-                ? "translate-y-0 opacity-100"
-                : "translate-y-4 opacity-0"
-            }`}
-          >
-            <div className="bg-white/95 backdrop-blur-xl rounded-[1.8rem] p-1.5 flex items-center justify-between shadow-lg border border-white/50">
-              {/* Quantity Stepper */}
-              <div className="flex items-center bg-brand-primary-50 rounded-[1.2rem] h-10">
-                <button
-                  onClick={(e) => handleQuantityChange(e, -1)}
-                  className="w-10 h-full flex items-center justify-center hover:bg-white rounded-l-[1.2rem] transition-colors active:scale-90"
-                >
-                  <Minus size={14} />
-                </button>
-                <span className="w-6 text-center text-sm font-bold">
-                  {quantity}
-                </span>
-                <button
-                  onClick={(e) => handleQuantityChange(e, 1)}
-                  className="w-10 h-full flex items-center justify-center hover:bg-white rounded-r-[1.2rem] transition-colors active:scale-90"
-                >
-                  <Plus size={14} />
-                </button>
-              </div>
-
-              {/* Quick Add Button */}
-              <button
-                onClick={handleAddToCart}
-                className={`h-10 rounded-[1.2rem] flex items-center justify-center gap-2 font-bold text-xs uppercase tracking-wider transition-all duration-300 ${
-                  isAdding
-                    ? "bg-brand-primary-700 text-white w-10"
-                    : "bg-brand-primary-900 text-white flex-1 ml-2 hover:bg-brand-secondary-600"
-                }`}
-              >
-                {isAdding ? (
-                  <Check size={16} />
-                ) : (
-                  <>
-                    <span>Add</span>
-                    <ShoppingCart size={14} />
-                  </>
-                )}
-              </button>
-            </div>
-          </div>
+        {/* --- BADGES (Minimal) --- */}
+        <div className="absolute top-3 left-3 z-10 flex flex-col gap-1.5">
+          {isBestseller && (
+            <Badge className="bg-white/90 text-[#1A2118] border-transparent">
+              Best
+            </Badge>
+          )}
+          {isNew && (
+            <Badge className="bg-[#1A2118] text-white border-transparent">
+              New
+            </Badge>
+          )}
+          {isOnSale && (
+            <Badge className="bg-[#BC5633] text-white border-transparent">
+              Sale
+            </Badge>
+          )}
         </div>
 
-        {/* Card Body */}
-        <div className="p-6 pt-5 relative bg-white">
-          {/* Quick View (Floating between image and text) */}
+        {/* --- DESKTOP HOVER ACTIONS --- */}
+        <div
+          className={`hidden md:flex absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-t border-[#1A2118]/5 p-4 transition-all duration-500 transform ${
+            isHovered
+              ? "translate-y-0 opacity-100"
+              : "translate-y-full opacity-0"
+          }`}
+        >
           <button
-            onClick={() => setShowQuickView(true)}
-            className="absolute -top-5 right-6 w-10 h-10 bg-brand-secondary-600 text-white rounded-full flex items-center justify-center shadow-lg shadow-brand-secondary-600/30 hover:scale-110 transition-transform z-20 group/btn"
+            onClick={(e) => {
+              e.preventDefault();
+              handleAddToCart();
+            }}
+            className="w-full text-xs font-bold uppercase tracking-[0.2em] text-[#1A2118] hover:text-[#BC5633] transition-colors flex items-center justify-center gap-2"
           >
-            <Eye
-              size={18}
-              className="group-hover/btn:scale-110 transition-transform"
-            />
+            {isAdding ? (
+              <>
+                <Check className="w-4 h-4" /> Added
+              </>
+            ) : (
+              "Add to Cart"
+            )}
           </button>
-
-          <div className="flex items-center justify-between mb-2">
-            <div className="flex items-center gap-1">
-              <Star className="w-3 h-3 fill-brand-secondary-600 text-brand-secondary-600" />
-              <span className="text-xs font-bold text-brand-primary-900/60">
-                {rating}
-              </span>
-            </div>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-brand-primary-900/40">
-              {reviewCount} Reviews
-            </span>
-          </div>
-
-          <Link href={`/product/${id}`} className="block group/title">
-            <h3 className="text-xl font-serif font-bold text-brand-primary-900 leading-tight mb-1 group-hover/title:text-brand-secondary-600 transition-colors line-clamp-1">
-              {title}
-            </h3>
-          </Link>
-
-          <div className="flex items-end justify-between mt-3">
-            <div>
-              <p className="text-xs text-brand-primary-500 line-clamp-1 mb-1 max-w-[150px]">
-                {description}
-              </p>
-              <div className="flex items-baseline gap-2">
-                <span className="text-lg font-bold text-brand-primary-900">
-                  {displayPrice}
-                </span>
-                {displayOriginalPrice && (
-                  <span className="text-xs text-brand-primary-900/40 line-through">
-                    {displayOriginalPrice}
-                  </span>
-                )}
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
-      <QuickViewModal
-        isOpen={showQuickView}
-        onClose={() => setShowQuickView(false)}
-        product={{
-          id,
-          imageUrl,
-          title,
-          description,
-          price,
-          originalPrice,
-          rating,
-          reviewCount,
-          isBestseller,
-          isOnSale,
-          isNew,
-        }}
-        onAddToCart={(title, qty) => {
-          const priceNum = getPriceValue(price);
-          onAddToCart(
-            { id, name: title, price: priceNum, image: imageUrl },
-            qty
-          );
-        }}
-        onToggleWishlist={onToggleWishlist}
-      />
-    </>
+      {/* --- CONTENT --- */}
+      <div className="flex flex-col flex-grow relative z-10 p-4">
+        <Link href={`/product/${id}`} className="block group-hover:opacity-70 transition-opacity">
+          <h3 className="font-serif text-[#1A2118] text-base md:text-lg mb-1 leading-tight">
+            {title}
+          </h3>
+        </Link>
+
+        {/* Description (Hidden on Mobile) */}
+        <p className="hidden md:block text-[#596157] text-xs leading-relaxed mb-3 line-clamp-2 font-light">
+          {description}
+        </p>
+
+        <div className="mt-auto flex items-end justify-between">
+          <div className="flex flex-col">
+            {isOnSale && originalPrice && (
+              <span className="text-[10px] text-[#1A2118]/40 line-through decoration-1 mb-0.5">
+                ${originalPrice}
+              </span>
+            )}
+            <span className="font-medium text-[#1A2118] text-sm md:text-base">
+              ${price}
+            </span>
+          </div>
+          
+          {/* Mobile Quick Add (Minimal) */}
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              handleAddToCart();
+            }}
+            className="md:hidden w-8 h-8 flex items-center justify-center text-[#1A2118] border border-[#1A2118]/10 rounded-full active:bg-[#1A2118] active:text-white transition-colors"
+          >
+            {isAdding ? <Check className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+          </button>
+        </div>
+      </div>
+    </div>
   );
 };
 

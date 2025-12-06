@@ -38,7 +38,7 @@ const ShopPage = () => {
   const [loading, setLoading] = useState(true);
 
   // --- LOAD MORE STATE ---
-  const ITEMS_PER_PAGE = 6;
+  const ITEMS_PER_PAGE = 100; // Show all items by default as requested
   const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
 
   useEffect(() => {
@@ -244,7 +244,7 @@ const ShopPage = () => {
         }
       `}</style>
 
-      {/* ... Background ... */}
+      {/* --- Background --- */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <div
           className="absolute inset-0 opacity-[0.06] mix-blend-multiply"
@@ -256,7 +256,7 @@ const ShopPage = () => {
         <div className="absolute bottom-0 -left-20 w-[600px] h-[600px] bg-[#1A2118] rounded-full mix-blend-overlay filter blur-[120px] opacity-10 animate-blob" />
       </div>
 
-      {/* ... Header ... */}
+      {/* --- Header --- */}
       <section className="relative pt-32 pb-8 px-6 lg:px-12 z-10">
         <div className="container mx-auto">
           <div className="flex items-center gap-3 mb-4">
@@ -265,14 +265,14 @@ const ShopPage = () => {
               The Pantry
             </span>
           </div>
-          <h1 className="text-5xl md:text-7xl font-serif font-medium tracking-tight text-[#1A2118]">
+          <h1 className="text-4xl md:text-7xl font-serif font-medium tracking-tight text-[#1A2118]">
             Harvest <span className="italic text-[#596157]">Collection.</span>
           </h1>
         </div>
       </section>
 
       <div className="container mx-auto px-6 lg:px-12 relative z-10">
-        {/* ... Control Bar ... */}
+        {/* --- Control Bar --- */}
         <div className="sticky top-24 z-30 mb-8 transition-all duration-300">
           <div className="bg-white/70 backdrop-blur-xl rounded-[2rem] shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-white/40 p-2 flex flex-col lg:flex-row gap-3 items-center justify-between">
             <div className="relative w-full lg:w-96 group">
@@ -288,7 +288,7 @@ const ShopPage = () => {
             <div className="flex items-center gap-3 w-full lg:w-auto justify-end">
               <button
                 onClick={() => setIsFilterOpen(!isFilterOpen)}
-                className="lg:hidden px-4 py-3 bg-[#1A2118] text-white rounded-full flex items-center gap-2 text-sm font-bold"
+                className="lg:hidden px-4 py-3 bg-[#1A2118] text-white rounded-full flex items-center gap-2 text-sm font-bold shadow-lg active:scale-95 transition-all"
               >
                 <SlidersHorizontal className="w-4 h-4" /> Filter
               </button>
@@ -333,11 +333,19 @@ const ShopPage = () => {
         </div>
 
         <div className="flex gap-10 items-start">
-          {/* ... Sidebar Filters ... */}
+          {/* --- Sidebar Filters --- */}
+          {/* Mobile Backdrop */}
+          <div 
+            className={`fixed inset-0 bg-black/40 backdrop-blur-sm z-40 lg:hidden transition-opacity duration-300 ${
+              isFilterOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+            }`}
+            onClick={() => setIsFilterOpen(false)}
+          />
+          
           <aside
-            className={`fixed lg:sticky top-0 lg:top-40 left-0 h-full lg:h-auto w-full lg:w-80 bg-white/95 lg:bg-white/60 backdrop-blur-2xl lg:backdrop-blur-xl z-40 lg:z-0 p-8 lg:p-8 lg:rounded-[2.5rem] lg:border lg:border-white/50 lg:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.05)] transition-transform duration-300 lg:transform-none ${
+            className={`fixed lg:sticky top-0 lg:top-40 left-0 h-full lg:h-auto w-[85vw] lg:w-80 bg-[#F2F0EA] lg:bg-white/60 backdrop-blur-2xl lg:backdrop-blur-xl z-50 lg:z-0 p-6 lg:p-8 lg:rounded-[2.5rem] lg:border lg:border-white/50 lg:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.05)] transition-transform duration-300 lg:transform-none overflow-y-auto ${
               isFilterOpen
-                ? "translate-x-0"
+                ? "translate-x-0 shadow-2xl"
                 : "-translate-x-full lg:translate-x-0"
             }`}
           >
@@ -349,27 +357,29 @@ const ShopPage = () => {
                 </div>
                 <h2 className="text-lg font-bold text-[#1A2118]">Filters</h2>
               </div>
-              {(selectedCategories.length > 0 ||
-                selectedRating ||
-                priceRange[0] > 0) && (
+              <div className="flex items-center gap-4">
+                {(selectedCategories.length > 0 ||
+                  selectedRating ||
+                  priceRange[0] > 0) && (
+                  <button
+                    onClick={() => {
+                      setSelectedCategories([]);
+                      setSelectedRating(null);
+                      setPriceRange([0, 2000]);
+                      setSearchQuery("");
+                    }}
+                    className="text-[10px] font-bold uppercase tracking-widest text-[#BC5633] hover:text-[#1A2118] transition-colors flex items-center gap-1"
+                  >
+                    <RefreshCcw className="w-3 h-3" /> Reset
+                  </button>
+                )}
                 <button
-                  onClick={() => {
-                    setSelectedCategories([]);
-                    setSelectedRating(null);
-                    setPriceRange([0, 2000]);
-                    setSearchQuery("");
-                  }}
-                  className="text-[10px] font-bold uppercase tracking-widest text-[#BC5633] hover:text-[#1A2118] transition-colors flex items-center gap-1"
+                  onClick={() => setIsFilterOpen(false)}
+                  className="lg:hidden p-2 bg-white rounded-full shadow-md text-[#1A2118]"
                 >
-                  <RefreshCcw className="w-3 h-3" /> Reset
+                  <X className="w-5 h-5" />
                 </button>
-              )}
-              <button
-                onClick={() => setIsFilterOpen(false)}
-                className="lg:hidden p-2 bg-[#F2F0EA] rounded-full"
-              >
-                <X className="w-6 h-6" />
-              </button>
+              </div>
             </div>
 
             <div className="space-y-8">
@@ -541,9 +551,9 @@ const ShopPage = () => {
             ) : sortedProducts.length > 0 ? (
               <>
                 <div
-                  className={`grid gap-6 ${
+                  className={`grid gap-3 sm:gap-6 ${
                     viewMode === "grid"
-                      ? "grid-cols-1 sm:grid-cols-2 xl:grid-cols-3"
+                      ? "grid-cols-2 sm:grid-cols-2 xl:grid-cols-3"
                       : "grid-cols-1"
                   }`}
                 >

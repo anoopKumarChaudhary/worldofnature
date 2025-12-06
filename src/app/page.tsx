@@ -5,15 +5,14 @@ import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { addToCart } from "./redux/features/cart/cartSlice";
 import { productsAPI, Product } from "./services/api";
+import ProductCard from "./components/ProductCard";
 import {
   ArrowRight,
   Star,
-  Plus,
   MoveRight,
   CheckCircle2,
   Sprout,
   Droplets,
-  ArrowDown,
   Globe,
   ShieldCheck,
 } from "lucide-react";
@@ -38,16 +37,20 @@ const HomePage = () => {
     fetchData();
   }, []);
 
-  const handleAddToCart = (product: Product) => {
+  const handleAddToCart = (product: { id: string; name: string; price: number; image: string }, quantity: number) => {
     dispatch(
       addToCart({
-        id: product._id,
-        name: product.title,
+        id: product.id,
+        name: product.name,
         price: product.price,
-        image: product.imageUrl,
-        quantity: 1,
+        image: product.image,
+        quantity: quantity,
       })
     );
+  };
+
+  const handleToggleWishlist = (id: string) => {
+    console.log("Toggle wishlist for:", id);
   };
 
   const categories = [
@@ -279,7 +282,7 @@ const HomePage = () => {
                   id="curve"
                   d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
                   fill="transparent"
-                />
+                  />
                 <text
                   width="500"
                   className="text-[13px] font-bold uppercase tracking-widest fill-current"
@@ -328,7 +331,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* --- 3. CATEGORIES (Unchanged) --- */}
+      {/* --- 3. CATEGORIES --- */}
       <section className="py-24 px-6">
         <div className="container mx-auto">
           <div className="flex flex-col lg:flex-row gap-12">
@@ -371,7 +374,8 @@ const HomePage = () => {
                 </div>
               </div>
             </div>
-            <div className="lg:w-2/3 h-[600px] relative rounded-[2rem] overflow-hidden bg-[#DEDBD4] shadow-xl">
+            {/* Mobile: Stacked images. Desktop: Absolute positioning */}
+            <div className="lg:w-2/3 h-[400px] lg:h-[600px] relative rounded-[2rem] overflow-hidden bg-[#DEDBD4] shadow-xl">
               {categories.map((cat) => (
                 <div
                   key={cat.id}
@@ -418,56 +422,23 @@ const HomePage = () => {
               <div className="w-10 h-10 border-2 border-[#BC5633] border-t-transparent rounded-full animate-spin"></div>
             </div>
           ) : (
-            <div className="flex overflow-x-auto gap-8 pb-12 snap-x scrollbar-hide">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {featuredProducts.map((product) => (
-                <div
-                  key={product._id}
-                  className="min-w-[300px] md:min-w-[400px] snap-center bg-[#252E22] rounded-[2rem] p-6 hover:bg-[#323A31] transition-colors group cursor-pointer border border-[#F2F0EA]/5"
-                >
-                  <div className="h-[350px] w-full bg-[#1A2118] rounded-[1.5rem] overflow-hidden mb-6 relative">
-                    <img
-                      src={product.imageUrl}
-                      className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700"
-                    />
-                    {product.isBestseller && (
-                      <div className="absolute top-4 right-4 bg-[#BC5633] text-white text-[10px] font-bold uppercase px-2 py-1 rounded">
-                        Bestseller
-                      </div>
-                    )}
-                  </div>
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="text-2xl font-serif mb-1">
-                        {product.title}
-                      </h3>
-                      <p className="text-sm text-[#F2F0EA]/50 line-clamp-1">
-                        {product.description}
-                      </p>
-                    </div>
-                    <span className="text-lg font-bold">
-                      ${product.price.toFixed(2)}
-                    </span>
-                  </div>
-                  <div className="mt-6 pt-6 border-t border-[#F2F0EA]/10 flex justify-between items-center">
-                    <div className="flex gap-1">
-                      {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className={`w-3 h-3 ${
-                            i < Math.floor(product.rating)
-                              ? "fill-[#BC5633] text-[#BC5633]"
-                              : "text-[#F2F0EA]/20"
-                          }`}
-                        />
-                      ))}
-                    </div>
-                    <button
-                      onClick={() => handleAddToCart(product)}
-                      className="text-xs font-bold uppercase tracking-widest hover:text-[#BC5633] transition-colors"
-                    >
-                      Add to Cart
-                    </button>
-                  </div>
+                <div key={product._id} className="w-full">
+                  <ProductCard
+                    id={product._id}
+                    imageUrl={product.imageUrl}
+                    title={product.title}
+                    description={product.description}
+                    price={product.price}
+                    rating={product.rating}
+                    reviewCount={product.reviewCount}
+                    isBestseller={product.isBestseller}
+                    isOnSale={product.isOnSale}
+                    isNew={product.isNew}
+                    onAddToCart={handleAddToCart}
+                    onToggleWishlist={handleToggleWishlist}
+                  />
                 </div>
               ))}
             </div>
@@ -478,7 +449,7 @@ const HomePage = () => {
       {/* --- 5. VALUES --- */}
       <section className="py-24 px-6 bg-[#F2F0EA]">
         <div className="container mx-auto">
-          <div className="grid lg:grid-cols-3 gap-12 border-t border-[#1A2118]/10 pt-12">
+          <div className="grid md:grid-cols-3 gap-12 border-t border-[#1A2118]/10 pt-12">
             <div className="flex flex-col gap-4">
               <div className="w-12 h-12 bg-[#E6E2D6] rounded-full flex items-center justify-center mb-2">
                 <Sprout className="w-6 h-6 text-[#1A2118]" />

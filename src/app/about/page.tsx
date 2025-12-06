@@ -82,7 +82,7 @@ export default function AboutPage() {
                 </span>
               </div>
 
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-medium tracking-tight text-[#1A2118] mb-8 leading-[0.9]">
+              <h1 className="text-4xl md:text-7xl lg:text-8xl font-serif font-medium tracking-tight text-[#1A2118] mb-8 leading-[0.9]">
                 From Soil <br /> to{" "}
                 <span className="italic text-[#596157]">Soul.</span>
               </h1>

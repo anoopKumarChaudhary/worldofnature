@@ -117,7 +117,7 @@ export default function ContactPage() {
                   Support & Inquiries
                 </span>
               </div>
-              <h1 className="text-6xl lg:text-8xl font-serif font-medium tracking-tight text-[#1A2118]">
+              <h1 className="text-4xl lg:text-8xl font-serif font-medium tracking-tight text-[#1A2118]">
                 Get in <span className="italic text-[#596157]">Touch.</span>
               </h1>
             </div>

@@ -157,7 +157,7 @@ export default function ProductDetailPage() {
       : 0;
 
   return (
-    <div className="min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white pb-20 overflow-x-hidden">
+    <div className="min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white pb-32 lg:pb-20 overflow-x-hidden">
       {/* --- BACKGROUND & STYLES --- */}
       <style jsx>{`
         @keyframes blob {
@@ -200,7 +200,7 @@ export default function ProductDetailPage() {
             Shop
           </Link>
           <ChevronLeft className="w-3 h-3 rotate-180" />
-          <span className="text-[#1A2118]">{selectedProduct.title}</span>
+          <span className="text-[#1A2118] truncate max-w-[150px] sm:max-w-none">{selectedProduct.title}</span>
         </div>
       </div>
 
@@ -208,10 +208,10 @@ export default function ProductDetailPage() {
         <div className="container mx-auto max-w-7xl">
           <div className="lg:grid lg:grid-cols-12 lg:gap-16 items-start">
             {/* --- LEFT: IMMERSIVE IMAGE --- */}
-            <div className="lg:col-span-7 mb-12 lg:mb-0">
+            <div className="lg:col-span-7 mb-8 lg:mb-0">
               <div className="sticky top-32 space-y-6">
                 {/* Main Image Card */}
-                <div className="relative aspect-square w-full bg-white rounded-[3rem] overflow-hidden shadow-2xl shadow-[#1A2118]/5 border border-white">
+                <div className="relative aspect-[4/5] lg:aspect-square w-full bg-white rounded-[2rem] lg:rounded-[3rem] overflow-hidden shadow-2xl shadow-[#1A2118]/5 border border-white">
                   <img
                     src={selectedProduct.imageUrl}
                     alt={selectedProduct.title}
@@ -219,30 +219,30 @@ export default function ProductDetailPage() {
                   />
 
                   {/* Floating Badges */}
-                  <div className="absolute top-6 left-6 flex flex-col gap-2">
+                  <div className="absolute top-4 left-4 lg:top-6 lg:left-6 flex flex-col gap-2">
                     <span className="bg-white/90 backdrop-blur text-[#BC5633] text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm border border-[#BC5633]/20">
                       Premium
                     </span>
                   </div>
 
                   {/* Action Buttons on Image */}
-                  <div className="absolute top-6 right-6 flex flex-col gap-3">
+                  <div className="absolute top-4 right-4 lg:top-6 lg:right-6 flex flex-col gap-3">
                     <button
                       onClick={handleWishlistToggle}
-                      className={`w-12 h-12 rounded-full flex items-center justify-center backdrop-blur-md transition-all shadow-sm ${
+                      className={`w-10 h-10 lg:w-12 lg:h-12 rounded-full flex items-center justify-center backdrop-blur-md transition-all shadow-sm ${
                         isWishlisted
                           ? "bg-[#BC5633] text-white"
                           : "bg-white/60 text-[#1A2118] hover:bg-white"
                       }`}
                     >
                       <Heart
-                        className={`w-5 h-5 ${
+                        className={`w-4 h-4 lg:w-5 lg:h-5 ${
                           isWishlisted ? "fill-current" : ""
                         }`}
                       />
                     </button>
-                    <button className="w-12 h-12 rounded-full bg-white/60 backdrop-blur-md flex items-center justify-center text-[#1A2118] hover:bg-white transition-all shadow-sm">
-                      <Share2 className="w-5 h-5" />
+                    <button className="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-white/60 backdrop-blur-md flex items-center justify-center text-[#1A2118] hover:bg-white transition-all shadow-sm">
+                      <Share2 className="w-4 h-4 lg:w-5 lg:h-5" />
                     </button>
                   </div>
                 </div>
@@ -251,7 +251,7 @@ export default function ProductDetailPage() {
 
             {/* --- RIGHT: PRODUCT DETAILS PANEL --- */}
             <div className="lg:col-span-5">
-              <div className="bg-white/60 backdrop-blur-xl border border-white/40 rounded-[3rem] p-8 lg:p-10 shadow-xl">
+              <div className="bg-white/60 backdrop-blur-xl border border-white/40 rounded-[2rem] lg:rounded-[3rem] p-6 lg:p-10 shadow-xl">
                 {/* Header Info */}
                 <div className="mb-8 border-b border-[#1A2118]/10 pb-8">
                   <div className="flex items-center gap-2 mb-4">
@@ -272,7 +272,7 @@ export default function ProductDetailPage() {
                     </span>
                   </div>
 
-                  <h1 className="text-4xl md:text-5xl font-serif font-medium text-[#1A2118] mb-4 leading-tight">
+                  <h1 className="text-3xl md:text-5xl font-serif font-medium text-[#1A2118] mb-4 leading-tight">
                     {selectedProduct.title}
                   </h1>
 
@@ -291,7 +291,7 @@ export default function ProductDetailPage() {
                 {/* Controls */}
                 <div className="space-y-8">
                   {/* Description */}
-                  <p className="text-[#596157] leading-relaxed font-light text-lg">
+                  <p className="text-[#596157] leading-relaxed font-light text-base lg:text-lg">
                     {selectedProduct.description}
                   </p>
 
@@ -319,8 +319,8 @@ export default function ProductDetailPage() {
                     </div>
                   )}
 
-                  {/* Action Row */}
-                  <div className="pt-4 space-y-4">
+                  {/* Desktop Action Row (Hidden on Mobile) */}
+                  <div className="hidden lg:block pt-4 space-y-4">
                     <div className="flex gap-4">
                       {/* Quantity Pill */}
                       <div className="flex items-center bg-white rounded-[1.5rem] p-1.5 h-16 shadow-sm border border-[#1A2118]/5 w-40">
@@ -461,6 +461,53 @@ export default function ProductDetailPage() {
               </div>
             </div>
           )}
+        </div>
+      </div>
+
+      {/* --- MOBILE STICKY ACTION BAR --- */}
+      <div className="fixed bottom-0 left-0 right-0 p-4 bg-white/90 backdrop-blur-xl border-t border-[#1A2118]/5 z-50 lg:hidden shadow-[0_-10px_40px_rgba(0,0,0,0.1)]">
+        <div className="flex gap-4 items-center">
+          <div className="flex flex-col">
+            <span className="text-[10px] font-bold uppercase tracking-widest text-[#1A2118]/40">
+              Total Price
+            </span>
+            <span className="text-xl font-bold text-[#1A2118]">
+              ${selectedProduct.price * quantity}
+            </span>
+          </div>
+          
+          {/* Quantity Stepper Mini */}
+          <div className="flex items-center bg-[#F2F0EA] rounded-full p-1 h-12">
+            <button
+              onClick={() => setQuantity(Math.max(1, quantity - 1))}
+              className="w-8 h-full flex items-center justify-center rounded-full active:bg-white transition-colors"
+            >
+              <Minus className="w-3 h-3 text-[#1A2118]" />
+            </button>
+            <span className="w-6 text-center font-bold text-sm text-[#1A2118]">
+              {quantity}
+            </span>
+            <button
+              onClick={() => setQuantity(quantity + 1)}
+              className="w-8 h-full flex items-center justify-center rounded-full active:bg-white transition-colors"
+            >
+              <Plus className="w-3 h-3 text-[#1A2118]" />
+            </button>
+          </div>
+
+          <button
+            onClick={handleAddToCart}
+            disabled={!selectedProduct.inStock || isAdding}
+            className={`flex-1 h-12 rounded-full font-bold uppercase tracking-widest text-xs transition-all shadow-lg flex items-center justify-center gap-2 ${
+              isAdding
+                ? "bg-[#3A4D39] text-white"
+                : !selectedProduct.inStock
+                ? "bg-[#F2F0EA] text-[#1A2118]/40 cursor-not-allowed"
+                : "bg-[#BC5633] text-white active:scale-95"
+            }`}
+          >
+            {isAdding ? "Added" : "Add to Cart"}
+          </button>
         </div>
       </div>
     </div>
