@@ -159,7 +159,68 @@ export default function ProductDetailsPage() {
 
         {/* Reviews Section */}
         <ReviewsSection productId={product._id} />
+
+        {/* Related Products */}
+        <RelatedProducts currentProductId={product._id} />
       </div>
     </div>
   );
 }
+
+const RelatedProducts = ({ currentProductId }: { currentProductId: string }) => {
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const fetchRelated = async () => {
+      try {
+        const allProducts = await productsAPI.getProducts();
+        // Filter out current product and take first 3
+        const related = allProducts
+          .filter((p) => p._id !== currentProductId)
+          .slice(0, 3);
+        setProducts(related);
+      } catch (error) {
+        console.error("Failed to fetch related products", error);
+      }
+    };
+    fetchRelated();
+  }, [currentProductId]);
+
+  if (products.length === 0) return null;
+
+  return (
+    <div className="mt-24 border-t border-[#1A2118]/10 pt-16">
+      <h2 className="text-3xl font-serif text-[#1A2118] mb-12 text-center">
+        You Might Also Like
+      </h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {products.map((product) => (
+          <div key={product._id} className="h-full">
+             {/* We need to import ProductCard. Since we can't easily add imports to the top with replace_file_content in this chunk, 
+                 I will assume I need to add the import in a separate step or use a dynamic import if I was lazy, 
+                 but I should do it properly. For now, I'll just render a simplified card or I will add the import in the next step.
+                 Actually, I can't use ProductCard here without importing it. 
+                 I will add the import in a separate step.
+             */}
+             <div className="bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group">
+                <div className="relative aspect-[4/5] overflow-hidden bg-[#F9F8F6]">
+                  <img 
+                    src={product.imageUrl} 
+                    alt={product.title} 
+                    className="w-full h-full object-cover mix-blend-multiply group-hover:scale-105 transition-transform duration-700" 
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="font-serif text-lg text-[#1A2118] mb-2">{product.title}</h3>
+                  <p className="text-[#BC5633] font-bold">${typeof product.price === 'number' ? product.price : product.price}</p>
+                  <a href={`/product/${product._id}`} className="mt-4 block w-full py-3 border border-[#1A2118]/10 rounded-full text-center text-xs font-bold uppercase tracking-widest hover:bg-[#1A2118] hover:text-white transition-colors">
+                    View Product
+                  </a>
+                </div>
+             </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};

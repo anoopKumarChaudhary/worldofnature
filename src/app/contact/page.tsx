@@ -92,19 +92,7 @@ export default function ContactPage() {
       `}</style>
 
       {/* --- BACKGROUND LAYERS --- */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        {/* Texture Image */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src={backgroundImage}
-            alt=""
-            className="w-full h-full object-cover grayscale opacity-[0.12] mix-blend-multiply"
-          />
-        </div>
-        {/* Ambient Blobs */}
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#BC5633] rounded-full mix-blend-multiply filter blur-[120px] opacity-20 animate-blob" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#1A2118] rounded-full mix-blend-overlay filter blur-[120px] opacity-10 animate-blob animation-delay-2000" />
-      </div>
+      <div className="fixed inset-0 z-0 pointer-events-none bg-[#F2F0EA]" />
 
       {/* --- HEADER SECTION --- */}
       <section className="relative pt-32 pb-16 px-6 lg:px-12 z-10">

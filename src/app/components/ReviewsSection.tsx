@@ -104,7 +104,7 @@ export default function ReviewsSection({ productId }: ReviewsSectionProps) {
               onChange={(e) =>
                 setNewReview({ ...newReview, comment: e.target.value })
               }
-              className="w-full px-4 py-3 bg-gray-50 border border-transparent rounded-xl focus:bg-white focus:ring-2 focus:ring-[#BC5633]/20 focus:outline-none transition-all"
+              className="w-full px-4 py-3 bg-[#F2F0EA]/50 border border-transparent rounded-xl focus:bg-white focus:ring-2 focus:ring-[#BC5633]/20 focus:outline-none transition-all"
               rows={4}
               placeholder="Share your thoughts..."
             />

@@ -113,7 +113,7 @@ const Navbar = () => {
             transition-all duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)]
             ${
               isScrolled
-                ? "w-[95%] md:w-[85%] rounded-full py-2 px-5 bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-xl shadow-sm border border-white/20 dark:border-white/5 supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-[#0a0a0a]/60"
+                ? "w-[95%] md:w-[85%] rounded-full py-2 px-5 bg-[#F2F0EA]/90 backdrop-blur-xl shadow-sm border border-[#1A2118]/5"
                 : "w-full md:w-[92%] py-4 px-6 bg-transparent"
             }
           `}
@@ -134,7 +134,7 @@ const Navbar = () => {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors duration-200 tracking-wide"
+                className="text-sm font-medium text-[#1A2118]/70 hover:text-[#1A2118] transition-colors duration-200 tracking-wide"
               >
                 {item.label}
               </Link>
@@ -147,7 +147,7 @@ const Navbar = () => {
 
             <button
               onClick={toggleDarkMode}
-              className="w-9 h-9 flex items-center justify-center rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10 transition-colors duration-200"
+              className="w-9 h-9 flex items-center justify-center rounded-full text-[#1A2118]/70 hover:bg-[#1A2118]/5 transition-colors duration-200"
               aria-label="Toggle Theme"
             >
               {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
@@ -161,12 +161,12 @@ const Navbar = () => {
               />
               {isAuthenticated ? (
                 <div className="flex items-center gap-2 ml-1">
-                  <Link href="/profile" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#BC5633] transition-colors">
+                  <Link href="/profile" className="text-sm font-medium text-[#1A2118] hover:text-[#BC5633] transition-colors">
                     {user?.firstName}
                   </Link>
                   <button
                     onClick={() => dispatch(logout())}
-                    className="w-9 h-9 flex items-center justify-center rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10 transition-colors duration-200"
+                    className="w-9 h-9 flex items-center justify-center rounded-full text-[#1A2118]/70 hover:bg-[#1A2118]/5 transition-colors duration-200"
                     aria-label="Logout"
                   >
                     <LogOut size={18} />
@@ -184,14 +184,14 @@ const Navbar = () => {
             {/* Cart with Badge */}
             <Link
               href="/cart"
-              className="relative w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition-colors duration-200"
+              className="relative w-9 h-9 flex items-center justify-center rounded-full hover:bg-[#1A2118]/5 transition-colors duration-200"
             >
               <ShoppingCart
                 size={18}
-                className="text-gray-800 dark:text-white"
+                className="text-[#1A2118]"
               />
               {cartItemsCount > 0 && (
-                <span className="absolute top-0.5 right-0.5 w-3.5 h-3.5 bg-[#BC5633] text-white text-[9px] font-bold flex items-center justify-center rounded-full ring-1 ring-white dark:ring-black">
+                <span className="absolute top-0.5 right-0.5 w-3.5 h-3.5 bg-[#BC5633] text-[#F2F0EA] text-[9px] font-bold flex items-center justify-center rounded-full ring-1 ring-[#F2F0EA]">
                   {cartItemsCount}
                 </span>
               )}
@@ -200,7 +200,7 @@ const Navbar = () => {
             {/* Mobile Hamburger */}
             <button
               onClick={toggleMobileMenu}
-              className="md:hidden w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-white/10 text-gray-900 dark:text-white ml-1 transition-colors duration-200"
+              className="md:hidden w-9 h-9 flex items-center justify-center rounded-full hover:bg-[#1A2118]/5 text-[#1A2118] ml-1 transition-colors duration-200"
             >
               <Menu size={20} />
             </button>
@@ -216,16 +216,16 @@ const Navbar = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[60] bg-white dark:bg-[#121212] flex flex-col"
+            className="fixed inset-0 z-[60] bg-[#F2F0EA] flex flex-col"
           >
             {/* Header inside Overlay */}
-            <div className="px-4 py-4 flex items-center justify-between border-b border-gray-100 dark:border-white/5">
+            <div className="px-4 py-4 flex items-center justify-between border-b border-[#1A2118]/10">
               <div className="h-10 w-auto overflow-visible">
                  <img src="/image.png" alt="World of Nature Logo" className="h-full w-auto object-contain" />
               </div>
               <button
                 onClick={closeMobileMenu}
-                className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-white/10 text-gray-900 dark:text-white transition-colors"
+                className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-[#1A2118]/5 text-[#1A2118] transition-colors"
               >
                 <X size={20} />
               </button>
@@ -237,23 +237,23 @@ const Navbar = () => {
                   key={item.href}
                   href={item.href}
                   onClick={closeMobileMenu}
-                  className="flex items-center gap-4 p-4 rounded-xl hover:bg-gray-50 dark:hover:bg-white/5 transition-colors"
+                  className="flex items-center gap-4 p-4 rounded-xl hover:bg-[#1A2118]/5 transition-colors"
                 >
-                  <item.icon size={20} className="text-gray-500 dark:text-gray-400" />
-                  <span className="text-lg font-medium text-gray-900 dark:text-white">
+                  <item.icon size={20} className="text-[#1A2118]/60" />
+                  <span className="text-lg font-medium text-[#1A2118]">
                     {item.label}
                   </span>
                 </Link>
               ))}
 
-              <div className="mt-6 pt-6 border-t border-gray-100 dark:border-white/5 grid grid-cols-2 gap-4">
+              <div className="mt-6 pt-6 border-t border-[#1A2118]/10 grid grid-cols-2 gap-4">
                  <Link
                   href="/wishlist"
                   onClick={closeMobileMenu}
-                  className="flex flex-col items-center justify-center p-4 rounded-xl bg-gray-50 dark:bg-white/5 hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
+                  className="flex flex-col items-center justify-center p-4 rounded-xl bg-[#1A2118]/5 hover:bg-[#1A2118]/10 transition-colors"
                 >
                   <Heart size={20} className="text-rose-500 mb-2" />
-                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Wishlist</span>
+                  <span className="text-sm font-medium text-[#1A2118]">Wishlist</span>
                 </Link>
                 {isAuthenticated ? (
                    <button
@@ -261,19 +261,19 @@ const Navbar = () => {
                       dispatch(logout());
                       closeMobileMenu();
                     }}
-                    className="flex flex-col items-center justify-center p-4 rounded-xl bg-gray-50 dark:bg-white/5 hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
+                    className="flex flex-col items-center justify-center p-4 rounded-xl bg-[#1A2118]/5 hover:bg-[#1A2118]/10 transition-colors"
                   >
                     <LogOut size={20} className="text-red-500 mb-2" />
-                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Logout</span>
+                    <span className="text-sm font-medium text-[#1A2118]">Logout</span>
                   </button>
                 ) : (
                   <Link
                     href="/login"
                     onClick={closeMobileMenu}
-                    className="flex flex-col items-center justify-center p-4 rounded-xl bg-gray-50 dark:bg-white/5 hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
+                    className="flex flex-col items-center justify-center p-4 rounded-xl bg-[#1A2118]/5 hover:bg-[#1A2118]/10 transition-colors"
                   >
                     <User size={20} className="text-blue-500 mb-2" />
-                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Login</span>
+                    <span className="text-sm font-medium text-[#1A2118]">Login</span>
                   </Link>
                 )}
               </div>
@@ -294,7 +294,7 @@ interface IconButtonProps {
 
 const IconButton = ({ icon, onClick, href, label }: IconButtonProps) => {
   const content = (
-    <div className="w-9 h-9 flex items-center justify-center rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10 transition-colors duration-200 cursor-pointer">
+    <div className="w-9 h-9 flex items-center justify-center rounded-full text-[#1A2118]/70 hover:bg-[#1A2118]/5 transition-colors duration-200 cursor-pointer">
       {icon}
     </div>
   );
