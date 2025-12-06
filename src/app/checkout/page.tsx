@@ -6,7 +6,8 @@ import { RootState, AppDispatch } from "../redux/store";
 import { clearCart } from "../redux/features/cart/cartSlice";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { ordersAPI } from "../services/api";
+import { ordersAPI, razorpayAPI } from "../services/api";
+import { useRazorpay, RazorpayOrderOptions } from "react-razorpay";
 import {
   Check,
   Truck,
@@ -16,6 +17,7 @@ import {
   MapPin,
   Package,
   DollarSign,
+  CreditCard,
 } from "lucide-react";
 
 interface ShippingInfo {
@@ -30,7 +32,7 @@ interface ShippingInfo {
 }
 
 interface PaymentInfo {
-  paymentMethod: "COD";
+  paymentMethod: "COD" | "RAZORPAY";
 }
 
 export default function CheckoutPage() {
@@ -38,6 +40,7 @@ export default function CheckoutPage() {
   const router = useRouter();
   const { items, total } = useSelector((state: RootState) => state.cart);
   const [currentStep, setCurrentStep] = useState(1);
+  const { Razorpay } = useRazorpay();
   const [shippingInfo, setShippingInfo] = useState<ShippingInfo>({
     firstName: "",
     lastName: "",
@@ -67,7 +70,76 @@ export default function CheckoutPage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const handleRazorpayPayment = async () => {
+    try {
+      const order = await razorpayAPI.createOrder(finalTotal);
+
+      const options: RazorpayOrderOptions = {
+        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "",
+        amount: order.amount,
+        currency: order.currency,
+        name: "World of Nature",
+        description: "Transaction",
+        order_id: order.id,
+        handler: async (response) => {
+          try {
+            await razorpayAPI.verifyPayment({
+              orderId: response.razorpay_order_id,
+              paymentId: response.razorpay_payment_id,
+              signature: response.razorpay_signature,
+            });
+            
+            // Create order in backend after successful payment
+             const orderData = {
+                items: items.map((item) => ({
+                  id: item.id,
+                  name: item.name,
+                  price: item.price,
+                  image: item.image,
+                  quantity: item.quantity,
+                  size: item.size,
+                })),
+                shippingInfo,
+                subtotal: total,
+                tax: total * 0.08,
+                shipping: 0,
+                paymentMethod: "RAZORPAY",
+                paymentId: response.razorpay_payment_id,
+              };
+
+              const newOrder = await ordersAPI.createOrder(orderData);
+              dispatch(clearCart());
+              router.push(`/order-confirmation?order=${newOrder.orderNumber}`);
+
+          } catch (error) {
+            console.error("Payment verification failed:", error);
+            alert("Payment verification failed");
+          }
+        },
+        prefill: {
+          name: `${shippingInfo.firstName} ${shippingInfo.lastName}`,
+          email: shippingInfo.email,
+          contact: shippingInfo.phone,
+        },
+        theme: {
+          color: "#1A2118",
+        },
+      };
+
+      const razorpayInstance = new Razorpay(options);
+      razorpayInstance.open();
+    } catch (error) {
+      console.error("Razorpay Error:", error);
+      alert("Something went wrong with payment initialization");
+    }
+  };
+
   const handlePlaceOrder = async () => {
+    if (paymentInfo.paymentMethod === "RAZORPAY") {
+      handleRazorpayPayment();
+      return;
+    }
+
     try {
       const orderData = {
         items: items.map((item) => ({
@@ -324,10 +396,22 @@ export default function CheckoutPage() {
                     Payment Method
                   </h2>
                   <div className="space-y-6">
-                    <div className="bg-[#F2F0EA]/50 rounded-[2rem] p-6 border border-[#1A2118]/10">
+                    {/* COD Option */}
+                    <div 
+                      className={`rounded-[2rem] p-6 border cursor-pointer transition-all ${
+                        paymentInfo.paymentMethod === "COD" 
+                          ? "bg-[#F2F0EA]/50 border-[#BC5633]" 
+                          : "bg-white border-[#1A2118]/10 hover:border-[#BC5633]/50"
+                      }`}
+                      onClick={() => setPaymentInfo({ paymentMethod: "COD" })}
+                    >
                       <div className="flex items-center gap-4 mb-4">
-                        <div className="w-12 h-12 bg-[#BC5633] rounded-full flex items-center justify-center">
-                          <DollarSign className="w-6 h-6 text-white" />
+                        <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
+                          paymentInfo.paymentMethod === "COD" ? "bg-[#BC5633]" : "bg-[#1A2118]/10"
+                        }`}>
+                          <DollarSign className={`w-6 h-6 ${
+                            paymentInfo.paymentMethod === "COD" ? "text-white" : "text-[#1A2118]"
+                          }`} />
                         </div>
                         <div>
                           <h3 className="font-bold text-[#1A2118] text-lg">
@@ -337,19 +421,47 @@ export default function CheckoutPage() {
                             Pay when your order arrives at your doorstep
                           </p>
                         </div>
-                      </div>
-                      <div className="bg-white/50 rounded-[1rem] p-4">
-                        <p className="text-sm text-[#1A2118]/70">
-                          <strong>Payment Method:</strong> Cash on Delivery
-                          (COD)
-                        </p>
-                        <p className="text-sm text-[#1A2118]/70 mt-2">
-                          <strong>Note:</strong> Please have exact change ready.
-                          Our delivery partner will collect the payment upon
-                          delivery.
-                        </p>
+                         {paymentInfo.paymentMethod === "COD" && (
+                          <div className="ml-auto">
+                            <Check className="w-6 h-6 text-[#BC5633]" />
+                          </div>
+                        )}
                       </div>
                     </div>
+
+                    {/* Razorpay Option */}
+                    <div 
+                      className={`rounded-[2rem] p-6 border cursor-pointer transition-all ${
+                        paymentInfo.paymentMethod === "RAZORPAY" 
+                          ? "bg-[#F2F0EA]/50 border-[#BC5633]" 
+                          : "bg-white border-[#1A2118]/10 hover:border-[#BC5633]/50"
+                      }`}
+                      onClick={() => setPaymentInfo({ paymentMethod: "RAZORPAY" })}
+                    >
+                      <div className="flex items-center gap-4 mb-4">
+                         <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
+                          paymentInfo.paymentMethod === "RAZORPAY" ? "bg-[#BC5633]" : "bg-[#1A2118]/10"
+                        }`}>
+                          <CreditCard className={`w-6 h-6 ${
+                            paymentInfo.paymentMethod === "RAZORPAY" ? "text-white" : "text-[#1A2118]"
+                          }`} />
+                        </div>
+                        <div>
+                          <h3 className="font-bold text-[#1A2118] text-lg">
+                            Pay Online (Razorpay)
+                          </h3>
+                          <p className="text-[#596157] text-sm">
+                            Secure payment via Credit/Debit Card, UPI, NetBanking
+                          </p>
+                        </div>
+                        {paymentInfo.paymentMethod === "RAZORPAY" && (
+                          <div className="ml-auto">
+                            <Check className="w-6 h-6 text-[#BC5633]" />
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
                     <div className="flex justify-between pt-6">
                       <button
                         type="button"
@@ -443,7 +555,7 @@ export default function CheckoutPage() {
                       onClick={handlePlaceOrder}
                       className="h-14 px-8 bg-[#BC5633] text-white rounded-[2rem] font-bold text-sm uppercase tracking-widest hover:bg-[#A34528] transition-all shadow-lg shadow-[#BC5633]/20 flex items-center gap-3"
                     >
-                      Place Order <Package className="w-4 h-4" />
+                      {paymentInfo.paymentMethod === "RAZORPAY" ? "Pay Now" : "Place Order"} <Package className="w-4 h-4" />
                     </button>
                   </div>
                 </div>

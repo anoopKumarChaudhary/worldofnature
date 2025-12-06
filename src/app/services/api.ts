@@ -305,3 +305,36 @@ export const reviewsAPI = {
     return response.json();
   },
 };
+
+export const razorpayAPI = {
+  createOrder: async (amount: number) => {
+    const token = localStorage.getItem("access_token");
+    const response = await fetch(`${API_BASE_URL}/razorpay/order`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ amount }),
+    });
+    if (!response.ok) throw new Error("Failed to create Razorpay order");
+    return response.json();
+  },
+  verifyPayment: async (data: {
+    orderId: string;
+    paymentId: string;
+    signature: string;
+  }) => {
+    const token = localStorage.getItem("access_token");
+    const response = await fetch(`${API_BASE_URL}/razorpay/verify`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+    });
+    if (!response.ok) throw new Error("Payment verification failed");
+    return response.json();
+  },
+};
