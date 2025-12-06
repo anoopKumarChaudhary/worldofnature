@@ -101,14 +101,9 @@ const Footer = () => {
               className="flex items-center space-x-2"
               aria-label="World of Nature - Go to homepage"
             >
-              <div className="w-10 h-10 bg-brand-primary-700 rounded-lg flex items-center justify-center">
-                <span className="text-brand-accent-300 font-bold text-xl">
-                  W
-                </span>
+              <div className="h-16 w-auto overflow-visible">
+                <img src="/image.png" alt="World of Nature Logo" className="h-full w-auto object-contain" />
               </div>
-              <span className="text-2xl font-bold text-brand-accent-100">
-                World of Nature
-              </span>
             </Link>
 
             <p className="text-brand-primary-200 leading-relaxed max-w-md">
