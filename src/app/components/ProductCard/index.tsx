@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Star,
   Heart,
@@ -107,10 +108,12 @@ const ProductCard = ({
       <div className="group flex gap-6 bg-white p-4 border-b border-[#1A2118]/5 hover:bg-[#F9F8F6] transition-all duration-500">
         {/* Image */}
         <div className="relative w-32 md:w-48 aspect-square overflow-hidden bg-[#F9F8F6]">
-          <img
+          <Image
             src={imageUrl}
             alt={title}
-            className="w-full h-full object-cover mix-blend-multiply group-hover:scale-105 transition-transform duration-700"
+            fill
+            sizes="(max-width: 768px) 150px, 200px"
+            className="object-cover mix-blend-multiply group-hover:scale-105 transition-transform duration-700"
           />
         </div>
 
@@ -157,13 +160,17 @@ const ProductCard = ({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
+
+
       {/* --- IMAGE SECTION --- */}
       <div className="relative aspect-square md:aspect-[3/4] overflow-hidden bg-[#F9F8F6]">
         <Link href={`/product/${id}`}>
-          <img
+          <Image
             src={imageUrl}
             alt={title}
-            className="w-full h-full object-cover mix-blend-multiply transition-transform duration-1000 ease-out group-hover:scale-105"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover mix-blend-multiply transition-transform duration-1000 ease-out group-hover:scale-105"
           />
           {/* Overlay */}
           <div className="absolute inset-0 bg-[#1A2118]/0 group-hover:bg-[#1A2118]/2 transition-colors duration-500" />

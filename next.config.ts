@@ -8,7 +8,13 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "pureandsure.in",
         port: "",
-        pathname: "/cdn/shop/files/**", // This specifically allows images from the path in your error
+        pathname: "/cdn/shop/files/**",
+      },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        port: "",
+        pathname: "/**",
       },
     ],
   },

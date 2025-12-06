@@ -13,6 +13,7 @@ import {
   Heart,
   ChevronRight,
 } from "lucide-react";
+import Image from "next/image";
 import { newsletterAPI } from "../../services/api";
 
 const Footer = () => {
@@ -69,8 +70,16 @@ const Footer = () => {
           {/* Brand Column */}
           <div className="lg:col-span-3 space-y-8">
             <Link href="/" className="inline-block" aria-label="World of Nature">
-              <div className="h-16 w-auto overflow-visible">
-                 <img src="/image.png" alt="World of Nature Logo" className="h-full w-auto object-contain brightness-0 invert opacity-90" />
+
+
+              <div className="relative h-16 w-48 overflow-visible">
+                 <Image 
+                   src="/image.png" 
+                   alt="World of Nature Logo" 
+                   fill
+                   className="object-contain brightness-0 invert opacity-90" 
+                   sizes="(max-width: 768px) 150px, 200px"
+                 />
               </div>
             </Link>
             <p className="text-[#F2F0EA]/70 leading-relaxed max-w-sm text-lg font-light">

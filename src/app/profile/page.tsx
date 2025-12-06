@@ -150,7 +150,7 @@ export default function ProfilePage() {
                     No orders yet
                   </h3>
                   <p className="text-[#596157] mb-8">
-                    You haven't placed any orders yet.
+                    You haven&apos;t placed any orders yet.
                   </p>
                   <Link
                     href="/shop"

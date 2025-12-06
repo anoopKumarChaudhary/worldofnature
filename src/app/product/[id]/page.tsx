@@ -319,7 +319,7 @@ export default function ProductDetailPage() {
                     </div>
                   )}
 
-                  {/* Desktop Action Row (Hidden on Mobile) */}
+                  {/* &quot;I absolutely love this honey! It&apos;s become a staple in my morning routine.&quot;) */}
                   <div className="hidden lg:block pt-4 space-y-4">
                     <div className="flex gap-4">
                       {/* Quantity Pill */}
@@ -454,7 +454,7 @@ export default function ProductDetailPage() {
                       </div>
                     </div>
                     <p className="text-[#596157] text-sm leading-relaxed">
-                      "{review.comment}"
+                      &quot;{review.comment}&quot;
                     </p>
                   </div>
                 ))}
