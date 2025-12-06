@@ -208,76 +208,110 @@ const Navbar = () => {
         </nav>
       </header>
 
-      {/* MOBILE MENU - CLEAN OVERLAY */}
+      {/* MOBILE MENU - PREMIUM OVERLAY */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[60] bg-[#F2F0EA] flex flex-col"
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-0 z-[60] bg-[#1A2118] flex flex-col overflow-hidden"
           >
+            {/* Background Texture */}
+            <div
+              className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+              }}
+            />
+
             {/* Header inside Overlay */}
-            <div className="px-4 py-4 flex items-center justify-between border-b border-[#1A2118]/10">
-              <div className="h-10 w-auto overflow-visible">
+            <div className="relative z-10 px-6 py-6 flex items-center justify-between">
+              <div className="h-10 w-auto overflow-visible opacity-90 invert brightness-0">
                  <img src="/image.png" alt="World of Nature Logo" className="h-full w-auto object-contain" />
               </div>
               <button
                 onClick={closeMobileMenu}
-                className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-[#1A2118]/5 text-[#1A2118] transition-colors"
+                className="w-12 h-12 flex items-center justify-center rounded-full bg-[#F2F0EA]/5 text-[#F2F0EA] hover:bg-[#F2F0EA]/10 transition-all active:scale-95"
               >
-                <X size={20} />
+                <X size={24} strokeWidth={1.5} />
               </button>
             </div>
 
-            <div className="flex-1 flex flex-col p-6 space-y-1 overflow-y-auto">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={closeMobileMenu}
-                  className="flex items-center gap-4 p-4 rounded-xl hover:bg-[#1A2118]/5 transition-colors"
-                >
-                  <item.icon size={20} className="text-[#1A2118]/60" />
-                  <span className="text-lg font-medium text-[#1A2118]">
-                    {item.label}
-                  </span>
-                </Link>
-              ))}
-
-              <div className="mt-6 pt-6 border-t border-[#1A2118]/10 grid grid-cols-2 gap-4">
-                 <Link
-                  href="/wishlist"
-                  onClick={closeMobileMenu}
-                  className="flex flex-col items-center justify-center p-4 rounded-xl bg-[#1A2118]/5 hover:bg-[#1A2118]/10 transition-colors"
-                >
-                  <Heart size={20} className="text-rose-500 mb-2" />
-                  <span className="text-sm font-medium text-[#1A2118]">Wishlist</span>
-                </Link>
-                {isAuthenticated ? (
-                   <button
-                    onClick={() => {
-                      dispatch(logout());
-                      closeMobileMenu();
+            {/* Navigation Links */}
+            <div className="flex-1 flex flex-col justify-center px-8 relative z-10">
+              <motion.ul
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+                variants={{
+                  visible: { transition: { staggerChildren: 0.1 } },
+                  hidden: {},
+                }}
+                className="space-y-6"
+              >
+                {navItems.map((item) => (
+                  <motion.li
+                    key={item.href}
+                    variants={{
+                      hidden: { opacity: 0, y: 20 },
+                      visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
                     }}
-                    className="flex flex-col items-center justify-center p-4 rounded-xl bg-[#1A2118]/5 hover:bg-[#1A2118]/10 transition-colors"
                   >
-                    <LogOut size={20} className="text-red-500 mb-2" />
-                    <span className="text-sm font-medium text-[#1A2118]">Logout</span>
-                  </button>
-                ) : (
-                  <Link
-                    href="/login"
-                    onClick={closeMobileMenu}
-                    className="flex flex-col items-center justify-center p-4 rounded-xl bg-[#1A2118]/5 hover:bg-[#1A2118]/10 transition-colors"
-                  >
-                    <User size={20} className="text-blue-500 mb-2" />
-                    <span className="text-sm font-medium text-[#1A2118]">Login</span>
-                  </Link>
-                )}
-              </div>
+                    <Link
+                      href={item.href}
+                      onClick={closeMobileMenu}
+                      className="group flex items-center gap-4 text-[#F2F0EA] hover:text-[#BC5633] transition-colors"
+                    >
+                      <span className="font-serif text-4xl md:text-5xl font-light tracking-tight group-hover:translate-x-2 transition-transform duration-300">
+                        {item.label}
+                      </span>
+                      <ChevronRight className="w-6 h-6 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-[#BC5633]" />
+                    </Link>
+                  </motion.li>
+                ))}
+              </motion.ul>
             </div>
+
+            {/* Footer Actions */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+              className="relative z-10 p-8 border-t border-[#F2F0EA]/10 grid grid-cols-2 gap-4"
+            >
+               <Link
+                href="/wishlist"
+                onClick={closeMobileMenu}
+                className="flex flex-col items-center justify-center p-6 rounded-2xl bg-[#F2F0EA]/5 hover:bg-[#F2F0EA]/10 transition-all active:scale-95 group"
+              >
+                <Heart size={24} className="text-[#F2F0EA] group-hover:text-[#BC5633] mb-3 transition-colors" strokeWidth={1.5} />
+                <span className="text-xs font-bold uppercase tracking-widest text-[#F2F0EA]/60 group-hover:text-[#F2F0EA] transition-colors">Wishlist</span>
+              </Link>
+              
+              {isAuthenticated ? (
+                 <button
+                  onClick={() => {
+                    dispatch(logout());
+                    closeMobileMenu();
+                  }}
+                  className="flex flex-col items-center justify-center p-6 rounded-2xl bg-[#F2F0EA]/5 hover:bg-[#BC5633] transition-all active:scale-95 group"
+                >
+                  <LogOut size={24} className="text-[#F2F0EA] mb-3" strokeWidth={1.5} />
+                  <span className="text-xs font-bold uppercase tracking-widest text-[#F2F0EA]/60 group-hover:text-[#F2F0EA] transition-colors">Logout</span>
+                </button>
+              ) : (
+                <Link
+                  href="/login"
+                  onClick={closeMobileMenu}
+                  className="flex flex-col items-center justify-center p-6 rounded-2xl bg-[#F2F0EA]/5 hover:bg-[#F2F0EA]/10 transition-all active:scale-95 group"
+                >
+                  <User size={24} className="text-[#F2F0EA] group-hover:text-[#BC5633] mb-3 transition-colors" strokeWidth={1.5} />
+                  <span className="text-xs font-bold uppercase tracking-widest text-[#F2F0EA]/60 group-hover:text-[#F2F0EA] transition-colors">Login</span>
+                </Link>
+              )}
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
