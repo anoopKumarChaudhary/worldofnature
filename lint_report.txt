@@ -1,0 +1,187 @@
+
+> worldofnature@0.1.0 lint
+> eslint
+
+
+/home/user/wons/worldofnature/src/app/about/page.tsx
+   69:17  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+   95:13  error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`                                                                                                                                                                                                                          react/no-unescaped-entities
+   96:55  error    `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`                                                                                                                                                                                                                          react/no-unescaped-entities
+  163:19  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/home/user/wons/worldofnature/src/app/cart/page.tsx
+   64:33  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                                                                                                                                                                                          react/no-unescaped-entities
+  138:21  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/home/user/wons/worldofnature/src/app/checkout/page.tsx
+   67:9   warning  'handlePaymentSubmit' is assigned a value but never used                                                                                                                                                                                                                                 @typescript-eslint/no-unused-vars
+  186:40  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                                                                                                                                                                                          react/no-unescaped-entities
+  498:29  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/home/user/wons/worldofnature/src/app/components/Button.tsx
+  43:32  warning  'asChild' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/home/user/wons/worldofnature/src/app/components/Contact/index.tsx
+   19:10  warning  'div' is defined but never used                                  @typescript-eslint/no-unused-vars
+  127:15  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  272:53  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+/home/user/wons/worldofnature/src/app/components/Navbar/index.tsx
+   24:3   warning  'Leaf' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-unused-vars
+   58:7   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/user/wons/worldofnature/src/app/components/Navbar/index.tsx:58:7
+  56 |     const savedDarkMode = localStorage.getItem("darkMode");
+  57 |     if (savedDarkMode === "true") {
+> 58 |       setIsDarkMode(true);
+     |       ^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  59 |       document.documentElement.classList.add("dark");
+  60 |     } else if (savedDarkMode === "false") {
+  61 |       setIsDarkMode(false);  react-hooks/set-state-in-effect
+   73:5   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/user/wons/worldofnature/src/app/components/Navbar/index.tsx:73:5
+  71 |
+  72 |   useEffect(() => {
+> 73 |     setMounted(true);
+     |     ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  74 |   }, []);
+  75 |
+  76 |   useEffect(() => {                                                                                                                                                                                        react-hooks/set-state-in-effect
+  128:16  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     @next/next/no-img-element
+  232:18  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     @next/next/no-img-element
+
+/home/user/wons/worldofnature/src/app/components/ProductCard/QuickViewModal.tsx
+    5:3   warning  'ShoppingCart' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  @typescript-eslint/no-unused-vars
+   83:7   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/user/wons/worldofnature/src/app/components/ProductCard/QuickViewModal.tsx:83:7
+  81 |     if (isOpen) {
+  82 |       document.body.style.overflow = "hidden";
+> 83 |       setQuantity(1);
+     |       ^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  84 |       setImageLoaded(false);
+  85 |       setIsAdding(false);
+  86 |     } else {  react-hooks/set-state-in-effect
+  141:13  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   @next/next/no-img-element
+
+/home/user/wons/worldofnature/src/app/components/ProductCard/index.tsx
+   7:3   warning  'Star' is defined but never used                  @typescript-eslint/no-unused-vars
+   9:3   warning  'ShoppingCart' is defined but never used          @typescript-eslint/no-unused-vars
+  10:3   warning  'Eye' is defined but never used                   @typescript-eslint/no-unused-vars
+  12:3   warning  'Minus' is defined but never used                 @typescript-eslint/no-unused-vars
+  59:3   warning  'rating' is defined but never used                @typescript-eslint/no-unused-vars
+  60:3   warning  'reviewCount' is defined but never used           @typescript-eslint/no-unused-vars
+  72:20  warning  'setQuantity' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/home/user/wons/worldofnature/src/app/components/home/HeroSection.tsx
+  57:115  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+/home/user/wons/worldofnature/src/app/contact/page.tsx
+  167:51  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+/home/user/wons/worldofnature/src/app/faq/FaqClient.tsx
+  102:26  error  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+  102:46  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  102:60  error  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+/home/user/wons/worldofnature/src/app/login/page.tsx
+  106:9  warning  'backgroundImage' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/home/user/wons/worldofnature/src/app/order-confirmation/page.tsx
+    5:10  warning  'useSelector' is defined but never used                                                                                                                                                                                                                                                  @typescript-eslint/no-unused-vars
+    6:10  warning  'RootState' is defined but never used                                                                                                                                                                                                                                                    @typescript-eslint/no-unused-vars
+   11:3   warning  'Package' is defined but never used                                                                                                                                                                                                                                                      @typescript-eslint/no-unused-vars
+   12:3   warning  'Truck' is defined but never used                                                                                                                                                                                                                                                        @typescript-eslint/no-unused-vars
+   15:3   warning  'Mail' is defined but never used                                                                                                                                                                                                                                                         @typescript-eslint/no-unused-vars
+   67:9   warning  'tax' is assigned a value but never used                                                                                                                                                                                                                                                 @typescript-eslint/no-unused-vars
+   68:9   warning  'finalTotal' is assigned a value but never used                                                                                                                                                                                                                                          @typescript-eslint/no-unused-vars
+  146:48  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                                                                                                                                                                                          react/no-unescaped-entities
+  183:23  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  236:21  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                                                                                                                                                                                          react/no-unescaped-entities
+  249:25  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                                                                                                                                                                                          react/no-unescaped-entities
+  260:25  error    `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`                                                                                                                                                                                                                          react/no-unescaped-entities
+
+/home/user/wons/worldofnature/src/app/page.tsx
+  20:25  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  79:45  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/user/wons/worldofnature/src/app/product/[id]/ProductClient.tsx
+   26:12  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                @typescript-eslint/no-explicit-any
+   47:7   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/user/wons/worldofnature/src/app/product/[id]/ProductClient.tsx:47:7
+  45 |     dispatch(setSelectedProduct(product));
+  46 |     if (product.sizes && product.sizes.length > 0) {
+> 47 |       setSelectedSize(product.sizes[0].value);
+     |       ^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  48 |     }
+  49 |   }, [product, dispatch]);
+  50 |  react-hooks/set-state-in-effect
+   55:51  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                @typescript-eslint/no-explicit-any
+  161:19  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 @next/next/no-img-element
+
+/home/user/wons/worldofnature/src/app/profile/page.tsx
+  204:31  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/home/user/wons/worldofnature/src/app/redux/provider.tsx
+  5:10  warning  'useRef' is defined but never used    @typescript-eslint/no-unused-vars
+  6:15  warning  'AppStore' is defined but never used  @typescript-eslint/no-unused-vars
+
+/home/user/wons/worldofnature/src/app/services/api.ts
+  131:32  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/home/user/wons/worldofnature/src/app/shop/ShopClient.tsx
+    4:8   warning  'Link' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          @typescript-eslint/no-unused-vars
+   47:41  error    Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  @typescript-eslint/no-explicit-any
+  127:5   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/home/user/wons/worldofnature/src/app/shop/ShopClient.tsx:127:5
+  125 |   // --- RESET PAGINATION WHEN FILTERS CHANGE ---
+  126 |   useEffect(() => {
+> 127 |     setVisibleCount(ITEMS_PER_PAGE);
+      |     ^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  128 |   }, [searchQuery, selectedCategories, priceRange, selectedRating, sortBy]);
+  129 |
+  130 |   // --- LOAD MORE HANDLER ---  react-hooks/set-state-in-effect
+
+/home/user/wons/worldofnature/src/app/shop/[id]/page.tsx
+   96:13  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  207:19  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/home/user/wons/worldofnature/src/app/wishlist/page.tsx
+    6:23  warning  'productsAPI' is defined but never used                                                                                                                                                                                                                                                  @typescript-eslint/no-unused-vars
+  123:19  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+✖ 63 problems (26 errors, 37 warnings)
+

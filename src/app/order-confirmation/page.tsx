@@ -2,18 +2,13 @@
 
 import { Suspense, useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-import { useSelector } from "react-redux";
-import { RootState } from "../redux/store";
 import Link from "next/link";
 import { ordersAPI, Order } from "../services/api";
 import {
   Check,
-  Package,
-  Truck,
-  Home,
-  ShoppingBag,
-  Mail,
   ArrowRight,
+  ShoppingBag,
+  Home,
 } from "lucide-react";
 
 function OrderConfirmationContent() {
@@ -63,9 +58,6 @@ function OrderConfirmationContent() {
       </div>
     );
   }
-
-  const tax = order.tax;
-  const finalTotal = order.total;
 
   return (
     <div className="min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white pb-20 overflow-x-hidden">
@@ -143,7 +135,7 @@ function OrderConfirmationContent() {
               Order Confirmed!
             </h1>
             <p className="text-xl text-[#596157] max-w-lg mx-auto leading-relaxed">
-              Thank you for choosing nature. We've received your order and are
+              Thank you for choosing nature. We&apos;ve received your order and are
               getting it ready for the journey home.
             </p>
           </div>
@@ -180,6 +172,7 @@ function OrderConfirmationContent() {
                     className="flex items-center gap-5"
                   >
                     <div className="w-16 h-16 bg-white rounded-[1rem] overflow-hidden border border-[#1A2118]/5 shadow-sm">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={item.image}
                         alt={item.name}
@@ -233,7 +226,7 @@ function OrderConfirmationContent() {
             {/* What's Next */}
             <div className="bg-white/40 backdrop-blur-md border border-white/40 rounded-[2.5rem] p-8">
               <h3 className="text-xl font-serif font-bold text-[#1A2118] mb-6">
-                What's Next?
+                What&apos;s Next?
               </h3>
               <div className="space-y-6 relative">
                 {/* Vertical Line */}
@@ -246,7 +239,7 @@ function OrderConfirmationContent() {
                       Order Confirmed
                     </p>
                     <p className="text-xs text-[#596157]">
-                      We've received your order.
+                      We&apos;ve received your order.
                     </p>
                   </div>
                 </div>
@@ -257,7 +250,7 @@ function OrderConfirmationContent() {
                       Processing
                     </p>
                     <p className="text-xs text-[#596157]">
-                      We're packing your goods.
+                      We&apos;re packing your goods.
                     </p>
                   </div>
                 </div>

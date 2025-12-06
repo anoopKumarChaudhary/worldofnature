@@ -18,7 +18,7 @@ const JournalSection = () => {
       title: "Soil Health & Human Health",
       date: "September 28, 2025",
       excerpt: "Exploring the microbial connection between the earth and our gut.",
-      image: "/won2.JPG",
+      image: "/won2.jpg",
     },
     {
       id: 3,

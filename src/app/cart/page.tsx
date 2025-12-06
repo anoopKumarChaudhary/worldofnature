@@ -61,7 +61,7 @@ export default function CartPage() {
             Your cart is empty
           </h1>
           <p className="text-[#596157] mb-8">
-            Looks like you haven't made your choices yet.
+            Looks like you haven&apos;t made your choices yet.
           </p>
           <Link
             href="/shop"
@@ -135,6 +135,7 @@ export default function CartPage() {
                 >
                   {/* Image */}
                   <div className="relative w-32 h-32 flex-shrink-0 bg-[#F2F0EA] rounded-[2rem] overflow-hidden">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={item.image}
                       alt={item.name}

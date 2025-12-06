@@ -201,11 +201,12 @@ export default function ProfilePage() {
                             className="flex items-center gap-4"
                           >
                             <div className="w-12 h-12 bg-white rounded-lg overflow-hidden border border-[#1A2118]/5">
-                              <img
-                                src={item.image}
-                                alt={item.name}
-                                className="w-full h-full object-cover"
-                              />
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img
+                                  src={item.image}
+                                  alt={item.name}
+                                  className="w-full h-full object-cover"
+                                />
                             </div>
                             <div className="flex-1">
                               <p className="font-bold text-[#1A2118] text-sm">

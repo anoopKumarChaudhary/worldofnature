@@ -64,12 +64,6 @@ export default function CheckoutPage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const handlePaymentSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setCurrentStep(3);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   const handleRazorpayPayment = async () => {
     try {
       const order = await razorpayAPI.createOrder(finalTotal);
@@ -183,7 +177,7 @@ export default function CheckoutPage() {
             Your cart is empty
           </h1>
           <p className="text-[#596157] mb-8">
-            Time to fill it with nature's best.
+            Time to fill it with nature&apos;s best.
           </p>
           <Link
             href="/shop"
@@ -495,6 +489,7 @@ export default function CheckoutPage() {
                           className="flex items-center gap-4 p-4 bg-[#F2F0EA]/50 rounded-[1.5rem] border border-[#1A2118]/5"
                         >
                           <div className="w-16 h-16 bg-white rounded-[1rem] overflow-hidden shadow-sm">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img
                               src={item.image}
                               alt={item.name}

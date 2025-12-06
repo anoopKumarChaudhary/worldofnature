@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import { contactAPI } from "../../services/api";
 import { useState } from "react";
-import { div } from "framer-motion/client";
+
 
 const ContactPage = () => {
   // Direct WhatsApp Link Handler
@@ -124,7 +124,7 @@ const ContactPage = () => {
             </span>
           </div>
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-medium tracking-tight text-[#1A2118] mb-6">
-            We're Here to Help <br />
+            We&rsquo;re Here to Help <br />
             <span className="italic text-[#596157]">Naturally.</span>
           </h1>
           <p className="text-xl text-[#596157] max-w-2xl mx-auto font-light">
@@ -269,7 +269,7 @@ const ContactPage = () => {
                   <div className="bg-[#3A4D39]/10 text-[#3A4D39] p-6 rounded-[1.5rem] text-center">
                     <p className="font-bold mb-2">Message Sent!</p>
                     <p className="text-sm">
-                      Thank you for reaching out. We'll get back to you shortly.
+                      Thank you for reaching out. We&apos;ll get back to you shortly.
                     </p>
                     <button
                       onClick={() => setSubmitStatus("idle")}

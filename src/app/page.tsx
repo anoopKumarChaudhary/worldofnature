@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { productsAPI } from "./services/api";
+import { productsAPI, Product } from "./services/api";
 import ProductCard from "./components/ProductCard";
 
 // Dynamic Imports
@@ -17,7 +17,7 @@ const CTASection = dynamic(() => import("./components/home/CTASection"));
 
 const HomePage = async () => {
   // Server-side data fetching
-  let featuredProducts: any[] = [];
+  let featuredProducts: Product[] = [];
   try {
     const products = await productsAPI.getProducts({ isBestseller: true });
     featuredProducts = products.slice(0, 4);
@@ -76,7 +76,7 @@ const HomePage = async () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {featuredProducts.map((product: any) => (
+            {featuredProducts.map((product: Product) => (
               <div key={product._id} className="w-full">
                 <ProductCard
                   id={product._id}

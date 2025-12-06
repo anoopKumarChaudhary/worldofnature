@@ -87,6 +87,16 @@ export interface Order {
   estimatedDelivery?: string;
 }
 
+export interface Review {
+  id: string;
+  productId: string;
+  userId: string;
+  userName: string;
+  rating: number;
+  comment: string;
+  date: string;
+}
+
 export const authAPI = {
   login: async (data: LoginData): Promise<AuthResponse> => {
     const response = await fetch(`${API_BASE_URL}/auth/login`, {
@@ -128,9 +138,15 @@ export const authAPI = {
 };
 
 export const productsAPI = {
-  getProducts: async (params?: any): Promise<Product[]> => {
+  getProducts: async (params?: Record<string, unknown>): Promise<Product[]> => {
     const queryString = params
-      ? "?" + new URLSearchParams(params).toString()
+      ? "?" +
+        new URLSearchParams(
+          Object.entries(params).reduce(
+            (acc, [key, value]) => ({ ...acc, [key]: String(value) }),
+            {} as Record<string, string>
+          )
+        ).toString()
       : "";
     const response = await fetch(`${API_BASE_URL}/products${queryString}`);
     if (!response.ok) throw new Error("Failed to fetch products");
@@ -139,7 +155,12 @@ export const productsAPI = {
 
   getProduct: async (id: string): Promise<Product> => {
     const response = await fetch(`${API_BASE_URL}/products/${id}`);
-    if (!response.ok) throw new Error("Failed to fetch product");
+    if (!response.ok) {
+      console.error(
+        `Failed to fetch product ${id}: ${response.status} ${response.statusText}`
+      );
+      throw new Error("Failed to fetch product");
+    }
     return response.json();
   },
 

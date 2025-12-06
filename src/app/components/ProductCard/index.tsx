@@ -4,12 +4,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
-  Star,
   Heart,
-  ShoppingCart,
-  Eye,
   Plus,
-  Minus,
   Check,
 } from "lucide-react";
 import { useAppDispatch } from "../../redux/hooks";
@@ -56,8 +52,8 @@ const ProductCard = ({
   title,
   description,
   price,
-  rating,
-  reviewCount,
+  // rating,
+  // reviewCount,
   isBestseller,
   isOnSale,
   isNew,
@@ -69,7 +65,7 @@ const ProductCard = ({
 }: ProductCardProps) => {
   const dispatch = useAppDispatch();
   const [isHovered, setIsHovered] = useState(false);
-  const [quantity, setQuantity] = useState(1);
+  const [quantity] = useState(1);
   const [isAdding, setIsAdding] = useState(false);
 
   const handleAddToCart = () => {

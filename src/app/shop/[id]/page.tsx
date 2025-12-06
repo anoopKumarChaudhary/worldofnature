@@ -93,6 +93,7 @@ export default function ProductDetailsPage() {
         <div className="grid md:grid-cols-2 gap-12">
           {/* Image */}
           <div className="bg-white rounded-[2.5rem] overflow-hidden shadow-lg">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={product.imageUrl}
               alt={product.title}
@@ -204,6 +205,7 @@ const RelatedProducts = ({ currentProductId }: { currentProductId: string }) => 
              */}
              <div className="bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 group">
                 <div className="relative aspect-[4/5] overflow-hidden bg-[#F9F8F6]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img 
                     src={product.imageUrl} 
                     alt={product.title} 

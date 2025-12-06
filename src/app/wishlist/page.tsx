@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Trash2, ShoppingBag } from "lucide-react";
-import { wishlistAPI, productsAPI } from "../services/api";
+import { wishlistAPI } from "../services/api";
 import { useAppDispatch } from "../redux/hooks";
 import { addToCart } from "../redux/features/cart/cartSlice";
 import { useSelector } from "react-redux";
@@ -120,6 +120,7 @@ export default function WishlistPage() {
                 className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
               >
                 <div className="relative h-64">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={item.imageUrl}
                     alt={item.title}

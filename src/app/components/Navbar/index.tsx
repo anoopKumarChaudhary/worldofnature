@@ -21,7 +21,7 @@ import {
   Info,
   HelpCircle,
   LogOut,
-  Leaf,
+
 } from "lucide-react";
 
 const Navbar = () => {
@@ -52,7 +52,13 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
     const savedDarkMode = localStorage.getItem("darkMode");
     if (savedDarkMode === "true") {
       setIsDarkMode(true);
@@ -64,13 +70,6 @@ const Navbar = () => {
       setIsDarkMode(true);
       document.documentElement.classList.add("dark");
     }
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    setMounted(true);
   }, []);
 
   useEffect(() => {
@@ -125,6 +124,7 @@ const Navbar = () => {
             onClick={closeMobileMenu}
           >
             <div className="relative h-10 w-auto overflow-visible">
+               {/* eslint-disable-next-line @next/next/no-img-element */}
                <img src="/image.png" alt="World of Nature Logo" className="h-full w-auto object-contain" />
             </div>
           </Link>
@@ -229,7 +229,8 @@ const Navbar = () => {
             {/* Header inside Overlay */}
             <div className="relative z-10 px-6 py-6 flex items-center justify-between">
               <div className="h-10 w-auto overflow-visible opacity-90 invert brightness-0">
-                 <img src="/image.png" alt="World of Nature Logo" className="h-full w-auto object-contain" />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/image.png" alt="World of Nature Logo" className="h-full w-auto object-contain" />
               </div>
               <button
                 onClick={closeMobileMenu}

@@ -18,7 +18,7 @@ const HeroSection = () => {
         </div>
         
         <h1 className="text-6xl lg:text-[9rem] leading-[0.85] font-serif font-bold tracking-tight mb-12 drop-shadow-sm text-[#1A2118]">
-          <span className="block animate-reveal-up" style={{ animationDelay: '0.1s' }}>Nature’s</span>
+          <span className="block animate-reveal-up" style={{ animationDelay: '0.1s' }}>Nature&rsquo;s</span>
           <span className="block animate-reveal-up" style={{ animationDelay: '0.2s' }}>Unfiltered</span>
           <span className="block animate-reveal-up text-[#BC5633]" style={{ animationDelay: '0.3s' }}>Intelligence.</span>
         </h1>
@@ -54,7 +54,7 @@ const HeroSection = () => {
 
         {/* --- PROFESSIONAL TOUCHES: TRUST BAR --- */}
         <div className="mt-16 animate-reveal-up opacity-60" style={{ animationDelay: '0.7s' }}>
-          <p className="text-[10px] font-bold uppercase tracking-[0.3em] mb-6 text-[#1A2118]/60">Trusted by Nature's Best</p>
+          <p className="text-[10px] font-bold uppercase tracking-[0.3em] mb-6 text-[#1A2118]/60">Trusted by Nature&rsquo;s Best</p>
           <div className="flex flex-wrap justify-center gap-12 items-center grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
              {/* Simple Text Logos for "Professional" Vibe */}
              <span className="font-serif text-xl italic text-[#1A2118]">Vogue Living</span>

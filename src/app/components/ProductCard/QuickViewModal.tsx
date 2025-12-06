@@ -1,8 +1,8 @@
+
 import React, { useEffect, useState } from "react";
 import {
   X,
   Star,
-  ShoppingCart,
   Heart,
   Plus,
   Minus,
@@ -80,7 +80,9 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
-      setQuantity(1);
+      // Reset state only if needed
+      // setQuantity((prev) => (prev !== 1 ? 1 : prev));
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setImageLoaded(false);
       setIsAdding(false);
     } else {
@@ -138,6 +140,7 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({
           />
 
           <div className="relative w-full h-[400px] md:h-full p-8 md:p-12">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={product.imageUrl}
               alt={product.title}

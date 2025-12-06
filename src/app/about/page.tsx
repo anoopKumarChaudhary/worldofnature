@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Link from "next/link";
 import {
@@ -12,44 +10,8 @@ import {
 } from "lucide-react";
 
 export default function AboutPage() {
-  const backgroundImage = "/d1.png";
-
   return (
     <div className="min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white overflow-x-hidden pb-20">
-      {/* --- STYLES & ANIMATIONS --- */}
-      <style jsx>{`
-        @keyframes blob {
-          0% {
-            transform: translate(0px, 0px) scale(1);
-          }
-          33% {
-            transform: translate(30px, -50px) scale(1.1);
-          }
-          66% {
-            transform: translate(-20px, 20px) scale(0.9);
-          }
-          100% {
-            transform: translate(0px, 0px) scale(1);
-          }
-        }
-        .animate-blob {
-          animation: blob 10s infinite;
-        }
-        .animate-fade-up {
-          animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        }
-        @keyframes fadeUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
-
       {/* --- BACKGROUND LAYERS --- */}
       <div className="fixed inset-0 z-0 pointer-events-none bg-[#F2F0EA]" />
 
@@ -104,7 +66,8 @@ export default function AboutPage() {
               style={{ animationDelay: "0.2s" }}
             >
               <div className="relative aspect-[4/3] bg-[#E8E6DF] rounded-[3rem] overflow-hidden shadow-2xl shadow-[#1A2118]/10 border-[8px] border-white">
-                <img
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                   src="/won6.JPG"
                   alt="Organic Farm"
                   className="w-full h-full object-cover scale-105 hover:scale-100 transition-transform duration-[1.5s]"
@@ -130,8 +93,8 @@ export default function AboutPage() {
         <div className="container mx-auto max-w-4xl text-center">
           <Sprout className="w-12 h-12 text-[#1A2118]/20 mx-auto mb-8" />
           <h2 className="text-3xl md:text-5xl font-serif font-medium text-[#1A2118] mb-8 leading-tight">
-            "To inspire a healthier world by connecting people to real food.
-            We’re fostering a movement back to nature."
+            &quot;To inspire a healthier world by connecting people to real food.
+            We&rsquo;re fostering a movement back to nature.&quot;
           </h2>
           <div className="h-px w-24 bg-[#BC5633] mx-auto mb-8"></div>
           <p className="text-[#596157]">The World of Nature Manifesto</p>
@@ -198,7 +161,8 @@ export default function AboutPage() {
             <div className="relative z-10 grid lg:grid-cols-2 gap-16 items-center">
               <div className="relative">
                 <div className="aspect-square rounded-[2.5rem] overflow-hidden border border-white/10">
-                  <img
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                     src="/i4.png"
                     alt="Process"
                     className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"

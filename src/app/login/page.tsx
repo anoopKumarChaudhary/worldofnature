@@ -103,7 +103,7 @@ export default function LoginPage() {
     }
   }, [isAuthenticated, router]); // Added isAuthenticated to dependencies
 
-  const backgroundImage = "/d1.png";
+
 
   return (
     <div className="min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 overflow-hidden relative">
