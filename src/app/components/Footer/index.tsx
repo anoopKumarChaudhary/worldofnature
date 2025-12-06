@@ -11,6 +11,7 @@ import {
   Phone,
   MapPin,
   Heart,
+  ChevronRight,
 } from "lucide-react";
 import { newsletterAPI } from "../../services/api";
 
@@ -30,13 +31,13 @@ const Footer = () => {
       ],
     },
     {
-      title: "About",
+      title: "Company",
       links: [
         { href: "/about", label: "Our Story" },
         { href: "/farmers", label: "Our Farmers" },
         { href: "/sustainability", label: "Sustainability" },
-        { href: "/certifications", label: "Certifications" },
-        { href: "/blog", label: "Blog" },
+        { href: "/blog", label: "Journal" },
+        { href: "/recipes", label: "Organic Recipes" },
         { href: "/careers", label: "Careers" },
       ],
     },
@@ -44,285 +45,164 @@ const Footer = () => {
       title: "Support",
       links: [
         { href: "/faq", label: "FAQ" },
-        { href: "/shipping", label: "Shipping Info" },
-        { href: "/returns", label: "Returns & Exchanges" },
-        { href: "/contact", label: "Contact Us" },
-        { href: "/size-guide", label: "Size Guide" },
+        { href: "/shipping", label: "Shipping & Delivery" },
+        { href: "/returns", label: "Returns Policy" },
         { href: "/track-order", label: "Track Order" },
-      ],
-    },
-    {
-      title: "Legal",
-      links: [
+        { href: "/contact", label: "Contact Us" },
         { href: "/privacy", label: "Privacy Policy" },
-        { href: "/terms", label: "Terms of Service" },
-        { href: "/accessibility", label: "Accessibility" },
-        { href: "/cookies", label: "Cookie Policy" },
-        { href: "/disclaimer", label: "Disclaimer" },
       ],
     },
   ];
 
   const socialLinks = [
-    {
-      href: "https://facebook.com",
-      icon: Facebook,
-      label: "Follow us on Facebook",
-    },
-    {
-      href: "https://instagram.com",
-      icon: Instagram,
-      label: "Follow us on Instagram",
-    },
-    {
-      href: "https://twitter.com",
-      icon: Twitter,
-      label: "Follow us on Twitter",
-    },
-    {
-      href: "https://youtube.com",
-      icon: Youtube,
-      label: "Subscribe to our YouTube channel",
-    },
+    { href: "https://facebook.com", icon: Facebook, label: "Facebook" },
+    { href: "https://instagram.com", icon: Instagram, label: "Instagram" },
+    { href: "https://twitter.com", icon: Twitter, label: "Twitter" },
+    { href: "https://youtube.com", icon: Youtube, label: "YouTube" },
   ];
 
   return (
-    <footer
-      className="bg-brand-primary-900 text-brand-primary-100"
-      role="contentinfo"
-    >
-      {/* Main Footer Content */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 lg:gap-12">
-          {/* Brand Section */}
-          <div className="lg:col-span-2 space-y-6">
-            <Link
-              href="/"
-              className="flex items-center space-x-2"
-              aria-label="World of Nature - Go to homepage"
-            >
+    <footer className="bg-brand-primary-900 text-brand-primary-100 pt-20 pb-10 border-t border-brand-primary-800" role="contentinfo">
+      <div className="container mx-auto px-6 lg:px-12">
+        {/* Top Section: Newsletter & Brand */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 mb-20">
+          {/* Brand Column */}
+          <div className="lg:col-span-3 space-y-8">
+            <Link href="/" className="inline-block" aria-label="World of Nature">
               <div className="h-16 w-auto overflow-visible">
-                <img src="/image.png" alt="World of Nature Logo" className="h-full w-auto object-contain" />
+                 <img src="/image.png" alt="World of Nature Logo" className="h-full w-auto object-contain brightness-0 invert opacity-90" />
               </div>
             </Link>
-
-            <p className="text-brand-primary-200 leading-relaxed max-w-md">
-              Pure, potent, and certified organic essentials from nature's
-              finest. We bring you the highest quality organic products directly
-              from sustainable farms.
+            <p className="text-brand-primary-200 leading-relaxed max-w-sm text-lg font-light">
+              Curating the finest organic essentials from sustainable farms. 
+              Pure, potent, and ethically sourced for your well-being.
             </p>
-
-            {/* Contact Info */}
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3">
-                <MapPin
-                  size={18}
-                  className="text-brand-accent-400 flex-shrink-0"
-                />
-                <span className="text-sm">
-                  123 Organic Valley, Nature City, NC 12345
-                </span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Phone
-                  size={18}
-                  className="text-brand-accent-400 flex-shrink-0"
-                />
-                <a
-                  href="tel:+1234567890"
-                  className="text-sm hover:text-brand-accent-400 transition-colors duration-200"
-                >
-                  (123) 456-7890
-                </a>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Mail
-                  size={18}
-                  className="text-brand-accent-400 flex-shrink-0"
-                />
-                <a
-                  href="mailto:hello@worldofnature.com"
-                  className="text-sm hover:text-brand-accent-400 transition-colors duration-200"
-                >
-                  hello@worldofnature.com
-                </a>
-              </div>
+            
+            <div className="space-y-4 pt-2">
+               <div className="flex items-start gap-3 text-brand-primary-300">
+                  <MapPin size={18} className="mt-1 shrink-0 text-brand-accent-400" />
+                  <span className="text-sm leading-relaxed">123 Organic Valley, Nature City, NC 12345</span>
+               </div>
+               <div className="flex items-center gap-3 text-brand-primary-300">
+                  <Mail size={18} className="shrink-0 text-brand-accent-400" />
+                  <a href="mailto:hello@worldofnature.com" className="text-sm hover:text-brand-accent-100 transition-colors">hello@worldofnature.com</a>
+               </div>
+               <div className="flex items-center gap-3 text-brand-primary-300">
+                  <Phone size={18} className="shrink-0 text-brand-accent-400" />
+                  <a href="tel:+1234567890" className="text-sm hover:text-brand-accent-100 transition-colors">+1 (123) 456-7890</a>
+               </div>
             </div>
 
-            {/* Social Links */}
-            <div className="flex space-x-4">
+            <div className="flex gap-4 pt-4">
               {socialLinks.map((social) => (
                 <a
-                  key={social.href}
+                  key={social.label}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 text-brand-primary-200 hover:text-brand-accent-400 hover:bg-brand-primary-800 rounded-lg transition-all duration-200 hover:scale-110"
+                  className="w-10 h-10 flex items-center justify-center rounded-full bg-brand-primary-800 hover:bg-brand-primary-700 text-brand-primary-300 hover:text-brand-accent-100 transition-all duration-300"
                   aria-label={social.label}
                 >
-                  <social.icon size={20} />
+                  <social.icon size={18} />
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Footer Links */}
-          {footerSections.map((section) => (
-            <div key={section.title} className="space-y-4">
-              <h3 className="text-lg font-semibold text-brand-accent-100">
-                {section.title}
-              </h3>
-              <ul className="space-y-3">
-                {section.links.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-brand-primary-200 hover:text-brand-accent-400 transition-colors duration-200 text-sm"
+          {/* Links Columns */}
+          <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-3 gap-8">
+            {footerSections.map((section) => (
+              <div key={section.title} className="space-y-6">
+                <h3 className="text-sm font-semibold uppercase tracking-wider text-brand-primary-400 border-b border-brand-primary-800 pb-2 inline-block">
+                  {section.title}
+                </h3>
+                <ul className="space-y-3">
+                  {section.links.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        className="text-brand-primary-200 hover:text-brand-accent-100 transition-colors duration-200 text-[15px] font-medium block py-0.5"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          {/* Newsletter Column */}
+          <div className="lg:col-span-3 space-y-6">
+            <div>
+                <h3 className="text-xl font-medium text-brand-primary-50 mb-3">Stay Connected</h3>
+                <p className="text-brand-primary-200 text-sm leading-relaxed mb-6">
+                Join our community for exclusive offers, wellness tips, and new arrival updates.
+                </p>
+                <form
+                className="space-y-3"
+                onSubmit={async (e) => {
+                    e.preventDefault();
+                    const email = (e.currentTarget.elements.namedItem("newsletter-email") as HTMLInputElement).value;
+                    try {
+                    await newsletterAPI.subscribe(email);
+                    alert("Subscribed successfully!");
+                    (e.target as HTMLFormElement).reset();
+                    } catch (error) {
+                    console.error("Failed to subscribe:", error);
+                    alert("Failed to subscribe. Please try again.");
+                    }
+                }}
+                >
+                <div className="relative">
+                    <input
+                    id="newsletter-email"
+                    type="email"
+                    placeholder="Your email address"
+                    className="w-full bg-transparent border border-brand-primary-600 rounded-lg px-4 py-3 text-brand-primary-100 placeholder-brand-primary-400 focus:outline-none focus:border-brand-accent-500 focus:ring-1 focus:ring-brand-accent-500 transition-all"
+                    required
+                    />
+                    <button
+                    type="submit"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-brand-primary-400 hover:text-brand-accent-100 transition-colors"
+                    aria-label="Subscribe"
                     >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Newsletter Section */}
-      <div className="border-t border-brand-primary-800">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="max-w-2xl mx-auto text-center space-y-4">
-            <h3 className="text-xl font-semibold text-brand-accent-100">
-              Stay Connected
-            </h3>
-            <p className="text-brand-primary-200">
-              Get exclusive offers, organic recipes, and wellness tips delivered
-              to your inbox.
-            </p>
-            <form
-              className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
-              onSubmit={async (e) => {
-                e.preventDefault();
-                const email = (e.currentTarget.elements.namedItem("newsletter-email") as HTMLInputElement).value;
-                try {
-                  await newsletterAPI.subscribe(email);
-                  alert("Subscribed successfully!");
-                  (e.target as HTMLFormElement).reset();
-                } catch (error) {
-                  console.error("Failed to subscribe:", error);
-                  alert("Failed to subscribe. Please try again.");
-                }
-              }}
-            >
-              <label htmlFor="newsletter-email" className="sr-only">
-                Enter your email address
-              </label>
-              <input
-                id="newsletter-email"
-                type="email"
-                placeholder="Enter your email"
-                className="form-input flex-1 bg-brand-primary-800 border-brand-primary-700 text-brand-accent-100 placeholder-brand-primary-400 focus:border-brand-accent-500 focus:ring-brand-accent-500"
-                required
-                aria-describedby="newsletter-help"
-              />
-              <button
-                type="submit"
-                className="btn bg-brand-accent-500 text-brand-primary-900 hover:bg-brand-accent-400 whitespace-nowrap"
-                aria-label="Subscribe to newsletter"
-              >
-                Subscribe
-              </button>
-            </form>
-            <p id="newsletter-help" className="text-xs text-brand-primary-400">
-              We respect your privacy. Unsubscribe at any time.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Bottom Bar */}
-      <div className="border-t border-brand-primary-800">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center space-x-4 text-sm text-brand-primary-400">
-              <span>© {currentYear} World of Nature. All rights reserved.</span>
-              <span className="hidden md:inline">•</span>
-              <span>
-                Made with{" "}
-                <Heart size={14} className="inline text-brand-error" /> for
-                nature
-              </span>
-            </div>
-
-            <div className="flex items-center space-x-6 text-sm">
-              <Link
-                href="/privacy"
-                className="text-brand-primary-400 hover:text-brand-accent-400 transition-colors duration-200"
-              >
-                Privacy
-              </Link>
-              <Link
-                href="/terms"
-                className="text-brand-primary-400 hover:text-brand-accent-400 transition-colors duration-200"
-              >
-                Terms
-              </Link>
-              <Link
-                href="/accessibility"
-                className="text-brand-primary-400 hover:text-brand-accent-400 transition-colors duration-200"
-              >
-                Accessibility
-              </Link>
+                    <ChevronRight size={20} />
+                    </button>
+                </div>
+                <p className="text-xs text-brand-primary-400">
+                    By subscribing, you agree to our Privacy Policy.
+                </p>
+                </form>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Trust Badges */}
-      <div className="border-t border-brand-primary-800 bg-brand-deep-forest">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex flex-wrap items-center justify-center gap-6 opacity-80">
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-brand-primary-700 rounded-full flex items-center justify-center">
-                <span className="text-brand-accent-300 font-bold text-xs">
-                  ✓
-                </span>
-              </div>
-              <span className="text-xs text-brand-primary-200">
-                100% Organic
-              </span>
+        {/* Bottom Bar */}
+        <div className="pt-8 border-t border-brand-primary-800 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex flex-col md:flex-row items-center gap-4 text-sm text-brand-primary-400">
+            <span>&copy; {currentYear} World of Nature. All rights reserved.</span>
+            <span className="hidden md:inline text-brand-primary-600">|</span>
+            <div className="flex items-center gap-1">
+              <span>Crafted with</span>
+              <Heart size={12} className="text-rose-500 fill-rose-500" />
+              <span>for the planet</span>
             </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-brand-primary-700 rounded-full flex items-center justify-center">
-                <span className="text-brand-accent-300 font-bold text-xs">
-                  🚚
-                </span>
-              </div>
-              <span className="text-xs text-brand-primary-200">
-                Free Shipping $50+
-              </span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-brand-primary-700 rounded-full flex items-center justify-center">
-                <span className="text-brand-accent-300 font-bold text-xs">
-                  ↩
-                </span>
-              </div>
-              <span className="text-xs text-brand-primary-200">
-                30-Day Returns
-              </span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-brand-primary-700 rounded-full flex items-center justify-center">
-                <span className="text-brand-accent-300 font-bold text-xs">
-                  🔒
-                </span>
-              </div>
-              <span className="text-xs text-brand-primary-200">
-                Secure Checkout
-              </span>
-            </div>
+          </div>
+
+          {/* Payment Methods & Trust */}
+          <div className="flex flex-wrap items-center gap-4 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
+             <div className="flex items-center gap-2 text-xs text-brand-primary-400 border border-brand-primary-800 px-3 py-1 rounded-full">
+                <span className="w-2 h-2 rounded-full bg-green-500"></span>
+                Secure SSL Encryption
+             </div>
+             <div className="flex gap-2">
+                {/* Simulated Payment Icons */}
+                <div className="h-6 w-10 bg-white/10 rounded flex items-center justify-center text-[10px] font-bold text-white/50">VISA</div>
+                <div className="h-6 w-10 bg-white/10 rounded flex items-center justify-center text-[10px] font-bold text-white/50">MC</div>
+                <div className="h-6 w-10 bg-white/10 rounded flex items-center justify-center text-[10px] font-bold text-white/50">AMEX</div>
+                <div className="h-6 w-10 bg-white/10 rounded flex items-center justify-center text-[10px] font-bold text-white/50">PAYPAL</div>
+             </div>
           </div>
         </div>
       </div>
