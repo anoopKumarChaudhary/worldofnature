@@ -139,7 +139,7 @@ export default function WishlistPage() {
                   </h3>
                   <p className="text-[#BC5633] font-bold mb-4">
                     {typeof item.price === "number"
-                      ? `$${item.price.toFixed(2)}`
+                      ? `₹${item.price.toFixed(2)}`
                       : item.price}
                   </p>
                   <button

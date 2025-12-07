@@ -312,9 +312,7 @@
 //                 Price
 //               </span>
 //               <div className="flex items-center gap-2">
-//                 <span className="text-xl font-bold text-neutral-900 dark:text-white">
-//                   {price}
-//                 </span>
+//                 <span className="text-lg font-bold text-[#1A2118]">₹{price}</span>
 //                 {originalPrice && (
 //                   <span className="text-sm text-neutral-400 line-through decoration-neutral-400/50">
 //                     {originalPrice}

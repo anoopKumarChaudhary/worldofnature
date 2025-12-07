@@ -128,11 +128,11 @@ const ProductCard = ({
           <div className="flex items-center justify-between mt-auto">
             <div className="flex items-baseline gap-3">
               <span className="text-lg font-medium text-[#1A2118]">
-                ${price}
+                ₹{price}
               </span>
               {isOnSale && originalPrice && (
                 <span className="text-xs text-[#1A2118]/40 line-through decoration-1">
-                  ${originalPrice}
+                  ₹{originalPrice}
                 </span>
               )}
             </div>
@@ -249,11 +249,11 @@ const ProductCard = ({
           <div className="flex flex-col">
             {isOnSale && originalPrice && (
               <span className="text-[10px] text-[#1A2118]/40 line-through decoration-1 mb-0.5">
-                ${originalPrice}
+                ₹{originalPrice}
               </span>
             )}
             <span className="font-medium text-[#1A2118] text-sm md:text-base">
-              ${price}
+              ₹{price}
             </span>
           </div>
           

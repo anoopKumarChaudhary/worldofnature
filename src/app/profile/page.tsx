@@ -186,7 +186,7 @@ export default function ProfilePage() {
                               {order.status}
                             </span>
                             <span className="text-xl font-bold text-[#1A2118]">
-                              ${order.total.toFixed(2)}
+                              ₹{order.total.toFixed(2)}
                             </span>
                           </div>
                         </div>

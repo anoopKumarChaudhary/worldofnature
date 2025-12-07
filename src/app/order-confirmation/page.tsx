@@ -188,7 +188,7 @@ function OrderConfirmationContent() {
                         </p>
                       </div>
                       <p className="font-bold text-[#1A2118]">
-                        ${(item.price * item.quantity).toFixed(2)}
+                              ₹{(item.price * item.quantity).toFixed(2)}
                       </p>
                     </div>
                   ))}
@@ -200,7 +200,7 @@ function OrderConfirmationContent() {
                 <div className="space-y-3 text-sm font-medium text-[#596157]">
                   <div className="flex justify-between">
                     <span>Subtotal</span>
-                    <span>${order.subtotal.toFixed(2)}</span>
+                        <span className="text-[#1A2118]">₹{order.subtotal.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Shipping</span>
@@ -210,7 +210,7 @@ function OrderConfirmationContent() {
                   </div>
                   <div className="flex justify-between">
                     <span>Tax</span>
-                    <span>${order.tax.toFixed(2)}</span>
+                        <span className="text-[#1A2118]">₹{order.tax.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between text-xl font-bold text-[#1A2118] pt-4 mt-4 border-t border-[#1A2118]/10">
                     <span>Total</span>
