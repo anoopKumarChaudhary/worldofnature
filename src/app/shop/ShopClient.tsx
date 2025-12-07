@@ -42,8 +42,10 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
 
   useEffect(() => {
     if (isAuthenticated && user?.id) {
-      wishlistAPI.getWishlist(user.id).then((items) => {
-        setWishlistIds(items.map((item: { _id: string }) => item._id));
+      wishlistAPI.getWishlist(user.id).then((data: { products: Product[] }) => {
+        if (data && data.products) {
+          setWishlistIds(data.products.map((item) => item._id));
+        }
       });
     }
   }, [isAuthenticated, user]);
