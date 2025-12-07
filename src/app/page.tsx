@@ -29,34 +29,12 @@ const HomePage = async () => {
     <div className="relative min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white overflow-x-hidden">
       {/* --- CSS Styles moved to globals.css --- */}
 
-      {/* --- NOISE TEXTURE OVERLAY --- */}
-      <div
-        className="fixed inset-0 z-50 pointer-events-none opacity-[0.06] mix-blend-multiply"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-        }}
-      />
+
 
       {/* --- 1. HERO SECTION --- */}
       <HeroSection />
 
-      {/* --- INFINITE MARQUEE --- */}
-      <div className="py-6 bg-[#1A2118] text-[#F2F0EA] overflow-hidden border-y border-[#F2F0EA]/10 relative z-20">
-        <div className="flex whitespace-nowrap animate-marquee">
-          {[...Array(4)].map((_, i) => (
-            <div key={i} className="flex items-center gap-12 mx-6">
-              <span className="text-sm font-bold uppercase tracking-[0.3em]">100% Organic</span>
-              <span className="w-2 h-2 bg-[#BC5633] rounded-full" />
-              <span className="text-sm font-bold uppercase tracking-[0.3em]">Ethically Harvested</span>
-              <span className="w-2 h-2 bg-[#BC5633] rounded-full" />
-              <span className="text-sm font-bold uppercase tracking-[0.3em]">Ancient Wisdom</span>
-              <span className="w-2 h-2 bg-[#BC5633] rounded-full" />
-              <span className="text-sm font-bold uppercase tracking-[0.3em]">Modern Science</span>
-              <span className="w-2 h-2 bg-[#BC5633] rounded-full" />
-            </div>
-          ))}
-        </div>
-      </div>
+
 
       {/* --- 2. OUR PHILOSOPHY --- */}
       <PhilosophySection />

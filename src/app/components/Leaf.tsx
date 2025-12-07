@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+
 import styles from "./oragnic.module.css";
 
 /**
@@ -78,39 +78,17 @@ const GrassBlades = () => (
  * to the viewport.
  */
 const OrganicIllustrations = () => {
-  const variants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: { opacity: 1, x: 0 },
-  };
-
-  const grassVariants = {
-    hidden: { opacity: 0, y: 100 },
-    visible: { opacity: 1, y: 0 },
-  };
-
   return (
     <div className={styles.frameContainer} aria-hidden="true">
       {/* Top-Left Fern Leaf */}
-      <motion.div
-        className={styles.leafWrapper}
-        initial="hidden"
-        animate="visible"
-        variants={variants}
-        transition={{ duration: 1.5, delay: 0.5, ease: [0.21, 0.49, 0.73, 1] }}
-      >
+      <div className={styles.leafWrapper}>
         <FernLeaf />
-      </motion.div>
+      </div>
 
       {/* Bottom-Right Grass Blades */}
-      <motion.div
-        className={styles.grassWrapper}
-        initial="hidden"
-        animate="visible"
-        variants={grassVariants}
-        transition={{ duration: 1.5, delay: 0.7, ease: [0.21, 0.49, 0.73, 1] }}
-      >
+      <div className={styles.grassWrapper}>
         <GrassBlades />
-      </motion.div>
+      </div>
     </div>
   );
 };

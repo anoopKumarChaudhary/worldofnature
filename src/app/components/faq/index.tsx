@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion, AnimatePresence } from "framer-motion";
+
 import { Plus, Minus } from "lucide-react";
 
 interface FaqItemProps {
@@ -18,11 +18,7 @@ const FaqItem: React.FC<FaqItemProps> = ({
   onClick,
 }) => {
   return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+    <div
       className={`group relative overflow-hidden transition-all duration-500 ${
         isOpen
           ? "bg-white shadow-[0_8px_30px_rgba(0,0,0,0.06)] rounded-[2rem]"
@@ -63,24 +59,19 @@ const FaqItem: React.FC<FaqItemProps> = ({
         </div>
       </button>
 
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          >
-            <div className="px-6 sm:px-8 pb-8 pt-0">
-              <div className="h-px w-full bg-[#1A2118]/5 mb-6" />
-              <p className="text-[#596157] leading-relaxed text-lg font-light">
-                {answer}
-              </p>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
+      <div
+        className={`transition-all duration-300 ease-in-out overflow-hidden ${
+          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <div className="px-6 sm:px-8 pb-8 pt-0">
+          <div className="h-px w-full bg-[#1A2118]/5 mb-6" />
+          <p className="text-[#596157] leading-relaxed text-lg font-light">
+            {answer}
+          </p>
+        </div>
+      </div>
+    </div>
   );
 };
 

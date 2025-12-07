@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/features/auth/authSlice";
 import { RootState, AppDispatch } from "../../redux/store";
-import { AnimatePresence, motion } from "framer-motion";
+
 import {
   Search,
   ShoppingCart,
@@ -209,113 +209,85 @@ const Navbar = () => {
       </header>
 
       {/* MOBILE MENU - PREMIUM OVERLAY */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-[60] bg-[#1A2118] flex flex-col overflow-hidden"
-          >
-            {/* Background Texture */}
-            <div
-              className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay"
-              style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-              }}
-            />
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 z-[60] bg-[#1A2118] flex flex-col overflow-hidden animate-fade-in">
+          {/* Background Texture */}
+          <div
+            className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+            }}
+          />
 
-            {/* Header inside Overlay */}
-            <div className="relative z-10 px-6 py-6 flex items-center justify-between">
-              <div className="h-10 w-auto overflow-visible opacity-90 invert brightness-0">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/image.png" alt="World of Nature Logo" className="h-full w-auto object-contain" />
-              </div>
-              <button
-                onClick={closeMobileMenu}
-                className="w-12 h-12 flex items-center justify-center rounded-full bg-[#F2F0EA]/5 text-[#F2F0EA] hover:bg-[#F2F0EA]/10 transition-all active:scale-95"
-              >
-                <X size={24} strokeWidth={1.5} />
-              </button>
+          {/* Header inside Overlay */}
+          <div className="relative z-10 px-6 py-6 flex items-center justify-between">
+            <div className="h-10 w-auto overflow-visible opacity-90 invert brightness-0">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/image.png" alt="World of Nature Logo" className="h-full w-auto object-contain" />
             </div>
-
-            {/* Navigation Links */}
-            <div className="flex-1 flex flex-col justify-center px-8 relative z-10">
-              <motion.ul
-                initial="hidden"
-                animate="visible"
-                exit="hidden"
-                variants={{
-                  visible: { transition: { staggerChildren: 0.1 } },
-                  hidden: {},
-                }}
-                className="space-y-6"
-              >
-                {navItems.map((item) => (
-                  <motion.li
-                    key={item.href}
-                    variants={{
-                      hidden: { opacity: 0, y: 20 },
-                      visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
-                    }}
-                  >
-                    <Link
-                      href={item.href}
-                      onClick={closeMobileMenu}
-                      className="group flex items-center gap-4 text-[#F2F0EA] hover:text-[#BC5633] transition-colors"
-                    >
-                      <span className="font-serif text-4xl md:text-5xl font-light tracking-tight group-hover:translate-x-2 transition-transform duration-300">
-                        {item.label}
-                      </span>
-                      <ChevronRight className="w-6 h-6 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-[#BC5633]" />
-                    </Link>
-                  </motion.li>
-                ))}
-              </motion.ul>
-            </div>
-
-            {/* Footer Actions */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.5 }}
-              className="relative z-10 p-8 border-t border-[#F2F0EA]/10 grid grid-cols-2 gap-4"
+            <button
+              onClick={closeMobileMenu}
+              className="w-12 h-12 flex items-center justify-center rounded-full bg-[#F2F0EA]/5 text-[#F2F0EA] hover:bg-[#F2F0EA]/10 transition-all active:scale-95"
             >
-               <Link
-                href="/wishlist"
+              <X size={24} strokeWidth={1.5} />
+            </button>
+          </div>
+
+          {/* Navigation Links */}
+          <div className="flex-1 flex flex-col justify-center px-8 relative z-10">
+            <ul className="space-y-6">
+              {navItems.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    onClick={closeMobileMenu}
+                    className="group flex items-center gap-4 text-[#F2F0EA] hover:text-[#BC5633] transition-colors"
+                  >
+                    <span className="font-serif text-4xl md:text-5xl font-light tracking-tight group-hover:translate-x-2 transition-transform duration-300">
+                      {item.label}
+                    </span>
+                    <ChevronRight className="w-6 h-6 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-[#BC5633]" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Footer Actions */}
+          <div className="relative z-10 p-8 border-t border-[#F2F0EA]/10 grid grid-cols-2 gap-4">
+              <Link
+              href="/wishlist"
+              onClick={closeMobileMenu}
+              className="flex flex-col items-center justify-center p-6 rounded-2xl bg-[#F2F0EA]/5 hover:bg-[#F2F0EA]/10 transition-all active:scale-95 group"
+            >
+              <Heart size={24} className="text-[#F2F0EA] group-hover:text-[#BC5633] mb-3 transition-colors" strokeWidth={1.5} />
+              <span className="text-xs font-bold uppercase tracking-widest text-[#F2F0EA]/60 group-hover:text-[#F2F0EA] transition-colors">Wishlist</span>
+            </Link>
+            
+            {isAuthenticated ? (
+                <button
+                onClick={() => {
+                  dispatch(logout());
+                  closeMobileMenu();
+                }}
+                className="flex flex-col items-center justify-center p-6 rounded-2xl bg-[#F2F0EA]/5 hover:bg-[#BC5633] transition-all active:scale-95 group"
+              >
+                <LogOut size={24} className="text-[#F2F0EA] mb-3" strokeWidth={1.5} />
+                <span className="text-xs font-bold uppercase tracking-widest text-[#F2F0EA]/60 group-hover:text-[#F2F0EA] transition-colors">Logout</span>
+              </button>
+            ) : (
+              <Link
+                href="/login"
                 onClick={closeMobileMenu}
                 className="flex flex-col items-center justify-center p-6 rounded-2xl bg-[#F2F0EA]/5 hover:bg-[#F2F0EA]/10 transition-all active:scale-95 group"
               >
-                <Heart size={24} className="text-[#F2F0EA] group-hover:text-[#BC5633] mb-3 transition-colors" strokeWidth={1.5} />
-                <span className="text-xs font-bold uppercase tracking-widest text-[#F2F0EA]/60 group-hover:text-[#F2F0EA] transition-colors">Wishlist</span>
+                <User size={24} className="text-[#F2F0EA] group-hover:text-[#BC5633] mb-3 transition-colors" strokeWidth={1.5} />
+                <span className="text-xs font-bold uppercase tracking-widest text-[#F2F0EA]/60 group-hover:text-[#F2F0EA] transition-colors">Login</span>
               </Link>
-              
-              {isAuthenticated ? (
-                 <button
-                  onClick={() => {
-                    dispatch(logout());
-                    closeMobileMenu();
-                  }}
-                  className="flex flex-col items-center justify-center p-6 rounded-2xl bg-[#F2F0EA]/5 hover:bg-[#BC5633] transition-all active:scale-95 group"
-                >
-                  <LogOut size={24} className="text-[#F2F0EA] mb-3" strokeWidth={1.5} />
-                  <span className="text-xs font-bold uppercase tracking-widest text-[#F2F0EA]/60 group-hover:text-[#F2F0EA] transition-colors">Logout</span>
-                </button>
-              ) : (
-                <Link
-                  href="/login"
-                  onClick={closeMobileMenu}
-                  className="flex flex-col items-center justify-center p-6 rounded-2xl bg-[#F2F0EA]/5 hover:bg-[#F2F0EA]/10 transition-all active:scale-95 group"
-                >
-                  <User size={24} className="text-[#F2F0EA] group-hover:text-[#BC5633] mb-3 transition-colors" strokeWidth={1.5} />
-                  <span className="text-xs font-bold uppercase tracking-widest text-[#F2F0EA]/60 group-hover:text-[#F2F0EA] transition-colors">Login</span>
-                </Link>
-              )}
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            )}
+          </div>
+        </div>
+      )}
     </>
   );
 };
