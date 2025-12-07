@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-import { login, register, clearError } from "../redux/features/auth/authSlice";
+import { login, register, verifyOtp, clearError } from "../redux/features/auth/authSlice";
 import { RootState } from "../redux/store";
 import type { AppDispatch } from "../redux/store";
 import {
@@ -30,6 +30,8 @@ export default function LoginPage() {
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false); // New Success State
+  const [showOtp, setShowOtp] = useState(false); // OTP State
+  const [otp, setOtp] = useState("");
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -86,7 +88,7 @@ export default function LoginPage() {
     if (isLogin) {
       dispatch(login({ email: formData.email, password: formData.password }));
     } else {
-      // Handle Registration with Success View
+      // Handle Registration -> Show OTP
       try {
         const result = await dispatch(
           register({
@@ -98,7 +100,7 @@ export default function LoginPage() {
         ).unwrap();
         
         if (result) {
-          setShowSuccess(true);
+          setShowOtp(true);
         }
       } catch (err) {
         // Error is handled by Redux state
@@ -106,12 +108,83 @@ export default function LoginPage() {
     }
   };
 
-  // Redirect only if authenticated AND not showing success screen
+  const handleVerifyOtp = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (otp.length !== 6) return;
+
+    try {
+      await dispatch(verifyOtp({ email: formData.email, otp })).unwrap();
+      // Success is handled by useEffect redirect
+    } catch (err) {
+      // Error handled by Redux
+    }
+  };
+
+  // Redirect only if authenticated
   useEffect(() => {
     if (isAuthenticated && !showSuccess) {
       router.push("/");
     }
   }, [isAuthenticated, router, showSuccess]);
+
+  // --- OTP VIEW ---
+  if (showOtp) {
+    return (
+      <div className="min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 overflow-hidden relative">
+        <div className="fixed inset-0 z-0 pointer-events-none bg-[#F2F0EA]" />
+        
+        <div className="relative z-10 w-full max-w-lg animate-fade-up">
+          <div className="bg-white/80 backdrop-blur-2xl border border-white/60 rounded-[3rem] p-8 md:p-12 shadow-2xl shadow-[#1A2118]/10 text-center relative overflow-hidden">
+             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-48 bg-[#BC5633] rounded-full mix-blend-multiply filter blur-[80px] opacity-20 pointer-events-none" />
+
+            <div className="w-20 h-20 bg-[#1A2118] rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl relative z-10">
+              <Lock className="w-10 h-10 text-white" />
+            </div>
+            
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#1A2118] mb-4 relative z-10">
+              Verify Your Email
+            </h2>
+            
+            <p className="text-[#596157] text-base mb-8 leading-relaxed relative z-10">
+              We've sent a 6-digit code to <span className="font-bold text-[#1A2118]">{formData.email}</span>. Please enter it below.
+            </p>
+
+            <form onSubmit={handleVerifyOtp} className="space-y-6 relative z-10">
+              <div className="relative">
+                <input
+                  type="text"
+                  maxLength={6}
+                  value={otp}
+                  onChange={(e) => setOtp(e.target.value.replace(/\D/g, ''))}
+                  className="w-full px-6 py-4 bg-white border border-[#1A2118]/10 rounded-[1.5rem] text-[#1A2118] text-center text-2xl font-bold tracking-[0.5em] focus:ring-4 focus:ring-[#BC5633]/5 outline-none transition-all duration-300 placeholder-[#1A2118]/10 shadow-sm"
+                  placeholder="000000"
+                />
+              </div>
+
+              {error && (
+                <p className="text-xs text-red-500 font-medium">{error}</p>
+              )}
+
+              <button
+                type="submit"
+                disabled={isLoading || otp.length !== 6}
+                className="w-full h-14 bg-[#1A2118] text-white rounded-[1.5rem] font-bold text-sm uppercase tracking-widest hover:bg-[#BC5633] hover:shadow-lg hover:shadow-[#BC5633]/20 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
+              >
+                {isLoading ? (
+                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                ) : (
+                  <>
+                    Verify & Login
+                    <ArrowRight className="w-4 h-4" />
+                  </>
+                )}
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   // --- SUCCESS VIEW ---
   if (showSuccess) {
@@ -182,7 +255,7 @@ export default function LoginPage() {
         </div>
 
         {/* Main Card */}
-        <div className="bg-white/80 backdrop-blur-2xl border border-white/60 rounded-[3rem] p-8 md:p-12 shadow-2xl shadow-[#1A2118]/10 relative overflow-hidden">
+        <div className="bg-white/70 backdrop-blur-2xl border border-white/40 rounded-[3rem] p-8 md:p-12 shadow-2xl shadow-[#1A2118]/10 relative overflow-hidden">
           {/* Top Decoration */}
           <div className="absolute top-0 right-0 w-32 h-32 bg-[#BC5633] rounded-full mix-blend-overlay filter blur-[50px] opacity-20 pointer-events-none" />
 

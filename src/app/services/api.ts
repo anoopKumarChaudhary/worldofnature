@@ -117,7 +117,7 @@ export const authAPI = {
     return response.json();
   },
 
-  register: async (data: RegisterData): Promise<AuthResponse> => {
+  register: async (data: RegisterData): Promise<{ message: string; email: string }> => {
     const response = await fetch(`${API_BASE_URL}/auth/register`, {
       method: "POST",
       headers: {
@@ -131,6 +131,40 @@ export const authAPI = {
         .json()
         .catch(() => ({ message: "Registration failed" }));
       throw new Error(errorData.message || "Registration failed");
+    }
+
+    return response.json();
+  },
+
+  verifyOtp: async (data: { email: string; otp: string }): Promise<AuthResponse> => {
+    const response = await fetch(`${API_BASE_URL}/auth/verify-otp`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      const errorData = await response
+        .json()
+        .catch(() => ({ message: "Verification failed" }));
+      throw new Error(errorData.message || "Verification failed");
+    }
+
+    return response.json();
+  },
+
+  getProfile: async (): Promise<User> => {
+    const token = localStorage.getItem("access_token");
+    const response = await fetch(`${API_BASE_URL}/auth/profile`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch profile");
     }
 
     return response.json();
