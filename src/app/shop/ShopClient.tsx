@@ -315,17 +315,8 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
 
             {/* Actions */}
             <div className="flex items-center gap-2 shrink-0">
-              {/* Mobile Filter Button */}
-              <button
-                onClick={() => setIsFilterOpen(true)}
-                className="lg:hidden h-[46px] px-5 bg-[#1A2118] text-white rounded-full flex items-center gap-2 text-xs font-bold uppercase tracking-widest shadow-lg active:scale-95 transition-all hover:bg-[#BC5633]"
-              >
-                <SlidersHorizontal className="w-4 h-4" /> 
-                <span className="hidden sm:inline">Filters</span>
-                {hasActiveFilters && (
-                  <span className="w-1.5 h-1.5 bg-[#BC5633] sm:bg-white rounded-full" />
-                )}
-              </button>
+              {/* Mobile Filter Button (Removed from top, moved to fixed bottom) */}
+              <div className="lg:hidden" />
 
               {/* Desktop Sort & View */}
               <div className="relative group hidden lg:block">
@@ -739,6 +730,22 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
           </main>
         </div>
       </div>
+      {/* --- MOBILE FIXED FILTER BAR --- */}
+      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 lg:hidden">
+        <button
+          onClick={() => setIsFilterOpen(true)}
+          className="h-12 px-6 bg-[#1A2118] text-white rounded-full flex items-center gap-3 text-xs font-bold uppercase tracking-widest shadow-2xl active:scale-95 transition-all hover:bg-[#BC5633] border border-white/10 backdrop-blur-md"
+        >
+          <SlidersHorizontal className="w-4 h-4" />
+          <span>Filters</span>
+          {hasActiveFilters && (
+            <span className="flex items-center justify-center w-5 h-5 bg-[#BC5633] text-white text-[9px] rounded-full ml-1">
+              !
+            </span>
+          )}
+        </button>
+      </div>
+
     </div>
   );
 };

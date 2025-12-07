@@ -113,7 +113,7 @@ const Navbar = () => {
             ${
               isScrolled
                 ? "w-[95%] md:w-[85%] rounded-full py-2 px-4 md:px-6 bg-[#F2F0EA]/90 backdrop-blur-xl shadow-sm border border-[#1A2118]/5"
-                : "w-full md:w-[92%] py-4 px-4 md:px-6 bg-transparent"
+                : "w-full md:w-[92%] py-3 md:py-4 px-4 md:px-6 bg-transparent"
             }
           `}
         >
@@ -123,7 +123,7 @@ const Navbar = () => {
             className="flex items-center gap-3 z-10"
             onClick={closeMobileMenu}
           >
-            <div className="relative h-10 w-auto overflow-visible">
+            <div className="relative h-8 md:h-10 w-auto overflow-visible">
                {/* eslint-disable-next-line @next/next/no-img-element */}
                <img src="/image.png" alt="World of Nature Logo" className="h-full w-auto object-contain" />
             </div>

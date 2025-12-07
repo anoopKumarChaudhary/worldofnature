@@ -140,8 +140,10 @@ html {
 
 @media (max-width: 640px) {
   html {
-    font-size: 14px;
-    /* Slightly smaller base on mobile for better fitting */
+    font-size: 13.5px;
+    /* Slightly smaller for more content density */
+    line-height: 1.6;
+    /* Improved readability */
   }
 }
 

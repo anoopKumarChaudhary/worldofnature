@@ -66,7 +66,7 @@ const Footer = () => {
     <footer className="relative z-50 bg-[#1A2118] text-[#F2F0EA] pt-20 pb-10 border-t border-[#1A2118]" role="contentinfo">
       <div className="container-custom mx-auto">
         {/* Top Section: Newsletter & Brand */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 mb-20">
           {/* Brand Column */}
           <div className="lg:col-span-3 space-y-8">
             <Link href="/" className="inline-block" aria-label="World of Nature">
@@ -119,7 +119,7 @@ const Footer = () => {
           </div>
 
           {/* Links Columns */}
-          <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-3 gap-8">
+          <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-8">
             {footerSections.map((section) => (
               <div key={section.title} className="space-y-6">
                 <h3 className="text-sm font-semibold uppercase tracking-wider text-[#BC5633] border-b border-[#F2F0EA]/10 pb-2 inline-block">

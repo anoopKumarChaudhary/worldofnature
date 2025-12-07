@@ -11,7 +11,7 @@ const HeroSection = () => {
       {/* CLEAN BACKGROUND (No Overlays) */}
 
       {/* --- CENTERED CONTENT --- */}
-      <div className="container mx-auto relative z-10 text-center">
+      <div className="container-custom mx-auto relative z-10 text-center">
         <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-[#1A2118]/5 border border-[#1A2118]/10 backdrop-blur-md text-xs font-bold uppercase tracking-[0.2em] mb-12 animate-reveal-up">
           <span className="w-2 h-2 bg-[#BC5633] rounded-full animate-pulse" />
           Est. 2025 • World of Nature

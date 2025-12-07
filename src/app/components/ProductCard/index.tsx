@@ -235,7 +235,7 @@ const ProductCard = ({
       </div>
 
       {/* --- CONTENT --- */}
-      <div className="flex flex-col flex-grow relative z-10 p-4 md:p-5">
+      <div className="flex flex-col flex-grow relative z-10 p-5 md:p-6">
         <div className="flex justify-between items-start gap-4 mb-2">
           <Link href={`/product/${id}`} className="block group-hover:opacity-70 transition-opacity">
             <h3 className="font-serif font-semibold text-[#1A2118] text-lg leading-snug tracking-tight">
@@ -260,7 +260,7 @@ const ProductCard = ({
           {description}
         </p>
 
-        {/* Mobile Action (Hidden on Desktop) */}
+        {/* Mobile Action (Minimal) */}
         <div className="mt-auto md:hidden pt-4 border-t border-[#1A2118]/5">
           <button
             onClick={(e) => {
@@ -268,10 +268,10 @@ const ProductCard = ({
               e.stopPropagation();
               handleAddToCart();
             }}
-            className="w-full h-11 rounded-xl bg-[#1A2118] text-white text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 active:scale-95 transition-all"
+            className="w-full h-10 rounded-xl bg-[#F2F0EA] text-[#1A2118] text-[10px] font-bold uppercase tracking-widest flex items-center justify-center gap-2 active:scale-95 transition-all hover:bg-[#1A2118] hover:text-white"
           >
-            {isAdding ? <Check className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
-            {isAdding ? "Added" : "Add to Cart"}
+            {isAdding ? <Check className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
+            {isAdding ? "Added" : "Add"}
           </button>
         </div>
       </div>

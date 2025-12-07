@@ -46,8 +46,8 @@ const HomePage = async () => {
       <HarvestSection />
 
       {/* --- 5. CURATED ESSENTIALS (Product Grid) --- */}
-      <section className="py-24 px-6 lg:px-12 bg-[#F2F0EA]">
-        <div className="container mx-auto">
+      <section className="py-24 px-0 bg-[#F2F0EA]">
+        <div className="container-custom mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-serif text-[#1A2118] mb-4">Curated Essentials</h2>
             <p className="text-[#596157] font-light">Small batch releases from our latest harvest.</p>
