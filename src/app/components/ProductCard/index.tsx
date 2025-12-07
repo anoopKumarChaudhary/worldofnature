@@ -152,7 +152,7 @@ const ProductCard = ({
   // --- GRID VIEW (Professional Polish) ---
   return (
     <div
-      className="group relative flex flex-col h-full bg-white rounded-[2rem] overflow-hidden border border-[#1A2118]/5 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ease-out"
+      className={`group relative flex flex-col h-full bg-white rounded-[2rem] overflow-hidden transition-all duration-500 border border-[#1A2118]/5 hover:border-[#1A2118]/20`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -166,7 +166,7 @@ const ProductCard = ({
             alt={title}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="object-cover mix-blend-multiply transition-transform duration-1000 ease-out group-hover:scale-105"
+            className="object-cover mix-blend-multiply transition-transform duration-1000 ease-out"
           />
           {/* Overlay */}
           <div className="absolute inset-0 bg-[#1A2118]/0 group-hover:bg-[#1A2118]/2 transition-colors duration-500" />
@@ -235,28 +235,28 @@ const ProductCard = ({
       </div>
 
       {/* --- CONTENT --- */}
-      <div className="flex flex-col flex-grow relative z-10 p-5 md:p-6">
-        <div className="flex justify-between items-start gap-4 mb-2">
-          <Link href={`/product/${id}`} className="block group-hover:opacity-70 transition-opacity">
-            <h3 className="font-serif font-semibold text-[#1A2118] text-lg leading-snug tracking-tight">
+      <div className="flex flex-col flex-grow relative z-10 p-4">
+        <div className="flex justify-between items-start gap-2 mb-1">
+          <Link href={`/product/${id}`} className="block group-hover:opacity-70 transition-opacity min-w-0 flex-1">
+            <h3 className="font-serif font-semibold text-[#1A2118] text-base leading-tight tracking-tight truncate">
               {title}
             </h3>
           </Link>
           
           <div className="flex flex-col items-end shrink-0">
             {(isOnSale || (originalPrice && originalPrice > price)) && (
-              <span className="text-[10px] text-[#1A2118]/40 line-through decoration-1 font-medium mb-0.5">
+              <span className="text-[9px] text-[#1A2118]/40 line-through decoration-1 font-medium mb-0.5">
                 ₹{originalPrice}
               </span>
             )}
-            <span className="font-serif font-semibold text-[#1A2118] text-lg tracking-tight">
+            <span className="font-serif font-semibold text-[#1A2118] text-base tracking-tight">
               ₹{price}
             </span>
           </div>
         </div>
 
         {/* Description */}
-        <p className="text-[#1A2118]/60 text-sm leading-relaxed mb-4 line-clamp-2 font-normal">
+        <p className="text-[#1A2118]/60 text-xs leading-relaxed mb-3 line-clamp-2 font-normal">
           {description}
         </p>
 

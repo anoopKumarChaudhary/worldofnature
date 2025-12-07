@@ -112,7 +112,7 @@ const Navbar = () => {
             transition-all duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)]
             ${
               isScrolled
-                ? "w-[95%] md:w-[85%] rounded-full py-2 px-4 md:px-6 bg-[#F2F0EA]/90 backdrop-blur-xl shadow-sm border border-[#1A2118]/5"
+                ? "w-[95%] md:w-[85%] rounded-full py-2 px-4 md:px-6 bg-[#F2F0EA]/90 backdrop-blur-xl border border-[#1A2118]/5"
                 : "w-full md:w-[92%] py-3 md:py-4 px-4 md:px-6 bg-transparent"
             }
           `}
@@ -227,7 +227,7 @@ const Navbar = () => {
             </div>
             <button
               onClick={closeMobileMenu}
-              className="w-12 h-12 flex items-center justify-center rounded-full bg-[#F2F0EA]/5 text-[#F2F0EA] hover:bg-[#F2F0EA]/10 transition-all active:scale-95"
+              className="w-12 h-12 flex items-center justify-center rounded-full bg-[#F2F0EA]/5 text-[#F2F0EA] hover:bg-[#F2F0EA]/10 transition-all"
             >
               <X size={24} strokeWidth={1.5} />
             </button>
@@ -258,7 +258,7 @@ const Navbar = () => {
               <Link
               href="/wishlist"
               onClick={closeMobileMenu}
-              className="flex flex-col items-center justify-center p-6 rounded-2xl bg-[#F2F0EA]/5 hover:bg-[#F2F0EA]/10 transition-all active:scale-95 group"
+              className="flex flex-col items-center justify-center p-6 rounded-2xl bg-[#F2F0EA]/5 hover:bg-[#F2F0EA]/10 transition-all group"
             >
               <Heart size={24} className="text-[#F2F0EA] group-hover:text-[#BC5633] mb-3 transition-colors" strokeWidth={1.5} />
               <span className="text-xs font-bold uppercase tracking-widest text-[#F2F0EA]/60 group-hover:text-[#F2F0EA] transition-colors">Wishlist</span>
@@ -270,7 +270,7 @@ const Navbar = () => {
                   dispatch(logout());
                   closeMobileMenu();
                 }}
-                className="flex flex-col items-center justify-center p-6 rounded-2xl bg-[#F2F0EA]/5 hover:bg-[#BC5633] transition-all active:scale-95 group"
+                className="flex flex-col items-center justify-center p-6 rounded-2xl bg-[#F2F0EA]/5 hover:bg-[#BC5633] transition-all group"
               >
                 <LogOut size={24} className="text-[#F2F0EA] mb-3" strokeWidth={1.5} />
                 <span className="text-xs font-bold uppercase tracking-widest text-[#F2F0EA]/60 group-hover:text-[#F2F0EA] transition-colors">Logout</span>
@@ -279,7 +279,7 @@ const Navbar = () => {
               <Link
                 href="/login"
                 onClick={closeMobileMenu}
-                className="flex flex-col items-center justify-center p-6 rounded-2xl bg-[#F2F0EA]/5 hover:bg-[#F2F0EA]/10 transition-all active:scale-95 group"
+              className="flex flex-col items-center justify-center p-6 rounded-2xl bg-[#F2F0EA]/5 hover:bg-[#F2F0EA]/10 transition-all group"
               >
                 <User size={24} className="text-[#F2F0EA] group-hover:text-[#BC5633] mb-3 transition-colors" strokeWidth={1.5} />
                 <span className="text-xs font-bold uppercase tracking-widest text-[#F2F0EA]/60 group-hover:text-[#F2F0EA] transition-colors">Login</span>

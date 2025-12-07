@@ -302,7 +302,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
           <div className="flex flex-row gap-3 items-center justify-between">
             {/* Search Input */}
             <div className="relative flex-1 group">
-              <div className="absolute inset-0 bg-white/80 backdrop-blur-xl rounded-full shadow-sm border border-white/50 transition-all group-focus-within:border-[#BC5633]/30 group-focus-within:shadow-md" />
+              <div className="absolute inset-0 bg-white/80 backdrop-blur-xl rounded-full border border-white/20 transition-all group-focus-within:border-[#BC5633]/30" />
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#1A2118]/40 w-4 h-4 group-focus-within:text-[#BC5633] transition-colors z-10" />
               <input
                 type="text"
@@ -320,7 +320,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
 
               {/* Desktop Sort & View */}
               <div className="relative group hidden lg:block">
-                <div className="absolute inset-0 bg-white/80 backdrop-blur-xl rounded-full shadow-sm border border-white/50" />
+                <div className="absolute inset-0 bg-white/80 backdrop-blur-xl rounded-full border border-white/20" />
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
@@ -373,7 +373,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
           />
           
           <aside
-            className={`fixed bottom-0 left-0 right-0 lg:static lg:w-80 bg-white lg:bg-white/60 backdrop-blur-2xl lg:backdrop-blur-xl z-50 lg:z-0 rounded-t-[2.5rem] lg:rounded-[2.5rem] border-t lg:border border-white/50 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] lg:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.05)] transition-transform duration-500 cubic-bezier(0.32, 0.72, 0, 1) ${
+            className={`fixed bottom-0 left-0 right-0 lg:static lg:w-80 bg-white lg:bg-white/60 backdrop-blur-2xl lg:backdrop-blur-xl z-50 lg:z-0 rounded-t-[2.5rem] lg:rounded-[2.5rem] border-t lg:border border-white/50 transition-transform duration-500 cubic-bezier(0.32, 0.72, 0, 1) ${
               isFilterOpen
                 ? "translate-y-0"
                 : "translate-y-full lg:translate-y-0"
@@ -734,7 +734,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
       <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 lg:hidden">
         <button
           onClick={() => setIsFilterOpen(true)}
-          className="h-12 px-6 bg-[#1A2118] text-white rounded-full flex items-center gap-3 text-xs font-bold uppercase tracking-widest shadow-2xl active:scale-95 transition-all hover:bg-[#BC5633] border border-white/10 backdrop-blur-md"
+          className="h-12 px-6 bg-[#1A2118] text-white rounded-full flex items-center gap-3 text-xs font-bold uppercase tracking-widest shadow-2xl transition-all hover:bg-[#BC5633] border border-white/10 backdrop-blur-md"
         >
           <SlidersHorizontal className="w-4 h-4" />
           <span>Filters</span>
