@@ -233,11 +233,11 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
 
                   <div className="flex items-baseline gap-4">
                     <span className="text-3xl font-bold text-[#1A2118]">
-                      ${currentProduct.price}
+                      ₹{currentProduct.price}
                     </span>
-                    {currentProduct.originalPrice && (
+                    {currentProduct.originalPrice && currentProduct.originalPrice > currentProduct.price && (
                       <span className="text-xl text-[#1A2118]/30 line-through decoration-1">
-                        ${currentProduct.originalPrice}
+                        ₹{currentProduct.originalPrice}
                       </span>
                     )}
                   </div>
@@ -334,30 +334,48 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
                   </div>
                 </div>
 
-                {/* Product Meta Accordions */}
-                <div className="mt-10 pt-8 border-t border-[#1A2118]/10 space-y-6">
-                  {[
-                    {
-                      title: "Ingredients",
-                      content: currentProduct.ingredients,
-                    },
-                    { title: "Sourcing", content: currentProduct.sourcing },
-                    {
-                      title: "Taste Profile",
-                      content: currentProduct.tasteProfile,
-                    },
-                  ].map((item, i) => (
-                    item.content ? (
-                      <div key={i} className="group">
-                        <h3 className="text-lg font-serif font-bold text-[#1A2118] mb-2">
-                          {item.title}
+                {/* Product Meta Details */}
+                <div className="mt-10 pt-8 border-t border-[#1A2118]/10 space-y-8">
+                  {/* Ingredients - Full Width */}
+                  {currentProduct.ingredients && (
+                    <div>
+                      <h3 className="text-sm font-bold uppercase tracking-widest text-[#1A2118]/40 mb-3">
+                        Ingredients
+                      </h3>
+                      <p className="text-[#596157] font-light text-sm leading-relaxed bg-[#F9F8F6] p-6 rounded-2xl border border-[#1A2118]/5">
+                        {currentProduct.ingredients}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Sourcing & Taste Profile - Grid */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {currentProduct.sourcing && (
+                      <div>
+                        <h3 className="text-sm font-bold uppercase tracking-widest text-[#1A2118]/40 mb-3">
+                          Sourcing
                         </h3>
-                        <p className="text-[#596157] font-light text-sm leading-relaxed">
-                          {item.content}
-                        </p>
+                        <div className="bg-[#F9F8F6] p-6 rounded-2xl border border-[#1A2118]/5 h-full">
+                          <p className="text-[#596157] font-light text-sm leading-relaxed">
+                            {currentProduct.sourcing}
+                          </p>
+                        </div>
                       </div>
-                    ) : null
-                  ))}
+                    )}
+
+                    {currentProduct.tasteProfile && (
+                      <div>
+                        <h3 className="text-sm font-bold uppercase tracking-widest text-[#1A2118]/40 mb-3">
+                          Taste Profile
+                        </h3>
+                        <div className="bg-[#F9F8F6] p-6 rounded-2xl border border-[#1A2118]/5 h-full">
+                          <p className="text-[#596157] font-light text-sm leading-relaxed">
+                            {currentProduct.tasteProfile}
+                          </p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -427,7 +445,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
               Total Price
             </span>
             <span className="text-xl font-bold text-[#1A2118]">
-              ${currentProduct.price * quantity}
+              ₹{currentProduct.price * quantity}
             </span>
           </div>
           

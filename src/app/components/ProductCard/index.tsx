@@ -152,14 +152,14 @@ const ProductCard = ({
   // --- GRID VIEW (Professional Polish) ---
   return (
     <div
-      className="group relative flex flex-col h-full bg-white rounded-[1.5rem] overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
+      className="group relative flex flex-col h-full bg-white rounded-[2rem] overflow-hidden border border-[#1A2118]/5 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ease-out"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
 
 
       {/* --- IMAGE SECTION --- */}
-      <div className="relative aspect-square md:aspect-[3/4] overflow-hidden bg-[#F9F8F6]">
+      <div className="relative aspect-[4/3] overflow-hidden bg-[#F9F8F6]">
         <Link href={`/product/${id}`}>
           <Image
             src={imageUrl}
@@ -199,9 +199,11 @@ const ProductCard = ({
               New
             </Badge>
           )}
-          {isOnSale && (
-            <Badge className="bg-[#BC5633] text-white border-transparent">
-              Sale
+          {(isOnSale || (originalPrice && originalPrice > price)) && (
+            <Badge className="bg-[#BC5633] text-white border-transparent shadow-sm">
+              {originalPrice && originalPrice > price
+                ? `${Math.round(((originalPrice - price) / originalPrice) * 100)}% OFF`
+                : "SALE"}
             </Badge>
           )}
         </div>
@@ -233,43 +235,47 @@ const ProductCard = ({
       </div>
 
       {/* --- CONTENT --- */}
-      <div className="flex flex-col flex-grow relative z-10 p-4">
-        <Link href={`/product/${id}`} className="block group-hover:opacity-70 transition-opacity">
-          <h3 className="font-serif text-[#1A2118] text-base md:text-lg mb-1 leading-tight">
-            {title}
-          </h3>
-        </Link>
-
-        {/* Description (Hidden on Mobile) */}
-        <p className="hidden md:block text-[#596157] text-xs leading-relaxed mb-3 line-clamp-2 font-light">
-          {description}
-        </p>
-
-        <div className="mt-auto flex items-end justify-between">
-          <div className="flex flex-col">
-            {isOnSale && originalPrice && (
-              <span className="text-[10px] text-[#1A2118]/40 line-through decoration-1 mb-0.5">
+      <div className="flex flex-col flex-grow relative z-10 p-5">
+        <div className="flex justify-between items-start gap-4 mb-2">
+          <Link href={`/product/${id}`} className="block group-hover:opacity-70 transition-opacity">
+            <h3 className="font-serif font-semibold text-[#1A2118] text-lg leading-snug tracking-tight">
+              {title}
+            </h3>
+          </Link>
+          
+          <div className="flex flex-col items-end shrink-0">
+            {(isOnSale || (originalPrice && originalPrice > price)) && (
+              <span className="text-[10px] text-[#1A2118]/40 line-through decoration-1 font-medium mb-0.5">
                 ₹{originalPrice}
               </span>
             )}
-            <span className="font-medium text-[#1A2118] text-sm md:text-base">
+            <span className="font-serif font-semibold text-[#1A2118] text-lg tracking-tight">
               ₹{price}
             </span>
           </div>
-          
-          {/* Mobile Quick Add (Minimal) */}
+        </div>
+
+        {/* Description */}
+        <p className="text-[#1A2118]/60 text-sm leading-relaxed mb-4 line-clamp-2 font-normal">
+          {description}
+        </p>
+
+        {/* Mobile Action (Hidden on Desktop) */}
+        <div className="mt-auto md:hidden pt-4 border-t border-[#1A2118]/5">
           <button
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
               handleAddToCart();
             }}
-            className="md:hidden w-8 h-8 flex items-center justify-center text-[#1A2118] border border-[#1A2118]/10 rounded-full active:bg-[#1A2118] active:text-white transition-colors"
+            className="w-full py-3 rounded-xl bg-[#1A2118] text-white text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 active:scale-95 transition-all"
           >
             {isAdding ? <Check className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+            {isAdding ? "Added" : "Add to Cart"}
           </button>
         </div>
       </div>
+
     </div>
   );
 };
