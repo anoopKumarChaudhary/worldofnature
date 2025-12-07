@@ -56,7 +56,7 @@ export default function CheckoutPage() {
     paymentMethod: "COD",
   });
 
-  const tax = total * 0.08;
+  const tax = 0;
   const finalTotal = total + tax;
 
   const [errors, setErrors] = useState<Partial<ShippingInfo>>({});
@@ -119,7 +119,7 @@ export default function CheckoutPage() {
                 })),
                 shippingInfo,
                 subtotal: total,
-                tax: total * 0.08,
+                tax: 0,
                 shipping: 0,
                 paymentMethod: "RAZORPAY",
                 paymentId: response.razorpay_payment_id,
@@ -170,7 +170,7 @@ export default function CheckoutPage() {
         })),
         shippingInfo,
         subtotal: total,
-        tax: total * 0.08,
+        tax: 0,
         shipping: 0,
         paymentMethod: "COD",
       };

@@ -238,7 +238,7 @@ export default function CartPage() {
                     </div>
                     <div className="flex justify-between">
                       <span>Tax (Est.)</span>
-                      <span>${(total * 0.08).toFixed(2)}</span>
+                      <span>$0.00</span>
                     </div>
 
                     <div className="border-t border-white/10 pt-6 mt-6 pb-2">
@@ -247,7 +247,7 @@ export default function CartPage() {
                           Total
                         </span>
                         <span className="text-3xl font-serif font-bold text-[#F2F0EA]">
-                          ${(total + total * 0.08).toFixed(2)}
+                          ${total.toFixed(2)}
                         </span>
                       </div>
                     </div>
