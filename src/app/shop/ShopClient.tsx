@@ -280,8 +280,8 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
       <div className="fixed inset-0 z-0 pointer-events-none bg-[#F2F0EA]" />
 
       {/* --- Header --- */}
-      <section className="relative pt-32 pb-8 px-6 lg:px-12 z-10">
-        <div className="container mx-auto">
+      <section className="relative pt-32 pb-8 z-10">
+        <div className="container-custom mx-auto">
           <div className="flex items-center gap-3 mb-4">
             <div className="h-2 w-2 bg-[#BC5633] rounded-full animate-pulse"></div>
             <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#1A2118]">
@@ -294,7 +294,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
         </div>
       </section>
 
-      <div className="container mx-auto px-6 lg:px-12 relative z-10">
+      <div className="container-custom mx-auto relative z-10">
         {/* --- Control Bar --- */}
         <div className="sticky top-24 z-30 mb-8 transition-all duration-300">
           <div className="flex flex-row gap-3 items-center justify-between">
@@ -424,6 +424,30 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
 
             {/* Scrollable Content */}
             <div className="overflow-y-auto p-6 lg:p-8 space-y-8 flex-1">
+              {/* Mobile Sort Options */}
+              <div className="lg:hidden space-y-4">
+                <h3 className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/40 ml-1">
+                  Sort By
+                </h3>
+                <div className="grid grid-cols-2 gap-3">
+                  {sortOptions.map((option) => (
+                    <button
+                      key={option.value}
+                      onClick={() => setSortBy(option.value)}
+                      className={`px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                        sortBy === option.value
+                          ? "bg-[#1A2118] text-white shadow-md"
+                          : "bg-[#F2F0EA] text-[#1A2118] hover:bg-[#1A2118]/5"
+                      }`}
+                    >
+                      {option.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="lg:hidden h-px bg-[#1A2118]/5 w-full" />
+
               {/* Categories */}
               <div className="space-y-4">
                 <h3 className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/40 ml-1">

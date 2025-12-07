@@ -124,6 +124,30 @@ html {
   }
 }
 
+/* Custom Container Utility */
+.container-custom {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem; /* 16px on mobile */
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container-custom {
+    padding-left: 1.5rem; /* 24px on tablet */
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-custom {
+    padding-left: 3rem; /* 48px on desktop */
+    padding-right: 3rem;
+    max-width: 1400px; /* Limit max width for large screens */
+  }
+}
+
 body {
   background-color: var(--background);
   color: var(--foreground);

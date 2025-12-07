@@ -64,7 +64,7 @@ const Footer = () => {
 
   return (
     <footer className="relative z-50 bg-[#1A2118] text-[#F2F0EA] pt-20 pb-10 border-t border-[#1A2118]" role="contentinfo">
-      <div className="container mx-auto px-6 lg:px-12">
+      <div className="container-custom mx-auto">
         {/* Top Section: Newsletter & Brand */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 mb-20">
           {/* Brand Column */}

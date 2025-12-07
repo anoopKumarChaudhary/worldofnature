@@ -112,8 +112,8 @@ const Navbar = () => {
             transition-all duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)]
             ${
               isScrolled
-                ? "w-[95%] md:w-[85%] rounded-full py-2 px-5 bg-[#F2F0EA]/90 backdrop-blur-xl shadow-sm border border-[#1A2118]/5"
-                : "w-full md:w-[92%] py-4 px-6 bg-transparent"
+                ? "w-[95%] md:w-[85%] rounded-full py-2 px-4 md:px-6 bg-[#F2F0EA]/90 backdrop-blur-xl shadow-sm border border-[#1A2118]/5"
+                : "w-full md:w-[92%] py-4 px-4 md:px-6 bg-transparent"
             }
           `}
         >
