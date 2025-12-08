@@ -17,6 +17,7 @@ export interface User {
   email: string;
   firstName: string;
   lastName: string;
+  isVerified?: boolean;
 }
 
 export interface AuthResponse {
@@ -150,6 +151,25 @@ export const authAPI = {
         .json()
         .catch(() => ({ message: "Verification failed" }));
       throw new Error(errorData.message || "Verification failed");
+    }
+
+    return response.json();
+  },
+
+  resendOtp: async (email: string): Promise<{ message: string }> => {
+    const response = await fetch(`${API_BASE_URL}/auth/resend-otp`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response
+        .json()
+        .catch(() => ({ message: "Failed to resend OTP" }));
+      throw new Error(errorData.message || "Failed to resend OTP");
     }
 
     return response.json();

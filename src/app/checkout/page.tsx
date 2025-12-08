@@ -20,6 +20,7 @@ import {
   DollarSign,
   CreditCard,
 } from "lucide-react";
+import VerificationModal from "../components/VerificationModal";
 
 interface ShippingInfo {
   firstName: string;
@@ -40,6 +41,7 @@ export default function CheckoutPage() {
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
   const { items, total } = useSelector((state: RootState) => state.cart);
+  const { user } = useSelector((state: RootState) => state.auth);
   const [currentStep, setCurrentStep] = useState(1);
   const { Razorpay } = useRazorpay();
   const [shippingInfo, setShippingInfo] = useState<ShippingInfo>({
@@ -218,6 +220,8 @@ export default function CheckoutPage() {
   return (
     <AuthGuard>
       <div className="min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white pb-20 overflow-x-hidden">
+        {/* --- VERIFICATION CHECK --- */}
+        {!user?.isVerified && <VerificationModal />}
         {/* --- STYLES & ANIMATIONS --- */}
         <style jsx>{`
           @keyframes blob {
