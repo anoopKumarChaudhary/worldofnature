@@ -34,8 +34,12 @@ export default function ForgotPasswordPage() {
       setTimeout(() => {
         router.push(`/reset-password?email=${encodeURIComponent(email)}`);
       }, 2000);
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("An error occurred");
+      }
     } finally {
       setIsLoading(false);
     }
@@ -59,7 +63,7 @@ export default function ForgotPasswordPage() {
             </h2>
             
             <p className="text-[#596157] text-base mb-8 leading-relaxed relative z-10">
-              We've sent a password reset code to <span className="font-bold text-[#1A2118]">{email}</span>. Redirecting you...
+              We&apos;ve sent a password reset code to <span className="font-bold text-[#1A2118]">{email}</span>. Redirecting you...
             </p>
           </div>
         </div>
@@ -100,7 +104,7 @@ export default function ForgotPasswordPage() {
               Forgot Password
             </h2>
             <p className="text-[#596157] text-sm font-medium">
-              Enter your email and we'll send you a code to reset your password.
+              Enter your email and we&apos;ll send you a code to reset your password.
             </p>
           </div>
 

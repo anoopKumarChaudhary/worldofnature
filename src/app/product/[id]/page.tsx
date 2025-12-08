@@ -1,4 +1,4 @@
-import { productsAPI, reviewsAPI } from "../../services/api";
+import { productsAPI, reviewsAPI, Review } from "../../services/api";
 import ProductClient from "./ProductClient";
 import Link from "next/link";
 import { ShoppingCart } from "lucide-react";
@@ -7,7 +7,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
   const { id } = await params;
   const productId = id;
   let product = null;
-  let reviews = [];
+  let reviews: Review[] = [];
 
   try {
     product = await productsAPI.getProduct(productId);

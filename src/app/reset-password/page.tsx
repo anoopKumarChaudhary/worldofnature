@@ -38,8 +38,12 @@ function ResetPasswordContent() {
       setTimeout(() => {
         router.push("/login");
       }, 3000);
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("An error occurred");
+      }
     } finally {
       setIsLoading(false);
     }

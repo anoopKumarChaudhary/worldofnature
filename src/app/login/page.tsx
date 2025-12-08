@@ -29,7 +29,7 @@ export default function LoginPage() {
 
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false); // New Success State
+  // const [showSuccess, setShowSuccess] = useState(false); // Removed unused state
   const [showOtp, setShowOtp] = useState(false); // OTP State
   const [otp, setOtp] = useState("");
   const [formData, setFormData] = useState({
@@ -122,10 +122,10 @@ export default function LoginPage() {
 
   // Redirect only if authenticated
   useEffect(() => {
-    if (isAuthenticated && !showSuccess) {
+    if (isAuthenticated) {
       router.push("/");
     }
-  }, [isAuthenticated, router, showSuccess]);
+  }, [isAuthenticated, router]);
 
   // --- OTP VIEW ---
   if (showOtp) {
@@ -146,7 +146,7 @@ export default function LoginPage() {
             </h2>
             
             <p className="text-[#596157] text-base mb-8 leading-relaxed relative z-10">
-              We've sent a 6-digit code to <span className="font-bold text-[#1A2118]">{formData.email}</span>. Please enter it below.
+              We&apos;ve sent a 6-digit code to <span className="font-bold text-[#1A2118]">{formData.email}</span>. Please enter it below.
             </p>
 
             <form onSubmit={handleVerifyOtp} className="space-y-6 relative z-10">
@@ -186,41 +186,7 @@ export default function LoginPage() {
     );
   }
 
-  // --- SUCCESS VIEW ---
-  if (showSuccess) {
-    return (
-      <div className="min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 overflow-hidden relative">
-        <div className="fixed inset-0 z-0 pointer-events-none bg-[#F2F0EA]" />
-        
-        <div className="relative z-10 w-full max-w-lg animate-fade-up">
-          <div className="bg-white/80 backdrop-blur-2xl border border-white/60 rounded-[3rem] p-8 md:p-12 shadow-2xl shadow-[#1A2118]/10 text-center relative overflow-hidden">
-             {/* Decorative Blob */}
-             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-48 bg-[#BC5633] rounded-full mix-blend-multiply filter blur-[80px] opacity-20 pointer-events-none" />
 
-            <div className="w-20 h-20 bg-[#1A2118] rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl relative z-10">
-              <CheckCircle2 className="w-10 h-10 text-white" />
-            </div>
-            
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#1A2118] mb-4 relative z-10">
-              Welcome to the Harvest
-            </h2>
-            
-            <p className="text-[#596157] text-base mb-8 leading-relaxed relative z-10">
-              Your account has been successfully created. We've sent a welcome email to <span className="font-bold text-[#1A2118]">{formData.email}</span>.
-            </p>
-
-            <button
-              onClick={() => router.push("/")}
-              className="w-full h-14 bg-[#1A2118] text-white rounded-[1.5rem] font-bold text-sm uppercase tracking-widest hover:bg-[#BC5633] hover:shadow-lg hover:shadow-[#BC5633]/20 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 relative z-10"
-            >
-              <ShoppingBag className="w-4 h-4" />
-              Start Foraging
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 overflow-hidden relative">

@@ -385,18 +385,39 @@ export const reviewsAPI = {
       body: JSON.stringify(data),
     });
     if (!response.ok) throw new Error("Failed to create review");
-    return response.json();
+    const item = await response.json();
+    return {
+      id: item._id,
+      productId: item.product,
+      userId: item.user?._id || item.user || '',
+      userName: item.user?.firstName ? `${item.user.firstName} ${item.user.lastName}` : 'You',
+      rating: item.rating,
+      comment: item.comment,
+      date: new Date(item.createdAt).toLocaleDateString(),
+    };
   },
   getByProduct: async (productId: string) => {
     const response = await fetch(
       `${API_BASE_URL}/reviews/product/${productId}`
     );
     if (!response.ok) throw new Error("Failed to fetch reviews");
-    const data = await response.json();
-    return data.map((item: any) => ({
+    interface RawReview {
+      _id: string;
+      product: string;
+      user?: {
+        _id: string;
+        firstName: string;
+        lastName: string;
+      };
+      rating: number;
+      comment: string;
+      createdAt: string;
+    }
+    const data: RawReview[] = await response.json();
+    return data.map((item) => ({
       id: item._id,
       productId: item.product,
-      userId: item.user?._id,
+      userId: item.user?._id || '',
       userName: item.user ? `${item.user.firstName} ${item.user.lastName}` : 'Anonymous',
       rating: item.rating,
       comment: item.comment,

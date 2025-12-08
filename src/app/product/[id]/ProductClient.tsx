@@ -20,6 +20,7 @@ import {
   Leaf,
   Truck,
 } from "lucide-react";
+import Image from "next/image";
 
 interface ProductClientProps {
   product: Product;
@@ -86,7 +87,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
   useEffect(() => {
     dispatch(setSelectedProduct(product));
     if (product.sizes && product.sizes.length > 0) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
+
       setSelectedSize(() => {
         // Only update if not set or different (though usually we want to reset on product change)
         // Since we initialized it, this might be redundant unless product prop changes
@@ -213,11 +214,13 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
               <div className="sticky top-32 space-y-6">
                 {/* Main Image Card */}
                 <div className="relative aspect-[4/5] lg:aspect-square w-full bg-white rounded-[2rem] lg:rounded-[3rem] overflow-hidden shadow-2xl shadow-[#1A2118]/5 border border-white">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  {/* Main Image Card */}
+                  <Image
                     src={currentProduct.imageUrl}
                     alt={currentProduct.title}
-                    className="w-full h-full object-cover mix-blend-multiply"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover mix-blend-multiply"
                   />
 
                   {/* Floating Badges */}

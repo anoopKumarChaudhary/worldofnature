@@ -2,18 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Star, User } from "lucide-react";
-import { reviewsAPI } from "../services/api";
-
-interface Review {
-  _id: string;
-  user: {
-    firstName: string;
-    lastName: string;
-  };
-  rating: number;
-  comment: string;
-  createdAt: string;
-}
+import { reviewsAPI, Review } from "../services/api";
 
 interface ReviewsSectionProps {
   productId: string;
@@ -50,7 +39,6 @@ export default function ReviewsSection({ productId }: ReviewsSectionProps) {
         productId,
         rating: newReview.rating,
         comment: newReview.comment,
-        user: userId,
       });
       setReviews((prev) => [review, ...prev]);
       setNewReview({ rating: 5, comment: "" });
@@ -128,7 +116,7 @@ export default function ReviewsSection({ productId }: ReviewsSectionProps) {
         <div className="space-y-6">
           {reviews.map((review) => (
             <div
-              key={review._id}
+              key={review.id}
               className="bg-white p-6 rounded-2xl shadow-sm"
             >
               <div className="flex items-center justify-between mb-4">
@@ -138,10 +126,10 @@ export default function ReviewsSection({ productId }: ReviewsSectionProps) {
                   </div>
                   <div>
                     <p className="font-bold text-[#1A2118]">
-                      {review.user?.firstName || "Anonymous"}
+                      {review.userName}
                     </p>
                     <p className="text-xs text-gray-400">
-                      {new Date(review.createdAt).toLocaleDateString()}
+                      {review.date}
                     </p>
                   </div>
                 </div>

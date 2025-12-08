@@ -2,14 +2,15 @@
 
 import { useState } from "react";
 import { Search, Package, AlertCircle, ArrowRight } from "lucide-react";
-import { ordersAPI } from "../services/api";
+import { ordersAPI, Order, OrderItem } from "../services/api";
+import Image from "next/image";
 
 export default function TrackOrderPage() {
   const [orderNumber, setOrderNumber] = useState("");
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [order, setOrder] = useState<any | null>(null);
+  const [order, setOrder] = useState<Order | null>(null);
 
   const handleTrack = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -133,11 +134,11 @@ export default function TrackOrderPage() {
                 <div className="mt-12 pt-8 border-t border-white/10">
                    <h3 className="text-[#F2F0EA]/40 uppercase tracking-widest text-xs font-bold mb-6">Items Ordered</h3>
                    <div className="space-y-4">
-                      {order.items.map((item: any) => (
+                      {order.items.map((item: OrderItem) => (
                          <div key={item.id} className="flex items-center justify-between p-4 bg-white/5 rounded-2xl border border-white/5">
                             <div className="flex items-center gap-4">
-                               <div className="w-12 h-12 bg-white/10 rounded-xl overflow-hidden">
-                                  <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                               <div className="relative w-12 h-12 bg-white/10 rounded-xl overflow-hidden">
+                                  <Image src={item.image} alt={item.name} fill className="object-cover" sizes="48px" />
                                </div>
                                <div>
                                   <p className="font-bold">{item.name}</p>

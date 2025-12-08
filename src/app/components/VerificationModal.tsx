@@ -61,7 +61,7 @@ export default function VerificationModal() {
         <div className="p-8">
           <div className="text-center mb-6">
             <p className="text-[#596157] text-sm">
-              We've sent a code to <span className="font-bold text-[#1A2118]">{user.email}</span>
+              We&apos;ve sent a code to <span className="font-bold text-[#1A2118]">{user.email}</span>
             </p>
           </div>
 
