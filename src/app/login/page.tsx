@@ -355,12 +355,12 @@ export default function LoginPage() {
                     Remember me
                   </span>
                 </label>
-                <a
-                  href="#"
+                <Link
+                  href="/forgot-password"
                   className="text-xs font-bold text-[#BC5633] hover:text-[#A44626] transition-colors"
                 >
                   Forgot Password?
-                </a>
+                </Link>
               </div>
             )}
 
