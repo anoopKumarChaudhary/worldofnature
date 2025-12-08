@@ -13,14 +13,14 @@ const HeroSection = () => {
       {/* --- CENTERED CONTENT --- */}
       <div className="container-custom mx-auto relative z-10 text-center">
         <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-[#1A2118]/5 border border-[#1A2118]/10 backdrop-blur-md text-xs font-bold uppercase tracking-[0.2em] mb-12 animate-reveal-up">
-          <span className="w-2 h-2 bg-[#BC5633] rounded-full animate-pulse" />
+          <span className="w-2 h-2 bg-[#B56B56] rounded-full animate-pulse" />
           Est. 2025 • World of Nature
         </div>
         
         <h1 className="text-6xl lg:text-[9rem] leading-[0.85] font-serif font-bold tracking-tight mb-12 drop-shadow-sm text-[#1A2118]">
           <span className="block animate-reveal-up" style={{ animationDelay: '0.1s' }}>Nature&rsquo;s</span>
           <span className="block animate-reveal-up" style={{ animationDelay: '0.2s' }}>Unfiltered</span>
-          <span className="block animate-reveal-up text-[#BC5633]" style={{ animationDelay: '0.3s' }}>Intelligence.</span>
+          <span className="block animate-reveal-up text-[#C4A052]" style={{ animationDelay: '0.3s' }}>Intelligence.</span>
         </h1>
         
         <p className="text-xl lg:text-2xl leading-relaxed font-light max-w-2xl mx-auto mb-16 animate-reveal-up text-balance text-[#4A5248]" style={{ animationDelay: '0.4s' }}>
@@ -30,7 +30,7 @@ const HeroSection = () => {
         <div className="flex flex-col sm:flex-row justify-center items-center gap-6 animate-reveal-up" style={{ animationDelay: '0.5s' }}>
           <Link
             href="/shop"
-            className="h-16 px-12 bg-[#1A2118] text-[#F2F0EA] rounded-full flex items-center gap-3 font-bold text-sm uppercase tracking-widest hover:bg-[#BC5633] transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 group"
+            className="h-16 px-12 bg-[#1A2118] text-[#F2F0EA] rounded-full flex items-center gap-3 font-bold text-sm uppercase tracking-widest hover:bg-[#B56B56] transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 group"
           >
             Start Foraging <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </Link>
@@ -44,11 +44,11 @@ const HeroSection = () => {
         
         {/* Watch Film Link */}
         <div className="mt-8 animate-reveal-up" style={{ animationDelay: '0.6s' }}>
-          <button className="group flex items-center gap-3 text-[#1A2118] hover:text-[#BC5633] transition-colors">
-            <div className="w-10 h-10 rounded-full border border-[#1A2118]/20 flex items-center justify-center group-hover:border-[#BC5633] group-hover:scale-110 transition-all">
+          <button className="group flex items-center gap-3 text-[#1A2118] hover:text-[#B56B56] transition-colors">
+            <div className="w-10 h-10 rounded-full border border-[#1A2118]/20 flex items-center justify-center group-hover:border-[#B56B56] group-hover:scale-110 transition-all">
               <div className="w-0 h-0 border-t-[5px] border-t-transparent border-l-[8px] border-l-current border-b-[5px] border-b-transparent ml-1" />
             </div>
-            <span className="text-xs font-bold uppercase tracking-widest border-b border-transparent group-hover:border-[#BC5633]">Watch the Film</span>
+            <span className="text-xs font-bold uppercase tracking-widest border-b border-transparent group-hover:border-[#B56B56]">Watch the Film</span>
           </button>
         </div>
 
@@ -75,7 +75,7 @@ const HeroSection = () => {
          <Leaf className="absolute bottom-[-20px] left-[-20px] w-48 h-48 text-[#1A2118]/10 rotate-45 blur-[2px] animate-float" style={{ animationDuration: '10s' }} />
          
          {/* Right Bush */}
-         <div className="absolute -bottom-10 -right-10 w-80 h-80 bg-[#BC5633]/5 rounded-full blur-3xl animate-float" style={{ animationDuration: '18s', animationDelay: '1s' }} />
+         <div className="absolute -bottom-10 -right-10 w-80 h-80 bg-[#B56B56]/5 rounded-full blur-3xl animate-float" style={{ animationDuration: '18s', animationDelay: '1s' }} />
          <Sprout className="absolute bottom-[-30px] right-[-10px] w-56 h-56 text-[#1A2118]/10 -rotate-12 blur-[3px] animate-float" style={{ animationDuration: '12s', animationDelay: '2s' }} />
       </div>
 

@@ -136,7 +136,7 @@ const Navbar = () => {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm font-medium text-[#1A2118]/70 hover:text-[#1A2118] transition-colors duration-200 tracking-wide"
+                className="text-sm font-medium text-[#1A2118]/70 hover:text-[#B56B56] transition-colors duration-200 tracking-wide"
               >
                 {item.label}
               </Link>
@@ -163,7 +163,7 @@ const Navbar = () => {
               />
               {isAuthenticated ? (
                 <div className="flex items-center gap-2 ml-1">
-                  <Link href="/profile" className="text-sm font-medium text-[#1A2118] hover:text-[#BC5633] transition-colors">
+                  <Link href="/profile" className="text-sm font-medium text-[#1A2118] hover:text-[#B56B56] transition-colors">
                     {user?.firstName}
                   </Link>
                   <button
@@ -193,7 +193,7 @@ const Navbar = () => {
                 className="text-[#1A2118]"
               />
               {cartItemsCount > 0 && (
-                <span className="absolute top-0.5 right-0.5 w-3.5 h-3.5 bg-[#BC5633] text-[#F2F0EA] text-[9px] font-bold flex items-center justify-center rounded-full ring-1 ring-[#F2F0EA]">
+                <span className="absolute top-0.5 right-0.5 w-3.5 h-3.5 bg-[#B56B56] text-[#F2F0EA] text-[9px] font-bold flex items-center justify-center rounded-full ring-1 ring-[#F2F0EA]">
                   {cartItemsCount}
                 </span>
               )}
@@ -243,12 +243,12 @@ const Navbar = () => {
                   <Link
                     href={item.href}
                     onClick={closeMobileMenu}
-                    className="group flex items-center gap-4 text-[#F2F0EA] hover:text-[#BC5633] transition-colors"
+                    className="group flex items-center gap-4 text-[#F2F0EA] hover:text-[#B56B56] transition-colors"
                   >
                     <span className="font-serif text-4xl md:text-5xl font-light tracking-tight group-hover:translate-x-2 transition-transform duration-300">
                       {item.label}
                     </span>
-                    <ChevronRight className="w-6 h-6 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-[#BC5633]" />
+                    <ChevronRight className="w-6 h-6 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-[#B56B56]" />
                   </Link>
                 </li>
               ))}
@@ -262,7 +262,7 @@ const Navbar = () => {
               onClick={closeMobileMenu}
               className="flex flex-col items-center justify-center p-6 rounded-2xl bg-[#F2F0EA]/5 hover:bg-[#F2F0EA]/10 transition-all group"
             >
-              <Heart size={24} className="text-[#F2F0EA] group-hover:text-[#BC5633] mb-3 transition-colors" strokeWidth={1.5} />
+              <Heart size={24} className="text-[#F2F0EA] group-hover:text-[#B56B56] mb-3 transition-colors" strokeWidth={1.5} />
               <span className="text-xs font-bold uppercase tracking-widest text-[#F2F0EA]/60 group-hover:text-[#F2F0EA] transition-colors">Wishlist</span>
             </Link>
             
@@ -272,7 +272,7 @@ const Navbar = () => {
                   dispatch(logout());
                   closeMobileMenu();
                 }}
-                className="flex flex-col items-center justify-center p-6 rounded-2xl bg-[#F2F0EA]/5 hover:bg-[#BC5633] transition-all group"
+                className="flex flex-col items-center justify-center p-6 rounded-2xl bg-[#F2F0EA]/5 hover:bg-[#B56B56] transition-all group"
               >
                 <LogOut size={24} className="text-[#F2F0EA] mb-3" strokeWidth={1.5} />
                 <span className="text-xs font-bold uppercase tracking-widest text-[#F2F0EA]/60 group-hover:text-[#F2F0EA] transition-colors">Logout</span>
@@ -283,7 +283,7 @@ const Navbar = () => {
                 onClick={closeMobileMenu}
               className="flex flex-col items-center justify-center p-6 rounded-2xl bg-[#F2F0EA]/5 hover:bg-[#F2F0EA]/10 transition-all group"
               >
-                <User size={24} className="text-[#F2F0EA] group-hover:text-[#BC5633] mb-3 transition-colors" strokeWidth={1.5} />
+                <User size={24} className="text-[#F2F0EA] group-hover:text-[#B56B56] mb-3 transition-colors" strokeWidth={1.5} />
                 <span className="text-xs font-bold uppercase tracking-widest text-[#F2F0EA]/60 group-hover:text-[#F2F0EA] transition-colors">Login</span>
               </Link>
             )}

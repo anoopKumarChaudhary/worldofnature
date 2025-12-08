@@ -35,10 +35,10 @@ const CollectionsSection = () => {
       <div className="container mx-auto">
         <div className="flex justify-between items-end mb-16">
           <div>
-            <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-[#BC5633] mb-4">The Pantry</h2>
+            <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-[#B56B56] mb-4">The Pantry</h2>
             <h3 className="text-4xl lg:text-5xl font-serif text-[#1A2118]">Essential Collections</h3>
           </div>
-          <Link href="/shop" className="hidden lg:flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-[#BC5633] transition-colors group">
+          <Link href="/shop" className="hidden lg:flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-[#B56B56] transition-colors group">
             View All <MoveRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
@@ -72,7 +72,7 @@ const CollectionsSection = () => {
             </Link>
           ))}
           {/* Add a 4th item to fill the grid if needed, or adjust styling */}
-           <Link href="/shop" className="group relative overflow-hidden rounded-3xl bg-[#BC5633] flex items-center justify-center text-[#F2F0EA] md:col-span-1">
+           <Link href="/shop" className="group relative overflow-hidden rounded-3xl bg-[#B56B56] flex items-center justify-center text-[#F2F0EA] md:col-span-1">
               <div className="text-center">
                 <span className="block text-4xl font-serif mb-2 group-hover:scale-110 transition-transform">View All</span>
                 <span className="text-xs uppercase tracking-widest opacity-60">The Full Pantry</span>
@@ -81,7 +81,7 @@ const CollectionsSection = () => {
         </div>
         
         <div className="mt-12 lg:hidden text-center">
-          <Link href="/shop" className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-[#BC5633] transition-colors">
+          <Link href="/shop" className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-[#B56B56] transition-colors">
             View All Collections <MoveRight className="w-4 h-4" />
           </Link>
         </div>
