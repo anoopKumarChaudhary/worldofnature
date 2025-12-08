@@ -374,7 +374,6 @@ export const reviewsAPI = {
     productId: string;
     rating: number;
     comment: string;
-    user: string;
   }) => {
     const token = localStorage.getItem("access_token");
     const response = await fetch(`${API_BASE_URL}/reviews`, {
@@ -393,7 +392,16 @@ export const reviewsAPI = {
       `${API_BASE_URL}/reviews/product/${productId}`
     );
     if (!response.ok) throw new Error("Failed to fetch reviews");
-    return response.json();
+    const data = await response.json();
+    return data.map((item: any) => ({
+      id: item._id,
+      productId: item.product,
+      userId: item.user?._id,
+      userName: item.user ? `${item.user.firstName} ${item.user.lastName}` : 'Anonymous',
+      rating: item.rating,
+      comment: item.comment,
+      date: new Date(item.createdAt).toLocaleDateString(),
+    }));
   },
 };
 

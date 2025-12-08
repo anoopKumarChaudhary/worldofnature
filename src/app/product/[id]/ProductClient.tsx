@@ -42,6 +42,45 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
   const [quantity, setQuantity] = useState<number>(1);
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
+  
+  // Review State
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  const handleReviewSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!isAuthenticated) return;
+    
+    setIsSubmitting(true);
+    try {
+      // Import reviewsAPI dynamically or use the imported one if available
+      const { reviewsAPI } = await import("../../services/api");
+      await reviewsAPI.create({
+        productId: product._id,
+        rating,
+        comment,
+      });
+      
+      // Reset form
+      setRating(0);
+      setComment("");
+      alert("Review submitted successfully!");
+      
+      // Ideally trigger a refresh of reviews here
+      window.location.reload(); 
+    } catch (error) {
+      console.error("Failed to submit review:", error);
+      alert("Failed to submit review. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   // Initialize Redux state with server data
   useEffect(() => {
@@ -59,8 +98,9 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
   // Check wishlist status
   useEffect(() => {
     if (isAuthenticated && user?.id) {
-      wishlistAPI.getWishlist(user.id).then((wishlist) => {
-        const isInWishlist = wishlist.some((item: { _id: string }) => item._id === product._id);
+      wishlistAPI.getWishlist(user.id).then((data) => {
+        const wishlistItems = data.products || [];
+        const isInWishlist = wishlistItems.some((item: { _id: string }) => item._id === product._id);
         setIsWishlisted(isInWishlist);
       });
     }
@@ -109,6 +149,13 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
 
   // Use selectedProduct from Redux if available (for consistency), otherwise fallback to props
   const currentProduct = selectedProduct || product;
+
+  console.log("ProductClient Render:", { 
+    isAuthenticated, 
+    user, 
+    reviewsCount: reviews.length,
+    productId: currentProduct._id 
+  });
 
   return (
     <div className="min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white pb-32 lg:pb-20 overflow-x-hidden">
@@ -382,17 +429,114 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
           </div>
 
           {/* --- REVIEWS SECTION --- */}
-          {reviews.length > 0 && (
-            <div className="mt-24 max-w-4xl mx-auto">
-              <div className="flex items-end justify-between mb-10">
-                <h2 className="text-3xl font-serif font-bold text-[#1A2118]">
+          <div className="mt-12 pt-12 border-t border-[#1A2118]/10 max-w-4xl mx-auto" id="reviews-section">
+            <div className="flex items-end justify-between mb-10">
+              <div>
+                <h2 className="text-3xl font-serif font-bold text-[#1A2118] mb-2">
                   Community Reviews
                 </h2>
-                <button className="text-sm font-bold uppercase tracking-widest text-[#BC5633] hover:text-[#1A2118] transition-colors">
-                  View All
-                </button>
+                {reviews.length > 0 && (
+                  <span className="text-sm font-bold uppercase tracking-widest text-[#BC5633]">
+                    {reviews.length} Reviews
+                  </span>
+                )}
               </div>
+              
+              <button
+                onClick={() => {
+                  if (!isAuthenticated) {
+                    window.location.href = "/login";
+                    return;
+                  }
+                  const form = document.getElementById("review-form");
+                  form?.scrollIntoView({ behavior: "smooth" });
+                  // Optional: Focus the textarea
+                  const textarea = form?.querySelector("textarea");
+                  textarea?.focus();
+                }}
+                className="px-6 py-3 bg-[#1A2118] text-white rounded-full font-bold uppercase tracking-widest text-xs hover:bg-[#BC5633] transition-colors shadow-lg"
+              >
+                Write a Review
+              </button>
+            </div>
 
+
+
+              {/* Write Review Form */}
+              {isMounted && isAuthenticated ? (
+                <div id="review-form" className="bg-white/60 backdrop-blur-xl border border-white/40 rounded-[2rem] p-8 mb-12 shadow-sm">
+                  <h3 className="text-xl font-serif font-bold text-[#1A2118] mb-6">Write a Review</h3>
+                  <form onSubmit={handleReviewSubmit} className="space-y-6">
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-widest text-[#1A2118]/60 mb-2">
+                        Rating
+                      </label>
+                      <div className="flex gap-2">
+                        {[1, 2, 3, 4, 5].map((star) => (
+                          <button
+                            key={star}
+                            type="button"
+                            onClick={() => setRating(star)}
+                            className="focus:outline-none transition-transform hover:scale-110"
+                          >
+                            <Star
+                              className={`w-8 h-8 ${
+                                star <= rating
+                                  ? "fill-[#BC5633] text-[#BC5633]"
+                                  : "text-[#1A2118]/20 hover:text-[#BC5633]/40"
+                              }`}
+                            />
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-widest text-[#1A2118]/60 mb-2">
+                        Your Review
+                      </label>
+                      <textarea
+                        value={comment}
+                        onChange={(e) => setComment(e.target.value)}
+                        required
+                        rows={4}
+                        placeholder="Share your experience with this product..."
+                        className="w-full px-6 py-4 bg-white border border-[#1A2118]/10 rounded-[1.5rem] text-[#1A2118] focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all placeholder-[#1A2118]/30 resize-none"
+                      />
+                    </div>
+
+                    <div className="flex justify-end">
+                      <button
+                        type="submit"
+                        disabled={isSubmitting || !comment.trim() || rating === 0}
+                        className={`px-8 py-3 rounded-full font-bold uppercase tracking-widest text-xs transition-all shadow-lg flex items-center gap-2 ${
+                          isSubmitting || !comment.trim() || rating === 0
+                            ? "bg-[#F2F0EA] text-[#1A2118]/40 cursor-not-allowed"
+                            : "bg-[#1A2118] text-white hover:bg-[#BC5633]"
+                        }`}
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                            Submitting...
+                          </>
+                        ) : (
+                          "Submit Review"
+                        )}
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              ) : (
+                <div className="bg-[#F2F0EA]/50 rounded-[2rem] p-8 mb-12 text-center border border-[#1A2118]/5">
+                  <p className="text-[#596157] mb-4">Please login to write a review.</p>
+                  <Link href="/login" className="inline-block px-8 py-3 bg-[#1A2118] text-white rounded-full font-bold uppercase tracking-widest text-xs hover:bg-[#BC5633] transition-colors shadow-lg">
+                    Login
+                  </Link>
+                </div>
+              )}
+
+            {reviews.length > 0 ? (
               <div className="grid md:grid-cols-2 gap-6">
                 {reviews.map((review) => (
                   <div
@@ -432,8 +576,12 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
                   </div>
                 ))}
               </div>
-            </div>
-          )}
+            ) : (
+              <div className="text-center py-12 bg-[#F2F0EA]/50 rounded-[2rem] border border-[#1A2118]/5">
+                <p className="text-[#596157] font-medium">No reviews yet. Be the first to share your thoughts!</p>
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
