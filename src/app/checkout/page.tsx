@@ -8,7 +8,6 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ordersAPI, razorpayAPI } from "../services/api";
 import { useRazorpay, RazorpayOrderOptions } from "react-razorpay";
-import AuthGuard from "../components/AuthGuard";
 import {
   Check,
   Truck,
@@ -218,10 +217,10 @@ export default function CheckoutPage() {
   }
 
   return (
-    <AuthGuard>
+    <>
       <div className="min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white pb-20 overflow-x-hidden">
-        {/* --- VERIFICATION CHECK --- */}
-        {!user?.isVerified && <VerificationModal />}
+        {/* --- VERIFICATION CHECK (Only if logged in) --- */}
+        {user && !user.isVerified && <VerificationModal />}
         {/* --- STYLES & ANIMATIONS --- */}
         <style jsx>{`
           @keyframes blob {
@@ -259,6 +258,15 @@ export default function CheckoutPage() {
             <h1 className="text-5xl md:text-6xl font-serif font-medium tracking-tight text-[#1A2118] mb-8">
               Checkout
             </h1>
+            
+            {!user && (
+              <div className="mb-8 p-4 bg-[#BC5633]/10 rounded-2xl flex items-center justify-between">
+                <p className="text-[#1A2118] font-medium">Already have an account?</p>
+                <Link href="/login" className="text-[#BC5633] font-bold hover:underline">
+                  Login for a faster checkout
+                </Link>
+              </div>
+            )}
 
             {/* Stepper */}
             <div className="inline-flex bg-white/70 backdrop-blur-xl rounded-full p-1.5 shadow-lg border border-white/40 mb-12">
@@ -639,7 +647,7 @@ export default function CheckoutPage() {
           </div>
         </div>
       </div>
-    </AuthGuard>
+    </>
   );
 }
 

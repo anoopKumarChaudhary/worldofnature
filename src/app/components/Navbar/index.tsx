@@ -18,6 +18,7 @@ import {
   ChevronRight,
   Home,
   ShoppingBag,
+  Package,
   Info,
   HelpCircle,
   LogOut,
@@ -86,6 +87,7 @@ const Navbar = () => {
   const navItems = [
     { href: "/", label: "Home", icon: Home },
     { href: "/shop", label: "Shop", icon: ShoppingBag },
+    { href: "/track-order", label: "Track Order", icon: Package },
     { href: "/about", label: "About", icon: Info },
     { href: "/faq", label: "FAQ", icon: HelpCircle },
   ];

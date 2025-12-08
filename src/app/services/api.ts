@@ -282,6 +282,22 @@ export const ordersAPI = {
 
     return response.json();
   },
+
+  trackOrder: async (orderNumber: string, email: string): Promise<Order> => {
+    const response = await fetch(`${API_BASE_URL}/orders/track`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ orderNumber, email }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Order not found");
+    }
+
+    return response.json();
+  },
 };
 
 export const contactAPI = {
