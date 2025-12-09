@@ -35,6 +35,8 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
@@ -51,10 +53,27 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Determine if scrolled (for style change)
+      setIsScrolled(currentScrollY > 20);
+
+      // Determine visibility (Hide on down, Show on up)
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling DOWN and past 100px -> Hide
+        setIsVisible(false);
+      } else {
+        // Scrolling UP or at top -> Show
+        setIsVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -103,28 +122,20 @@ const Navbar = () => {
     <>
       {/* NAVBAR CONTAINER */}
       <header
-        className={`fixed top-0 left-0 right-0 z-[100] flex justify-center transition-all duration-200 ${
-          isScrolled ? "pt-2" : "pt-4"
+        className={`fixed top-0 left-0 right-0 z-[100] flex justify-center transition-all duration-300 transform ${
+          isVisible ? "translate-y-0" : "-translate-y-full"
         }`}
       >
         <nav
-          className={`
-            relative flex items-center justify-between 
-            transition-all duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)]
-            ${
-              isScrolled
-                ? "w-[95%] md:w-[90%] rounded-full py-3 px-6 bg-white/70 backdrop-blur-md border border-white/50 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)]"
-                : "w-full md:w-[92%] py-4 md:py-6 px-6 bg-transparent"
-            }
-          `}
+          className="relative flex items-center justify-between transition-all duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)] w-full py-1 px-6 md:px-10 bg-gradient-to-b from-[#1A2118]/30 to-[#1A2118]/5 backdrop-blur-xl shadow-sm"
         >
-          {/* --- LOGO --- */}
+            {/* --- LOGO --- */}
           <Link
             href="/"
             className="flex items-center gap-3 z-10"
             onClick={closeMobileMenu}
           >
-            <div className="relative h-8 md:h-9 w-auto overflow-visible opacity-90 hover:opacity-100 transition-opacity">
+            <div className="relative h-10 md:h-14 w-auto overflow-visible transition-all duration-300 brightness-0 invert opacity-90 hover:opacity-100">
                {/* eslint-disable-next-line @next/next/no-img-element */}
                <img src="/image.png" alt="World of Nature Logo" className="h-full w-auto object-contain" />
             </div>
@@ -135,21 +146,25 @@ const Navbar = () => {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#1A2118] hover:text-[#B56B56] transition-colors duration-300 relative group"
+                className="text-[10px] font-bold uppercase tracking-[0.25em] transition-colors duration-300 relative group text-white hover:text-[#E8D4A2]"
               >
                 {item.label}
-                <span className="absolute -bottom-1 left-1/2 w-0 h-[1px] bg-[#B56B56] transition-all duration-300 group-hover:w-full group-hover:left-0" />
+                <span className="absolute -bottom-1 left-1/2 w-0 h-[1px] transition-all duration-300 group-hover:w-full group-hover:left-0 bg-[#E8D4A2]" />
               </Link>
             ))}
           </div>
 
           {/* --- ICONS ACTIONS --- */}
           <div className="flex items-center gap-1 z-10">
-            <IconButton icon={<Search size={18} />} label="Search" />
+            <IconButton 
+              icon={<Search size={18} />} 
+              label="Search" 
+              className="text-white/80 hover:bg-white/10"
+            />
 
             <button
               onClick={toggleDarkMode}
-              className="w-9 h-9 flex items-center justify-center rounded-full text-[#1A2118]/70 hover:bg-[#1A2118]/5 transition-colors duration-200"
+              className="w-9 h-9 flex items-center justify-center rounded-full transition-colors duration-200 text-white/80 hover:bg-white/10"
               aria-label="Toggle Theme"
             >
               {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
@@ -160,15 +175,16 @@ const Navbar = () => {
                 icon={<Heart size={18} />}
                 href="/wishlist"
                 label="Wishlist"
+                className="text-white/80 hover:bg-white/10"
               />
               {isAuthenticated ? (
                 <div className="flex items-center gap-2 ml-1">
-                  <Link href="/profile" className="text-sm font-medium text-[#1A2118] hover:text-[#B56B56] transition-colors">
+                  <Link href="/profile" className="text-sm font-medium transition-colors text-white hover:text-[#E8D4A2]">
                     {user?.firstName}
                   </Link>
                   <button
                     onClick={() => dispatch(logout())}
-                    className="w-9 h-9 flex items-center justify-center rounded-full text-[#1A2118]/70 hover:bg-[#1A2118]/5 transition-colors duration-200"
+                    className="w-9 h-9 flex items-center justify-center rounded-full transition-colors duration-200 text-white/80 hover:bg-white/10"
                     aria-label="Logout"
                   >
                     <LogOut size={18} />
@@ -179,6 +195,7 @@ const Navbar = () => {
                   icon={<User size={18} />}
                   href="/login"
                   label="Profile"
+                  className="text-white/80 hover:bg-white/10"
                 />
               )}
             </div>
@@ -186,11 +203,11 @@ const Navbar = () => {
             {/* Cart with Badge */}
             <Link
               href="/cart"
-              className="relative w-9 h-9 flex items-center justify-center rounded-full hover:bg-[#1A2118]/5 transition-colors duration-200"
+              className="relative w-9 h-9 flex items-center justify-center rounded-full transition-colors duration-200 hover:bg-white/10"
             >
               <ShoppingCart
                 size={18}
-                className="text-[#1A2118]"
+                className="text-white"
               />
               {cartItemsCount > 0 && (
                 <span className="absolute top-0.5 right-0.5 w-3.5 h-3.5 bg-[#B56B56] text-[#F2F0EA] text-[9px] font-bold flex items-center justify-center rounded-full ring-1 ring-[#F2F0EA]">
@@ -202,7 +219,7 @@ const Navbar = () => {
             {/* Mobile Hamburger */}
             <button
               onClick={toggleMobileMenu}
-              className="md:hidden w-9 h-9 flex items-center justify-center rounded-full hover:bg-[#1A2118]/5 text-[#1A2118] ml-1 transition-colors duration-200"
+              className="md:hidden w-9 h-9 flex items-center justify-center rounded-full ml-1 transition-colors duration-200 text-white hover:bg-white/10"
             >
               <Menu size={20} />
             </button>
@@ -293,11 +310,12 @@ interface IconButtonProps {
   onClick?: () => void;
   href?: string;
   label: string;
+  className?: string;
 }
 
-const IconButton = ({ icon, onClick, href, label }: IconButtonProps) => {
+const IconButton = ({ icon, onClick, href, label, className }: IconButtonProps) => {
   const content = (
-    <div className="w-9 h-9 flex items-center justify-center rounded-full text-[#1A2118]/70 hover:bg-[#1A2118]/5 transition-colors duration-200 cursor-pointer">
+    <div className={`w-9 h-9 flex items-center justify-center rounded-full transition-colors duration-200 cursor-pointer ${className || "text-[#1A2118]/70 hover:bg-[#1A2118]/5"}`}>
       {icon}
     </div>
   );
