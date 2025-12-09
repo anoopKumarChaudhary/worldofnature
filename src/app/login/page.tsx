@@ -130,12 +130,12 @@ export default function LoginPage() {
   // --- OTP VIEW ---
   if (showOtp) {
     return (
-      <div className="min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 overflow-hidden relative">
+      <div className="min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#B56B56] selection:text-white flex items-center justify-center pt-32 pb-12 px-4 sm:px-6 lg:px-8 overflow-hidden relative">
         <div className="fixed inset-0 z-0 pointer-events-none bg-[#F2F0EA]" />
         
         <div className="relative z-10 w-full max-w-lg animate-fade-up">
           <div className="bg-white/80 backdrop-blur-2xl border border-white/60 rounded-[3rem] p-8 md:p-12 shadow-2xl shadow-[#1A2118]/10 text-center relative overflow-hidden">
-             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-48 bg-[#BC5633] rounded-full mix-blend-multiply filter blur-[80px] opacity-20 pointer-events-none" />
+             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-48 bg-[#B56B56] rounded-full mix-blend-multiply filter blur-[80px] opacity-20 pointer-events-none" />
 
             <div className="w-20 h-20 bg-[#1A2118] rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl relative z-10">
               <Lock className="w-10 h-10 text-white" />
@@ -156,7 +156,7 @@ export default function LoginPage() {
                   maxLength={6}
                   value={otp}
                   onChange={(e) => setOtp(e.target.value.replace(/\D/g, ''))}
-                  className="w-full px-6 py-4 bg-white border border-[#1A2118]/10 rounded-[1.5rem] text-[#1A2118] text-center text-2xl font-bold tracking-[0.5em] focus:ring-4 focus:ring-[#BC5633]/5 outline-none transition-all duration-300 placeholder-[#1A2118]/10 shadow-sm"
+                  className="w-full px-6 py-4 bg-white border border-[#1A2118]/10 rounded-[1.5rem] text-[#1A2118] text-center text-2xl font-bold tracking-[0.5em] focus:ring-4 focus:ring-[#B56B56]/5 outline-none transition-all duration-300 placeholder-[#1A2118]/10 shadow-sm"
                   placeholder="000000"
                 />
               </div>
@@ -168,7 +168,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={isLoading || otp.length !== 6}
-                className="w-full h-14 bg-[#1A2118] text-white rounded-[1.5rem] font-bold text-sm uppercase tracking-widest hover:bg-[#BC5633] hover:shadow-lg hover:shadow-[#BC5633]/20 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
+                className="w-full h-14 bg-[#1A2118] text-white rounded-[1.5rem] font-bold text-sm uppercase tracking-widest hover:bg-[#B56B56] hover:shadow-lg hover:shadow-[#B56B56]/20 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
               >
                 {isLoading ? (
                   <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -189,7 +189,7 @@ export default function LoginPage() {
 
 
   return (
-    <div className="min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 overflow-hidden relative">
+    <div className="min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#B56B56] selection:text-white flex items-center justify-center pt-32 pb-12 px-4 sm:px-6 lg:px-8 overflow-hidden relative">
       {/* --- STYLES & ANIMATIONS --- */}
       <style jsx>{`
         @keyframes blob {
@@ -210,20 +210,12 @@ export default function LoginPage() {
       <div className="fixed inset-0 z-0 pointer-events-none bg-[#F2F0EA]" />
 
       <div className="relative z-10 w-full max-w-lg animate-fade-up">
-        {/* Back Home Link */}
-        <div className="absolute -top-16 left-0">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#1A2118]/60 hover:text-[#BC5633] transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" /> Back Home
-          </Link>
-        </div>
+
 
         {/* Main Card */}
         <div className="bg-white/70 backdrop-blur-2xl border border-white/40 rounded-[3rem] p-8 md:p-12 shadow-2xl shadow-[#1A2118]/10 relative overflow-hidden">
           {/* Top Decoration */}
-          <div className="absolute top-0 right-0 w-32 h-32 bg-[#BC5633] rounded-full mix-blend-overlay filter blur-[50px] opacity-20 pointer-events-none" />
+          <div className="absolute top-0 right-0 w-32 h-32 bg-[#B56B56] rounded-full mix-blend-overlay filter blur-[50px] opacity-20 pointer-events-none" />
 
           <div className="text-center mb-10">
             <Link
@@ -275,28 +267,27 @@ export default function LoginPage() {
               icon={<Mail className="w-5 h-5 text-[#1A2118]/40" />}
             />
 
-            <div className="relative">
-              <Input
-                label="Password"
-                name="password"
-                type={showPassword ? "text" : "password"}
-                value={formData.password}
-                onChange={handleInputChange}
-                error={errors.password}
-                icon={<Lock className="w-5 h-5 text-[#1A2118]/40" />}
-              />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-4 top-[2.8rem] text-[#1A2118]/40 hover:text-[#1A2118] transition-colors"
-              >
-                {showPassword ? (
-                  <EyeOff className="w-5 h-5" />
-                ) : (
-                  <Eye className="w-5 h-5" />
-                )}
-              </button>
-            </div>
+            <Input
+              label="Password"
+              name="password"
+              type={showPassword ? "text" : "password"}
+              value={formData.password}
+              onChange={handleInputChange}
+              error={errors.password}
+              icon={
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="text-[#1A2118]/40 hover:text-[#1A2118] transition-colors focus:outline-none"
+                >
+                  {showPassword ? (
+                    <EyeOff className="w-5 h-5" />
+                  ) : (
+                    <Eye className="w-5 h-5" />
+                  )}
+                </button>
+              }
+            />
 
             {!isLogin && (
               <Input
@@ -315,7 +306,7 @@ export default function LoginPage() {
                 <label className="flex items-center cursor-pointer">
                   <input
                     type="checkbox"
-                    className="w-4 h-4 rounded border-[#1A2118]/20 text-[#1A2118] focus:ring-[#BC5633]"
+                    className="w-4 h-4 rounded border-[#1A2118]/20 text-[#1A2118] focus:ring-[#B56B56]"
                   />
                   <span className="ml-2 text-xs font-bold text-[#596157]">
                     Remember me
@@ -323,7 +314,7 @@ export default function LoginPage() {
                 </label>
                 <Link
                   href="/forgot-password"
-                  className="text-xs font-bold text-[#BC5633] hover:text-[#A44626] transition-colors"
+                  className="text-xs font-bold text-[#B56B56] hover:text-[#A44626] transition-colors"
                 >
                   Forgot Password?
                 </Link>
@@ -340,7 +331,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="group w-full h-14 bg-[#1A2118] text-white rounded-[1.5rem] font-bold text-sm uppercase tracking-widest hover:bg-[#BC5633] hover:shadow-lg hover:shadow-[#BC5633]/20 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
+                className="group w-full h-14 bg-[#1A2118] text-white rounded-[1.5rem] font-bold text-sm uppercase tracking-widest hover:bg-[#B56B56] hover:shadow-lg hover:shadow-[#B56B56]/20 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
               >
                 {isLoading ? (
                   <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -392,7 +383,7 @@ export default function LoginPage() {
               <button
                 type="button"
                 onClick={() => setIsLogin(!isLogin)}
-                className="font-bold text-[#1A2118] hover:text-[#BC5633] transition-colors underline underline-offset-4 decoration-[#BC5633]/30"
+                className="font-bold text-[#1A2118] hover:text-[#B56B56] transition-colors underline underline-offset-4 decoration-[#B56B56]/30"
               >
                 {isLogin ? "Sign up" : "Sign in"}
               </button>
@@ -429,10 +420,10 @@ const Input = ({ label, error, icon, ...props }: InputProps) => (
     <div className="relative">
       <input
         {...props}
-        className={`w-full px-6 py-4 bg-white border rounded-[1.5rem] text-[#1A2118] focus:ring-4 focus:ring-[#BC5633]/5 outline-none transition-all duration-300 placeholder-[#1A2118]/30 shadow-sm ${
+        className={`w-full px-6 py-4 bg-white border rounded-[1.5rem] text-[#1A2118] focus:ring-4 focus:ring-[#B56B56]/5 outline-none transition-all duration-300 placeholder-[#1A2118]/30 shadow-sm ${
           error
             ? "border-red-400 focus:border-red-400"
-            : "border-[#1A2118]/10 focus:border-[#BC5633]/20"
+            : "border-[#1A2118]/10 focus:border-[#B56B56]/20"
         }`}
       />
       {icon && (
