@@ -200,7 +200,7 @@ const ProductCard = ({
             </Badge>
           )}
           {(isOnSale || (originalPrice && originalPrice > price)) && (
-            <Badge className="bg-[#BC5633] text-white border-transparent shadow-sm">
+            <Badge className="bg-[#B56B56] text-white border-transparent shadow-sm">
               {originalPrice && originalPrice > price
                 ? `${Math.round(((originalPrice - price) / originalPrice) * 100)}% OFF`
                 : "SALE"}
@@ -221,7 +221,7 @@ const ProductCard = ({
               e.preventDefault();
               handleAddToCart();
             }}
-            className="w-full text-xs font-bold uppercase tracking-[0.2em] text-[#1A2118] hover:text-[#BC5633] transition-colors flex items-center justify-center gap-2"
+            className="w-full text-xs font-bold uppercase tracking-[0.2em] text-[#1A2118] hover:text-[#B56B56] transition-colors flex items-center justify-center gap-2"
           >
             {isAdding ? (
               <>

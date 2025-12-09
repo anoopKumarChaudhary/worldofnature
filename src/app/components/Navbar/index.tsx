@@ -245,7 +245,7 @@ const Navbar = () => {
                     onClick={closeMobileMenu}
                     className="group flex items-center gap-4 text-[#F2F0EA] hover:text-[#B56B56] transition-colors"
                   >
-                    <span className="font-serif text-4xl md:text-5xl font-light tracking-tight group-hover:translate-x-2 transition-transform duration-300">
+                    <span className="font-serif text-4xl md:text-5xl font-light tracking-tight group-hover:translate-x-2 transition-transform duration-300 group-hover:text-[#B56B56]">
                       {item.label}
                     </span>
                     <ChevronRight className="w-6 h-6 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-[#B56B56]" />

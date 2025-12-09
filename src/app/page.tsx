@@ -26,7 +26,7 @@ const HomePage = async () => {
   }
 
   return (
-    <div className="relative min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white overflow-x-hidden">
+    <div className="relative min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#B56B56] selection:text-white overflow-x-hidden">
       {/* --- CSS Styles moved to globals.css --- */}
 
 
@@ -76,7 +76,7 @@ const HomePage = async () => {
           <div className="text-center mt-16">
             <Link
               href="/shop"
-              className="inline-block px-10 py-4 border border-[#1A2118] rounded-full text-sm font-bold uppercase tracking-widest hover:bg-[#1A2118] hover:text-[#F2F0EA] transition-all"
+              className="inline-block px-10 py-4 border border-[#1A2118] rounded-full text-sm font-bold uppercase tracking-widest hover:bg-[#B56B56] hover:border-[#B56B56] hover:text-[#F2F0EA] transition-all"
             >
               Shop All Products
             </Link>
