@@ -53,7 +53,7 @@ const HomePage = async () => {
             <p className="text-[#596157] font-light">Small batch releases from our latest harvest.</p>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-8">
             {featuredProducts.map((product: Product) => (
               <div key={product._id} className="w-full">
                 <ProductCard

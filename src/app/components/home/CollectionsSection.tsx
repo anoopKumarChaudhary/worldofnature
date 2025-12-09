@@ -43,7 +43,7 @@ const CollectionsSection = () => {
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-8 auto-rows-[200px] md:auto-rows-[400px]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 auto-rows-[300px] md:auto-rows-[400px]">
           {categories.map((cat, index) => (
             <Link 
               key={cat.id} 

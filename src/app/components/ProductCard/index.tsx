@@ -152,7 +152,7 @@ const ProductCard = ({
   // --- GRID VIEW (Professional Polish) ---
   return (
     <div
-      className={`group relative flex flex-col h-full bg-white rounded-[2rem] overflow-hidden transition-all duration-500 border border-[#1A2118]/5 hover:border-[#1A2118]/20`}
+      className={`group relative flex flex-col h-full bg-white/40 backdrop-blur-sm rounded-[2rem] overflow-hidden transition-all duration-500 border border-white/60 hover:bg-white/80 hover:border-white hover:shadow-lg hover:shadow-[#1A2118]/5`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

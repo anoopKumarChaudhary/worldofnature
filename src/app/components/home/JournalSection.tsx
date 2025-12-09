@@ -39,7 +39,7 @@ const JournalSection = () => {
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
           {journalEntries.map((entry) => (
             <article key={entry.id} className="group cursor-pointer">
               <div className="aspect-[3/2] overflow-hidden rounded-2xl mb-6 relative">
