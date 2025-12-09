@@ -15,7 +15,6 @@ import {
   Heart,
   Sun,
   Moon,
-  ChevronRight,
   Home,
   ShoppingBag,
   Package,

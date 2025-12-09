@@ -23,7 +23,7 @@ export default function TrackOrderPage() {
     try {
       const result = await ordersAPI.trackOrder(orderNumber, email);
       setOrder(result);
-    } catch (err) {
+    } catch {
       setError("Order not found or details do not match.");
     } finally {
       setIsLoading(false);

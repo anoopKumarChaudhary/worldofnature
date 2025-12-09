@@ -14,9 +14,6 @@ import {
   Lock,
   User,
   ArrowRight,
-  ArrowLeft,
-  CheckCircle2,
-  ShoppingBag,
 } from "lucide-react";
 
 export default function LoginPage() {
@@ -102,7 +99,7 @@ export default function LoginPage() {
         if (result) {
           setShowOtp(true);
         }
-      } catch (err) {
+      } catch {
         // Error is handled by Redux state
       }
     }
@@ -115,8 +112,8 @@ export default function LoginPage() {
     try {
       await dispatch(verifyOtp({ email: formData.email, otp })).unwrap();
       // Success is handled by useEffect redirect
-    } catch (err) {
-      // Error handled by Redux
+    } catch {
+        // Error handled by Redux
     }
   };
 

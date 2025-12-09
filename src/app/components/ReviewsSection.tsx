@@ -15,7 +15,7 @@ export default function ReviewsSection({ productId }: ReviewsSectionProps) {
   const [submitting, setSubmitting] = useState(false);
 
   // Mock user ID for now
-  const userId = "user123";
+  // const userId = "user123";
 
   useEffect(() => {
     const fetchReviews = async () => {

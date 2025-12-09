@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { verifyOtp, resendOtp } from "../redux/features/auth/authSlice";
 import { AppDispatch, RootState } from "../redux/store";
 import { useRouter } from "next/navigation";
-import { Mail, ArrowRight, Lock, AlertCircle } from "lucide-react";
+import { ArrowRight, Lock, AlertCircle } from "lucide-react";
 
 export default function VerificationModal() {
   const dispatch = useDispatch<AppDispatch>();
@@ -33,7 +33,7 @@ export default function VerificationModal() {
       await dispatch(resendOtp(user.email)).unwrap();
       setResendStatus("OTP Resent!");
       setTimeout(() => setResendStatus(null), 3000);
-    } catch (err) {
+    } catch {
       setResendStatus("Failed to resend");
       setTimeout(() => setResendStatus(null), 3000);
     }
