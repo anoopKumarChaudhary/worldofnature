@@ -114,8 +114,8 @@ const Navbar = () => {
             transition-all duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)]
             ${
               isScrolled
-                ? "w-[95%] md:w-[85%] rounded-full py-2 px-4 md:px-6 bg-[#F2F0EA]/90 backdrop-blur-xl border border-[#1A2118]/5"
-                : "w-full md:w-[92%] py-3 md:py-4 px-4 md:px-6 bg-transparent"
+                ? "w-[95%] md:w-[90%] rounded-full py-3 px-6 bg-white/70 backdrop-blur-md border border-white/50 shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)]"
+                : "w-full md:w-[92%] py-4 md:py-6 px-6 bg-transparent"
             }
           `}
         >
@@ -125,20 +125,21 @@ const Navbar = () => {
             className="flex items-center gap-3 z-10"
             onClick={closeMobileMenu}
           >
-            <div className="relative h-8 md:h-10 w-auto overflow-visible">
+            <div className="relative h-8 md:h-9 w-auto overflow-visible opacity-90 hover:opacity-100 transition-opacity">
                {/* eslint-disable-next-line @next/next/no-img-element */}
                <img src="/image.png" alt="World of Nature Logo" className="h-full w-auto object-contain" />
             </div>
           </Link>
 
-          <div className="hidden md:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
+          <div className="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm font-medium text-[#1A2118]/70 hover:text-[#B56B56] transition-colors duration-200 tracking-wide"
+                className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#1A2118] hover:text-[#B56B56] transition-colors duration-300 relative group"
               >
                 {item.label}
+                <span className="absolute -bottom-1 left-1/2 w-0 h-[1px] bg-[#B56B56] transition-all duration-300 group-hover:w-full group-hover:left-0" />
               </Link>
             ))}
           </div>
@@ -210,26 +211,18 @@ const Navbar = () => {
         </nav>
       </header>
 
-      {/* MOBILE MENU - PREMIUM OVERLAY */}
+      {/* MOBILE MENU - CLEAN & SOLID */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-[60] bg-[#1A2118] flex flex-col overflow-hidden animate-fade-in">
-          {/* Background Texture */}
-          <div
-            className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-            }}
-          />
-
+        <div className="fixed inset-0 z-[60] bg-[#1A2118] flex flex-col overflow-hidden">
           {/* Header inside Overlay */}
-          <div className="relative z-10 px-6 py-6 flex items-center justify-between">
+          <div className="relative z-10 px-6 py-6 flex items-center justify-between border-b border-white/5">
             <div className="h-10 w-auto overflow-visible opacity-90 invert brightness-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/image.png" alt="World of Nature Logo" className="h-full w-auto object-contain" />
             </div>
             <button
               onClick={closeMobileMenu}
-              className="w-12 h-12 flex items-center justify-center rounded-full bg-[#F2F0EA]/5 text-[#F2F0EA] hover:bg-[#F2F0EA]/10 transition-all"
+              className="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 text-[#F2F0EA] hover:bg-white/20 transition-all"
             >
               <X size={24} strokeWidth={1.5} />
             </button>
@@ -237,18 +230,20 @@ const Navbar = () => {
 
           {/* Navigation Links */}
           <div className="flex-1 flex flex-col justify-center px-8 relative z-10">
-            <ul className="space-y-6">
+            <ul className="space-y-8">
               {navItems.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
                     onClick={closeMobileMenu}
-                    className="group flex items-center gap-4 text-[#F2F0EA] hover:text-[#B56B56] transition-colors"
+                    className="group flex items-center justify-between text-[#F2F0EA] hover:text-[#B56B56] transition-colors"
                   >
-                    <span className="font-serif text-4xl md:text-5xl font-light tracking-tight group-hover:translate-x-2 transition-transform duration-300 group-hover:text-[#B56B56]">
+                    <span className="font-serif text-3xl md:text-4xl italic font-light tracking-wide group-hover:translate-x-2 transition-transform duration-500">
                       {item.label}
                     </span>
-                    <ChevronRight className="w-6 h-6 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-[#B56B56]" />
+                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-[#B56B56]">
+                      Explore
+                    </span>
                   </Link>
                 </li>
               ))}
@@ -256,11 +251,11 @@ const Navbar = () => {
           </div>
 
           {/* Footer Actions */}
-          <div className="relative z-10 p-8 border-t border-[#F2F0EA]/10 grid grid-cols-2 gap-4">
+          <div className="relative z-10 p-8 border-t border-white/5 grid grid-cols-2 gap-4 bg-[#1A2118]">
               <Link
               href="/wishlist"
               onClick={closeMobileMenu}
-              className="flex flex-col items-center justify-center p-6 rounded-2xl bg-[#F2F0EA]/5 hover:bg-[#F2F0EA]/10 transition-all group"
+              className="flex flex-col items-center justify-center p-6 rounded-2xl bg-white/5 hover:bg-white/10 transition-all group"
             >
               <Heart size={24} className="text-[#F2F0EA] group-hover:text-[#B56B56] mb-3 transition-colors" strokeWidth={1.5} />
               <span className="text-xs font-bold uppercase tracking-widest text-[#F2F0EA]/60 group-hover:text-[#F2F0EA] transition-colors">Wishlist</span>
@@ -272,7 +267,7 @@ const Navbar = () => {
                   dispatch(logout());
                   closeMobileMenu();
                 }}
-                className="flex flex-col items-center justify-center p-6 rounded-2xl bg-[#F2F0EA]/5 hover:bg-[#B56B56] transition-all group"
+                className="flex flex-col items-center justify-center p-6 rounded-2xl bg-white/5 hover:bg-[#B56B56] transition-all group"
               >
                 <LogOut size={24} className="text-[#F2F0EA] mb-3" strokeWidth={1.5} />
                 <span className="text-xs font-bold uppercase tracking-widest text-[#F2F0EA]/60 group-hover:text-[#F2F0EA] transition-colors">Logout</span>
@@ -281,7 +276,7 @@ const Navbar = () => {
               <Link
                 href="/login"
                 onClick={closeMobileMenu}
-              className="flex flex-col items-center justify-center p-6 rounded-2xl bg-[#F2F0EA]/5 hover:bg-[#F2F0EA]/10 transition-all group"
+              className="flex flex-col items-center justify-center p-6 rounded-2xl bg-white/5 hover:bg-white/10 transition-all group"
               >
                 <User size={24} className="text-[#F2F0EA] group-hover:text-[#B56B56] mb-3 transition-colors" strokeWidth={1.5} />
                 <span className="text-xs font-bold uppercase tracking-widest text-[#F2F0EA]/60 group-hover:text-[#F2F0EA] transition-colors">Login</span>
