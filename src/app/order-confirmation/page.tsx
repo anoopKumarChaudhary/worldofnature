@@ -10,7 +10,6 @@ import {
   ShoppingBag,
   Home,
 } from "lucide-react";
-import AuthGuard from "../components/AuthGuard";
 
 function OrderConfirmationContent() {
   const searchParams = useSearchParams();
@@ -61,7 +60,6 @@ function OrderConfirmationContent() {
   }
 
   return (
-    <AuthGuard>
       <div className="min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white pb-20 overflow-x-hidden">
         {/* --- STYLES & ANIMATION --- */}
         <style jsx>{`
@@ -105,6 +103,7 @@ function OrderConfirmationContent() {
             }
             100% {
               transform: scale(1);
+              opacity: 1;
               opacity: 1;
             }
           }
@@ -309,7 +308,6 @@ function OrderConfirmationContent() {
           </div>
         </div>
       </div>
-    </AuthGuard>
   );
 }
 
