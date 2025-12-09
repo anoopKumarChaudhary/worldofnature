@@ -7,9 +7,9 @@ import { ArrowRight, Leaf, Sprout } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex flex-col justify-center items-center pt-32 pb-20 px-6 lg:px-12 overflow-hidden text-[#F2F0EA]">
+    <section className="relative min-h-screen flex flex-col justify-center items-center pt-32 pb-20 px-6 lg:px-12 overflow-hidden">
       
-      {/* BACKGROUND IMAGE */}
+      {/* 1. BACKGROUND LAYER */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/bg5.png"
@@ -19,85 +19,93 @@ const HeroSection = () => {
           priority
           quality={100}
         />
-        <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
+        {/* Darker Gradient Overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 backdrop-blur-[1px]" />
       </div>
 
-      {/* --- CENTERED CONTENT --- */}
+      {/* 2. MAIN CONTENT */}
       <div className="container-custom mx-auto relative z-10 text-center">
-        <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-xs font-bold uppercase tracking-[0.2em] mb-12 animate-reveal-up text-white">
-          <span className="w-2 h-2 bg-[#B56B56] rounded-full animate-pulse" />
+        
+        {/* Top Tagline */}
+        <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full border border-white/20 bg-white/5 backdrop-blur-md text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mb-12 animate-reveal-up text-white/90">
+          <span className="w-1.5 h-1.5 bg-[#B56B56] rounded-full animate-pulse" />
           Est. 2025 • World of Nature
         </div>
         
-          {/* THE CUTOUT TEXT */}
-          {/* text-white + mix-blend-destination-out = Transparent Hole (revealing the sharp image behind) */}
-          <h1 className="flex flex-col items-center justify-center mb-12 text-white mix-blend-destination-out">
-            <span className="block font-serif italic font-light text-4xl lg:text-6xl tracking-wide mb-[-0.5rem] lg:mb-[-1rem] animate-reveal-up" style={{ animationDelay: '0.1s' }}>Nature&rsquo;s</span>
-            <span className="block font-serif font-black text-[5rem] lg:text-[13rem] leading-[0.8] uppercase tracking-tighter animate-reveal-up" style={{ animationDelay: '0.2s' }}>Unfiltered</span>
-            <span className="block font-serif font-medium text-4xl lg:text-7xl tracking-[0.2em] uppercase mt-2 lg:mt-4 animate-reveal-up" style={{ animationDelay: '0.3s' }}>Intelligence</span>
-          </h1>
+        {/* === TYPOGRAPHY UPDATE === */}
+        {/* Using "Scale Contrast": Small Italic vs. Massive Bold */}
+        <h1 className="flex flex-col items-center justify-center mb-10 text-white leading-none">
+          
+          {/* Line 1: Elegant Italic Serif */}
+          <span className="block font-serif italic text-3xl md:text-5xl lg:text-6xl text-white/90 mb-[-10px] md:mb-[-20px] z-10 animate-reveal-up" style={{ animationDelay: '0.1s' }}>
+            The Earth&rsquo;s
+          </span>
+          
+          {/* Line 2: Massive Sans/Serif Hybrid (The Impact) */}
+          <span className="block font-serif font-black text-[15vw] lg:text-[11rem] uppercase tracking-tighter text-white mix-blend-overlay opacity-90 animate-reveal-up" style={{ animationDelay: '0.2s' }}>
+            ORIGINAL
+          </span>
+          
+          {/* Line 3: Spaced Out Sans */}
+          <span className="block font-sans font-light text-sm md:text-xl lg:text-2xl tracking-[0.4em] uppercase text-white/80 mt-[-10px] md:mt-[-20px] animate-reveal-up" style={{ animationDelay: '0.3s' }}>
+            Technology
+          </span>
+        </h1>
         
-        <p className="text-xl lg:text-2xl leading-relaxed font-light max-w-2xl mx-auto mb-16 animate-reveal-up text-balance text-white/90" style={{ animationDelay: '0.4s' }}>
-          We curate essentials that are not made, but harvested. Pure, wild-crafted, and deeply connected to the source.
+        {/* Subtext */}
+        <p className="text-lg md:text-xl lg:text-2xl leading-relaxed font-light max-w-xl mx-auto mb-12 animate-reveal-up text-balance text-white/80 font-serif italic" style={{ animationDelay: '0.4s' }}>
+          &ldquo;We don&rsquo;t manufacture essentials. <br className="hidden md:block"/> We simply harvest them.&rdquo;
         </p>
 
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-6 animate-reveal-up" style={{ animationDelay: '0.5s' }}>
+       <div className="flex flex-col sm:flex-row justify-center items-center gap-5 animate-reveal-up" style={{ animationDelay: '0.5s' }}>
           <Link
             href="/shop"
-            className="h-16 px-12 bg-[#F2F0EA] text-[#1A2118] rounded-full flex items-center gap-3 font-bold text-sm uppercase tracking-widest hover:bg-[#B56B56] hover:text-white transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 group"
+            className="h-14 px-10 bg-[#F2F0EA] text-[#1A2118] rounded-full flex items-center gap-3 font-bold text-xs uppercase tracking-widest hover:bg-[#B56B56] hover:text-white transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 group"
           >
-            Start Foraging <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            {/* CHANGED TEXT HERE */}
+            Shop the Harvest 
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
+          
           <Link
             href="/about"
-            className="h-16 px-12 border border-white/30 rounded-full flex items-center gap-3 font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-[#1A2118] transition-all text-white"
+            className="h-14 px-10 border border-white/30 rounded-full flex items-center gap-3 font-bold text-xs uppercase tracking-widest hover:bg-white hover:text-[#1A2118] transition-all text-white backdrop-blur-sm"
           >
             Our Philosophy
           </Link>
         </div>
         
         {/* Watch Film Link */}
-        <div className="mt-8 animate-reveal-up" style={{ animationDelay: '0.6s' }}>
-          <button className="group flex items-center gap-3 text-[#1A2118] hover:text-[#B56B56] transition-colors">
-            <div className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center group-hover:border-[#B56B56] group-hover:scale-110 transition-all">
+        {/* <div className="mt-10 animate-reveal-up" style={{ animationDelay: '0.6s' }}>
+          <button className="group flex items-center gap-3 text-white/70 hover:text-[#B56B56] transition-colors">
+            <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center group-hover:border-[#B56B56] group-hover:scale-110 transition-all backdrop-blur-sm">
               <div className="w-0 h-0 border-t-[5px] border-t-transparent border-l-[8px] border-l-current border-b-[5px] border-b-transparent ml-1" />
             </div>
-            <span className="text-xs font-bold uppercase tracking-widest border-b border-transparent group-hover:border-[#B56B56] text-white">Watch the Film</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest border-b border-transparent group-hover:border-[#B56B56]">Watch the Film</span>
           </button>
-        </div>
+        </div> */}
 
-        {/* --- PROFESSIONAL TOUCHES: TRUST BAR --- */}
-        <div className="mt-16 animate-reveal-up opacity-80" style={{ animationDelay: '0.7s' }}>
-          <p className="text-[10px] font-bold uppercase tracking-[0.3em] mb-6 text-white/60">Trusted by Nature&rsquo;s Best</p>
-          <div className="flex flex-wrap justify-center gap-12 items-center grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
-             {/* Simple Text Logos for "Professional" Vibe */}
-             <span className="font-serif text-xl italic text-white">Vogue Living</span>
+        {/* Trust Bar */}
+        <div className="mt-16 animate-reveal-up opacity-60" style={{ animationDelay: '0.7s' }}>
+          <p className="text-[9px] font-bold uppercase tracking-[0.3em] mb-6 text-white/50">As seen in</p>
+          <div className="flex flex-wrap justify-center gap-8 md:gap-12 items-center grayscale hover:grayscale-0 transition-all duration-500 text-white/80">
+             <span className="font-serif text-lg italic">Vogue</span>
              <span className="w-1 h-1 bg-white/20 rounded-full" />
-             <span className="font-serif text-xl italic text-white">Kinfolk</span>
+             <span className="font-serif text-lg italic">Kinfolk</span>
              <span className="w-1 h-1 bg-white/20 rounded-full" />
-             <span className="font-serif text-xl italic text-white">Goop</span>
-             <span className="w-1 h-1 bg-white/20 rounded-full" />
-             <span className="font-serif text-xl italic text-white">Monocle</span>
+             <span className="font-serif text-lg italic">Goop</span>
           </div>
         </div>
       </div>
 
-      {/* --- FOREGROUND FOLIAGE (Immersive Depth) --- */}
+      {/* Foreground Effects */}
       <div className="absolute bottom-0 left-0 w-full h-48 pointer-events-none z-20 overflow-hidden">
-         {/* Left Bush */}
-         <div className="absolute -bottom-10 -left-10 w-64 h-64 bg-[#1A2118]/5 rounded-full blur-3xl animate-float" style={{ animationDuration: '15s' }} />
-         <Leaf className="absolute bottom-[-20px] left-[-20px] w-48 h-48 text-[#1A2118]/10 rotate-45 blur-[2px] animate-float" style={{ animationDuration: '10s' }} />
-         
-         {/* Right Bush */}
-         <div className="absolute -bottom-10 -right-10 w-80 h-80 bg-[#B56B56]/5 rounded-full blur-3xl animate-float" style={{ animationDuration: '18s', animationDelay: '1s' }} />
-         <Sprout className="absolute bottom-[-30px] right-[-10px] w-56 h-56 text-[#1A2118]/10 -rotate-12 blur-[3px] animate-float" style={{ animationDuration: '12s', animationDelay: '2s' }} />
+         <div className="absolute -bottom-10 -left-10 w-64 h-64 bg-[#1A2118]/30 rounded-full blur-3xl animate-float" style={{ animationDuration: '15s' }} />
+         <Leaf className="absolute bottom-[-20px] left-[-20px] w-48 h-48 text-black/20 rotate-45 blur-[2px] animate-float" style={{ animationDuration: '10s' }} />
+         <div className="absolute -bottom-10 -right-10 w-80 h-80 bg-[#B56B56]/20 rounded-full blur-3xl animate-float" style={{ animationDuration: '18s', animationDelay: '1s' }} />
+         <Sprout className="absolute bottom-[-30px] right-[-10px] w-56 h-56 text-black/20 -rotate-12 blur-[3px] animate-float" style={{ animationDuration: '12s', animationDelay: '2s' }} />
       </div>
 
-      {/* --- SCROLL INDICATOR --- */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce-slow opacity-80 mix-blend-screen z-30">
-         <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-white">Scroll</span>
-         <div className="w-[1px] h-12 bg-gradient-to-b from-white to-transparent" />
-      </div>
     </section>
   );
 };
