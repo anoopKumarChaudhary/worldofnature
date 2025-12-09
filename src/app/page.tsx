@@ -13,6 +13,7 @@ const CollectionsSection = dynamic(() => import("./components/home/CollectionsSe
 const HarvestSection = dynamic(() => import("./components/home/HarvestSection"));
 const JournalSection = dynamic(() => import("./components/home/JournalSection"));
 const TestimonialsSection = dynamic(() => import("./components/home/TestimonialsSection"));
+const ImpactSection = dynamic(() => import("./components/home/ImpactSection"));
 const CTASection = dynamic(() => import("./components/home/CTASection"));
 
 const HomePage = async () => {
@@ -41,6 +42,9 @@ const HomePage = async () => {
 
       {/* --- 3. FEATURED COLLECTIONS --- */}
       <CollectionsSection />
+
+      {/* --- 3.5 IMPACT / WHY CHOOSE US --- */}
+      <ImpactSection />
 
       {/* --- 4. THE HARVEST CYCLE --- */}
       <HarvestSection />
