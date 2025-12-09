@@ -29,11 +29,13 @@ const HeroSection = () => {
           Est. 2025 • World of Nature
         </div>
         
-        <h1 className="text-6xl lg:text-[9rem] leading-[0.85] font-serif font-bold tracking-tight mb-12 drop-shadow-lg text-white">
-          <span className="block animate-reveal-up" style={{ animationDelay: '0.1s' }}>Nature&rsquo;s</span>
-          <span className="block animate-reveal-up" style={{ animationDelay: '0.2s' }}>Unfiltered</span>
-          <span className="block animate-reveal-up text-[#E8D4A2]" style={{ animationDelay: '0.3s' }}>Intelligence.</span>
-        </h1>
+          {/* THE CUTOUT TEXT */}
+          {/* text-white + mix-blend-destination-out = Transparent Hole (revealing the sharp image behind) */}
+          <h1 className="flex flex-col items-center justify-center mb-12 text-white mix-blend-destination-out">
+            <span className="block font-serif italic font-light text-4xl lg:text-6xl tracking-wide mb-[-0.5rem] lg:mb-[-1rem] animate-reveal-up" style={{ animationDelay: '0.1s' }}>Nature&rsquo;s</span>
+            <span className="block font-serif font-black text-[5rem] lg:text-[13rem] leading-[0.8] uppercase tracking-tighter animate-reveal-up" style={{ animationDelay: '0.2s' }}>Unfiltered</span>
+            <span className="block font-serif font-medium text-4xl lg:text-7xl tracking-[0.2em] uppercase mt-2 lg:mt-4 animate-reveal-up" style={{ animationDelay: '0.3s' }}>Intelligence</span>
+          </h1>
         
         <p className="text-xl lg:text-2xl leading-relaxed font-light max-w-2xl mx-auto mb-16 animate-reveal-up text-balance text-white/90" style={{ animationDelay: '0.4s' }}>
           We curate essentials that are not made, but harvested. Pure, wild-crafted, and deeply connected to the source.
