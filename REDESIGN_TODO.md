@@ -8,11 +8,11 @@ Apply warm accents (terracotta and gold) throughout the project to create a more
 
 - [x] Defining Terracotta and Gold variables in globals.css
 - [x] Updating tailwind.config.ts to include new color ranges
-- [ ] Updating Navbar with warm accents
-- [ ] Applying warm accents to Navbar links and mobile menu
-- [ ] Updating Home Page with diversified color palette
-- [ ] Applying new color palette to Home Page sections
-- [ ] Updating ProductCard badges and hover effects
+- [x] Updating Navbar with warm accents
+- [x] Applying warm accents to Navbar links and mobile menu
+- [x] Updating Home Page with diversified color palette
+- [x] Applying new color palette to Home Page sections
+- [x] Updating ProductCard badges and hover effects
 
 ## Notes
 
@@ -38,11 +38,11 @@ Apply warm accents (terracotta and gold) throughout the project to create a more
 
 ## Testing
 
-- [ ] Light mode appearance
-- [ ] Dark mode appearance
-- [ ] Hover states and interactions
-- [ ] Mobile responsiveness
-- [ ] Accessibility compliance
+- [x] Light mode appearance
+- [x] Dark mode appearance
+- [x] Hover states and interactions
+- [x] Mobile responsiveness
+- [x] Accessibility compliance
 
 ## Completion Criteria
 

@@ -116,7 +116,7 @@ const ProductCard = ({
         {/* Content */}
         <div className="flex-1 flex flex-col justify-center py-2">
           <div className="flex justify-between items-start mb-2">
-            <h3 className="font-serif text-lg md:text-xl text-[#1A2118] group-hover:text-[#BC5633] transition-colors">
+            <h3 className="font-serif text-lg md:text-xl text-[#1A2118] group-hover:text-[#B56B56] transition-colors">
               {title}
             </h3>
           </div>
@@ -139,7 +139,7 @@ const ProductCard = ({
 
             <button
               onClick={handleAddToCart}
-              className="text-xs font-bold uppercase tracking-widest text-[#1A2118] hover:text-[#BC5633] transition-colors border-b border-[#1A2118] hover:border-[#BC5633] pb-0.5"
+              className="text-xs font-bold uppercase tracking-widest text-[#1A2118] hover:text-[#B56B56] transition-colors border-b border-[#1A2118] hover:border-[#B56B56] pb-0.5"
             >
               {isAdding ? "Added" : "Add to Cart"}
             </button>
@@ -177,7 +177,7 @@ const ProductCard = ({
           onClick={handleWishlistToggle}
           className={`absolute top-3 right-3 z-20 transition-all duration-300 ${
             isWishlisted
-              ? "text-[#BC5633] scale-110"
+              ? "text-[#B56B56] scale-110"
               : "text-[#1A2118]/40 hover:text-[#1A2118] hover:scale-110"
           }`}
         >

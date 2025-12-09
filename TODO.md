@@ -2,7 +2,7 @@
 
 ## Steps to Complete
 
-- [ ] Import useAppDispatch and addToCart in src/app/shop/page.tsx
-- [ ] Modify handleAddToCart function to dispatch addToCart action with combined product and quantity data
-- [ ] Test the add to cart functionality
-- [ ] Verify cart page displays added items correctly
+- [x] Import useAppDispatch and addToCart in src/app/shop/page.tsx
+- [x] Modify handleAddToCart function to dispatch addToCart action with combined product and quantity data
+- [x] Test the add to cart functionality
+- [x] Verify cart page displays added items correctly
