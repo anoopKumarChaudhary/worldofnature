@@ -3,8 +3,10 @@
 import React, { useState } from "react";
 import { Send, CheckCircle2 } from "lucide-react";
 import { contactAPI } from "../services/api";
+import { useToast } from "../context/ToastContext";
 
 export default function ContactClient() {
+  const { addToast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -30,12 +32,14 @@ export default function ContactClient() {
       await contactAPI.sendMessage(formData);
       setIsSubmitting(false);
       setIsSubmitted(true);
+      addToast("Message sent successfully", "success");
       setTimeout(() => {
         setIsSubmitted(false);
         setFormData({ name: "", email: "", subject: "", message: "" });
       }, 3000);
     } catch (error) {
       console.error("Failed to send message:", error);
+      addToast("Failed to send message. Please try again.", "error");
       setIsSubmitting(false);
     }
   };

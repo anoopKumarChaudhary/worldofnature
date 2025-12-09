@@ -15,10 +15,12 @@ import {
   User,
   ArrowRight,
 } from "lucide-react";
+import { useToast } from "../context/ToastContext";
 
 export default function LoginPage() {
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
+  const { addToast } = useToast();
 
   const { isLoading, error, isAuthenticated } = useSelector(
     (state: RootState) => state.auth
@@ -83,7 +85,12 @@ export default function LoginPage() {
     if (!validateForm()) return;
 
     if (isLogin) {
-      dispatch(login({ email: formData.email, password: formData.password }));
+      try {
+        await dispatch(login({ email: formData.email, password: formData.password })).unwrap();
+        addToast("Logged in successfully", "success");
+      } catch (error) {
+        addToast("Login failed. Please check your credentials.", "error");
+      }
     } else {
       // Handle Registration -> Show OTP
       try {
@@ -98,9 +105,10 @@ export default function LoginPage() {
         
         if (result) {
           setShowOtp(true);
+          addToast("Registration successful. Please verify your email.", "success");
         }
       } catch {
-        // Error is handled by Redux state
+        addToast("Registration failed. Please try again.", "error");
       }
     }
   };
@@ -111,9 +119,10 @@ export default function LoginPage() {
 
     try {
       await dispatch(verifyOtp({ email: formData.email, otp })).unwrap();
+      addToast("Email verified successfully", "success");
       // Success is handled by useEffect redirect
     } catch {
-        // Error handled by Redux
+      addToast("Invalid OTP. Please try again.", "error");
     }
   };
 

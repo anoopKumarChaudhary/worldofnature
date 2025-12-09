@@ -8,6 +8,7 @@ import {
   Plus,
   Check,
 } from "lucide-react";
+import { useToast } from "../../context/ToastContext";
 import { useAppDispatch } from "../../redux/hooks";
 import { addToCart } from "../../redux/features/cart/cartSlice";
 
@@ -64,6 +65,7 @@ const ProductCard = ({
   viewMode = "grid",
 }: ProductCardProps) => {
   const dispatch = useAppDispatch();
+  const { addToast } = useToast();
   const [isHovered, setIsHovered] = useState(false);
   const [quantity] = useState(1);
   const [isAdding, setIsAdding] = useState(false);
@@ -75,6 +77,7 @@ const ProductCard = ({
         { id, name: title, price, image: imageUrl },
         quantity
       );
+      addToast(`Added ${title} to cart`, "success");
     } else {
       dispatch(
         addToCart({
@@ -86,6 +89,7 @@ const ProductCard = ({
           size: "Regular", 
         })
       );
+      addToast(`Added ${title} to cart`, "success");
     }
     setTimeout(() => setIsAdding(false), 1500);
   };

@@ -15,8 +15,10 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { newsletterAPI } from "../../services/api";
+import { useToast } from "../../context/ToastContext";
 
 const Footer = () => {
+  const { addToast } = useToast();
   const currentYear = new Date().getFullYear();
 
   const footerSections = [
@@ -153,11 +155,11 @@ const Footer = () => {
                     const email = (e.currentTarget.elements.namedItem("newsletter-email") as HTMLInputElement).value;
                     try {
                     await newsletterAPI.subscribe(email);
-                    alert("Subscribed successfully!");
+                    addToast("Subscribed successfully!", "success");
                     (e.target as HTMLFormElement).reset();
                     } catch (error) {
                     console.error("Failed to subscribe:", error);
-                    alert("Failed to subscribe. Please try again.");
+                    addToast("Failed to subscribe. Please try again.", "error");
                     }
                 }}
                 >

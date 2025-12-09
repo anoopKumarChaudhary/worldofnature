@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import SmoothScroll from "./components/SmoothScroll";
+import { ToastProvider } from "./context/ToastContext";
 
 // Import Redux Provider
 import ReduxProvider from "./redux/provider";
@@ -42,10 +43,12 @@ export default function RootLayout({
       >
         {/* Wrap everything in ReduxProvider */}
         <ReduxProvider>
-          <SmoothScroll />
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
+          <ToastProvider>
+            <SmoothScroll />
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+          </ToastProvider>
         </ReduxProvider>
       </body>
     </html>
