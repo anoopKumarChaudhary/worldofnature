@@ -31,7 +31,7 @@ const CollectionsSection = () => {
   ];
 
   return (
-    <section className="py-24 px-6 lg:px-12">
+    <section className="py-16 md:py-24 px-6 lg:px-12">
       <div className="container mx-auto">
         <div className="flex justify-between items-end mb-16">
           <div>

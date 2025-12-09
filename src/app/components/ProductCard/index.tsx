@@ -249,7 +249,7 @@ const ProductCard = ({
                 ₹{originalPrice}
               </span>
             )}
-            <span className="font-serif font-semibold text-[#1A2118] text-base tracking-tight">
+            <span className="font-serif font-semibold text-[#1A2118] text-sm md:text-base tracking-tight">
               ₹{price}
             </span>
           </div>

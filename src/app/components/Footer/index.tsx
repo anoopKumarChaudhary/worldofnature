@@ -63,16 +63,14 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative z-50 bg-[#1A2118] text-[#F2F0EA] pt-20 pb-10 border-t border-[#1A2118]" role="contentinfo">
+    <footer className="relative z-50 bg-[#1A2118] text-[#F2F0EA] pt-16 md:pt-24 pb-12 border-t border-[#F2F0EA]/10" role="contentinfo">
       <div className="container-custom mx-auto">
         {/* Top Section: Newsletter & Brand */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 mb-16 md:mb-24">
           {/* Brand Column */}
-          <div className="lg:col-span-3 space-y-8">
+          <div className="lg:col-span-4 space-y-8">
             <Link href="/" className="inline-block" aria-label="World of Nature">
-
-
-              <div className="relative h-16 w-48 overflow-visible">
+              <div className="relative h-12 w-40 md:h-16 md:w-48 overflow-visible">
                  <Image 
                    src="/image.png" 
                    alt="World of Nature Logo" 
@@ -82,7 +80,7 @@ const Footer = () => {
                  />
               </div>
             </Link>
-            <p className="text-[#F2F0EA]/70 leading-relaxed max-w-sm text-lg font-light">
+            <p className="text-[#F2F0EA]/70 leading-relaxed max-w-sm text-base md:text-lg font-light">
               Curating the finest organic essentials from sustainable farms. 
               Pure, potent, and ethically sourced for your well-being.
             </p>
@@ -119,10 +117,10 @@ const Footer = () => {
           </div>
 
           {/* Links Columns */}
-          <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-8">
+          <div className="lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 gap-8 md:gap-12">
             {footerSections.map((section) => (
               <div key={section.title} className="space-y-6">
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-[#BC5633] border-b border-[#F2F0EA]/10 pb-2 inline-block">
+                <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-[#BC5633] mb-4">
                   {section.title}
                 </h3>
                 <ul className="space-y-3">
@@ -130,7 +128,7 @@ const Footer = () => {
                     <li key={link.href}>
                       <Link
                         href={link.href}
-                        className="text-[#F2F0EA]/70 hover:text-[#F2F0EA] transition-colors duration-200 text-[15px] font-medium block py-0.5"
+                        className="text-[#F2F0EA]/60 hover:text-[#F2F0EA] transition-colors duration-200 text-sm font-medium block py-0.5"
                       >
                         {link.label}
                       </Link>
@@ -144,8 +142,8 @@ const Footer = () => {
           {/* Newsletter Column */}
           <div className="lg:col-span-3 space-y-6">
             <div>
-                <h3 className="text-xl font-medium text-[#F2F0EA] mb-3">Stay Connected</h3>
-                <p className="text-[#F2F0EA]/70 text-sm leading-relaxed mb-6">
+                <h3 className="text-xl font-serif text-[#F2F0EA] mb-4">Stay Connected</h3>
+                <p className="text-[#F2F0EA]/60 text-sm leading-relaxed mb-6">
                 Join our community for exclusive offers, wellness tips, and new arrival updates.
                 </p>
                 <form
@@ -168,7 +166,7 @@ const Footer = () => {
                     id="newsletter-email"
                     type="email"
                     placeholder="Your email address"
-                    className="w-full bg-transparent border border-[#F2F0EA]/20 rounded-lg px-4 py-3 text-[#F2F0EA] placeholder-[#F2F0EA]/40 focus:outline-none focus:border-[#BC5633] focus:ring-1 focus:ring-[#BC5633] transition-all"
+                    className="w-full bg-transparent border border-[#F2F0EA]/10 rounded-lg px-4 py-3 text-[#F2F0EA] placeholder-[#F2F0EA]/30 focus:outline-none focus:border-[#BC5633] focus:ring-1 focus:ring-[#BC5633] transition-all text-sm"
                     required
                     />
                     <button
@@ -176,10 +174,10 @@ const Footer = () => {
                     className="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-[#F2F0EA]/60 hover:text-[#BC5633] transition-colors"
                     aria-label="Subscribe"
                     >
-                    <ChevronRight size={20} />
+                    <ChevronRight size={18} />
                     </button>
                 </div>
-                <p className="text-xs text-[#F2F0EA]/40">
+                <p className="text-[10px] text-[#F2F0EA]/30 uppercase tracking-wider">
                     By subscribing, you agree to our Privacy Policy.
                 </p>
                 </form>
@@ -189,28 +187,27 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-[#F2F0EA]/10 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex flex-col md:flex-row items-center gap-4 text-sm text-[#F2F0EA]/40">
+          <div className="flex flex-col md:flex-row items-center gap-4 text-xs text-[#F2F0EA]/30 uppercase tracking-wider">
             <span>&copy; {currentYear} World of Nature. All rights reserved.</span>
-            <span className="hidden md:inline text-[#F2F0EA]/20">|</span>
+            <span className="hidden md:inline opacity-50">|</span>
             <div className="flex items-center gap-1">
               <span>Crafted with</span>
-              <Heart size={12} className="text-rose-500 fill-rose-500" />
+              <Heart size={10} className="text-rose-500 fill-rose-500" />
               <span>for the planet</span>
             </div>
           </div>
 
           {/* Payment Methods & Trust */}
-          <div className="flex flex-wrap items-center gap-4 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
-             <div className="flex items-center gap-2 text-xs text-[#F2F0EA]/60 border border-[#F2F0EA]/20 px-3 py-1 rounded-full">
-                <span className="w-2 h-2 rounded-full bg-green-500"></span>
-                Secure SSL Encryption
+          <div className="flex flex-wrap items-center gap-4 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+             <div className="flex items-center gap-2 text-[10px] uppercase tracking-wider text-[#F2F0EA]/60 border border-[#F2F0EA]/10 px-3 py-1 rounded-full">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                Secure SSL
              </div>
              <div className="flex gap-2">
                 {/* Simulated Payment Icons */}
-                <div className="h-6 w-10 bg-white/10 rounded flex items-center justify-center text-[10px] font-bold text-white/50">VISA</div>
-                <div className="h-6 w-10 bg-white/10 rounded flex items-center justify-center text-[10px] font-bold text-white/50">MC</div>
-                <div className="h-6 w-10 bg-white/10 rounded flex items-center justify-center text-[10px] font-bold text-white/50">AMEX</div>
-                <div className="h-6 w-10 bg-white/10 rounded flex items-center justify-center text-[10px] font-bold text-white/50">PAYPAL</div>
+                <div className="h-5 w-8 bg-white/10 rounded flex items-center justify-center text-[8px] font-bold text-white/50">VISA</div>
+                <div className="h-5 w-8 bg-white/10 rounded flex items-center justify-center text-[8px] font-bold text-white/50">MC</div>
+                <div className="h-5 w-8 bg-white/10 rounded flex items-center justify-center text-[8px] font-bold text-white/50">AMEX</div>
              </div>
           </div>
         </div>

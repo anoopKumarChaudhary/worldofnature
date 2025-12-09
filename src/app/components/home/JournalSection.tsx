@@ -30,7 +30,7 @@ const JournalSection = () => {
   ];
 
   return (
-    <section className="py-24 px-6 lg:px-12 border-t border-[#1A2118]/10">
+    <section className="py-16 md:py-24 px-6 lg:px-12 border-t border-[#1A2118]/10">
       <div className="container mx-auto">
         <div className="flex justify-between items-end mb-12">
           <h2 className="text-4xl lg:text-5xl font-serif text-[#1A2118]">The Journal</h2>

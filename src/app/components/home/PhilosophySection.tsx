@@ -5,7 +5,7 @@ import { Sprout, Globe, ShieldCheck, Sun, CheckCircle2 } from "lucide-react";
 
 const PhilosophySection = () => {
   return (
-    <section className="py-24 px-6 lg:px-12 bg-[#E6E2D6]/30 relative overflow-hidden">
+    <section className="py-16 md:py-24 px-6 lg:px-12 bg-[#E6E2D6]/30 relative overflow-hidden">
       {/* Background Blob */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-10">
           <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">

@@ -6,7 +6,7 @@ import { CloudRain, Sun, Wind } from "lucide-react";
 
 const HarvestSection = () => {
   return (
-    <section className="py-24 bg-[#1A2118] text-[#F2F0EA] overflow-hidden">
+    <section className="py-16 md:py-24 bg-[#1A2118] text-[#F2F0EA] overflow-hidden">
       <div className="container mx-auto px-6 lg:px-12">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="order-2 lg:order-1">

@@ -140,9 +140,9 @@ html {
 
 @media (max-width: 640px) {
   html {
-    font-size: 13.5px;
-    /* Slightly smaller for more content density */
-    line-height: 1.6;
+    font-size: 14px;
+    /* Slightly larger for better mobile readability */
+    line-height: 1.7;
     /* Improved readability */
   }
 }
@@ -152,26 +152,26 @@ html {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1rem;
-  /* 16px on mobile */
-  padding-right: 1rem;
+  padding-left: 1.5rem;
+  /* 24px on mobile for more breathing room */
+  padding-right: 1.5rem;
 }
 
 @media (min-width: 640px) {
   .container-custom {
-    padding-left: 1.5rem;
-    /* 24px on tablet */
-    padding-right: 1.5rem;
+    padding-left: 2rem;
+    /* 32px on tablet */
+    padding-right: 2rem;
   }
 }
 
 @media (min-width: 1024px) {
   .container-custom {
-    padding-left: 3rem;
-    /* 48px on desktop */
-    padding-right: 3rem;
-    max-width: 1400px;
-    /* Limit max width for large screens */
+    padding-left: 4rem;
+    /* 64px on desktop */
+    padding-right: 4rem;
+    max-width: 1440px;
+    /* Slightly wider max width */
   }
 }
 
