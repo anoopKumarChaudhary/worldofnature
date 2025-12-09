@@ -1,47 +1,131 @@
 "use client";
 
 import React from "react";
-import { Sprout, Globe, ShieldCheck, Sun, CheckCircle2 } from "lucide-react";
+import Image from "next/image";
+import { Sprout, Globe, ShieldCheck, Sun, ArrowRight } from "lucide-react";
 
 const PhilosophySection = () => {
   return (
-    <section className="py-16 md:py-24 px-6 lg:px-12 bg-[#E6E2D6]/30 relative overflow-hidden">
-      {/* Background Blob */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-10">
-          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-            <path fill="#BC5633" d="M44.7,-76.4C58.9,-69.2,71.8,-59.1,81.6,-46.6C91.4,-34.1,98.1,-19.2,95.8,-4.9C93.5,9.4,82.2,23.1,70.8,34.5C59.4,45.9,47.9,55,35.3,61.8C22.7,68.6,9,73.1,-3.4,79C-15.8,84.9,-26.9,92.2,-37.6,89.5C-48.3,86.8,-58.6,74.1,-66.4,60.2C-74.2,46.3,-79.5,31.2,-81.8,15.7C-84.1,0.2,-83.4,-15.7,-76.3,-29.1C-69.2,-42.5,-55.7,-53.4,-42.3,-60.9C-28.9,-68.4,-15.6,-72.5,-0.9,-70.9C13.8,-69.3,27.6,-62,30.5,-83.6L44.7,-76.4Z" transform="translate(100 100)" />
-          </svg>
+    <section className="relative py-24 lg:py-32 px-6 lg:px-12 bg-[#F2F0EA] overflow-hidden text-[#1A2118]">
+      
+      {/* 1. GLOBAL PAPER TEXTURE */}
+      <div className="absolute inset-0 opacity-[0.25] pointer-events-none mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]"></div>
+      
+      {/* 2. STRUCTURE LINES */}
+      <div className="absolute inset-0 pointer-events-none opacity-20">
+        <div className="absolute left-6 lg:left-24 top-0 bottom-0 w-[1px] bg-[#1A2118]/15" />
+        <div className="absolute right-6 lg:right-24 top-0 bottom-0 w-[1px] bg-[#1A2118]/15" />
       </div>
 
-      <div className="container mx-auto max-w-4xl text-center relative z-10">
-        <Sprout className="w-8 h-8 text-[#BC5633] mx-auto mb-8 animate-float" />
-        <h2 className="text-3xl lg:text-5xl font-serif text-[#1A2118] mb-12 leading-tight text-balance">
-          We believe that true nourishment comes from <span className="italic text-[#596157]">respecting the rhythm</span> of nature, not forcing it.
-        </h2>
-        <div className="grid md:grid-cols-2 gap-12 text-left text-[#4A5248] leading-relaxed font-light text-lg">
-          <p>
-            <span className="text-5xl float-left mr-3 mt-[-8px] font-serif text-[#BC5633]">I</span>
-            n a world obsessed with speed and mass production, we choose to slow down. We partner with small-scale farmers who treat their land as a legacy, not a resource to be depleted. Every jar of honey, every spoon of ghee, and every pinch of spice tells a story of patience.
-          </p>
-          <p>
-            Our products are never altered, never rushed, and never compromised. We act merely as custodians, bridging the gap between the wild, untouched forests and your modern pantry. This is not just food; it is a return to the source.
-          </p>
-        </div>
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-[#1A2118]/10 pt-12">
-          {[
-            { icon: Globe, label: "Single Origin" },
-            { icon: ShieldCheck, label: "Lab Tested" },
-            { icon: Sun, label: "Sun Dried" },
-            { icon: CheckCircle2, label: "Zero Additives" },
-          ].map((item, i) => (
-            <div key={i} className="flex flex-col items-center gap-3 group">
-              <div className="p-3 rounded-full bg-[#1A2118]/5 group-hover:bg-[#BC5633] group-hover:text-[#F2F0EA] transition-colors duration-500">
-                <item.icon className="w-6 h-6" />
-              </div>
-              <span className="text-xs font-bold uppercase tracking-widest text-[#1A2118]">{item.label}</span>
+      <div className="container-custom mx-auto relative z-10 max-w-7xl">
+        
+        <div className="flex flex-col lg:flex-row gap-16 lg:gap-32 items-center">
+          
+          {/* LEFT COLUMN: The Visual */}
+          <div className="w-full lg:w-1/2 relative">
+             
+             {/* === THE "MIXED" IMAGE CONTAINER === 
+                Added 'rounded-sm overflow-hidden' for softer corners.
+             */}
+             <div className="relative z-10 w-full aspect-[4/5] group rounded-sm overflow-hidden">
+                
+                <Image 
+                  src="/bg6.png" 
+                  alt="Raw honeycomb and natural ingredients close up"
+                  fill
+                  /* CHANGED:
+                     1. Removed 'shadow-2xl' (No lifting).
+                     2. Added 'opacity-90' (Lets background show through slightly).
+                     3. Added 'mix-blend-multiply' (The key to the "printed" look).
+                  */
+                  className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105 opacity-90 mix-blend-multiply"
+                  priority
+                />
+
+                {/* NEW: PAPER TEXTURE OVERLAY ON IMAGE 
+                    This applies the paper texture specifically ON TOP of the image area, 
+                    tying it firmly to the background.
+                */}
+                 <div className="absolute inset-0 opacity-[0.3] pointer-events-none mix-blend-overlay bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]"></div>
+
+                {/* WARM TINT (Kept from before, helps blend color) */}
+                <div className="absolute inset-0 bg-[#B56B56]/10 mix-blend-multiply z-10 pointer-events-none" />
+                
+                {/* CHANGED: Replaced hard border with subtle inset ring (pressed look) */}
+                <div className="absolute inset-0 ring-1 ring-inset ring-[#1A2118]/10 z-20 pointer-events-none rounded-sm" />
+             </div>
+
+             {/* REMOVED: The offset hard border div. It creates too much separation. */}
+            
+             {/* Caption */}
+             <div className="absolute -bottom-10 right-0 font-[family-name:var(--font-montserrat)] text-[9px] text-[#1A2118]/60 tracking-[0.2em] uppercase font-medium">
+                Fig. 01 — Raw Intelligence
+             </div>
+          </div>
+
+
+          {/* RIGHT COLUMN: The Editorial Copy (Unchanged) */}
+          <div className="w-full lg:w-1/2">
+            
+            {/* Tagline */}
+            <div className="flex items-center gap-4 mb-10">
+               <span className="w-8 h-[1px] bg-[#B56B56]"></span>
+               <span className="font-[family-name:var(--font-montserrat)] text-xs font-bold uppercase tracking-[0.3em] text-[#B56B56]">Our Ethos</span>
             </div>
-          ))}
+
+            {/* Headline */}
+            <h2 className="font-[family-name:var(--font-playfair)] text-5xl lg:text-7xl leading-[1.05] mb-8 text-[#1A2118]">
+              Respecting the <br/>
+              <span className="italic font-light text-[#596157]">rhythm</span> of nature.
+            </h2>
+
+            {/* Body */}
+            <div className="space-y-8 font-[family-name:var(--font-montserrat)] text-base lg:text-lg font-light leading-[1.8] text-[#1A2118]/80 max-w-lg">
+              <p>
+                <span className="text-6xl float-left mr-4 mt-[-12px] font-[family-name:var(--font-playfair)] text-[#1A2118]">W</span>
+                e believe that true nourishment cannot be synthesized. In an era of artificial optimization, we choose the path of most resistance: patience.
+              </p>
+              <p>
+                Every jar captures the specific intelligence of the ecosystem that created it. We are not manufacturers; we are simply the messengers between the wild forest and your home.
+              </p>
+            </div>
+
+            {/* Signature Block */}
+            <div className="mt-14 pt-8 border-t border-[#1A2118]/10 flex flex-col sm:flex-row sm:items-center gap-8">
+               <div className="flex flex-col">
+                  <span className="font-[family-name:var(--font-playfair)] italic text-2xl text-[#1A2118]">The Founders</span>
+                  <span className="font-[family-name:var(--font-montserrat)] text-[10px] uppercase tracking-widest text-[#1A2118]/50 mt-1 font-semibold">World of Nature</span>
+               </div>
+               
+               <button className="group flex items-center gap-3 px-8 py-4 border border-[#1A2118]/20 rounded-full hover:bg-[#1A2118] hover:text-white transition-all ml-auto">
+                  <span className="font-[family-name:var(--font-montserrat)] text-xs font-bold uppercase tracking-widest">Read Standards</span>
+                  <ArrowRight className="w-4 h-4" />
+               </button>
+            </div>
+          </div>
+
         </div>
+
+        {/* 3. THE FEATURES BAR (Unchanged) */}
+        <div className="mt-24 lg:mt-32">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {[
+              { icon: Globe, label: "Single Origin", sub: "Traceable to source" },
+              { icon: ShieldCheck, label: "Lab Tested", sub: "Rigorous purity check" },
+              { icon: Sun, label: "Sun Dried", sub: "Ancient preservation" },
+              { icon: Sprout, label: "Wild Crafted", sub: "Beyond organic" },
+            ].map((item, i) => (
+              <div key={i} className="flex flex-col gap-3 group border-l border-[#1A2118]/10 pl-6 hover:border-[#B56B56] transition-colors duration-500">
+                <item.icon className="w-5 h-5 text-[#1A2118]/40 group-hover:text-[#B56B56] transition-colors" />
+                <div>
+                  <h4 className="font-[family-name:var(--font-montserrat)] text-xs font-bold uppercase tracking-widest text-[#1A2118] mb-1">{item.label}</h4>
+                  <p className="font-[family-name:var(--font-montserrat)] text-[10px] font-medium text-[#1A2118]/50 uppercase tracking-wide">{item.sub}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </div>
     </section>
   );
