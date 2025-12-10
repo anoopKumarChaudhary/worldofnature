@@ -57,7 +57,7 @@ const HomePage = async () => {
         {/* Texture */}
         <div className="absolute inset-0 opacity-[0.4] pointer-events-none mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]"></div>
         
-        <div className="container mx-auto relative z-10 max-w-7xl px-6 lg:px-12">
+        <div className="container mx-auto relative z-10 max-w-7xl px-4 md:px-6 lg:px-12">
           
           {/* HEADER: Editorial Style */}
           <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8 border-b border-[#1A2118]/10 pb-8">
@@ -133,7 +133,7 @@ const HomePage = async () => {
          {/* Subtle Border Top */}
          <div className="absolute top-0 left-0 right-0 h-[1px] bg-[#1A2118]/10 mx-6 lg:mx-12" />
 
-         <div className="container mx-auto relative z-10 max-w-4xl px-6 text-center">
+         <div className="container mx-auto relative z-10 max-w-4xl px-4 md:px-6 text-center">
             
             <div className="mb-12 flex justify-center">
                <div className="w-12 h-12 rounded-full bg-[#1A2118]/5 flex items-center justify-center text-[#B56B56]">
@@ -173,7 +173,7 @@ const HomePage = async () => {
         {/* Noise overlay */}
         <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
         
-        <div className="relative z-10 text-center px-6 max-w-5xl">
+        <div className="relative z-10 text-center px-4 md:px-6 max-w-5xl">
            <span className="block font-[family-name:var(--font-montserrat)] text-xs font-bold uppercase tracking-[0.4em] mb-8 text-[#EBE9E4]/80">
               The Journey Begins Here
            </span>
