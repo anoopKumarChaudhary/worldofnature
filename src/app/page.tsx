@@ -19,6 +19,7 @@ const ImpactSection = dynamic(() => import("./components/home/ImpactSection"));
 // JournalSection is often better as a standard import if small, but dynamic is fine.
 const JournalSection = dynamic(() => import("./components/home/JournalSection"));
 const RitualsSection = dynamic(() => import("./components/home/RitualsSection"));
+const ContactSection = dynamic(() => import("./components/home/ContactSection"));
 
 const HomePage = async () => {
   // === DATA FETCHING ===
@@ -160,7 +161,10 @@ const HomePage = async () => {
          </div>
       </section>
 
-      {/* --- 8. FOOTER CTA (The "Cinematic Outro") --- */}
+      {/* --- 8. CONTACT SECTION --- */}
+      <ContactSection className="bg-[#EBE9E4]" />
+
+      {/* --- 9. FOOTER CTA (The "Cinematic Outro") --- */}
       <section className="relative h-[70vh] flex items-center justify-center bg-[#B56B56] text-[#EBE9E4] overflow-hidden">
         
         {/* Deep Texture for tactile feel */}
