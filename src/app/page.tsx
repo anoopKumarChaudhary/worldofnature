@@ -3,24 +3,24 @@
 import React from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { ArrowRight, Star, MoveRight } from "lucide-react"; // Added icons
+import { ArrowRight, Star, MoveRight, Quote } from "lucide-react";
 import { productsAPI, Product } from "./services/api";
 import ProductCard from "./components/ProductCard";
 
-// Dynamic Imports
+// === DYNAMIC IMPORTS ===
+// Assuming these components have been updated with the code provided in previous turns.
 const HeroSection = dynamic(() => import("./components/home/HeroSection"), {
-  loading: () => <div className="h-screen bg-[#1A2118]" />,
+  loading: () => <div className="h-screen bg-[#0F140E]" />,
 });
 const PhilosophySection = dynamic(() => import("./components/home/PhilosophySection"));
 const CollectionsSection = dynamic(() => import("./components/home/CollectionsSection"));
-const HarvestSection = dynamic(() => import("./components/home/HarvestSection"));
-const JournalSection = dynamic(() => import("./components/home/JournalSection"));
-const TestimonialsSection = dynamic(() => import("./components/home/TestimonialsSection"));
+const HarvestSection = dynamic(() => import("./components/home/HarvestSection")); // Now the "Phenology" section
 const ImpactSection = dynamic(() => import("./components/home/ImpactSection"));
-const CTASection = dynamic(() => import("./components/home/CTASection"));
+// JournalSection is often better as a standard import if small, but dynamic is fine.
+const JournalSection = dynamic(() => import("./components/home/JournalSection"));
 
 const HomePage = async () => {
-  // Server-side data fetching
+  // === DATA FETCHING ===
   let featuredProducts: Product[] = [];
   try {
     const products = await productsAPI.getProducts({ isBestseller: true });
@@ -30,63 +30,60 @@ const HomePage = async () => {
   }
 
   return (
-    <div className="relative min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#B56B56] selection:text-white overflow-x-hidden">
+    // GLOBAL THEME: Warm Stone Background, Dark Text
+    <div className="relative min-h-screen bg-[#EBE9E4] text-[#1A2118] font-sans selection:bg-[#B56B56] selection:text-[#EBE9E4] overflow-x-hidden">
       
       {/* 1. HERO SECTION */}
       <HeroSection />
 
-      {/* 2. OUR PHILOSOPHY */}
+      {/* 2. OUR PHILOSOPHY (The "Untouched" Section) */}
       <PhilosophySection />
 
-      {/* 3. FEATURED COLLECTIONS */}
+      {/* 3. FEATURED COLLECTIONS (The "Archive" Grid) */}
       <CollectionsSection />
 
-      {/* 3.5 IMPACT / WHY CHOOSE US */}
-      <ImpactSection />
-
-      {/* 4. THE HARVEST CYCLE */}
+      {/* 4. PHENOLOGY / HARVEST (The "Almanac" Sticky Section) */}
       <HarvestSection />
 
-      {/* --- 5. CURATED ESSENTIALS (UPGRADED) --- */}
-      <section className="relative py-24 lg:py-32 px-6 lg:px-12 bg-[#F2F0EA]">
-        {/* Texture & Structure */}
-        <div className="absolute inset-0 opacity-[0.3] pointer-events-none mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]"></div>
-        <div className="absolute left-6 lg:left-12 top-0 bottom-0 w-[1px] bg-[#1A2118]/5 pointer-events-none" />
-        <div className="absolute right-6 lg:right-12 top-0 bottom-0 w-[1px] bg-[#1A2118]/5 pointer-events-none" />
-
-        <div className="container-custom mx-auto relative z-10 max-w-7xl">
+      {/* --- 5. CURATED ESSENTIALS (The Shop) --- */}
+      {/* Redesigned to match the "Museum/Archive" aesthetic */}
+      <section className="relative py-24 lg:py-32 bg-[#EBE9E4]">
+        
+        {/* Texture */}
+        <div className="absolute inset-0 opacity-[0.4] pointer-events-none mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]"></div>
+        
+        <div className="container mx-auto relative z-10 max-w-7xl px-6 lg:px-12">
           
-          {/* Section Header: Architectural Style */}
-          <div className="flex flex-col md:flex-row justify-between items-end mb-20 pb-8 border-b border-[#1A2118]/10">
-            <div>
-              <div className="flex items-center gap-4 mb-4">
-                 <span className="w-6 h-[1px] bg-[#B56B56]"></span>
-                 <span className="font-[family-name:var(--font-montserrat)] text-xs font-bold uppercase tracking-[0.3em] text-[#B56B56]">
-                   The Apothecary
-                 </span>
-              </div>
-              <h2 className="font-heading text-5xl lg:text-7xl text-[#1A2118] leading-[0.9] font-bold">
-                Curated <br/>
-                <span className="font-light text-[#596157]">Essentials.</span>
+          {/* HEADER: Editorial Style */}
+          <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8 border-b border-[#1A2118]/10 pb-8">
+            <div className="max-w-2xl">
+              <span className="font-[family-name:var(--font-montserrat)] text-[10px] font-bold uppercase tracking-[0.25em] text-[#B56B56] mb-4 block">
+                Catalogue No. 02
+              </span>
+              <h2 className="font-heading text-5xl lg:text-7xl text-[#1A2118] leading-[0.95] font-medium">
+                The <span className="italic font-serif font-light text-[#1A2118]/60">Formulations.</span>
               </h2>
             </div>
             
-            <div className="mt-8 md:mt-0">
+            <div className="hidden md:block pb-2">
                <Link 
                  href="/shop"
-                 className="group inline-flex items-center gap-2 font-[family-name:var(--font-montserrat)] text-xs font-bold uppercase tracking-widest text-[#1A2118] hover:text-[#B56B56] transition-colors"
+                 className="group inline-flex items-center gap-3 font-[family-name:var(--font-montserrat)] text-xs font-bold uppercase tracking-widest text-[#1A2118] hover:text-[#B56B56] transition-colors"
                >
-                 View Full Shop <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
+                 View Full Inventory 
+                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                </Link>
             </div>
           </div>
 
-          {/* Product Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
+          {/* PRODUCT GRID */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12">
             {featuredProducts.map((product: Product) => (
               <div key={product._id} className="w-full group">
-                {/* We wrap the card to add hover lifts or specific interaction styles */}
-                <div className="transition-transform duration-500 hover:-translate-y-2">
+                {/* NOTE: Ensure ProductCard component is updated to handle 
+                   transparent backgrounds or matches the #EBE9E4 theme 
+                */}
+                <div className="transition-all duration-700 hover:-translate-y-2">
                   <ProductCard
                     id={product._id}
                     imageUrl={product.imageUrl}
@@ -103,60 +100,83 @@ const HomePage = async () => {
               </div>
             ))}
           </div>
+
+          {/* Mobile "View All" Button */}
+          <div className="mt-12 md:hidden flex justify-center">
+             <Link 
+               href="/shop"
+               className="inline-flex items-center gap-3 font-[family-name:var(--font-montserrat)] text-xs font-bold uppercase tracking-widest text-[#1A2118] border-b border-[#1A2118] pb-1"
+             >
+               View All Products
+             </Link>
+          </div>
+
         </div>
       </section>
 
-      {/* --- 6. JOURNAL (UPGRADED: "Field Notes") --- */}
-      {/* Replaced generic JournalSection with inline polished version or keep import if component is updated */}
-      <JournalSection />
+      {/* 6. IMPACT STANDARDS (The "Covenant" Dark Section) */}
+      <ImpactSection />
 
-      {/* --- 7. TESTIMONIALS (UPGRADED: "Voices") --- */}
-      <section className="py-24 bg-[#1A2118] text-[#F2F0EA] relative overflow-hidden">
-         <div className="absolute inset-0 opacity-[0.05] bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
+      {/* --- 7. TESTIMONIALS (Redesigned as "Field Notes") --- */}
+      <section className="relative py-32 bg-[#EBE9E4] text-[#1A2118] overflow-hidden">
+         {/* Background Texture */}
+         <div className="absolute inset-0 opacity-[0.4] pointer-events-none mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]"></div>
          
-         <div className="container-custom mx-auto relative z-10 max-w-4xl text-center">
-            <div className="inline-flex items-center gap-3 mb-8 opacity-60">
-               <Star className="w-4 h-4 fill-[#B56B56] text-[#B56B56]" />
-               <Star className="w-4 h-4 fill-[#B56B56] text-[#B56B56]" />
-               <Star className="w-4 h-4 fill-[#B56B56] text-[#B56B56]" />
-               <Star className="w-4 h-4 fill-[#B56B56] text-[#B56B56]" />
-               <Star className="w-4 h-4 fill-[#B56B56] text-[#B56B56]" />
-            </div>
+         {/* Subtle Border Top */}
+         <div className="absolute top-0 left-0 right-0 h-[1px] bg-[#1A2118]/10 mx-6 lg:mx-12" />
+
+         <div className="container mx-auto relative z-10 max-w-4xl px-6 text-center">
             
-            <h2 className="font-heading text-3xl md:text-5xl leading-tight mb-12 font-semibold">
-              &quot;It’s rare to find food that feels like it still has its <span className="text-[#B56B56]">soul</span>. This honey tastes like the wild forest it came from.&quot;
+            <div className="mb-12 flex justify-center">
+               <div className="w-12 h-12 rounded-full bg-[#1A2118]/5 flex items-center justify-center text-[#B56B56]">
+                  <Quote className="w-5 h-5 fill-current" />
+               </div>
+            </div>
+
+            <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl leading-[1.1] mb-12 font-medium text-[#1A2118]">
+              "It’s rare to find food that feels like it still has its <span className="text-[#B56B56] italic font-serif">soul</span>. This honey tastes like the wild forest it came from."
             </h2>
             
-            <div className="flex flex-col items-center">
-               <div className="w-16 h-16 rounded-full bg-[#F2F0EA]/10 mb-4 overflow-hidden relative">
-                  {/* Placeholder for user avatar or initial */}
-                  <div className="absolute inset-0 flex items-center justify-center font-heading text-2xl font-bold">E</div>
+            <div className="flex flex-col items-center gap-2">
+               <div className="flex items-center gap-1 mb-2">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-3 h-3 fill-[#1A2118] text-[#1A2118]" />
+                  ))}
                </div>
-               <p className="font-[family-name:var(--font-montserrat)] text-xs font-bold uppercase tracking-[0.2em] text-[#B56B56]">Elena R.</p>
-               <p className="font-[family-name:var(--font-montserrat)] text-[10px] uppercase tracking-widest opacity-50 mt-1">Verified Buyer • Raw Honey</p>
+               <p className="font-[family-name:var(--font-montserrat)] text-xs font-bold uppercase tracking-[0.2em] text-[#1A2118]">
+                  Elena R. — Verified Buyer
+               </p>
+               <span className="font-mono text-[10px] text-[#1A2118]/40 uppercase tracking-widest">
+                  Purchased: Raw Wild Honey
+               </span>
             </div>
          </div>
       </section>
 
-      {/* --- 8. FOOTER CTA (UPGRADED: "Cinematic Outro") --- */}
-      <section className="relative h-[60vh] flex items-center justify-center bg-[#B56B56] text-[#F2F0EA] overflow-hidden">
-        {/* Moving Grain */}
-        <div className="absolute inset-0 opacity-20 mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]"></div>
+      {/* --- 8. FOOTER CTA (The "Cinematic Outro") --- */}
+      <section className="relative h-[70vh] flex items-center justify-center bg-[#B56B56] text-[#EBE9E4] overflow-hidden">
         
-        <div className="relative z-10 text-center px-6">
-           <span className="block font-[family-name:var(--font-montserrat)] text-xs md:text-sm font-bold uppercase tracking-[0.4em] mb-6 opacity-80">
-              Join the Movement
+        {/* Deep Texture for tactile feel */}
+        <div className="absolute inset-0 opacity-30 mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]"></div>
+        
+        {/* Noise overlay */}
+        <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
+        
+        <div className="relative z-10 text-center px-6 max-w-5xl">
+           <span className="block font-[family-name:var(--font-montserrat)] text-xs font-bold uppercase tracking-[0.4em] mb-8 text-[#EBE9E4]/80">
+              The Journey Begins Here
            </span>
-           <h2 className="font-heading text-6xl md:text-8xl lg:text-9xl mb-12 font-bold">
-              Rewild <span className="opacity-80">Your</span> <br/> Pantry.
+           
+           <h2 className="font-heading text-6xl md:text-8xl lg:text-9xl mb-12 font-bold tracking-tight text-[#EBE9E4]">
+              Rewild <span className="opacity-70 italic font-serif font-light">Your</span> <br/> Pantry.
            </h2>
            
            <Link 
              href="/shop"
-             className="inline-flex items-center gap-4 px-10 py-5 bg-[#1A2118] text-white rounded-full hover:scale-105 transition-transform duration-300 shadow-2xl"
+             className="group inline-flex items-center gap-4 px-12 py-6 bg-[#0F140E] text-[#EBE9E4] rounded-sm hover:bg-[#1A2118] transition-all duration-500 shadow-2xl hover:shadow-[#0F140E]/40"
            >
-              <span className="font-[family-name:var(--font-montserrat)] text-sm font-bold uppercase tracking-widest">Start Foraging</span>
-              <MoveRight className="w-4 h-4" />
+              <span className="font-[family-name:var(--font-montserrat)] text-xs font-bold uppercase tracking-[0.25em]">Start Foraging</span>
+              <MoveRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
            </Link>
         </div>
       </section>
