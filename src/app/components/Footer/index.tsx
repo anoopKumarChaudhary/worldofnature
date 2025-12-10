@@ -65,7 +65,8 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative z-50 bg-[#1A2118] text-[#F2F0EA] pt-16 md:pt-24 pb-12 border-t border-[#F2F0EA]/10" role="contentinfo">
+    // CHANGED: z-40 -> z-10 (Lower z-index prevents it from covering fixed/sticky filters)
+    <footer className="relative z-10 bg-[#1A2118] text-[#F2F0EA] pt-16 md:pt-24 pb-12 border-t border-[#F2F0EA]/10" role="contentinfo">
       <div className="container-custom mx-auto">
         {/* Top Section: Newsletter & Brand */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 mb-16 md:mb-24">
