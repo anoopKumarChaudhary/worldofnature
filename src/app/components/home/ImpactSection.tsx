@@ -44,7 +44,7 @@ const ImpactSection = () => {
       <div className="container-custom mx-auto relative z-10 max-w-7xl">
         
         {/* HEADER: Editorial Layout */}
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-20 gap-10 border-b border-[#F2F0EA]/10 pb-12">
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-24 gap-16 border-b border-[#F2F0EA]/5 pb-12">
           <div className="max-w-2xl">
             <span className="font-[family-name:var(--font-montserrat)] text-[#B56B56] font-bold tracking-[0.3em] uppercase text-xs mb-6 block">
               The Standard
@@ -67,7 +67,7 @@ const ImpactSection = () => {
             <div 
               key={index} 
               className={`
-                group relative p-8 lg:p-12 border-[#F2F0EA]/10 hover:bg-[#F2F0EA]/[0.02] transition-colors duration-500
+                group relative p-10 lg:p-14 border-[#F2F0EA]/5 hover:bg-[#F2F0EA]/[0.02] transition-colors duration-500
                 ${index % 2 === 0 ? 'md:border-r' : ''} 
                 ${index < 2 ? 'border-b' : ''}
                 ${index !== pillars.length - 1 ? 'border-b md:border-b-0' : ''}
@@ -83,7 +83,7 @@ const ImpactSection = () => {
                 <span className="font-[family-name:var(--font-montserrat)] text-4xl lg:text-5xl font-bold text-[#F2F0EA]/10 group-hover:text-[#B56B56] transition-colors duration-500">
                   {pillar.id}
                 </span>
-                <div className="w-12 h-12 rounded-full border border-[#F2F0EA]/20 flex items-center justify-center text-[#F2F0EA]/60 group-hover:border-[#B56B56] group-hover:text-[#B56B56] group-hover:scale-110 transition-all duration-500">
+                <div className="w-14 h-14 rounded-full border border-[#F2F0EA]/20 flex items-center justify-center text-[#F2F0EA]/60 group-hover:border-[#B56B56] group-hover:text-[#B56B56] group-hover:scale-110 transition-all duration-500">
                   <pillar.icon className="w-5 h-5" />
                 </div>
               </div>

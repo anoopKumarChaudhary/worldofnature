@@ -2,124 +2,151 @@
 
 import React from "react";
 import Image from "next/image";
-import { Sprout, Globe, ShieldCheck, Sun, ArrowRight } from "lucide-react";
+import { Sprout, MapPin, Microscope, Sun, ArrowRight, Star } from "lucide-react";
 
 const PhilosophySection = () => {
+  // Color Palette:
+  // Background: #E2E4D8 (Light Olive)
+  // Text: #1A2118 (Forest Green / Nearly Black)
+  // Accent: #B56B56 (Terracotta)
+
+  const features = [
+    { 
+      icon: MapPin, 
+      label: "Geo-Traceable Sourcing", 
+      desc: "Verified origin, farm-to-jar transparency." 
+    },
+    { 
+      icon: Microscope, 
+      label: "Bio-Active Purity", 
+      desc: "Rigorous testing for zero contaminants." 
+    },
+    { 
+      icon: Sun, 
+      label: "Ancient Preservation", 
+      desc: "Slow-cured using elemental methods." 
+    },
+    { 
+      icon: Sprout, 
+      label: "Ethically Foraged", 
+      desc: "Sustainable harvest from wild ecosystems." 
+    },
+  ];
+
   return (
-    <section className="relative py-24 lg:py-32 px-6 lg:px-12 bg-[#F2F0EA] overflow-hidden text-[#1A2118]">
+    <section className="relative bg-[#E2E4D8] text-[#1A2118] py-24 lg:py-32 overflow-hidden">
       
-      {/* 1. GLOBAL PAPER TEXTURE */}
-      <div className="absolute inset-0 opacity-[0.25] pointer-events-none mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]"></div>
-      
-      {/* 2. STRUCTURE LINES */}
-      <div className="absolute inset-0 pointer-events-none opacity-20">
-        <div className="absolute left-6 lg:left-24 top-0 bottom-0 w-[1px] bg-[#1A2118]/15" />
-        <div className="absolute right-6 lg:right-24 top-0 bottom-0 w-[1px] bg-[#1A2118]/15" />
-      </div>
+      {/* 1. GLOBAL TEXTURE 
+         This puts a paper grain over the WHOLE section, including the image. 
+         This is key to making the image look like it's "printed" on the page.
+      */}
+      <div className="absolute inset-0 opacity-[0.35] pointer-events-none mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')] z-10"></div>
 
-      <div className="container-custom mx-auto relative z-10 max-w-7xl">
+      <div className="container-custom mx-auto px-6 lg:px-12 relative z-10">
         
-        <div className="flex flex-col lg:flex-row gap-16 lg:gap-32 items-center">
-          
-          {/* LEFT COLUMN: The Visual */}
-          <div className="w-full lg:w-1/2 relative">
-             
-             {/* === THE "MIXED" IMAGE CONTAINER === 
-                Added 'rounded-sm overflow-hidden' for softer corners.
-             */}
-             <div className="relative z-10 w-full aspect-[4/5] group rounded-sm overflow-hidden">
-                
-                <Image 
-                  src="/bg6.png" 
-                  alt="Raw honeycomb and natural ingredients close up"
-                  fill
-                  /* CHANGED:
-                     1. Removed 'shadow-2xl' (No lifting).
-                     2. Added 'opacity-90' (Lets background show through slightly).
-                     3. Added 'mix-blend-multiply' (The key to the "printed" look).
-                  */
-                  className="object-cover transition-transform duration-1000 ease-out group-hover:scale-105 opacity-90 mix-blend-multiply"
-                  priority
-                />
-
-                {/* NEW: PAPER TEXTURE OVERLAY ON IMAGE 
-                    This applies the paper texture specifically ON TOP of the image area, 
-                    tying it firmly to the background.
-                */}
-                 <div className="absolute inset-0 opacity-[0.3] pointer-events-none mix-blend-overlay bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]"></div>
-
-                {/* WARM TINT (Kept from before, helps blend color) */}
-                <div className="absolute inset-0 bg-[#B56B56]/10 mix-blend-multiply z-10 pointer-events-none" />
-                
-                {/* CHANGED: Replaced hard border with subtle inset ring (pressed look) */}
-                <div className="absolute inset-0 ring-1 ring-inset ring-[#1A2118]/10 z-20 pointer-events-none rounded-sm" />
-             </div>
-
-             {/* REMOVED: The offset hard border div. It creates too much separation. */}
+        {/* === HEADER === */}
+        <div className="flex flex-col lg:flex-row justify-between items-end mb-24 gap-8">
+          <div className="max-w-4xl">
+            {/* Label: Technical/Medical luxury feel */}
+            <span className="font-[family-name:var(--font-montserrat)] text-[11px] font-bold uppercase tracking-[0.25em] text-[#B56B56] mb-6 block">
+              Our Methodology
+            </span>
             
-             {/* Caption */}
-             <div className="absolute -bottom-10 right-0 font-[family-name:var(--font-montserrat)] text-[9px] text-[#1A2118]/60 tracking-[0.2em] uppercase font-medium">
-                Fig. 01 — Raw Intelligence
-             </div>
-          </div>
-
-
-          {/* RIGHT COLUMN: The Editorial Copy (Unchanged) */}
-          <div className="w-full lg:w-1/2">
-            
-            {/* Tagline */}
-            <div className="flex items-center gap-4 mb-10">
-               <span className="w-8 h-[1px] bg-[#B56B56]"></span>
-               <span className="font-[family-name:var(--font-montserrat)] text-xs font-bold uppercase tracking-[0.3em] text-[#B56B56]">Our Ethos</span>
-            </div>
-
-            {/* Headline */}
-            <h2 className="font-heading text-5xl lg:text-7xl leading-[1.05] mb-8 text-[#1A2118] font-bold">
-              Respecting the <br/>
-              <span className="font-light text-[#596157]">rhythm</span> of nature.
+            {/* Headline: Medium weight is more elegant than Bold */}
+            <h2 className="font-heading text-5xl lg:text-7xl leading-[1.05] font-medium text-[#1A2118]">
+              Untouched by Industry. <br/>
+              <span className="italic font-serif font-light text-[#596157]">Guided by Nature.</span>
             </h2>
-
-            {/* Body */}
-            <div className="space-y-8 font-[family-name:var(--font-montserrat)] text-base lg:text-lg font-light leading-[1.8] text-[#1A2118]/80 max-w-lg">
-              <p>
-                <span className="text-6xl float-left mr-4 mt-[-12px] font-heading text-[#1A2118] font-bold">W</span>
-                e believe that true nourishment cannot be synthesized. In an era of artificial optimization, we choose the path of most resistance: patience.
-              </p>
-              <p>
-                Every jar captures the specific intelligence of the ecosystem that created it. We are not manufacturers; we are simply the messengers between the wild forest and your home.
-              </p>
-            </div>
-
-            {/* Signature Block */}
-            <div className="mt-14 pt-8 border-t border-[#1A2118]/10 flex flex-col sm:flex-row sm:items-center gap-8">
-               <div className="flex flex-col">
-                  <span className="font-heading text-2xl text-[#1A2118] font-semibold">The Founders</span>
-                  <span className="font-[family-name:var(--font-montserrat)] text-[10px] uppercase tracking-widest text-[#1A2118]/50 mt-1 font-semibold">World of Nature</span>
-               </div>
-               
-               <button className="group flex items-center gap-3 px-8 py-4 border border-[#1A2118]/20 rounded-full hover:bg-[#1A2118] hover:text-white transition-all ml-auto">
-                  <span className="font-[family-name:var(--font-montserrat)] text-xs font-bold uppercase tracking-widest">Read Standards</span>
-                  <ArrowRight className="w-4 h-4" />
-               </button>
-            </div>
           </div>
-
         </div>
 
-        {/* 3. THE FEATURES BAR (Unchanged) */}
-        <div className="mt-24 lg:mt-32">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { icon: Globe, label: "Single Origin", sub: "Traceable to source" },
-              { icon: ShieldCheck, label: "Lab Tested", sub: "Rigorous purity check" },
-              { icon: Sun, label: "Sun Dried", sub: "Ancient preservation" },
-              { icon: Sprout, label: "Wild Crafted", sub: "Beyond organic" },
-            ].map((item, i) => (
-              <div key={i} className="flex flex-col gap-3 group border-l border-[#1A2118]/10 pl-6 hover:border-[#B56B56] transition-colors duration-500">
-                <item.icon className="w-5 h-5 text-[#1A2118]/40 group-hover:text-[#B56B56] transition-colors" />
-                <div>
-                  <h4 className="font-[family-name:var(--font-montserrat)] text-xs font-bold uppercase tracking-widest text-[#1A2118] mb-1">{item.label}</h4>
-                  <p className="font-[family-name:var(--font-montserrat)] text-[10px] font-medium text-[#1A2118]/50 uppercase tracking-wide">{item.sub}</p>
+        {/* === MAIN CONTENT === */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+          
+          {/* LEFT: Text Content */}
+          <div className="lg:col-span-5 order-2 lg:order-1 relative z-20">
+             <div className="lg:pr-4">
+                
+                {/* Lead Paragraph: Larger text bridges the gap */}
+                <p className="font-[family-name:var(--font-montserrat)] text-xl lg:text-2xl font-light leading-relaxed text-[#1A2118] mb-8">
+                  In an era of artificial optimization, our process is radical simplicity: we find earth's most potent botanicals and <span className="italic font-medium text-[#B56B56]">step out of the way.</span>
+                </p>
+                
+                {/* Secondary Body */}
+                <p className="font-[family-name:var(--font-montserrat)] text-base lg:text-lg font-light leading-loose text-[#1A2118]/80 mb-12">
+                  We don't synthesize active ingredients; we protect them. Every jar is a direct transfer of raw intelligence from the wild ecosystem to your home.
+                </p>
+
+                {/* Call to Action */}
+                <div className="flex flex-col sm:flex-row gap-8 sm:items-center">
+                  <button className="group flex items-center gap-4 px-8 py-4 bg-[#1A2118] text-[#E2E4D8] hover:bg-[#B56B56] transition-all duration-500 rounded-sm shadow-lg shadow-[#1A2118]/10">
+                    <span className="font-[family-name:var(--font-montserrat)] text-[11px] font-bold uppercase tracking-[0.2em]">View The Standards</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                  
+                  <div className="flex items-center gap-3 text-[#1A2118]/70">
+                     <Star className="w-4 h-4 text-[#B56B56] fill-current" />
+                     <span className="text-[10px] font-bold uppercase tracking-[0.2em] font-[family-name:var(--font-montserrat)]">Certified Raw Grade</span>
+                  </div>
+                </div>
+             </div>
+          </div>
+
+          {/* RIGHT: BLENDED IMAGE (The "Mixed" Look) */}
+          <div className="lg:col-span-7 relative order-1 lg:order-2 flex justify-center lg:justify-end">
+             
+             {/* 2. BACKLIGHT GLOW 
+                This adds a "halo" behind the image, making it look angelic/pure.
+             */}
+             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] bg-[#B56B56]/20 blur-[90px] rounded-full pointer-events-none" />
+
+             <div className="relative w-full max-w-lg aspect-[4/5] select-none pointer-events-none">
+               <Image 
+                 src="/bg6.png" 
+                 alt="Raw unprocessed ingredients"
+                 fill
+                 // mix-blend-multiply ensures white parts of the image turn transparent and dark parts soak into the background color
+                 className="object-cover mix-blend-multiply opacity-100"
+                 style={{
+                   // 3. THE SOFT MASK
+                   // 'black 40%' means the center 40% is fully visible
+                   // 'transparent 70%' means it fades out completely by 70%
+                   maskImage: 'radial-gradient(circle at center, black 40%, transparent 70%)',
+                   WebkitMaskImage: 'radial-gradient(circle at center, black 40%, transparent 70%)'
+                 }}
+               />
+               
+               {/* 4. COLOR HARMONIZER 
+                  This overlay forces the image to adopt the olive tones of the background slightly,
+                  preventing it from looking like a "sticker".
+               */}
+               <div className="absolute inset-0 bg-[#E2E4D8]/10 mix-blend-color pointer-events-none" 
+                 style={{
+                   maskImage: 'radial-gradient(circle at center, black 40%, transparent 70%)',
+                   WebkitMaskImage: 'radial-gradient(circle at center, black 40%, transparent 70%)'
+                 }}
+               />
+            </div>
+          </div>
+        </div>
+
+        {/* === FEATURE GRID === */}
+        <div className="mt-32">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {features.map((item, i) => (
+              <div key={i} className="group border border-[#1A2118]/5 hover:border-[#B56B56]/30 p-6 transition-all duration-500 bg-[#E2E4D8] hover:bg-[#E2E4D8]/50 rounded-sm">
+                <div className="flex flex-col items-start gap-4">
+                  <item.icon className="w-6 h-6 text-[#1A2118]/80 group-hover:text-[#B56B56] transition-colors mb-2" />
+                  <div>
+                    {/* Feature Title */}
+                    <h4 className="font-heading text-lg font-bold text-[#1A2118] mb-2 leading-tight">
+                      {item.label}
+                    </h4>
+                    {/* Feature Desc */}
+                    <p className="font-[family-name:var(--font-montserrat)] text-xs text-[#1A2118]/60 leading-relaxed font-medium">
+                      {item.desc}
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}

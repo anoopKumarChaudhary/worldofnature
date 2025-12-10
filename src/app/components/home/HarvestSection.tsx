@@ -87,10 +87,10 @@ const HarvestSection = () => {
             
             <div className="space-y-0 border-l border-[#F2F0EA]/10 ml-4">
               {seasons.map((step, i) => (
-                <div key={i} className="group relative pl-12 py-8 hover:bg-[#F2F0EA]/[0.02] transition-colors duration-500 border-b border-[#F2F0EA]/5 last:border-0 cursor-default">
+                <div key={i} className="group relative pl-16 py-10 hover:bg-[#F2F0EA]/[0.02] transition-colors duration-500 border-b border-[#F2F0EA]/5 last:border-0 cursor-default">
                   
                   {/* Timeline Dot */}
-                  <div className="absolute -left-[5px] top-12 w-[9px] h-[9px] rounded-full bg-[#1A2118] border border-[#F2F0EA]/40 group-hover:border-[#B56B56] group-hover:bg-[#B56B56] transition-all duration-300" />
+                  <div className="absolute -left-[6px] top-14 w-3 h-3 rounded-full bg-[#1A2118] border border-[#F2F0EA]/40 group-hover:border-[#B56B56] group-hover:bg-[#B56B56] transition-all duration-300" />
 
                   <div className="flex flex-col gap-2">
                     {/* Season Header */}
