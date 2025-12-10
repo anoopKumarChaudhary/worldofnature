@@ -136,8 +136,8 @@ export default function LoginPage() {
   // --- OTP VIEW ---
   if (showOtp) {
     return (
-      <div className="min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#B56B56] selection:text-white flex items-center justify-center pt-32 pb-12 px-4 sm:px-6 lg:px-8 overflow-hidden relative">
-        <div className="fixed inset-0 z-0 pointer-events-none bg-[#F2F0EA]" />
+      <div className="min-h-screen bg-[#D9DBD5] text-[#1A2118] font-sans selection:bg-[#B56B56] selection:text-white flex items-center justify-center pt-32 pb-12 px-4 sm:px-6 lg:px-8 overflow-hidden relative">
+        <div className="fixed inset-0 z-0 pointer-events-none bg-[#D9DBD5]" />
         
         <div className="relative z-10 w-full max-w-lg animate-fade-up">
           <div className="bg-white/80 backdrop-blur-2xl border border-white/60 rounded-[3rem] p-8 md:p-12 shadow-2xl shadow-[#1A2118]/10 text-center relative overflow-hidden">
@@ -195,7 +195,7 @@ export default function LoginPage() {
 
 
   return (
-    <div className="min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#B56B56] selection:text-white flex items-center justify-center pt-32 pb-12 px-4 sm:px-6 lg:px-8 overflow-hidden relative">
+    <div className="min-h-screen bg-[#D9DBD5] text-[#1A2118] font-sans selection:bg-[#B56B56] selection:text-white flex items-center justify-center pt-32 pb-12 px-4 sm:px-6 lg:px-8 overflow-hidden relative">
       {/* --- STYLES & ANIMATIONS --- */}
       <style jsx>{`
         @keyframes blob {
@@ -213,7 +213,7 @@ export default function LoginPage() {
       `}</style>
 
       {/* --- BACKGROUND LAYERS --- */}
-      <div className="fixed inset-0 z-0 pointer-events-none bg-[#F2F0EA]" />
+      <div className="fixed inset-0 z-0 pointer-events-none bg-[#D9DBD5]" />
 
       <div className="relative z-10 w-full max-w-lg animate-fade-up">
 

@@ -45,7 +45,7 @@ const faqData = [
 
 export default function FaqPage() {
   return (
-    <div className="min-h-screen bg-[#F2F0EA] font-sans selection:bg-[#BC5633] selection:text-white pb-20">
+    <div className="min-h-screen font-sans selection:bg-[#BC5633] selection:text-white pb-20">
       {/* --- BACKGROUND LAYERS --- */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         {/* Noise Texture */}

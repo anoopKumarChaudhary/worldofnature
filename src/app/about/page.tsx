@@ -11,9 +11,9 @@ import {
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white overflow-x-hidden pb-20">
+    <div className="min-h-screen text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white overflow-x-hidden pb-20">
       {/* --- BACKGROUND LAYERS --- */}
-      <div className="fixed inset-0 z-0 pointer-events-none bg-[#F2F0EA]" />
+      <div className="fixed inset-0 z-0 pointer-events-none" />
 
       {/* --- HERO SECTION --- */}
       <header className="relative pt-32 pb-16 px-6 lg:px-12 z-10">

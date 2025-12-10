@@ -188,7 +188,7 @@ export default function CheckoutPage() {
   // --- EMPTY CART STATE ---
   if (items.length === 0) {
     return (
-      <div className="min-h-screen bg-[#F2F0EA] text-[#1A2118] flex items-center justify-center relative overflow-hidden">
+      <div className="min-h-screen bg-[#D9DBD5] text-[#1A2118] flex items-center justify-center relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.06] mix-blend-multiply"
           style={{
@@ -218,7 +218,7 @@ export default function CheckoutPage() {
 
   return (
     <>
-      <div className="min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white pb-20 overflow-x-hidden">
+      <div className="min-h-screen bg-[#D9DBD5] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white pb-20 overflow-x-hidden">
         {/* --- VERIFICATION CHECK (Only if logged in) --- */}
         {user && !user.isVerified && <VerificationModal />}
         {/* --- STYLES & ANIMATIONS --- */}

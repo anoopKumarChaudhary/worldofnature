@@ -65,7 +65,7 @@
   --brand-white: #FFFFFF;
 
   /* Semantic Tokens (Light Mode) */
-  --background: var(--brand-accent-100);
+  --background: #D9DBD5;
   /* Cream background */
   --surface: var(--brand-white);
   --surface-subtle: var(--brand-primary-50);

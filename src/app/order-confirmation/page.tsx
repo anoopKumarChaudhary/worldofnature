@@ -35,7 +35,7 @@ function OrderConfirmationContent() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#F2F0EA] flex items-center justify-center">
+      <div className="min-h-screen bg-[#D9DBD5] flex items-center justify-center">
         <div className="w-12 h-12 border-4 border-[#1A2118]/10 border-t-[#1A2118] rounded-full animate-spin"></div>
       </div>
     );
@@ -43,7 +43,7 @@ function OrderConfirmationContent() {
 
   if (!order) {
     return (
-      <div className="min-h-screen bg-[#F2F0EA] flex items-center justify-center">
+      <div className="min-h-screen bg-[#D9DBD5] flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-[#1A2118] mb-4">
             Order Not Found
@@ -60,7 +60,7 @@ function OrderConfirmationContent() {
   }
 
   return (
-      <div className="min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white pb-20 overflow-x-hidden">
+      <div className="min-h-screen bg-[#D9DBD5] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white pb-20 overflow-x-hidden">
         {/* --- STYLES & ANIMATION --- */}
         <style jsx>{`
           @keyframes blob {
@@ -315,7 +315,7 @@ export default function OrderConfirmationPage() {
   return (
     <Suspense
       fallback={
-        <div className="min-h-screen bg-[#F2F0EA] flex items-center justify-center">
+        <div className="min-h-screen bg-[#D9DBD5] flex items-center justify-center">
           <div className="w-12 h-12 border-4 border-[#1A2118]/10 border-t-[#1A2118] rounded-full animate-spin"></div>
         </div>
       }

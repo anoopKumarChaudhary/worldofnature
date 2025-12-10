@@ -32,7 +32,7 @@ const HomePage = async () => {
 
   return (
     // GLOBAL THEME: Warm Stone Background, Dark Text
-    <div className="relative min-h-screen bg-[#EBE9E4] text-[#1A2118] font-sans selection:bg-[#B56B56] selection:text-[#EBE9E4] overflow-x-hidden">
+    <div className="relative min-h-screen text-[#1A2118] font-sans selection:bg-[#B56B56] selection:text-[#EBE9E4] overflow-x-hidden">
       
       {/* 1. HERO SECTION */}
       <HeroSection />

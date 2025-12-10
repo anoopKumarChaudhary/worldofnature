@@ -158,7 +158,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
     selectedRating !== null;
 
   return (
-    <div className="relative min-h-screen bg-[#D9DBD5] text-[#1A2118] font-sans selection:bg-[#B56B56] selection:text-white overflow-x-hidden pb-20">
+    <div className="relative min-h-screen text-[#1A2118] font-sans selection:bg-[#B56B56] selection:text-white overflow-x-hidden pb-20">
       {/* --- STYLES & ANIMATIONS --- */}
       <style jsx>{`
         @keyframes blob {

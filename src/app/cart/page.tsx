@@ -43,7 +43,7 @@ export default function CartPage() {
   // --- EMPTY STATE ---
   if (items.length === 0) {
     return (
-      <div className="min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white flex items-center justify-center relative overflow-hidden">
+      <div className="min-h-screen bg-[#D9DBD5] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white flex items-center justify-center relative overflow-hidden">
         {/* Background Elements */}
         <div
           className="absolute inset-0 z-0 opacity-[0.06] mix-blend-multiply"
@@ -76,7 +76,7 @@ export default function CartPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white pb-20 overflow-x-hidden">
+    <div className="min-h-screen bg-[#D9DBD5] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white pb-20 overflow-x-hidden">
       {/* --- STYLES & BACKGROUND --- */}
       <style jsx>{`
         @keyframes blob {
@@ -97,7 +97,7 @@ export default function CartPage() {
           animation: blob 10s infinite;
         }
       `}</style>
-      <div className="fixed inset-0 z-0 pointer-events-none bg-[#F2F0EA]" />
+      <div className="fixed inset-0 z-0 pointer-events-none bg-[#D9DBD5]" />
 
       {/* --- HEADER --- */}
       <div className="relative pt-32 pb-12 px-6 lg:px-12 z-10">
