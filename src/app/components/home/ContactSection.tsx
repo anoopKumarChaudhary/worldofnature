@@ -8,6 +8,7 @@ import {
   ArrowRight,
   Clock,
   Globe,
+  Briefcase,
 } from "lucide-react";
 import ContactClient from "../../contact/ContactClient";
 
@@ -50,9 +51,9 @@ export default function ContactSection({ className = "" }: ContactSectionProps) 
 
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
           {/* --- LEFT COLUMN: CONTACT CARDS --- */}
-          <div className="lg:col-span-5 space-y-6 animate-fade-up">
+          <div className="lg:col-span-5 flex flex-col gap-6 animate-fade-up">
             {/* Main Primary Card */}
-            <div className="bg-[#1A2118] text-[#F2F0EA] rounded-[2.5rem] p-8 relative overflow-hidden shadow-2xl group">
+            <div className="bg-[#1A2118] text-[#F2F0EA] rounded-[2.5rem] p-8 relative overflow-hidden shadow-2xl group flex-1">
               {/* Internal Decoration */}
               <div className="absolute top-0 right-0 w-64 h-64 bg-[#BC5633] rounded-full mix-blend-overlay filter blur-[80px] opacity-20 group-hover:opacity-40 transition-opacity duration-700" />
 
@@ -89,14 +90,42 @@ export default function ContactSection({ className = "" }: ContactSectionProps) 
                     <p className="text-xs font-bold uppercase tracking-widest opacity-50 mb-1">
                       Call Us
                     </p>
-                    <a
-                      href="tel:+15550000000"
-                      className="text-lg font-medium hover:text-[#BC5633] transition-colors"
-                    >
-                      +1 (555) NATURE
-                    </a>
+                    <div className="flex flex-col">
+                      <a
+                        href="tel:+15550000000"
+                        className="text-lg font-medium hover:text-[#BC5633] transition-colors"
+                      >
+                        +1 (555) NATURE
+                      </a>
+                      <a
+                        href="tel:+916283724623"
+                        className="text-lg font-medium hover:text-[#BC5633] transition-colors"
+                      >
+                        +91 62837 24623
+                      </a>
+                    </div>
                     <p className="text-sm opacity-50 mt-1 font-light">
                       Toll-free support
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-5 group/item cursor-default">
+                  <div className="w-12 h-12 rounded-2xl bg-[#F2F0EA]/10 flex items-center justify-center border border-[#F2F0EA]/5 group-hover/item:bg-[#BC5633] transition-colors duration-300">
+                    <Briefcase className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-widest opacity-50 mb-1">
+                      Partnerships
+                    </p>
+                    <a
+                      href="mailto:partners@worldofnature.com"
+                      className="text-lg font-medium hover:text-[#BC5633] transition-colors"
+                    >
+                      partners@worldofnature.com
+                    </a>
+                    <p className="text-sm opacity-50 mt-1 font-light">
+                      Wholesale & Media
                     </p>
                   </div>
                 </div>
@@ -154,10 +183,10 @@ export default function ContactSection({ className = "" }: ContactSectionProps) 
 
           {/* --- RIGHT COLUMN: THE FORM --- */}
           <div
-            className="lg:col-span-7 animate-fade-up"
+            className="lg:col-span-7 animate-fade-up flex flex-col"
             style={{ animationDelay: "0.2s" }}
           >
-            <div className="bg-white/80 backdrop-blur-xl rounded-[3rem] p-8 md:p-12 shadow-[0_20px_60px_-15px_rgba(26,33,24,0.1)] border border-white relative">
+            <div className="bg-white/80 backdrop-blur-xl rounded-[3rem] p-8 md:p-12 shadow-[0_20px_60px_-15px_rgba(26,33,24,0.1)] border border-white relative h-full">
               <div className="mb-10">
                 <h2 className="text-3xl md:text-4xl font-serif text-[#1A2118] mb-3">
                   Send a Message
