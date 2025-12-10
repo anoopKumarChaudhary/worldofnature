@@ -158,7 +158,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
     selectedRating !== null;
 
   return (
-    <div className="relative min-h-screen bg-[#E6E8E2] text-[#1A2118] font-sans selection:bg-[#B56B56] selection:text-white overflow-x-hidden pb-20">
+    <div className="relative min-h-screen bg-[#D9DBD5] text-[#1A2118] font-sans selection:bg-[#B56B56] selection:text-white overflow-x-hidden pb-20">
       {/* --- STYLES & ANIMATIONS --- */}
       <style jsx>{`
         @keyframes blob {
@@ -279,7 +279,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
       `}</style>
 
       {/* --- Background --- */}
-      <div className="fixed inset-0 z-0 pointer-events-none bg-[#E6E8E2]" />
+      <div className="fixed inset-0 z-0 pointer-events-none bg-[#D9DBD5]" />
 
       {/* --- Header --- */}
       <section className="relative pt-32 pb-8 z-10">
