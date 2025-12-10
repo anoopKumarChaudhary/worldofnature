@@ -4,9 +4,9 @@ import React from "react";
 import { MoveRight, Sun, CloudRain, Snowflake, Thermometer, Droplets, Wind } from "lucide-react";
 
 const PhenologySection = () => {
-  // Theme: 
-  // Section Background: #E0DED7 (Taupe / Earthy Grey)
-  // Card Background: #F2F0EA (Bone White)
+  // New Theme:
+  // Section Background: #ECEBE4 (Warm Stone / Alabaster)
+  // Card Background: #FFFFFF (Pure White)
   // Text: #1A2118 (Dark Forest Green)
   
   const phases = [
@@ -46,8 +46,8 @@ const PhenologySection = () => {
   ];
 
   return (
-    // CHANGED: Background to #E0DED7 (Taupe) for slight contrast
-    <section className="relative py-24 lg:py-32 bg-[#E0DED7] text-[#1A2118] overflow-hidden">
+    // CHANGED: Background to #ECEBE4 (Warm Stone)
+    <section className="relative py-24 lg:py-32 bg-[#ECEBE4] text-[#1A2118] overflow-hidden">
       
       {/* 1. TEXTURE (Subtle Grain) */}
       <div className="absolute inset-0 opacity-[0.4] pointer-events-none mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]"></div>
@@ -76,21 +76,21 @@ const PhenologySection = () => {
            </div>
         </div>
 
-        {/* === THE CARDS (No Grid Lines, Just Gaps) === */}
+        {/* === THE CARDS (Floating White on Warm Stone) === */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           
           {phases.map((item, i) => (
             <div 
               key={i} 
-              // Card Styling: #F2F0EA Background, Rounded Corners, Shadow
-              className="group relative bg-[#F2F0EA] p-8 lg:p-10 rounded-sm shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]"
+              // CHANGED: bg-[#FFFFFF] (Pure White) for crisp contrast
+              className="group relative bg-[#FFFFFF] p-8 lg:p-10 rounded-sm shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]"
             >
-               {/* Hover Texture (Subtle) */}
+               {/* Hover Texture */}
                <div className="absolute inset-0 opacity-0 group-hover:opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] transition-opacity duration-700 rounded-sm"></div>
 
                {/* Top Meta Data */}
                <div className="flex justify-between items-start mb-10">
-                  <span className="font-mono text-[10px] uppercase tracking-widest bg-[#1A2118]/5 border border-[#1A2118]/10 px-2 py-1 rounded-sm text-[#1A2118]/60">
+                  <span className="font-mono text-[10px] uppercase tracking-widest bg-[#ECEBE4]/50 border border-[#1A2118]/10 px-2 py-1 rounded-sm text-[#1A2118]/60">
                     {item.dates}
                   </span>
                   <span className="font-[family-name:var(--font-montserrat)] text-[10px] font-bold uppercase tracking-[0.2em] text-[#B56B56]">
@@ -100,16 +100,17 @@ const PhenologySection = () => {
 
                {/* HERO ICON CENTERPIECE */}
                <div className="mb-10 flex justify-center">
-                  <div className="relative w-24 h-24 flex items-center justify-center rounded-full bg-[#E0DED7]/50 group-hover:bg-[#1A2118] transition-colors duration-700">
+                  {/* CHANGED: Circle bg to match section background #ECEBE4 */}
+                  <div className="relative w-24 h-24 flex items-center justify-center rounded-full bg-[#ECEBE4]/60 group-hover:bg-[#1A2118] transition-colors duration-700">
                      
-                     {/* Outer Ring Animation (Subtle on light card) */}
-                     <div className="absolute inset-0 rounded-full border border-dashed border-[#1A2118]/20 group-hover:border-[#F2F0EA]/20 animate-[spin_12s_linear_infinite]" />
+                     {/* Outer Ring Animation */}
+                     <div className="absolute inset-0 rounded-full border border-dashed border-[#1A2118]/20 group-hover:border-[#FFFFFF]/20 animate-[spin_12s_linear_infinite]" />
                      
                      {/* The Icon */}
-                     <item.icon className="w-10 h-10 text-[#1A2118] group-hover:text-[#F2F0EA] transition-colors duration-500 stroke-[1.5]" />
+                     <item.icon className="w-10 h-10 text-[#1A2118] group-hover:text-[#FFFFFF] transition-colors duration-500 stroke-[1.5]" />
                      
-                     {/* Sub-Icon Badge */}
-                     <div className="absolute -bottom-2 bg-[#F2F0EA] border border-[#1A2118]/10 p-1.5 rounded-full z-10">
+                     {/* Sub-Icon Badge (Matches card bg) */}
+                     <div className="absolute -bottom-2 bg-[#FFFFFF] border border-[#1A2118]/10 p-1.5 rounded-full z-10">
                         <item.subIcon className="w-3 h-3 text-[#B56B56]" />
                      </div>
                   </div>
@@ -122,7 +123,7 @@ const PhenologySection = () => {
                   </h3>
                   
                   {/* Data Points Box */}
-                  <div className="grid grid-cols-2 gap-4 mb-6 bg-[#1A2118]/[0.03] p-4 rounded-sm">
+                  <div className="grid grid-cols-2 gap-4 mb-6 bg-[#1A2118]/[0.02] p-4 rounded-sm border border-[#1A2118]/5">
                      <div className="border-r border-[#1A2118]/10">
                         <span className="block font-[family-name:var(--font-montserrat)] text-[9px] uppercase tracking-widest text-[#1A2118]/40 mb-1">
                            Process
