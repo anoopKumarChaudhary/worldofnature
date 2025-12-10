@@ -88,7 +88,7 @@ export default function LoginPage() {
       try {
         await dispatch(login({ email: formData.email, password: formData.password })).unwrap();
         addToast("Logged in successfully", "success");
-      } catch (error) {
+      } catch (_error) {
         addToast("Login failed. Please check your credentials.", "error");
       }
     } else {

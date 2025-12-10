@@ -3,11 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  Heart,
-  Plus,
-  Check,
-} from "lucide-react";
+import { Heart, Plus, Check, Star, ShoppingBag } from "lucide-react";
 import { useToast } from "../../context/ToastContext";
 import { useAppDispatch } from "../../redux/hooks";
 import { addToCart } from "../../redux/features/cart/cartSlice";
@@ -33,28 +29,14 @@ interface ProductCardProps {
   viewMode?: "grid" | "list";
 }
 
-const Badge = ({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => (
-  <span
-    className={`px-2 py-0.5 md:px-3 md:py-1 rounded-none text-[9px] md:text-[10px] font-medium uppercase tracking-[0.2em] backdrop-blur-sm border ${className}`}
-  >
-    {children}
-  </span>
-);
-
 const ProductCard = ({
   id,
   imageUrl,
   title,
   description,
   price,
-  // rating,
-  // reviewCount,
+  rating,
+  reviewCount,
   isBestseller,
   isOnSale,
   isNew,
@@ -66,18 +48,17 @@ const ProductCard = ({
 }: ProductCardProps) => {
   const dispatch = useAppDispatch();
   const { addToast } = useToast();
-  const [isHovered, setIsHovered] = useState(false);
   const [quantity] = useState(1);
   const [isAdding, setIsAdding] = useState(false);
 
-  const handleAddToCart = () => {
+  // --- LOGIC ---
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
     setIsAdding(true);
     if (onAddToCart) {
-      onAddToCart(
-        { id, name: title, price, image: imageUrl },
-        quantity
-      );
-      addToast(`Added ${title} to cart`, "success");
+      onAddToCart({ id, name: title, price, image: imageUrl }, quantity);
     } else {
       dispatch(
         addToCart({
@@ -86,11 +67,11 @@ const ProductCard = ({
           price,
           image: imageUrl,
           quantity,
-          size: "Regular", 
+          size: "Regular",
         })
       );
-      addToast(`Added ${title} to cart`, "success");
     }
+    addToast(`Added ${title}`, "success");
     setTimeout(() => setIsAdding(false), 1500);
   };
 
@@ -102,184 +83,167 @@ const ProductCard = ({
     }
   };
 
-  // --- LIST VIEW ---
+  // --- LIST VIEW (Kept simple and clean) ---
   if (viewMode === "list") {
     return (
-      <div className="group flex gap-6 bg-white p-4 border-b border-[#1A2118]/5 hover:bg-[#F9F8F6] transition-all duration-500">
+      <div className="group relative flex gap-6 p-4 bg-white border border-gray-100 rounded-xl hover:shadow-md transition-all duration-300">
         {/* Image */}
-        <div className="relative w-32 md:w-48 aspect-square overflow-hidden bg-[#F9F8F6]">
-          <Image
-            src={imageUrl}
-            alt={title}
-            fill
-            sizes="(max-width: 768px) 150px, 200px"
-            className="object-cover mix-blend-multiply group-hover:scale-105 transition-transform duration-700"
-          />
+        <div className="relative w-40 aspect-[4/3] bg-gray-50 rounded-lg overflow-hidden shrink-0">
+          <Link href={`/product/${id}`}>
+            <Image
+              src={imageUrl}
+              alt={title}
+              fill
+              className="object-cover opacity-95 group-hover:scale-105 transition-transform duration-700 ease-out"
+            />
+          </Link>
         </div>
 
         {/* Content */}
-        <div className="flex-1 flex flex-col justify-center py-2">
-          <div className="flex justify-between items-start mb-2">
-            <h3 className="font-serif text-lg md:text-xl text-[#1A2118] group-hover:text-[#B56B56] transition-colors">
-              {title}
-            </h3>
+        <div className="flex-1 flex flex-col justify-between py-1">
+          <div>
+            <div className="flex justify-between items-start mb-2">
+               <Link href={`/product/${id}`}>
+                 <h3 className="font-heading text-xl text-[#1A2118] group-hover:text-[#B56B56] transition-colors">
+                   {title}
+                 </h3>
+               </Link>
+               <span className="font-medium text-lg text-[#1A2118]">
+                 ₹{price}
+               </span>
+            </div>
+            <p className="font-sans text-sm text-gray-500 line-clamp-2 mb-4">
+              {description}
+            </p>
           </div>
 
-          <p className="text-[#596157] text-sm mb-4 line-clamp-2 max-w-lg font-light">
-            {description}
-          </p>
+          <div className="flex items-center justify-between">
+             {/* Rating */}
+             <div className="flex items-center gap-1 text-sm text-gray-600">
+                <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                <span className="font-medium">{rating}</span>
+                <span className="text-gray-400">({reviewCount})</span>
+             </div>
 
-          <div className="flex items-center justify-between mt-auto">
-            <div className="flex items-baseline gap-3">
-              <span className="text-lg font-medium text-[#1A2118]">
-                ₹{price}
-              </span>
-              {isOnSale && originalPrice && (
-                <span className="text-xs text-[#1A2118]/40 line-through decoration-1">
-                  ₹{originalPrice}
-                </span>
-              )}
-            </div>
-
-            <button
-              onClick={handleAddToCart}
-              className="text-xs font-bold uppercase tracking-widest text-[#1A2118] hover:text-[#B56B56] transition-colors border-b border-[#1A2118] hover:border-[#B56B56] pb-0.5"
-            >
-              {isAdding ? "Added" : "Add to Cart"}
-            </button>
+             {/* Action */}
+             <button
+               onClick={handleAddToCart}
+               className="flex items-center gap-2 px-4 py-2 bg-[#1A2118] text-white text-sm font-bold uppercase tracking-wider rounded-lg hover:bg-[#B56B56] transition-colors"
+             >
+               {isAdding ? "Added" : "Add to Cart"}
+             </button>
           </div>
         </div>
       </div>
     );
   }
 
-  // --- GRID VIEW (Professional Polish) ---
+  // --- GRID VIEW (Clean & User-Friendly) ---
   return (
-    <div
-      className={`group relative flex flex-col h-full bg-white/40 backdrop-blur-sm rounded-[2rem] overflow-hidden transition-all duration-500 border border-white/60 hover:bg-white/80 hover:border-white hover:shadow-lg hover:shadow-[#1A2118]/5`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-
-
-      {/* --- IMAGE SECTION --- */}
-      <div className="relative aspect-[4/3] overflow-hidden bg-[#F9F8F6]">
+    // Changed: Rounded corners, white bg, soft shadow for friendliness
+    <div className="group relative flex flex-col h-full bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-gray-100">
+      
+      {/* 1. IMAGE SECTION (Reduced Height) */}
+      {/* Changed: aspect-[3/4] -> aspect-[4/3] for shorter height */}
+      <div className="relative aspect-[4/3] w-full overflow-hidden bg-gray-50">
         <Link href={`/product/${id}`}>
           <Image
             src={imageUrl}
             alt={title}
             fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="object-cover mix-blend-multiply transition-transform duration-1000 ease-out"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+            // Changed: Removed mix-blend-multiply for cleaner product view
+            className="object-cover opacity-[0.98] group-hover:scale-105 transition-all duration-700 ease-in-out"
           />
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-[#1A2118]/0 group-hover:bg-[#1A2118]/2 transition-colors duration-500" />
         </Link>
 
-        {/* Wishlist Button (Minimal) */}
+        {/* Wishlist (Top Right - Clean Bubble) */}
         <button
           onClick={handleWishlistToggle}
-          className={`absolute top-3 right-3 z-20 transition-all duration-300 ${
-            isWishlisted
-              ? "text-[#B56B56] scale-110"
-              : "text-[#1A2118]/40 hover:text-[#1A2118] hover:scale-110"
-          }`}
+          className="absolute top-3 right-3 z-20 w-9 h-9 flex items-center justify-center rounded-full bg-white/80 backdrop-blur-sm shadow-sm hover:bg-white text-[#1A2118] transition-all scale-95 md:scale-100 opacity-0 group-hover:opacity-100"
         >
           <Heart
-            className={`w-5 h-5 ${isWishlisted ? "fill-current" : ""}`}
-            strokeWidth={1.5}
+            className={`w-5 h-5 ${isWishlisted ? "fill-[#B56B56] text-[#B56B56]" : "text-[#1A2118]"}`}
           />
         </button>
 
-        {/* --- BADGES (Minimal) --- */}
-        <div className="absolute top-3 left-3 z-10 flex flex-col gap-1.5">
-          {isBestseller && (
-            <Badge className="bg-white/90 text-[#1A2118] border-transparent">
-              Best
-            </Badge>
-          )}
+        {/* Tags (Top Left - Clean Pills) */}
+        <div className="absolute top-3 left-3 z-10 flex flex-col gap-2">
           {isNew && (
-            <Badge className="bg-[#1A2118] text-white border-transparent">
+            <span className="inline-block px-3 py-1 bg-[#1A2118] text-white text-[10px] font-bold uppercase tracking-widest rounded-full shadow-sm">
               New
-            </Badge>
+            </span>
           )}
           {(isOnSale || (originalPrice && originalPrice > price)) && (
-            <Badge className="bg-[#B56B56] text-white border-transparent shadow-sm">
-              {originalPrice && originalPrice > price
-                ? `${Math.round(((originalPrice - price) / originalPrice) * 100)}% OFF`
-                : "SALE"}
-            </Badge>
+            <span className="inline-block px-3 py-1 bg-[#B56B56] text-white text-[10px] font-bold uppercase tracking-widest rounded-full shadow-sm">
+              Sale
+            </span>
           )}
         </div>
 
-        {/* --- DESKTOP HOVER ACTIONS --- */}
-        <div
-          className={`hidden md:flex absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-t border-[#1A2118]/5 p-4 transition-all duration-500 transform ${
-            isHovered
-              ? "translate-y-0 opacity-100"
-              : "translate-y-full opacity-0"
-          }`}
-        >
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              handleAddToCart();
-            }}
-            className="w-full text-xs font-bold uppercase tracking-[0.2em] text-[#1A2118] hover:text-[#B56B56] transition-colors flex items-center justify-center gap-2"
-          >
-            {isAdding ? (
-              <>
-                <Check className="w-4 h-4" /> Added
-              </>
-            ) : (
-              "Add to Cart"
-            )}
-          </button>
+        {/* Hover Action: Slide-up Bar (Desktop) */}
+        <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out hidden md:block bg-gradient-to-t from-black/40 to-transparent">
+           <button
+             onClick={handleAddToCart}
+             className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-white text-[#1A2118] hover:bg-[#1A2118] hover:text-white rounded-xl shadow-lg transition-colors font-bold uppercase tracking-widest text-xs"
+           >
+              {isAdding ? (
+                 <>
+                   <Check className="w-4 h-4" /> Added
+                 </>
+              ) : (
+                 <>
+                   <ShoppingBag className="w-4 h-4" /> Add to Cart
+                 </>
+              )}
+           </button>
         </div>
       </div>
 
-      {/* --- CONTENT --- */}
-      <div className="flex flex-col flex-grow relative z-10 p-4">
-        <div className="flex justify-between items-start gap-2 mb-1">
-          <Link href={`/product/${id}`} className="block group-hover:opacity-70 transition-opacity min-w-0 flex-1">
-            <h3 className="font-serif font-semibold text-[#1A2118] text-base leading-tight tracking-tight truncate">
-              {title}
-            </h3>
-          </Link>
-          
-          <div className="flex flex-col items-end shrink-0">
-            {(isOnSale || (originalPrice && originalPrice > price)) && (
-              <span className="text-[9px] text-[#1A2118]/40 line-through decoration-1 font-medium mb-0.5">
-                ₹{originalPrice}
-              </span>
-            )}
-            <span className="font-serif font-semibold text-[#1A2118] text-sm md:text-base tracking-tight">
-              ₹{price}
-            </span>
-          </div>
-        </div>
+      {/* 2. CONTENT SECTION (Simplified & Clean) */}
+      <div className="flex flex-col flex-grow p-5 relative">
+        
+        {/* Title */}
+        <Link href={`/product/${id}`} className="block mb-1">
+          <h3 className="font-heading text-lg text-[#1A2118] leading-tight group-hover:text-[#B56B56] transition-colors duration-300 line-clamp-1">
+            {title}
+          </h3>
+        </Link>
 
         {/* Description */}
-        <p className="text-[#1A2118]/60 text-xs leading-relaxed mb-3 line-clamp-2 font-normal">
+        <p className="text-gray-500 text-xs leading-relaxed mb-4 line-clamp-2 min-h-[2.5em]">
           {description}
         </p>
 
-        {/* Mobile Action (Minimal) */}
-        <div className="mt-auto md:hidden pt-4 border-t border-[#1A2118]/5">
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              handleAddToCart();
-            }}
-            className="w-full h-10 rounded-xl bg-[#F2F0EA] text-[#1A2118] text-[10px] font-bold uppercase tracking-widest flex items-center justify-center gap-2 active:scale-95 transition-all hover:bg-[#1A2118] hover:text-white"
-          >
-            {isAdding ? <Check className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
-            {isAdding ? "Added" : "Add"}
-          </button>
+        {/* Price & Rating Row */}
+        <div className="mt-auto flex items-end justify-between">
+           <div className="flex flex-col">
+              {isOnSale && originalPrice && (
+                <span className="text-xs text-gray-400 line-through mb-0.5">
+                  ₹{originalPrice}
+                </span>
+              )}
+              <span className="font-heading text-lg font-bold text-[#1A2118]">
+                ₹{price}
+              </span>
+           </div>
+           
+           {/* Rating (Clean & integrated) */}
+           <div className="flex items-center gap-1 text-sm mb-1">
+              <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+              <span className="font-medium text-[#1A2118]">{rating}</span>
+           </div>
         </div>
-      </div>
 
+        {/* Mobile-Only Add Button */}
+        <button 
+          onClick={handleAddToCart}
+          className="md:hidden absolute bottom-4 right-4 w-10 h-10 flex items-center justify-center bg-[#1A2118] text-white rounded-full shadow-md active:scale-95 transition-transform"
+        >
+           {isAdding ? <Check className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
+        </button>
+        
+      </div>
     </div>
   );
 };

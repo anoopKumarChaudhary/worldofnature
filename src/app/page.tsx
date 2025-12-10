@@ -85,7 +85,7 @@ const HomePage = async () => {
             {featuredProducts.map((product: Product) => (
               <div key={product._id} className="w-full group">
                 {/* NOTE: Ensure ProductCard component is updated to handle 
-                   transparent backgrounds or matches the #EBE9E4 theme 
+                  &quot;We are not makers, but caretakers.&quot;ounds or matches the #EBE9E4 theme 
                 */}
                 <div className="transition-all duration-700 hover:-translate-y-2">
                   <ProductCard
@@ -141,7 +141,7 @@ const HomePage = async () => {
             </div>
 
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl leading-[1.1] mb-12 font-medium text-[#1A2118]">
-              "It’s rare to find food that feels like it still has its <span className="text-[#B56B56] italic font-serif">soul</span>. This honey tastes like the wild forest it came from."
+              &quot;It’s rare to find food that feels like it still has its <span className="text-[#B56B56] italic font-serif">soul</span>. This honey tastes like the wild forest it came from.&quot;
             </h2>
             
             <div className="flex flex-col items-center gap-2">

@@ -158,7 +158,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
     selectedRating !== null;
 
   return (
-    <div className="relative min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#B56B56] selection:text-white overflow-x-hidden pb-20">
+    <div className="relative min-h-screen bg-[#E6E8E2] text-[#1A2118] font-sans selection:bg-[#B56B56] selection:text-white overflow-x-hidden pb-20">
       {/* --- STYLES & ANIMATIONS --- */}
       <style jsx>{`
         @keyframes blob {
@@ -279,7 +279,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
       `}</style>
 
       {/* --- Background --- */}
-      <div className="fixed inset-0 z-0 pointer-events-none bg-[#F2F0EA]" />
+      <div className="fixed inset-0 z-0 pointer-events-none bg-[#E6E8E2]" />
 
       {/* --- Header --- */}
       <section className="relative pt-32 pb-8 z-10">
@@ -655,7 +655,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
             {sortedProducts.length > 0 ? (
               <>
                 <div
-                  className={`grid gap-4 sm:gap-6 ${
+                  className={`grid gap-2 sm:gap-6 ${
                     viewMode === "grid"
                       ? "grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3"
                       : "grid-cols-1"
