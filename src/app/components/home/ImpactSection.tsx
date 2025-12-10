@@ -2,112 +2,117 @@
 
 import React from "react";
 import Link from "next/link";
-import { Sprout, Droplets, HeartHandshake, ShieldCheck, ArrowRight } from "lucide-react";
+import { Sprout, Droplets, HeartHandshake, ShieldCheck, ArrowRight, CheckCircle2 } from "lucide-react";
 
 const ImpactSection = () => {
   const pillars = [
     {
       id: "01",
       icon: Sprout,
-      title: "Ethical Sourcing",
-      description: "We bypass middlemen to work directly with small-scale farmers, ensuring wages that dignify their labor and regenerate their land."
+      title: "Supply Chain Integrity",
+      description: "Direct-trade partnerships that bypass intermediaries, ensuring verifiable living wages and regenerative agricultural practices."
     },
     {
       id: "02",
       icon: ShieldCheck,
-      title: "100% Chemical Free",
-      description: "Rigorous lab-testing guarantees purity. We refuse additives, binders, and preservatives. Just nature in its most potent, unadulterated form."
+      title: "Bio-Active Purity",
+      description: "Zero tolerance for synthetic additives. Every batch undergoes rigorous third-party spectroscopy to guarantee elemental composition."
     },
     {
       id: "03",
       icon: Droplets,
-      title: "Zero Plastic",
-      description: "Our commitment extends to the packaging. Biodegradable, compostable, and plastic-free materials that honor the earth that provides for us."
+      title: "Material Circularity",
+      description: "Our packaging ecosystem is engineered for complete biodegradation, utilizing plant-based polymers and compostable substrates."
     },
     {
       id: "04",
       icon: HeartHandshake,
-      title: "Community First",
-      description: "A portion of every sale goes back to preserving the indigenous ecosystems of Kashmir, ensuring the rhythm of nature continues."
+      title: "Ecological Reinvestment",
+      description: "A calculated percentage of revenue is contractually allocated to the preservation of indigenous Himalayan biodiversity."
     }
   ];
 
   return (
-    <section className="relative py-24 lg:py-32 bg-[#1A2118] text-[#F2F0EA] overflow-hidden">
+    <section className="relative py-24 lg:py-32 bg-[#0F140E] text-[#EBE9E4] overflow-hidden">
       
-      {/* 1. BACKGROUND TEXTURE (Premium Matte Feel) */}
-      <div className="absolute inset-0 opacity-[0.05] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
-      
-      {/* 2. DECORATIVE GRADIENT GLOW */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#B56B56] rounded-full blur-[120px] opacity-10 pointer-events-none" />
+      {/* 1. ATMOSPHERE (Clean, no grids) */}
+      {/* Subtle Noise Texture for premium matte finish */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
 
-      <div className="container-custom mx-auto relative z-10 max-w-7xl">
+      <div className="container-custom mx-auto relative z-10 max-w-7xl px-6 lg:px-12">
         
-        {/* HEADER: Editorial Layout */}
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-24 gap-16 border-b border-[#F2F0EA]/5 pb-12">
-          <div className="max-w-2xl">
-            <span className="font-[family-name:var(--font-montserrat)] text-[#B56B56] font-bold tracking-[0.3em] uppercase text-xs mb-6 block">
-              The Standard
-            </span>
-            <h2 className="font-heading text-5xl lg:text-7xl leading-[0.95] font-bold">
-              Conscious choices for <br/>
-              a <span className="text-[#B56B56] opacity-90">better world.</span>
+        {/* === HEADER: Clean & Floating === */}
+        <div className="flex flex-col lg:flex-row justify-between items-end mb-20 gap-12">
+          <div className="max-w-3xl">
+            <div className="flex items-center gap-3 mb-6">
+               <div className="w-2 h-2 bg-[#B56B56] rounded-full" />
+               <span className="font-[family-name:var(--font-montserrat)] text-[#B56B56] font-bold tracking-[0.25em] uppercase text-[10px]">
+                  Corporate Responsibility
+               </span>
+            </div>
+            <h2 className="font-heading text-5xl lg:text-7xl leading-[0.95] font-medium text-[#EBE9E4]">
+              The <span className="text-[#B56B56]">Covenant.</span>
             </h2>
           </div>
+          
           <div className="max-w-md text-left lg:text-right">
-            <p className="font-[family-name:var(--font-montserrat)] text-sm lg:text-base text-[#F2F0EA]/70 font-light leading-relaxed">
-              True wellness extends beyond the individual. Every product you choose supports a cycle of care, respect, and regeneration.
+             <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 mb-4 bg-[#EBE9E4]/5">
+                <CheckCircle2 className="w-3 h-3 text-[#B56B56]" />
+                <span className="text-[9px] uppercase tracking-widest font-bold text-[#EBE9E4]/80">ISO 9001 Compliant Process</span>
+             </div>
+            <p className="font-[family-name:var(--font-montserrat)] text-sm text-[#EBE9E4]/60 font-light leading-relaxed">
+              Wellness cannot exist in isolation. Our operational model is designed to support the metabolic health of the planet.
             </p>
           </div>
         </div>
 
-        {/* THE MANIFESTO GRID (Architectural Style) */}
-        <div className="grid grid-cols-1 md:grid-cols-2">
+        {/* === THE CARDS (Floating Blocks) === */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          
           {pillars.map((pillar, index) => (
             <div 
               key={index} 
-              className={`
-                group relative p-10 lg:p-14 border-[#F2F0EA]/5 hover:bg-[#F2F0EA]/[0.02] transition-colors duration-500
-                ${index % 2 === 0 ? 'md:border-r' : ''} 
-                ${index < 2 ? 'border-b' : ''}
-                ${index !== pillars.length - 1 ? 'border-b md:border-b-0' : ''}
-                /* Mobile: all have bottom border except last */
-                ${index < 3 ? 'max-md:border-b' : ''}
-                /* Tablet+: Top 2 have bottom border */
-                ${index < 2 ? 'md:border-b' : ''}
-              `}
+              // Card Styling: Slightly lighter background than section to create depth without borders
+              className="group relative p-10 lg:p-14 bg-[#141A13] rounded-sm hover:bg-[#1A2118] transition-all duration-500 hover:-translate-y-1"
             >
-              
-              {/* Header: Number & Icon */}
-              <div className="flex justify-between items-start mb-8">
-                <span className="font-[family-name:var(--font-montserrat)] text-4xl lg:text-5xl font-bold text-[#F2F0EA]/10 group-hover:text-[#B56B56] transition-colors duration-500">
-                  {pillar.id}
-                </span>
-                <div className="w-14 h-14 rounded-full border border-[#F2F0EA]/20 flex items-center justify-center text-[#F2F0EA]/60 group-hover:border-[#B56B56] group-hover:text-[#B56B56] group-hover:scale-110 transition-all duration-500">
-                  <pillar.icon className="w-5 h-5" />
-                </div>
-              </div>
+              {/* Large Number Background (Subtle Depth) */}
+              <span className="absolute top-6 right-8 font-heading text-8xl text-[#EBE9E4]/[0.02] font-bold select-none pointer-events-none">
+                {pillar.id}
+              </span>
 
-              {/* Content */}
-              <h3 className="font-heading text-2xl lg:text-3xl mb-4 group-hover:translate-x-2 transition-transform duration-500 font-semibold">
-                {pillar.title}
-              </h3>
-              <p className="font-[family-name:var(--font-montserrat)] text-sm text-[#F2F0EA]/60 leading-relaxed max-w-sm group-hover:text-[#F2F0EA]/80 transition-colors">
-                {pillar.description}
-              </p>
+              <div className="relative z-10">
+                <div className="mb-6 flex items-center gap-4">
+                  {/* Clean Icon Container */}
+                  <div className="w-10 h-10 rounded-full bg-[#EBE9E4]/5 flex items-center justify-center text-[#B56B56] group-hover:bg-[#B56B56] group-hover:text-[#EBE9E4] transition-colors duration-500">
+                    <pillar.icon className="w-5 h-5" />
+                  </div>
+                  <h3 className="font-heading text-2xl lg:text-3xl font-medium text-[#EBE9E4]">
+                    {pillar.title}
+                  </h3>
+                </div>
+
+                <p className="font-[family-name:var(--font-montserrat)] text-sm text-[#EBE9E4]/50 leading-loose max-w-md group-hover:text-[#EBE9E4]/70 transition-colors">
+                  {pillar.description}
+                </p>
+                
+                {/* Optional: Minimal accent line on hover only */}
+                <div className="mt-8 h-[2px] w-0 bg-[#B56B56] group-hover:w-12 transition-all duration-500 ease-out" />
+              </div>
             </div>
           ))}
         </div>
 
-        {/* FOOTER CTA */}
-        <div className="mt-16 flex justify-center lg:justify-start">
-           <Link href="/about" className="group flex items-center gap-4 text-[#F2F0EA]">
-              <div className="w-12 h-12 rounded-full border border-[#F2F0EA]/20 flex items-center justify-center group-hover:bg-[#B56B56] group-hover:border-[#B56B56] transition-all duration-300">
-                 <ArrowRight className="w-5 h-5 group-hover:-rotate-45 transition-transform duration-300" />
-              </div>
-              <span className="font-[family-name:var(--font-montserrat)] text-xs font-bold uppercase tracking-widest group-hover:text-[#B56B56] transition-colors">
-                 Read Our Full Impact Report
+        {/* === FOOTER ACTION === */}
+        <div className="mt-16 flex flex-col md:flex-row justify-between items-center gap-6">
+           <span className="font-[family-name:var(--font-montserrat)] text-[10px] uppercase tracking-widest text-[#EBE9E4]/30">
+               Transparency Report 2024-25
+           </span>
+
+           <Link href="/about" className="group flex items-center gap-3 text-[#EBE9E4] hover:text-[#B56B56] transition-colors">
+              <span className="font-[family-name:var(--font-montserrat)] text-xs font-bold uppercase tracking-widest">
+                 Read Full Documentation
               </span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
            </Link>
         </div>
 
