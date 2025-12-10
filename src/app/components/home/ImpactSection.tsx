@@ -49,9 +49,9 @@ const ImpactSection = () => {
             <span className="font-[family-name:var(--font-montserrat)] text-[#B56B56] font-bold tracking-[0.3em] uppercase text-xs mb-6 block">
               The Standard
             </span>
-            <h2 className="font-[family-name:var(--font-playfair)] text-5xl lg:text-7xl leading-[0.95]">
+            <h2 className="font-heading text-5xl lg:text-7xl leading-[0.95] font-bold">
               Conscious choices for <br/>
-              a <span className="italic text-[#B56B56] opacity-90">better world.</span>
+              a <span className="text-[#B56B56] opacity-90">better world.</span>
             </h2>
           </div>
           <div className="max-w-md text-left lg:text-right">
@@ -89,7 +89,7 @@ const ImpactSection = () => {
               </div>
 
               {/* Content */}
-              <h3 className="font-[family-name:var(--font-playfair)] text-2xl lg:text-3xl mb-4 group-hover:translate-x-2 transition-transform duration-500">
+              <h3 className="font-heading text-2xl lg:text-3xl mb-4 group-hover:translate-x-2 transition-transform duration-500 font-semibold">
                 {pillar.title}
               </h3>
               <p className="font-[family-name:var(--font-montserrat)] text-sm text-[#F2F0EA]/60 leading-relaxed max-w-sm group-hover:text-[#F2F0EA]/80 transition-colors">

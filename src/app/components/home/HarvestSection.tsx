@@ -59,7 +59,7 @@ const HarvestSection = () => {
              <p className="font-[family-name:var(--font-montserrat)] text-[10px] uppercase tracking-[0.3em] text-[#F2F0EA]/60 mb-2">
                Fig. 02 — The Valley
              </p>
-             <p className="font-[family-name:var(--font-playfair)] italic text-2xl text-[#F2F0EA]/90">
+             <p className="font-heading text-2xl text-[#F2F0EA]/90 font-light">
                "Nature waits for no one."
              </p>
          </div>
@@ -80,9 +80,9 @@ const HarvestSection = () => {
                </span>
             </div>
             
-            <h2 className="font-[family-name:var(--font-playfair)] text-5xl lg:text-7xl mb-16 leading-[0.95]">
+            <h2 className="font-heading text-5xl lg:text-7xl mb-16 leading-[0.95] font-bold">
               Aligned with <br/>
-              the <span className="italic text-[#F2F0EA]/50">seasons.</span>
+              the <span className="text-[#F2F0EA]/50">seasons.</span>
             </h2>
             
             <div className="space-y-0 border-l border-[#F2F0EA]/10 ml-4">
@@ -101,7 +101,7 @@ const HarvestSection = () => {
                     </div>
 
                     {/* Title */}
-                    <h4 className="font-[family-name:var(--font-playfair)] text-3xl text-[#F2F0EA] group-hover:text-[#B56B56] transition-colors duration-300">
+                    <h4 className="font-heading text-3xl text-[#F2F0EA] group-hover:text-[#B56B56] transition-colors duration-300 font-semibold">
                       {step.title}
                     </h4>
                     
@@ -125,7 +125,7 @@ const HarvestSection = () => {
              />
              <div className="absolute inset-0 bg-gradient-to-t from-[#1A2118] via-transparent to-transparent" />
              <div className="absolute bottom-8 left-8 right-8 text-center">
-                <p className="font-[family-name:var(--font-playfair)] italic text-xl text-[#F2F0EA]/90">
+                <p className="font-heading text-xl text-[#F2F0EA]/90 font-light">
                   "Nature waits for no one."
                 </p>
              </div>

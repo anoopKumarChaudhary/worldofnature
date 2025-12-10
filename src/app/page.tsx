@@ -65,9 +65,9 @@ const HomePage = async () => {
                    The Apothecary
                  </span>
               </div>
-              <h2 className="font-[family-name:var(--font-playfair)] text-5xl lg:text-7xl text-[#1A2118] leading-[0.9]">
+              <h2 className="font-heading text-5xl lg:text-7xl text-[#1A2118] leading-[0.9] font-bold">
                 Curated <br/>
-                <span className="italic font-light text-[#596157]">Essentials.</span>
+                <span className="font-light text-[#596157]">Essentials.</span>
               </h2>
             </div>
             
@@ -123,14 +123,14 @@ const HomePage = async () => {
                <Star className="w-4 h-4 fill-[#B56B56] text-[#B56B56]" />
             </div>
             
-            <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-5xl leading-tight mb-12">
-              &quot;It’s rare to find food that feels like it still has its <span className="italic text-[#B56B56]">soul</span>. This honey tastes like the wild forest it came from.&quot;
+            <h2 className="font-heading text-3xl md:text-5xl leading-tight mb-12 font-semibold">
+              &quot;It’s rare to find food that feels like it still has its <span className="text-[#B56B56]">soul</span>. This honey tastes like the wild forest it came from.&quot;
             </h2>
             
             <div className="flex flex-col items-center">
                <div className="w-16 h-16 rounded-full bg-[#F2F0EA]/10 mb-4 overflow-hidden relative">
                   {/* Placeholder for user avatar or initial */}
-                  <div className="absolute inset-0 flex items-center justify-center font-serif italic text-2xl">E</div>
+                  <div className="absolute inset-0 flex items-center justify-center font-heading text-2xl font-bold">E</div>
                </div>
                <p className="font-[family-name:var(--font-montserrat)] text-xs font-bold uppercase tracking-[0.2em] text-[#B56B56]">Elena R.</p>
                <p className="font-[family-name:var(--font-montserrat)] text-[10px] uppercase tracking-widest opacity-50 mt-1">Verified Buyer • Raw Honey</p>
@@ -147,8 +147,8 @@ const HomePage = async () => {
            <span className="block font-[family-name:var(--font-montserrat)] text-xs md:text-sm font-bold uppercase tracking-[0.4em] mb-6 opacity-80">
               Join the Movement
            </span>
-           <h2 className="font-[family-name:var(--font-playfair)] text-6xl md:text-8xl lg:text-9xl mb-12">
-              Rewild <span className="italic opacity-80">Your</span> <br/> Pantry.
+           <h2 className="font-heading text-6xl md:text-8xl lg:text-9xl mb-12 font-bold">
+              Rewild <span className="opacity-80">Your</span> <br/> Pantry.
            </h2>
            
            <Link 

@@ -65,8 +65,8 @@ const JournalSection = () => {
                  The Journal
                </span>
             </div>
-            <h2 className="font-[family-name:var(--font-playfair)] text-5xl lg:text-7xl leading-[0.9]">
-              Field <span className="italic font-light text-[#596157]">Notes.</span>
+            <h2 className="font-heading text-5xl lg:text-7xl leading-[0.9] font-bold">
+              Field <span className="font-light text-[#596157]">Notes.</span>
             </h2>
           </div>
           
@@ -118,7 +118,7 @@ const JournalSection = () => {
                <span className="font-[family-name:var(--font-montserrat)] text-[10px] uppercase tracking-widest">
                   Issue No. 0{activeStory + 1}
                </span>
-               <span className="font-[family-name:var(--font-playfair)] italic text-sm">
+               <span className="font-heading text-sm font-medium">
                   {journalEntries[activeStory].readTime}
                </span>
             </div>
@@ -142,7 +142,7 @@ const JournalSection = () => {
                   <span className="font-[family-name:var(--font-montserrat)] text-xs font-bold uppercase tracking-widest text-[#B56B56]">
                     {entry.date}
                   </span>
-                  <h3 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl text-[#1A2118] group-hover:italic transition-all duration-300">
+                  <h3 className="font-heading text-3xl md:text-4xl text-[#1A2118] transition-all duration-300 font-semibold">
                     {entry.title}
                   </h3>
                 </div>

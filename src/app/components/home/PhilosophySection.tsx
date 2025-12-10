@@ -74,15 +74,15 @@ const PhilosophySection = () => {
             </div>
 
             {/* Headline */}
-            <h2 className="font-[family-name:var(--font-playfair)] text-5xl lg:text-7xl leading-[1.05] mb-8 text-[#1A2118]">
+            <h2 className="font-heading text-5xl lg:text-7xl leading-[1.05] mb-8 text-[#1A2118] font-bold">
               Respecting the <br/>
-              <span className="italic font-light text-[#596157]">rhythm</span> of nature.
+              <span className="font-light text-[#596157]">rhythm</span> of nature.
             </h2>
 
             {/* Body */}
             <div className="space-y-8 font-[family-name:var(--font-montserrat)] text-base lg:text-lg font-light leading-[1.8] text-[#1A2118]/80 max-w-lg">
               <p>
-                <span className="text-6xl float-left mr-4 mt-[-12px] font-[family-name:var(--font-playfair)] text-[#1A2118]">W</span>
+                <span className="text-6xl float-left mr-4 mt-[-12px] font-heading text-[#1A2118] font-bold">W</span>
                 e believe that true nourishment cannot be synthesized. In an era of artificial optimization, we choose the path of most resistance: patience.
               </p>
               <p>
@@ -93,7 +93,7 @@ const PhilosophySection = () => {
             {/* Signature Block */}
             <div className="mt-14 pt-8 border-t border-[#1A2118]/10 flex flex-col sm:flex-row sm:items-center gap-8">
                <div className="flex flex-col">
-                  <span className="font-[family-name:var(--font-playfair)] italic text-2xl text-[#1A2118]">The Founders</span>
+                  <span className="font-heading text-2xl text-[#1A2118] font-semibold">The Founders</span>
                   <span className="font-[family-name:var(--font-montserrat)] text-[10px] uppercase tracking-widest text-[#1A2118]/50 mt-1 font-semibold">World of Nature</span>
                </div>
                

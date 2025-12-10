@@ -55,9 +55,9 @@ const CollectionsSection = () => {
                 Collection No. 01
               </span>
             </div>
-            <h2 className="font-[family-name:var(--font-playfair)] text-5xl lg:text-7xl text-[#1A2118] leading-[0.9]">
+            <h2 className="font-heading text-5xl lg:text-7xl text-[#1A2118] leading-[0.9] font-bold">
               The Pantry <br/>
-              <span className="italic font-light text-[#596157]">Essentials.</span>
+              <span className="font-light text-[#596157]">Essentials.</span>
             </h2>
           </div>
           
@@ -117,7 +117,7 @@ const CollectionsSection = () => {
                   <span className="block font-[family-name:var(--font-montserrat)] text-[9px] uppercase tracking-[0.3em] text-[#B56B56] mb-2">
                     {cat.sub}
                   </span>
-                  <h4 className="font-[family-name:var(--font-playfair)] text-3xl lg:text-4xl text-white mb-2 leading-none">
+                  <h4 className="font-heading text-3xl lg:text-4xl text-white mb-2 leading-none font-semibold">
                     {cat.label}
                   </h4>
                   <p className="font-[family-name:var(--font-montserrat)] text-white/80 font-light text-xs max-w-[200px] leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 translate-y-2 group-hover:translate-y-0">
@@ -145,7 +145,7 @@ const CollectionsSection = () => {
              </div>
 
              <div className="relative z-10">
-                <h4 className="font-[family-name:var(--font-playfair)] text-3xl italic text-white mb-1">
+                <h4 className="font-heading text-3xl text-white mb-1 font-semibold">
                    View All
                 </h4>
                 <div className="h-[1px] w-full bg-white/30 my-3 group-hover:w-1/2 transition-all duration-500" />
