@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/features/auth/authSlice";
 import { RootState, AppDispatch } from "../../redux/store";
@@ -25,6 +26,8 @@ import {
 } from "lucide-react";
 
 const Navbar = () => {
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
   const dispatch = useDispatch<AppDispatch>();
   const { user, isAuthenticated } = useSelector(
     (state: RootState) => state.auth
@@ -117,7 +120,6 @@ const Navbar = () => {
     );
   }
 
-
   return (
     <>
       {/* NAVBAR CONTAINER */}
@@ -127,7 +129,7 @@ const Navbar = () => {
         }`}
       >
         <nav
-          className="relative flex items-center justify-between transition-all duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)] w-full py-1 px-6 md:px-10 bg-gradient-to-b from-[#1A2118]/30 to-[#1A2118]/5 backdrop-blur-xl shadow-sm"
+          className="relative flex items-center justify-between transition-all duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)] w-full py-4 px-6 md:px-10 bg-transparent"
         >
             {/* --- LOGO --- */}
           <Link
@@ -135,7 +137,7 @@ const Navbar = () => {
             className="flex items-center gap-3 z-10"
             onClick={closeMobileMenu}
           >
-            <div className="relative h-10 md:h-14 w-auto overflow-visible transition-all duration-300 brightness-0 invert opacity-90 hover:opacity-100">
+            <div className={`relative h-10 md:h-14 w-auto overflow-visible transition-all duration-300 opacity-90 hover:opacity-100 ${isHomePage ? "brightness-0 invert" : ""}`}>
                {/* eslint-disable-next-line @next/next/no-img-element */}
                <img src="/image.png" alt="World of Nature Logo" className="h-full w-auto object-contain" />
             </div>
@@ -146,10 +148,10 @@ const Navbar = () => {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-[10px] font-bold uppercase tracking-[0.25em] transition-colors duration-300 relative group text-white hover:text-[#E8D4A2]"
+                className={`text-[10px] font-bold uppercase tracking-[0.25em] transition-colors duration-300 relative group ${isHomePage ? "text-white hover:text-[#E8D4A2]" : "text-[#1A2118] hover:text-[#B56B56]"}`}
               >
                 {item.label}
-                <span className="absolute -bottom-1 left-1/2 w-0 h-[1px] transition-all duration-300 group-hover:w-full group-hover:left-0 bg-[#E8D4A2]" />
+                <span className={`absolute -bottom-1 left-1/2 w-0 h-[1px] transition-all duration-300 group-hover:w-full group-hover:left-0 ${isHomePage ? "bg-[#E8D4A2]" : "bg-[#B56B56]"}`} />
               </Link>
             ))}
           </div>
@@ -159,12 +161,12 @@ const Navbar = () => {
             <IconButton 
               icon={<Search size={18} />} 
               label="Search" 
-              className="text-white/80 hover:bg-white/10"
+              className={isHomePage ? "text-white/80 hover:bg-white/10" : "text-[#1A2118]/80 hover:bg-[#1A2118]/5"}
             />
 
             <button
               onClick={toggleDarkMode}
-              className="w-9 h-9 flex items-center justify-center rounded-full transition-colors duration-200 text-white/80 hover:bg-white/10"
+              className={`w-9 h-9 flex items-center justify-center rounded-full transition-colors duration-200 ${isHomePage ? "text-white/80 hover:bg-white/10" : "text-[#1A2118]/80 hover:bg-[#1A2118]/5"}`}
               aria-label="Toggle Theme"
             >
               {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
@@ -175,16 +177,16 @@ const Navbar = () => {
                 icon={<Heart size={18} />}
                 href="/wishlist"
                 label="Wishlist"
-                className="text-white/80 hover:bg-white/10"
+                className={isHomePage ? "text-white/80 hover:bg-white/10" : "text-[#1A2118]/80 hover:bg-[#1A2118]/5"}
               />
               {isAuthenticated ? (
                 <div className="flex items-center gap-2 ml-1">
-                  <Link href="/profile" className="text-sm font-medium transition-colors text-white hover:text-[#E8D4A2]">
+                  <Link href="/profile" className={`text-sm font-medium transition-colors ${isHomePage ? "text-white hover:text-[#E8D4A2]" : "text-[#1A2118] hover:text-[#B56B56]"}`}>
                     {user?.firstName}
                   </Link>
                   <button
                     onClick={() => dispatch(logout())}
-                    className="w-9 h-9 flex items-center justify-center rounded-full transition-colors duration-200 text-white/80 hover:bg-white/10"
+                    className={`w-9 h-9 flex items-center justify-center rounded-full transition-colors duration-200 ${isHomePage ? "text-white/80 hover:bg-white/10" : "text-[#1A2118]/80 hover:bg-[#1A2118]/5"}`}
                     aria-label="Logout"
                   >
                     <LogOut size={18} />
@@ -195,7 +197,7 @@ const Navbar = () => {
                   icon={<User size={18} />}
                   href="/login"
                   label="Profile"
-                  className="text-white/80 hover:bg-white/10"
+                  className={isHomePage ? "text-white/80 hover:bg-white/10" : "text-[#1A2118]/80 hover:bg-[#1A2118]/5"}
                 />
               )}
             </div>
@@ -203,11 +205,11 @@ const Navbar = () => {
             {/* Cart with Badge */}
             <Link
               href="/cart"
-              className="relative w-9 h-9 flex items-center justify-center rounded-full transition-colors duration-200 hover:bg-white/10"
+              className={`relative w-9 h-9 flex items-center justify-center rounded-full transition-colors duration-200 ${isHomePage ? "hover:bg-white/10" : "hover:bg-[#1A2118]/5"}`}
             >
               <ShoppingCart
                 size={18}
-                className="text-white"
+                className={isHomePage ? "text-white" : "text-[#1A2118]"}
               />
               {cartItemsCount > 0 && (
                 <span className="absolute top-0.5 right-0.5 w-3.5 h-3.5 bg-[#B56B56] text-[#F2F0EA] text-[9px] font-bold flex items-center justify-center rounded-full ring-1 ring-[#F2F0EA]">
@@ -219,7 +221,7 @@ const Navbar = () => {
             {/* Mobile Hamburger */}
             <button
               onClick={toggleMobileMenu}
-              className="md:hidden w-9 h-9 flex items-center justify-center rounded-full ml-1 transition-colors duration-200 text-white hover:bg-white/10"
+              className={`md:hidden w-9 h-9 flex items-center justify-center rounded-full ml-1 transition-colors duration-200 ${isHomePage ? "text-white hover:bg-white/10" : "text-[#1A2118] hover:bg-[#1A2118]/5"}`}
             >
               <Menu size={20} />
             </button>
