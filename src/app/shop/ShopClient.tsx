@@ -282,15 +282,15 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
       <div className="fixed inset-0 z-0 pointer-events-none bg-[#D9DBD5]" />
 
       {/* --- Header --- */}
-      <section className="relative pt-32 pb-8 z-10">
+      <section className="relative pt-24 pb-6 z-10">
         <div className="container-custom mx-auto">
-          <div className="flex items-center gap-3 mb-4">
+          <div className="flex items-center gap-3 mb-3">
             <div className="h-2 w-2 bg-[#B56B56] rounded-full animate-pulse"></div>
             <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#1A2118]">
               The Pantry
             </span>
           </div>
-          <h1 className="text-4xl md:text-7xl font-serif font-medium tracking-tight text-[#1A2118]">
+          <h1 className="text-4xl md:text-7xl font-serif font-light tracking-tight text-[#1A2118]">
             Harvest <span className="italic text-[#596157]">Collection.</span>
           </h1>
         </div>
@@ -298,7 +298,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
 
       <div className="container-custom mx-auto relative z-10">
         {/* --- Control Bar --- */}
-        <div className="sticky top-24 z-[90] mb-8 transition-all duration-300">
+        <div className="sticky top-20 z-[90] mb-6 transition-all duration-300">
           <div className="flex flex-row gap-3 items-center justify-between">
             {/* Search Input */}
             <div className="relative flex-1 group">
@@ -443,7 +443,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
 
               {/* Categories */}
               <div className="space-y-4">
-                <h3 className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/40 ml-1">
+                <h3 className="text-xs font-medium uppercase tracking-widest text-[#1A2118]/40 ml-1">
                   Categories
                 </h3>
                 <div className="space-y-2">
@@ -488,7 +488,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
               {/* Price Range */}
               <div className="space-y-6">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/40">
+                  <h3 className="text-xs font-medium uppercase tracking-widest text-[#1A2118]/40">
                     Price Range
                   </h3>
                   <span className="text-xs font-bold text-[#B56B56]">
@@ -535,7 +535,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
 
               {/* Rating */}
               <div className="space-y-4">
-                <h3 className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/40 ml-1">
+                <h3 className="text-xs font-medium uppercase tracking-widest text-[#1A2118]/40 ml-1">
                   Rating
                 </h3>
                 <div className="flex flex-col gap-2">
