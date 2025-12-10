@@ -18,6 +18,7 @@ const HarvestSection = dynamic(() => import("./components/home/HarvestSection"))
 const ImpactSection = dynamic(() => import("./components/home/ImpactSection"));
 // JournalSection is often better as a standard import if small, but dynamic is fine.
 const JournalSection = dynamic(() => import("./components/home/JournalSection"));
+const RitualsSection = dynamic(() => import("./components/home/RitualsSection"));
 
 const HomePage = async () => {
   // === DATA FETCHING ===
@@ -45,7 +46,10 @@ const HomePage = async () => {
       {/* 4. PHENOLOGY / HARVEST (The "Almanac" Sticky Section) */}
       <HarvestSection />
 
-      {/* --- 5. CURATED ESSENTIALS (The Shop) --- */}
+      {/* 5. RITUALS (Application) */}
+      <RitualsSection />
+
+      {/* --- 6. CURATED ESSENTIALS (The Shop) --- */}
       {/* Redesigned to match the "Museum/Archive" aesthetic */}
       <section className="relative py-24 lg:py-32 bg-[#EBE9E4]">
         
@@ -114,7 +118,10 @@ const HomePage = async () => {
         </div>
       </section>
 
-      {/* 6. IMPACT STANDARDS (The "Covenant" Dark Section) */}
+      {/* 7. JOURNAL (Field Notes) */}
+      <JournalSection />
+
+      {/* 8. IMPACT STANDARDS (The "Covenant" Dark Section) */}
       <ImpactSection />
 
       {/* --- 7. TESTIMONIALS (Redesigned as "Field Notes") --- */}

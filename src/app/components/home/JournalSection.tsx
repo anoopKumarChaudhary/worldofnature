@@ -1,165 +1,184 @@
 "use client";
 
-import React, { useState } from "react";
-import Link from "next/link";
+import React from "react";
 import Image from "next/image";
-import { ArrowUpRight, BookOpen } from "lucide-react";
+import Link from "next/link";
+import { ArrowUpRight, ArrowRight, BookOpen } from "lucide-react";
 
 const JournalSection = () => {
-  // We use state to track which article is being hovered
-  const [activeStory, setActiveStory] = useState(0);
-
-  const journalEntries = [
+  // Theme: Paper White / Light Grey
+  const articles = [
     {
-      id: 0,
-      title: "The Art of Slow Beekeeping",
-      category: "Apiary",
-      date: "Oct 12",
-      readTime: "5 min read",
-      excerpt: "Why we wait for the bees to finish their work before we begin ours. A lesson in patience.",
-      image: "/won11.JPG", // Ensure these paths exist
+      id: "001",
+      category: "Sourcing",
+      title: "Why we wait until the first frost to harvest turmeric.",
+      excerpt: "The chemical composition of the rhizome changes dramatically when ground temperature drops below freezing. We explore curcumin density.",
+      readTime: "5 min",
+      image: "/won8.JPG" 
     },
     {
-      id: 1,
-      title: "Soil Health & Human Gut",
-      category: "Science",
-      date: "Sep 28",
-      readTime: "8 min read",
-      excerpt: "Exploring the invisible microbial connection between the earth's soil and our internal biology.",
-      image: "/won2.jpg",
+      id: "002",
+      category: "Analysis",
+      title: "Decoding 'Active' Honey.",
+      readTime: "3 min",
+      image: "/won23.JPG"
     },
     {
-      id: 2,
-      title: "A Morning in the Ghats",
-      category: "Travel",
-      date: "Sep 15",
-      readTime: "6 min read",
-      excerpt: "Harvesting wild pepper in the mist-covered hills of Kerala alongside indigenous farmers.",
-      image: "/won19.JPG",
-    },
-    {
-      id: 3,
-      title: "The Language of Roots",
-      category: "Botany",
-      date: "Aug 04",
-      readTime: "4 min read",
-      excerpt: "Understanding how trees communicate underground and what it means for our harvest.",
-      image: "/won8.JPG", // Using an existing image as placeholder
-    },
+      id: "003",
+      category: "Heritage",
+      title: "Heirloom Spices of Kashmir.",
+      readTime: "4 min",
+      image: "/won32.JPG"
+    }
   ];
 
   return (
-    <section className="relative py-24 lg:py-32 bg-[#F2F0EA] text-[#1A2118] overflow-hidden">
+    // BACKGROUND: #F2F0EA (Bone White) - Very clean, high contrast with black text
+    <section className="relative py-24 lg:py-32 bg-[#F2F0EA] text-[#1A2118] border-t border-[#1A2118]/10">
       
-      {/* 1. BACKGROUND TEXTURE (Brand Consistency) */}
-      <div className="absolute inset-0 opacity-[0.3] pointer-events-none mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]"></div>
+      {/* 1. TEXTURE */}
+      <div className="absolute inset-0 opacity-[0.5] pointer-events-none mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]"></div>
 
-      <div className="container-custom mx-auto px-6 lg:px-12 relative z-10 max-w-7xl">
+      <div className="container-custom mx-auto max-w-7xl px-6 lg:px-12 relative z-10">
         
-        {/* HEADER */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 border-b border-[#1A2118]/10 pb-8">
-          <div>
-            <div className="flex items-center gap-4 mb-4">
-               <span className="w-6 h-[1px] bg-[#B56B56]"></span>
-               <span className="font-[family-name:var(--font-montserrat)] text-xs font-bold uppercase tracking-[0.3em] text-[#B56B56]">
-                 The Journal
-               </span>
-            </div>
-            <h2 className="font-heading text-5xl lg:text-7xl leading-[0.9] font-bold">
-              Field <span className="font-light text-[#596157]">Notes.</span>
-            </h2>
-          </div>
-          
-          <div className="hidden md:block">
-             <Link href="/blog" className="group inline-flex items-center gap-2 font-[family-name:var(--font-montserrat)] text-xs font-bold uppercase tracking-widest text-[#1A2118] hover:text-[#B56B56] transition-colors">
-               View Archives <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
-             </Link>
-          </div>
+        {/* === HEADER (Grid Aligned) === */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 border-b border-[#1A2118]/10 pb-8 mb-0">
+           <div className="lg:col-span-8">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-[#B56B56] mb-2 block">
+                Volume 01 — Field Notes
+              </span>
+              <h2 className="font-heading text-5xl lg:text-6xl text-[#1A2118] font-medium tracking-tight">
+                The Research <span className="italic font-serif font-light text-[#1A2118]/50">Log.</span>
+              </h2>
+           </div>
+           <div className="lg:col-span-4 flex items-end justify-start lg:justify-end mt-6 lg:mt-0">
+              <Link href="/journal" className="group inline-flex items-center gap-2 font-[family-name:var(--font-montserrat)] text-xs font-bold uppercase tracking-widest text-[#1A2118] hover:text-[#B56B56] transition-colors">
+                 Full Archive <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+           </div>
         </div>
 
-        {/* 2. THE INTERACTIVE SPLIT */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
-          
-          {/* LEFT: THE STICKY IMAGE (Changes on Hover) */}
-          <div className="hidden lg:block lg:col-span-5 sticky top-24">
-            <div className="relative w-full aspect-[3/4] rounded-sm overflow-hidden">
+        {/* === THE SWISS GRID === */}
+        {/* A rigid grid with borders */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 border-l border-[#1A2118]/10 border-b border-[#1A2118]/10">
+           
+           {/* --- LEFT COLUMN: FEATURED STORY (Spans 7) --- */}
+           <div className="lg:col-span-7 border-r border-[#1A2118]/10 p-8 lg:p-12 relative group cursor-pointer hover:bg-[#1A2118]/[0.01] transition-colors">
+              <Link href="#" className="block h-full flex flex-col justify-between">
+                 
+                 {/* Top: Meta */}
+                 <div className="flex justify-between items-start mb-12">
+                    <span className="font-mono text-[10px] text-[#1A2118]/40 border border-[#1A2118]/10 px-2 py-1 rounded-sm">
+                       No. {articles[0].id}
+                    </span>
+                    <span className="font-[family-name:var(--font-montserrat)] text-[10px] font-bold uppercase tracking-[0.2em] text-[#B56B56]">
+                       {articles[0].category}
+                    </span>
+                 </div>
+
+                 {/* Middle: Title & Excerpt */}
+                 <div className="mb-12">
+                    <h3 className="font-heading text-4xl lg:text-6xl leading-[0.95] text-[#1A2118] mb-6 group-hover:text-[#B56B56] transition-colors duration-500">
+                      {articles[0].title}
+                    </h3>
+                    <p className="font-[family-name:var(--font-montserrat)] text-sm font-light leading-loose text-[#1A2118]/60 max-w-md border-l-2 border-[#1A2118]/10 pl-6">
+                      {articles[0].excerpt}
+                    </p>
+                 </div>
+
+                 {/* Bottom: Image Strip */}
+                 <div className="mt-auto relative w-full aspect-[21/9] overflow-hidden bg-[#1A2118]">
+                    <Image 
+                      src={articles[0].image} 
+                      alt={articles[0].title} 
+                      fill
+                      className="object-cover opacity-90 grayscale-[1] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)]"
+                    />
+                    
+                    {/* Hover Action Overlay */}
+                    <div className="absolute inset-0 bg-[#B56B56]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                       <span className="font-[family-name:var(--font-montserrat)] text-xs text-[#F2F0EA] font-bold uppercase tracking-widest flex items-center gap-2">
+                         Read Article <ArrowUpRight className="w-4 h-4" />
+                       </span>
+                    </div>
+                 </div>
+
+              </Link>
+           </div>
+
+
+           {/* --- RIGHT COLUMN: LIST & NEWSLETTER (Spans 5) --- */}
+           <div className="lg:col-span-5 flex flex-col border-r border-[#1A2118]/10">
               
-              {/* Image Layering Logic */}
-              {journalEntries.map((entry, index) => (
-                <div 
-                  key={entry.id}
-                  className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${activeStory === index ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
-                >
-                  <Image 
-                    src={entry.image} 
-                    alt={entry.title} 
-                    fill
-                    className="object-cover"
-                    priority={index === 0}
-                  />
-                  {/* Luxury Overlay */}
-                  <div className="absolute inset-0 bg-[#1A2118]/10 mix-blend-multiply" />
-                  
-                  {/* Floating Tag */}
-                  <div className="absolute top-6 left-6 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-full">
-                     <span className="font-[family-name:var(--font-montserrat)] text-[10px] font-bold uppercase tracking-widest text-white">
-                       {entry.category}
-                     </span>
-                  </div>
-                </div>
+              {/* Secondary Articles List */}
+              {articles.slice(1).map((article, i) => (
+                <Link key={i} href="#" className="group flex gap-6 p-8 border-b border-[#1A2118]/10 hover:bg-[#1A2118]/[0.02] transition-colors">
+                   
+                   {/* Thumbnail (Square) */}
+                   <div className="relative w-24 h-24 flex-shrink-0 bg-[#1A2118] border border-[#1A2118]/10">
+                      <Image 
+                        src={article.image} 
+                        alt={article.title} 
+                        fill 
+                        className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                      />
+                   </div>
+
+                   {/* Content */}
+                   <div className="flex flex-col justify-between py-1">
+                      <div className="flex items-center gap-3">
+                         <span className="font-mono text-[9px] text-[#1A2118]/40">
+                           No. {article.id}
+                         </span>
+                         <span className="font-[family-name:var(--font-montserrat)] text-[9px] font-bold uppercase tracking-wider text-[#B56B56]">
+                           {article.category}
+                         </span>
+                      </div>
+                      
+                      <h4 className="font-heading text-xl text-[#1A2118] leading-tight group-hover:underline decoration-[#B56B56] decoration-1 underline-offset-4">
+                        {article.title}
+                      </h4>
+
+                      <div className="flex items-center gap-2 text-[#1A2118]/40">
+                         <BookOpen className="w-3 h-3" />
+                         <span className="font-mono text-[9px] uppercase tracking-wide">
+                           {article.readTime} Read
+                         </span>
+                      </div>
+                   </div>
+                </Link>
               ))}
 
-              {/* Decorative Frame */}
-              <div className="absolute inset-4 border border-white/20 z-20 pointer-events-none" />
-            </div>
+              {/* Newsletter Block (Fills remaining space) */}
+              <div className="flex-grow p-8 flex flex-col justify-center bg-[#1A2118] text-[#F2F0EA] relative group overflow-hidden">
+                 {/* Texture */}
+                 <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
+                 
+                 <div className="relative z-10">
+                    <span className="font-[family-name:var(--font-montserrat)] text-[9px] font-bold uppercase tracking-[0.25em] text-[#B56B56] mb-4 block">
+                      Dispatch
+                    </span>
+                    <h4 className="font-heading text-3xl mb-2">
+                      Join the Inner Circle.
+                    </h4>
+                    <p className="font-[family-name:var(--font-montserrat)] text-[10px] leading-relaxed text-[#F2F0EA]/50 mb-8 uppercase tracking-wide max-w-xs">
+                      Receive seasonal harvest alerts and research notes directly to your inbox.
+                    </p>
+                    
+                    <div className="flex border-b border-[#F2F0EA]/20 pb-2 group-hover:border-[#B56B56] transition-colors">
+                       <input 
+                         type="email" 
+                         placeholder="Email Address" 
+                         className="bg-transparent w-full outline-none text-xs font-mono text-[#F2F0EA] placeholder:text-[#F2F0EA]/20 uppercase"
+                       />
+                       <button className="text-[#F2F0EA] hover:text-[#B56B56] transition-colors">
+                          <ArrowRight className="w-4 h-4" />
+                       </button>
+                    </div>
+                 </div>
+              </div>
 
-            {/* Caption under image */}
-            <div className="mt-4 flex justify-between items-center text-[#1A2118]/60">
-               <span className="font-[family-name:var(--font-montserrat)] text-[10px] uppercase tracking-widest">
-                  Issue No. 0{activeStory + 1}
-               </span>
-               <span className="font-heading text-sm font-medium">
-                  {journalEntries[activeStory].readTime}
-               </span>
-            </div>
-          </div>
-
-          {/* RIGHT: THE ARTICLE LIST */}
-          <div className="lg:col-span-7 flex flex-col">
-            {journalEntries.map((entry, index) => (
-              <Link 
-                key={entry.id} 
-                href={`/blog/${entry.id}`}
-                onMouseEnter={() => setActiveStory(index)}
-                className="group relative border-t border-[#1A2118]/10 py-10 transition-all duration-500 hover:pl-8"
-              >
-                {/* Mobile Image (Only shows on mobile) */}
-                <div className="lg:hidden w-full aspect-video relative mb-6 rounded-sm overflow-hidden">
-                   <Image src={entry.image} alt={entry.title} fill className="object-cover" />
-                </div>
-
-                <div className="flex flex-col md:flex-row md:items-baseline gap-4 md:gap-8 mb-4">
-                  <span className="font-[family-name:var(--font-montserrat)] text-xs font-bold uppercase tracking-widest text-[#B56B56]">
-                    {entry.date}
-                  </span>
-                  <h3 className="font-heading text-3xl md:text-4xl text-[#1A2118] transition-all duration-300 font-semibold">
-                    {entry.title}
-                  </h3>
-                </div>
-
-                <p className="font-[family-name:var(--font-montserrat)] text-sm font-light text-[#1A2118]/60 leading-relaxed max-w-lg mb-6 pl-0 md:pl-20 group-hover:text-[#1A2118]/90 transition-colors">
-                  {entry.excerpt}
-                </p>
-
-                <div className="pl-0 md:pl-20 flex items-center gap-2 text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0 text-[#B56B56]">
-                   Read Story <ArrowUpRight className="w-4 h-4" />
-                </div>
-
-                {/* Hover Background Accent */}
-                <div className="absolute inset-0 bg-[#B56B56]/[0.02] scale-y-0 group-hover:scale-y-100 origin-top transition-transform duration-500 -z-10" />
-              </Link>
-            ))}
-          </div>
+           </div>
 
         </div>
       </div>
