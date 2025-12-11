@@ -11,11 +11,21 @@ const HeroSection = () => {
       
       {/* 1. BACKGROUND LAYER */}
       <div className="absolute inset-0 z-0">
+        {/* Desktop Background */}
         <Image
           src="/bg5.png"
           alt="Lush nature landscape"
           fill
-          className="object-cover"
+          className="object-cover hidden md:block"
+          priority
+          quality={100}
+        />
+        {/* Mobile Background */}
+        <Image
+          src="/bg12.png"
+          alt="Lush nature landscape mobile"
+          fill
+          className="object-cover block md:hidden"
           priority
           quality={100}
         />
