@@ -1,139 +1,171 @@
 "use client";
 
 import React from "react";
-import { Sprout, MapPin, Microscope, Sun, ArrowUpRight, HeartHandshake, Hourglass } from "lucide-react";
+import { 
+  Sprout, MapPin, Microscope, Sun, ArrowRight, HeartHandshake, Hourglass 
+} from "lucide-react";
 
 const PhilosophySection = () => {
   const principles = [
     { 
-      id: "01",
+      id: "01", 
       icon: MapPin, 
-      label: "Geo-Traceable", 
-      sub: "Origin Verified",
-      desc: "Every jar is stamped with the exact coordinates of the harvest site." 
+      label: "Source Transparency", // Professional
+      sub: "GEO-TAGGED ORIGINS",    // Technical
+      desc: "Every unit is serialized with the precise GPS coordinates of the harvest site." // Clear & Factual
     },
     { 
-      id: "02",
+      id: "02", 
       icon: Microscope, 
-      label: "Bio-Active", 
-      sub: "Lab Tested",
-      desc: "We verify live enzymes and medicinal compounds in their native state." 
+      label: "Clinical Potency", 
+      sub: "THIRD-PARTY ASSAYED",
+      desc: "Lab-verified for active compound density and purity before bottling." 
     },
     { 
-      id: "03",
+      id: "03", 
       icon: Sun, 
-      label: "Solar-Cured", 
-      sub: "Ancient Method",
-      desc: "Traditional sun-drying preserves volatile oils that industrial heat destroys." 
+      label: "Ambient Curing", 
+      sub: "ENZYMATIC PRESERVATION",
+      desc: "Low-temperature drying preserves heat-sensitive volatile oils." 
     },
     { 
-      id: "04",
+      id: "04", 
       icon: Sprout, 
-      label: "Regenerative", 
-      sub: "Eco-System First",
-      desc: "Harvest schedules are dictated strictly by the seasons, not market demand." 
+      label: "Peak Harvest", 
+      sub: "BIO-RHYTHM ALIGNED",
+      desc: "Extraction occurs only during peak alkaloid production cycles." 
     },
     { 
-      id: "05",
+      id: "05", 
       icon: HeartHandshake, 
-      label: "Ethical Trade", 
-      sub: "Community First",
-      desc: "Direct partnerships that ensure our farmers earn 3x the standard market rate." 
+      label: "Direct Equity", 
+      sub: "SUPPLY CHAIN INTEGRITY",
+      desc: "We bypass middlemen to ensure producers retain 100% of market value." 
     },
     { 
-      id: "06",
+      id: "06", 
       icon: Hourglass, 
-      label: "Slow Craft", 
-      sub: "Time Honored",
-      desc: "We prioritize potency over speed. Small batches, hand-processed, no shortcuts." 
+      label: "Micro-Batching", 
+      sub: "QUALITY CONTROL",
+      desc: "Processed in limited runs of 50 units to ensure absolute consistency." 
     },
   ];
 
   return (
-    <section className="relative bg-[#E2E4D8] text-[#1A2118] py-24 lg:py-32 overflow-hidden">
+    <section className="relative bg-[#D4D8CC] text-[#1E281F] py-16 lg:py-24 overflow-hidden selection:bg-[#D67C58] selection:text-white">
       
-      {/* 1. TEXTURE */}
-      <div className="absolute inset-0 opacity-[0.3] pointer-events-none mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]"></div>
+      {/* === ATMOSPHERE & TEXTURE === */}
+      <div className="absolute inset-0 opacity-[0.35] pointer-events-none mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]"></div>
+      
+      {/* Subtle background glows */}
+      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-white opacity-20 blur-[100px] rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-[#1E281F] opacity-5 blur-[120px] rounded-full translate-x-1/2 translate-y-1/2 pointer-events-none"></div>
 
-      <div className="container-custom mx-auto px-6 lg:px-12 relative z-10">
+      <div className="container mx-auto px-4 md:px-8 relative z-10">
         
         {/* === HEADER === */}
-        <div className="flex flex-col lg:flex-row justify-between items-end mb-20 gap-8">
-           <div className="max-w-3xl">
-              <span className="font-[family-name:var(--font-montserrat)] text-[10px] font-bold uppercase tracking-[0.3em] text-[#B56B56] mb-6 block">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 lg:mb-16 gap-6">
+           <div className="max-w-2xl relative">
+              <div className="w-12 h-0.5 bg-[#D67C58] mb-4"></div>
+              <span className="font-mono text-[10px] font-bold uppercase tracking-[0.25em] text-[#D67C58] block mb-2">
                  Core Methodology
               </span>
-              <h2 className="font-heading text-5xl lg:text-7xl leading-[0.95] text-[#1A2118] font-medium">
-                 Untouched by Industry. <br/>
-                 <span className="italic font-serif font-light text-[#596157]">Guided by Nature.</span>
+              <h2 className="font-sans text-3xl md:text-5xl lg:text-7xl leading-[0.9] tracking-tighter text-[#1E281F] font-medium">
+                 Rooted in Earth. <br/> 
+                 <span className="font-serif italic text-[#6B705C] pl-2">Validated by Data.</span>
               </h2>
-           </div>
-           
-           <div className="hidden lg:block pb-2">
-              <p className="font-[family-name:var(--font-montserrat)] text-[10px] uppercase tracking-widest text-[#1A2118]/60 text-right">
-                 Establishing the new standard <br/> for organic purity.
-              </p>
            </div>
         </div>
 
-        {/* === THE 3x2 ALTERNATING GRID (REFINED) === */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* === THE TIGHT GRID (Gap-2 Mobile / Gap-4 Desktop) === */}
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 md:gap-3 lg:gap-4">
            
-           {principles.map((item, index) => {
-             // Logic: Every second item is inverted (Text Top, Icon Bottom)
-             const isAlternate = index % 2 !== 0;
+           {principles.map((item, index) => (
+             <div 
+               key={index} 
+               className="
+                 group relative 
+                 flex flex-col 
+                 rounded-xl 
+                 bg-[#F2F2EE] /* Bone White */
+                 border border-white/60 
+                 shadow-[0_2px_8px_-4px_rgba(30,40,31,0.05)]
+                 hover:shadow-[0_20px_40px_-10px_rgba(30,40,31,0.25)]
+                 hover:-translate-y-1 
+                 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]
+                 overflow-hidden
+               "
+             >
+                {/* Dark Hover Background */}
+                <div className="absolute inset-0 bg-[#1E281F] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                {/* Texture Overlay on Hover */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] transition-opacity duration-700"></div>
 
-             return (
-               <div 
-                 key={index} 
-                 // ADDED: Border for definition, Shadow tweaks for depth
-                 className={`group flex flex-col h-full bg-[#F0F0EB] rounded-sm overflow-hidden border border-[#1A2118]/5 hover:border-[#1A2118]/20 hover:shadow-[0_20px_40px_-15px_rgba(26,33,24,0.15)] hover:-translate-y-1 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${isAlternate ? 'flex-col-reverse' : ''}`}
-               >
-                  
-                  {/* --- ICON FRAME (Dark Header/Footer) --- */}
-                  {/* CHANGED: group-hover:bg-black for deeper contrast */}
-                  <div className="relative aspect-[2/1] bg-[#1A2118] group-hover:bg-black flex items-center justify-center overflow-hidden shrink-0 transition-colors duration-700">
-                     
-                     {/* Background Grain */}
-                     <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] mix-blend-overlay"></div>
-                     
-                     {/* The Massive Icon */}
-                     <item.icon 
-                        strokeWidth={0.6} // Thinner stroke for elegance
-                        // CHANGED: group-hover:text-white (Pure white pops against black)
-                        className="w-20 h-20 text-[#E2E4D8]/80 group-hover:scale-110 group-hover:text-white transition-all duration-[1.2s] ease-[cubic-bezier(0.25,1,0.5,1)]" 
-                     />
-
-                     {/* Corner Number (Serif Font) */}
-                     {/* CHANGED: font-serif for editorial look */}
-                     <span className={`absolute font-serif text-4xl italic text-[#E2E4D8]/20 select-none group-hover:text-[#E2E4D8]/40 transition-colors ${isAlternate ? 'bottom-5 left-6' : 'top-5 left-6'}`}>
+                {/* === CARD CONTENT === */}
+                <div className="relative z-10 p-3 lg:p-6 h-full min-h-[160px] lg:min-h-[260px] flex flex-col justify-between">
+                   
+                   {/* Top: Icon + Number */}
+                   <div className="flex justify-between items-start">
+                      
+                      {/* Icon Vessel */}
+                      <div className="
+                        relative flex items-center justify-center 
+                        w-12 h-12 lg:w-20 lg:h-20 
+                        rounded-full 
+                        bg-[#E6E8E0] border border-white
+                        group-hover:bg-[#D67C58] group-hover:border-[#D67C58]
+                        transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]
+                        shadow-inner
+                      ">
+                        <item.icon 
+                            strokeWidth={0.8}
+                            className="
+                              w-6 h-6 lg:w-10 lg:h-10 
+                              text-[#1E281F] group-hover:text-white 
+                              transition-all duration-500 group-hover:scale-110 group-hover:rotate-6
+                            " 
+                        />
+                      </div>
+                      
+                      {/* ID Number */}
+                      <span className="font-serif italic text-xl lg:text-4xl text-[#1E281F]/10 group-hover:text-white/10 transition-colors duration-500">
                         {item.id}
-                     </span>
+                      </span>
+                   </div>
 
-                     {/* Corner Arrow */}
-                     <div className={`absolute text-[#B56B56] opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${isAlternate ? 'bottom-5 right-6' : 'top-5 right-6'}`}>
-                        <ArrowUpRight className="w-5 h-5" />
-                     </div>
-                  </div>
-
-                  {/* --- CONTENT FRAME (Light Body) --- */}
-                  {/* ADDED: p-12 for more whitespace/luxury feel */}
-                  <div className={`p-10 lg:p-12 flex flex-col justify-center flex-grow relative ${isAlternate ? 'border-b' : 'border-t'} border-[#1A2118]/5 group-hover:border-[#1A2118]/10 transition-colors`}>
-                     <span className="font-[family-name:var(--font-montserrat)] text-[9px] font-bold uppercase tracking-[0.2em] text-[#B56B56] mb-4">
+                   {/* Bottom: Text Details */}
+                   <div className="mt-3 lg:mt-6 pl-1">
+                      
+                      {/* Sub-label (Technical) */}
+                      <span className="block font-mono text-[8px] lg:text-[10px] uppercase tracking-[0.2em] text-[#D67C58] mb-1 group-hover:text-[#E8A689] transition-colors duration-500">
                         {item.sub}
-                     </span>
-                     <h3 className="font-heading text-3xl text-[#1A2118] mb-4 leading-tight group-hover:translate-x-1 transition-transform duration-500">
-                        {item.label}
-                     </h3>
-                     <p className="font-[family-name:var(--font-montserrat)] text-xs leading-loose text-[#1A2118]/60 group-hover:text-[#1A2118]/80 transition-colors">
-                        {item.desc}
-                     </p>
-                  </div>
+                      </span>
+                      
+                      {/* Headline (Professional) */}
+                      <div className="flex items-center justify-between">
+                         <h3 className="font-sans text-sm md:text-base lg:text-2xl text-[#1E281F] group-hover:text-white transition-colors duration-500 font-medium tracking-tight truncate pr-2">
+                            {item.label}
+                         </h3>
+                         
+                         <ArrowRight className="hidden lg:block w-5 h-5 text-[#D67C58] opacity-0 -translate-x-4 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 ease-out" />
+                      </div>
 
-               </div>
-             );
-           })}
+                      {/* Description (Clear/Factual) */}
+                      <p className="mt-1.5 font-sans text-[10px] leading-[1.4] lg:text-sm lg:leading-relaxed text-[#1E281F]/70 group-hover:text-white/80 transition-colors duration-500 line-clamp-3 lg:line-clamp-2">
+                         {item.desc}
+                      </p>
+                   </div>
 
+                </div>
+             </div>
+           ))}
+
+        </div>
+
+        {/* Footer Note */}
+        <div className="mt-12 text-center opacity-40">
+            <span className="font-mono text-[9px] uppercase tracking-widest text-[#1E281F]">Standard Operating Procedure v2.4</span>
         </div>
 
       </div>
