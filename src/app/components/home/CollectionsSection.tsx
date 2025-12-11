@@ -3,194 +3,251 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowUpRight, ArrowRight, MapPin, Calendar, Activity } from "lucide-react";
+import {
+  ArrowUpRight,
+  ArrowRight,
+  MapPin,
+  Calendar,
+  Activity,
+  LucideIcon,
+  Droplets,
+  Leaf,
+  Flower2
+} from "lucide-react";
 
-const CollectionsSection = () => {
-  const categories = [
-    {
-      id: "honey",
-      label: "Liquid Amber",
-      sub: "Collection 01",
-      tag: "Raw Apiary",
-      image: "/won23.JPG",
-      desc: "Unfiltered sweetness harvest from wild cliff hives.",
-      origin: "Kashmir Valley, 6000ft",
-      harvest: "Autumn 2024",
-      grade: "Grade A Raw",
-      link: "/shop?category=honey",
-      gridClass: "md:col-span-2 md:row-span-2 min-h-[550px]", 
-    },
-    {
-      id: "ghee",
-      label: "Golden Lipids",
-      sub: "Collection 02",
-      tag: "Vedic Cultured",
-      image: "/won32.JPG", 
-      desc: "The essence of indigenous A2 milk, slow-churned.",
-      origin: "Gir Forest Region",
-      harvest: "Monthly Batch",
-      grade: "Cultured A2",
-      link: "/shop?category=ghee",
-      gridClass: "md:col-span-1 md:row-span-2 min-h-[550px]", 
-    },
-    {
-      id: "spices",
-      label: "Root & Bark",
-      sub: "Collection 03",
-      tag: "High Altitude",
-      image: "/won8.JPG", 
-      desc: "Potent aromatics from the Himalayan belt.",
-      origin: "Lakadong",
-      harvest: "Winter 2024",
-      grade: "High Curcumin",
-      link: "/shop?category=spices",
-      gridClass: "md:col-span-1 md:row-span-1 min-h-[260px]", 
-    },
-  ];
+// --- Types & Interfaces ---
+interface CollectionItem {
+  id: string;
+  label: string;
+  sub: string;
+  tag: string;
+  image: string;
+  desc: string;
+  origin: string;
+  harvest: string;
+  grade: string;
+  link: string;
+  gridClass: string;
+}
 
+// --- Data Configuration ---
+const COLLECTIONS: CollectionItem[] = [
+  // ROW 1
+  {
+    id: "honey",
+    label: "Liquid Amber",
+    sub: "Collection 01",
+    tag: "Raw Apiary",
+    image: "/h1.png",
+    desc: "Unfiltered sweetness harvest from wild cliff hives.",
+    origin: "Kashmir",
+    harvest: "Aut '24",
+    grade: "Grade A",
+    link: "/shop?category=honey",
+    // Wide but short (2 columns)
+    gridClass: "md:col-span-2 md:row-span-1 min-h-[280px]",
+  },
+  {
+    id: "ghee",
+    label: "Golden Lipids",
+    sub: "Collection 02",
+    tag: "Cultured",
+    image: "/h5.png",
+    desc: "Indigenous A2 milk, slow-churned.",
+    origin: "Gir Forest",
+    harvest: "Monthly",
+    grade: "A2",
+    link: "/shop?category=ghee",
+    // Square (1 column)
+    gridClass: "md:col-span-1 md:row-span-1 min-h-[280px]",
+  },
+  {
+    id: "spices",
+    label: "Root & Bark",
+    sub: "Collection 03",
+    tag: "High Alt",
+    image: "/h9.png",
+    desc: "Potent aromatics from the Himalayan belt.",
+    origin: "Lakadong",
+    harvest: "Win '24",
+    grade: "Hi-Curc",
+    link: "/shop?category=spices",
+    // Square (1 column)
+    gridClass: "md:col-span-1 md:row-span-1 min-h-[280px]",
+  },
+
+  // ROW 2
+  {
+    id: "oils",
+    label: "Botanical Oils",
+    sub: "Collection 04",
+    tag: "Cold Press",
+    image: "/h3.png", // Make sure this image exists or use a placeholder
+    desc: "Wood-pressed extracts of wild nuts.",
+    origin: "Shimla",
+    harvest: "Nov '24",
+    grade: "Virgin",
+    link: "/shop?category=oils",
+    // Square (1 column)
+    gridClass: "md:col-span-1 md:row-span-1 min-h-[280px]",
+  },
+  {
+    id: "tea",
+    label: "Highland Leaf",
+    sub: "Collection 05",
+    tag: "Oxidized",
+    image: "/h4.png", // Make sure this image exists or use a placeholder
+    desc: "Single estate orthodox black tea.",
+    origin: "Darjeeling",
+    harvest: "2nd Flush",
+    grade: "SFTGFOP",
+    link: "/shop?category=tea",
+    // Wide but short (2 columns)
+    gridClass: "md:col-span-2 md:row-span-1 min-h-[280px]",
+  },
+];
+
+// --- Sub-Components ---
+
+const StatItem = ({ icon: Icon, label, value }: { icon: LucideIcon, label: string, value: string }) => (
+  <div className="overflow-hidden">
+    <span className="flex items-center gap-1 font-[family-name:var(--font-montserrat)] text-[7px] uppercase tracking-widest text-[#EBE9E4]/50 mb-0.5">
+      <Icon className="w-2 h-2" /> {label}
+    </span>
+    <span className="block font-heading text-[10px] text-[#EBE9E4] truncate tracking-wide">
+      {value}
+    </span>
+  </div>
+);
+
+const CollectionCard = ({ item, index }: { item: CollectionItem; index: number }) => {
   return (
-    // Background: Crisp Gallery White (#F0F0EB)
-    <section className="relative py-24 lg:py-32 px-4 lg:px-8 bg-[#F0F0EB] text-[#1A2118] overflow-hidden">
-      
-      {/* 1. ATMOSPHERE */}
-      <div className="absolute inset-0 opacity-[0.4] pointer-events-none mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')] z-0"></div>
+    <Link
+      href={item.link}
+      className={`group relative block overflow-hidden ${item.gridClass} bg-[#0F140E] rounded-sm`}
+    >
+      {/* Background Image Layer */}
+      <div className="absolute inset-0 w-full h-full">
+        <Image
+          src={item.image}
+          alt={item.label}
+          fill
+          sizes="(max-width: 768px) 100vw, 33vw"
+          className="object-cover transition-all duration-[1.2s] ease-out
+                     grayscale-[0.2] sepia-[0.1] scale-100 opacity-80
+                     group-hover:grayscale-0 group-hover:scale-105 group-hover:opacity-100"
+        />
+        {/* Darker gradient for better text readability on small cards */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0F140E] via-[#0F140E]/30 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-700" />
+      </div>
 
-      <div className="container-custom mx-auto relative z-10 max-w-7xl">
-        
-        {/* === HEADER (ONE LINE LAYOUT) === */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-10 border-b border-[#1A2118]/10 pb-8">
-          <div className="max-w-4xl relative">
-            <span className="font-[family-name:var(--font-montserrat)] text-[10px] font-bold uppercase tracking-[0.3em] text-[#B56B56] mb-5 block">
-              The Archive
+      {/* Content Layer */}
+      <div className="absolute inset-0 flex flex-col justify-between p-5">
+        {/* Header */}
+        <div className="flex justify-between items-start border-b border-[#EBE9E4]/15 pb-2">
+          <div className="flex flex-col gap-0.5">
+            <span className="font-mono text-[7px] text-[#EBE9E4]/60 uppercase tracking-widest">
+              REF. {index + 101}
             </span>
-            {/* CHANGED: Removed <br/> and adjusted sizes for single-line flow */}
-            <h2 className="font-heading text-5xl lg:text-7xl text-[#1A2118] leading-tight font-normal tracking-tight">
-              Curated <span className="font-serif italic font-light text-[#1A2118]/60">Essentials.</span>
-            </h2>
+            <span className="font-[family-name:var(--font-montserrat)] text-[8px] font-bold uppercase tracking-[0.2em] text-[#B56B56]">
+              {item.tag}
+            </span>
           </div>
-          
-          <div className="hidden md:block pb-2">
-             <Link href="/shop" className="group flex items-center gap-3 text-[#1A2118] hover:text-[#B56B56] transition-colors">
-                <span className="font-[family-name:var(--font-montserrat)] text-[10px] font-bold uppercase tracking-widest">
-                   View Full Index
-                </span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-             </Link>
+          <div className="text-[#EBE9E4]/40 group-hover:text-[#EBE9E4] transition-colors">
+            <ArrowUpRight className="w-3.5 h-3.5" />
           </div>
         </div>
 
-        {/* === THE ARCHITECTURAL GRID === */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-auto">
-          
-          {categories.map((cat, index) => (
-            <Link 
-              key={cat.id} 
-              href={cat.link} 
-              className={`group relative block overflow-hidden ${cat.gridClass} bg-[#0F140E] rounded-sm transition-all duration-700`}
-            >
-              {/* === IMAGE LAYER === */}
-              <div className="absolute inset-0 w-full h-full">
-                <Image
-                  src={cat.image}
-                  alt={cat.label}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover opacity-80 transition-all duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)]
-                             grayscale-[0.3] sepia-[0.1] scale-[1.01]
-                             group-hover:grayscale-0 group-hover:scale-105 group-hover:opacity-100"
-                />
-                
-                {/* Gradient: Stronger at bottom */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0F140E] via-[#0F140E]/40 to-transparent opacity-90 group-hover:opacity-80 transition-opacity duration-700" />
-              </div>
-              
-              {/* === CONTENT LAYER === */}
-              <div className="absolute inset-0 flex flex-col justify-between p-8">
-                
-                {/* Top: Technical Header */}
-                <div className="flex justify-between items-start w-full border-b border-[#EBE9E4]/10 pb-4">
-                   <div className="flex flex-col gap-1">
-                      <span className="font-mono text-[9px] text-[#EBE9E4]/60 uppercase tracking-widest">
-                        REF. {index + 101}
-                      </span>
-                      <span className="font-[family-name:var(--font-montserrat)] text-[10px] font-bold uppercase tracking-[0.2em] text-[#B56B56]">
-                        {cat.tag}
-                      </span>
-                   </div>
+        {/* Footer Info */}
+        <div className="relative">
+          {/* Main Title - Slides up on hover */}
+          <div className="transform transition-transform duration-500 ease-out group-hover:-translate-y-2">
+            <h4 className="font-heading text-2xl text-[#EBE9E4] mb-1 leading-none font-light tracking-wide">
+              {item.label}
+            </h4>
+            <p className="font-[family-name:var(--font-montserrat)] text-[#EBE9E4]/70 font-light text-[9px] leading-relaxed max-w-[95%] line-clamp-2">
+              {item.desc}
+            </p>
+          </div>
 
-                   <div className="w-8 h-8 flex items-center justify-center text-[#EBE9E4]/40 group-hover:text-[#EBE9E4] transition-colors">
-                      <ArrowUpRight className="w-5 h-5" />
-                   </div>
-                </div>
+          {/* Hidden Specs - Fades in on hover */}
+          <div className="absolute top-full left-0 right-0 pt-2 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-75 border-t border-[#EBE9E4]/10 mt-2">
+            <div className="grid grid-cols-3 gap-1">
+              <StatItem icon={MapPin} label="Org" value={item.origin} />
+              <StatItem icon={Calendar} label="Hrv" value={item.harvest} />
+              <StatItem icon={Activity} label="Grd" value={item.grade} />
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Decorative Border */}
+      <div className="absolute inset-0 border border-[#EBE9E4]/10 rounded-sm pointer-events-none group-hover:border-[#EBE9E4]/25 transition-colors duration-500" />
+    </Link>
+  );
+};
 
-                {/* Bottom: Typography & Data Specs */}
-                <div className="relative">
-                  <div className="transform transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:-translate-y-6">
-                    <h4 className="font-heading text-4xl lg:text-5xl text-[#EBE9E4] mb-2 leading-[0.9] font-light">
-                      {cat.label}
-                    </h4>
-                    <p className="font-[family-name:var(--font-montserrat)] text-[#EBE9E4]/70 font-light text-xs max-w-[260px] leading-relaxed">
-                       {cat.desc}
-                    </p>
-                  </div>
+const ViewAllCard = () => (
+  <Link
+    href="/shop"
+    // Fits the last slot in the grid (Row 2, last column)
+    className="group relative overflow-hidden bg-[#1A2118] md:col-span-1 md:row-span-1 min-h-[280px] flex flex-col justify-end p-5 hover:bg-[#B56B56] transition-colors duration-500 rounded-sm"
+  >
+    <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')] mix-blend-overlay" />
+    <div className="relative z-10 border-t border-[#EBE9E4]/30 pt-3">
+      <span className="font-[family-name:var(--font-montserrat)] text-[8px] font-bold uppercase tracking-[0.3em] text-[#EBE9E4]/60 mb-2 block">
+        Archive
+      </span>
+      <div className="flex items-center justify-between">
+        <h4 className="font-heading text-xl text-[#EBE9E4] font-medium italic">
+          View Index
+        </h4>
+        <ArrowRight className="w-4 h-4 text-[#EBE9E4] group-hover:translate-x-1 transition-transform" />
+      </div>
+    </div>
+  </Link>
+);
 
-                  {/* THE SPEC SHEET (Slides up on hover) */}
-                  <div className="absolute top-full left-0 right-0 pt-6 opacity-0 group-hover:opacity-100 group-hover:-translate-y-4 transition-all duration-700 delay-100 border-t border-[#EBE9E4]/10 mt-4">
-                     <div className="grid grid-cols-3 gap-2">
-                        <div>
-                           <span className="block font-[family-name:var(--font-montserrat)] text-[8px] uppercase tracking-widest text-[#EBE9E4]/40 mb-1 flex items-center gap-1">
-                              <MapPin className="w-2 h-2" /> Origin
-                           </span>
-                           <span className="block font-heading text-xs text-[#EBE9E4] truncate">
-                              {cat.origin}
-                           </span>
-                        </div>
-                        <div>
-                           <span className="block font-[family-name:var(--font-montserrat)] text-[8px] uppercase tracking-widest text-[#EBE9E4]/40 mb-1 flex items-center gap-1">
-                              <Calendar className="w-2 h-2" /> Harvest
-                           </span>
-                           <span className="block font-heading text-xs text-[#EBE9E4] truncate">
-                              {cat.harvest}
-                           </span>
-                        </div>
-                        <div>
-                           <span className="block font-[family-name:var(--font-montserrat)] text-[8px] uppercase tracking-widest text-[#EBE9E4]/40 mb-1 flex items-center gap-1">
-                              <Activity className="w-2 h-2" /> Grade
-                           </span>
-                           <span className="block font-heading text-xs text-[#EBE9E4] truncate">
-                              {cat.grade}
-                           </span>
-                        </div>
-                     </div>
-                  </div>
-                </div>
-              </div>
+// --- Main Component ---
 
-              {/* === BORDER === */}
-              <div className="absolute inset-0 border border-[#EBE9E4]/10 pointer-events-none rounded-sm group-hover:border-[#EBE9E4]/20 transition-colors duration-700" />
-            </Link>
-          ))}
+const CollectionsSection = () => {
+  return (
+    <section className="relative py-20 lg:py-24 px-4 lg:px-8 bg-[#F0F0EB] text-[#1A2118] overflow-hidden">
+      {/* Texture Layer */}
+      <div className="absolute inset-0 opacity-[0.4] pointer-events-none mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')] z-0" />
 
-          {/* === "VIEW ALL" BLOCK === */}
-          <Link 
-            href="/shop" 
-            className="group relative overflow-hidden bg-[#1A2118] md:col-span-1 md:row-span-1 flex flex-col justify-end p-8 hover:bg-[#B56B56] transition-all duration-1000 rounded-sm"
+      <div className="container-custom mx-auto relative z-10 max-w-7xl">
+        {/* Header Section */}
+        <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-6 border-b border-[#1A2118]/10 pb-6">
+          <div className="relative">
+            <span className="font-[family-name:var(--font-montserrat)] text-[9px] font-bold uppercase tracking-[0.3em] text-[#B56B56] mb-3 block">
+              The Archive
+            </span>
+            <h2 className="font-heading text-4xl lg:text-5xl text-[#1A2118] leading-tight font-normal tracking-tight">
+              Curated{" "}
+              <span className="font-serif italic font-light text-[#1A2118]/60">
+                Essentials.
+              </span>
+            </h2>
+          </div>
+
+          <Link
+            href="/shop"
+            className="hidden md:flex group items-center gap-2 text-[#1A2118] hover:text-[#B56B56] transition-colors pb-1"
           >
-             <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')] mix-blend-overlay"></div>
-             
-             <div className="relative z-10 border-t border-[#EBE9E4]/30 pt-4">
-                <span className="font-[family-name:var(--font-montserrat)] text-[9px] font-bold uppercase tracking-[0.3em] text-[#EBE9E4]/60 mb-2 block">
-                  Full Catalogue
-                </span>
-                <div className="flex items-center justify-between">
-                   <h4 className="font-heading text-2xl text-[#EBE9E4] font-medium italic">
-                      View Index
-                   </h4>
-                   <ArrowRight className="w-5 h-5 text-[#EBE9E4] group-hover:translate-x-2 transition-transform duration-500" />
-                </div>
-             </div>
+            <span className="font-[family-name:var(--font-montserrat)] text-[9px] font-bold uppercase tracking-widest">
+              Full Index
+            </span>
+            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
           </Link>
+        </div>
 
+        {/* Grid Layout - 4 Columns */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 auto-rows-auto">
+          {COLLECTIONS.map((item, index) => (
+            <CollectionCard key={item.id} item={item} index={index} />
+          ))}
+          <ViewAllCard />
         </div>
       </div>
     </section>
