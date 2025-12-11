@@ -40,6 +40,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
   const [selectedSize, setSelectedSize] = useState<string>(
     product.sizes && product.sizes.length > 0 ? product.sizes[0].value : ""
   );
+  const [activeImage, setActiveImage] = useState<string>(product.imageUrl);
   const [quantity, setQuantity] = useState<number>(1);
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
@@ -86,6 +87,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
   // Initialize Redux state with server data
   useEffect(() => {
     dispatch(setSelectedProduct(product));
+    setActiveImage(product.imageUrl);
     if (product.sizes && product.sizes.length > 0) {
 
       setSelectedSize(() => {
@@ -216,11 +218,11 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
                 <div className="relative aspect-[4/5] lg:aspect-square w-full bg-white rounded-[2rem] lg:rounded-[3rem] overflow-hidden shadow-2xl shadow-[#1A2118]/5 border border-white">
                   {/* Main Image Card */}
                   <Image
-                    src={currentProduct.imageUrl}
+                    src={activeImage}
                     alt={currentProduct.title}
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover mix-blend-multiply"
+                    className="object-cover mix-blend-multiply transition-opacity duration-300"
                   />
 
                   {/* Floating Badges */}
@@ -251,6 +253,34 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
                     </button>
                   </div>
                 </div>
+
+                {/* Image Gallery */}
+                {currentProduct.images && currentProduct.images.length > 0 && (
+                  <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
+                    {/* Always show main image as first option if not in images array, or just use images array if it includes main */}
+                    {/* Strategy: Combine imageUrl and images, dedup, and show */}
+                    {[currentProduct.imageUrl, ...currentProduct.images]
+                      .filter((url, index, self) => self.indexOf(url) === index && url)
+                      .map((img, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => setActiveImage(img)}
+                        className={`relative w-20 h-20 lg:w-24 lg:h-24 flex-shrink-0 rounded-2xl overflow-hidden border-2 transition-all ${
+                          activeImage === img
+                            ? "border-[#BC5633] shadow-lg scale-105"
+                            : "border-transparent hover:border-[#1A2118]/20"
+                        }`}
+                      >
+                        <Image
+                          src={img}
+                          alt={`${currentProduct.title} view ${idx + 1}`}
+                          fill
+                          className="object-cover mix-blend-multiply"
+                        />
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
 
