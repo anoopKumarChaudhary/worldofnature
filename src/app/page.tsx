@@ -120,79 +120,9 @@ const HomePage = async () => {
       {/* 7. IMPACT STANDARDS (Dark Olive BG - High Contrast) */}
       <ImpactSection />
 
-      {/* --- 8. TESTIMONIALS (Field Notes) --- */}
-      {/* BACKGROUND: Sage (#A9AB94) to bridge Dark Impact and Footer */}
-      <section className="relative py-24 lg:py-32 bg-[#A9AB94] text-[#2C3326] overflow-hidden">
-         {/* Background Texture */}
-         <div className="absolute inset-0 opacity-[0.15] pointer-events-none mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/dust.png')]"></div>
-         
-         <div className="container mx-auto relative z-10 max-w-4xl px-4 md:px-6 text-center">
-            
-            <div className="mb-10 flex justify-center">
-               <div className="w-12 h-12 rounded-full border border-[#2C3326]/20 bg-[#F2F3EE]/20 flex items-center justify-center text-[#2C3326]">
-                  <Quote className="w-5 h-5 fill-current" />
-               </div>
-            </div>
-
-            <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl leading-[1.1] mb-10 text-[#2C3326]">
-              &quot;It’s rare to find food that feels like it still has its <span className="text-[#F2F3EE] italic">soul</span>. This honey tastes like the wild forest it came from.&quot;
-            </h2>
-            
-            <div className="flex flex-col items-center gap-2">
-               <div className="flex items-center gap-1 mb-2">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3 h-3 fill-[#2C3326] text-[#2C3326]" />
-                  ))}
-               </div>
-               <p className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-[#2C3326]">
-                  Elena R. — Verified Buyer
-               </p>
-               <span className="font-sans text-[10px] text-[#2C3326]/60 uppercase tracking-widest font-bold">
-                  Purchased: Raw Wild Honey
-               </span>
-            </div>
-         </div>
-      </section>
-
       {/* --- 9. CONTACT SECTION --- */}
       {/* Passed 'bg-[#F2F3EE]' to keep it light before the dark footer */}
       <ContactSection className="bg-[#F2F3EE]" />
-
-      {/* --- 10. FOOTER CTA (Cinematic Outro) --- */}
-      {/* BACKGROUND: Dark Olive (#2C3326) */}
-      <section className="relative h-[70vh] flex items-center justify-center bg-[#2C3326] text-[#F2F3EE] overflow-hidden">
-        
-        {/* Deep Texture */}
-        <div className="absolute inset-0 opacity-20 mix-blend-overlay bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
-        
-        {/* Gradient Mesh Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0F140E]/80"></div>
-        
-        <div className="relative z-10 text-center px-4 md:px-6 max-w-5xl">
-           <span className="block font-mono text-[10px] md:text-xs font-bold uppercase tracking-[0.4em] mb-6 text-[#8C9178]">
-              The Journey Begins Here
-           </span>
-           
-           <h2 className="font-serif text-5xl md:text-8xl lg:text-9xl mb-12 text-[#F2F3EE] leading-none">
-              Rewild <span className="opacity-50 italic font-light text-[#8C9178]">Your</span> <br/> Pantry.
-           </h2>
-           
-           <Link 
-             href="/shop"
-             className="
-               group inline-flex items-center gap-4 px-10 py-5 
-               bg-[#F2F3EE] text-[#2C3326] 
-               rounded-sm 
-               hover:bg-[#8C9178] hover:text-[#F2F3EE] 
-               transition-all duration-500 
-               shadow-2xl hover:shadow-[#000]/20
-             "
-           >
-              <span className="font-mono text-xs font-bold uppercase tracking-[0.25em]">Start Foraging</span>
-              <MoveRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-           </Link>
-        </div>
-      </section>
       
     </div>
   );
