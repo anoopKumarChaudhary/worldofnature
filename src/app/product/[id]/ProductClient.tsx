@@ -216,14 +216,25 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
               <div className="sticky top-32 space-y-6">
                 {/* Main Image Card */}
                 <div className="relative aspect-[4/5] lg:aspect-square w-full bg-white rounded-[2rem] lg:rounded-[3rem] overflow-hidden shadow-2xl shadow-[#1A2118]/5 border border-white">
-                  {/* Main Image Card */}
-                  <Image
-                    src={activeImage}
-                    alt={currentProduct.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover mix-blend-multiply transition-opacity duration-300"
-                  />
+                  {/* Main Image/Video Card */}
+                  {activeImage.endsWith('.mp4') || activeImage.endsWith('.webm') ? (
+                     <video
+                      src={activeImage}
+                      controls
+                      autoPlay
+                      loop
+                      muted
+                      className="w-full h-full object-cover rounded-[2rem] lg:rounded-[3rem]"
+                    />
+                  ) : (
+                    <Image
+                      src={activeImage}
+                      alt={currentProduct.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover mix-blend-multiply transition-opacity duration-300"
+                    />
+                  )}
 
                   {/* Floating Badges */}
                   <div className="absolute top-4 left-4 lg:top-6 lg:left-6 flex flex-col gap-2">
@@ -254,33 +265,47 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
                   </div>
                 </div>
 
-                {/* Image Gallery */}
-                {currentProduct.images && currentProduct.images.length > 0 && (
+                {/* Image & Video Gallery */}
+                {(currentProduct.images && currentProduct.images.length > 0) || currentProduct.videoUrl ? (
                   <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
-                    {/* Always show main image as first option if not in images array, or just use images array if it includes main */}
-                    {/* Strategy: Combine imageUrl and images, dedup, and show */}
-                    {[currentProduct.imageUrl, ...currentProduct.images]
+                    {/* Combine images and video */}
+                    {[
+                      currentProduct.imageUrl, 
+                      ...(currentProduct.images || []),
+                      ...(currentProduct.videoUrl ? [currentProduct.videoUrl] : [])
+                    ]
                       .filter((url, index, self) => self.indexOf(url) === index && url)
-                      .map((img, idx) => (
-                      <button
-                        key={idx}
-                        onClick={() => setActiveImage(img)}
-                        className={`relative w-20 h-20 lg:w-24 lg:h-24 flex-shrink-0 rounded-2xl overflow-hidden border-2 transition-all ${
-                          activeImage === img
-                            ? "border-[#BC5633] shadow-lg scale-105"
-                            : "border-transparent hover:border-[#1A2118]/20"
-                        }`}
-                      >
-                        <Image
-                          src={img}
-                          alt={`${currentProduct.title} view ${idx + 1}`}
-                          fill
-                          className="object-cover mix-blend-multiply"
-                        />
-                      </button>
-                    ))}
+                      .map((mediaUrl, idx) => {
+                        const isVideo = mediaUrl.endsWith('.mp4') || mediaUrl.endsWith('.webm');
+                        return (
+                          <button
+                            key={idx}
+                            onClick={() => setActiveImage(mediaUrl)}
+                            className={`relative w-20 h-20 lg:w-24 lg:h-24 flex-shrink-0 rounded-2xl overflow-hidden border-2 transition-all group ${
+                              activeImage === mediaUrl
+                                ? "border-[#BC5633] shadow-lg scale-105"
+                                : "border-transparent hover:border-[#1A2118]/20"
+                            }`}
+                          >
+                            {isVideo ? (
+                              <div className="w-full h-full bg-black flex items-center justify-center">
+                                <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm">
+                                  <div className="w-0 h-0 border-t-[6px] border-t-transparent border-l-[10px] border-l-white border-b-[6px] border-b-transparent ml-1" />
+                                </div>
+                              </div>
+                            ) : (
+                              <Image
+                                src={mediaUrl}
+                                alt={`${currentProduct.title} view ${idx + 1}`}
+                                fill
+                                className="object-cover mix-blend-multiply"
+                              />
+                            )}
+                          </button>
+                        );
+                      })}
                   </div>
-                )}
+                ) : null}
               </div>
             </div>
 

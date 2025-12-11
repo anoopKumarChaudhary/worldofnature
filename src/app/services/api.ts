@@ -32,6 +32,7 @@ export interface Product {
   price: number;
   imageUrl: string;
   images?: string[];
+  videoUrl?: string;
   category: string;
   rating: number;
   reviewCount: number;
