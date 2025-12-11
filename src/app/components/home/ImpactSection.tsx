@@ -2,115 +2,131 @@
 
 import React from "react";
 import Link from "next/link";
-import { Sprout, Droplets, HeartHandshake, ShieldCheck, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Sprout, ShieldCheck, ArrowRight, CheckCircle2, Recycle, Heart } from "lucide-react";
 
 const ImpactSection = () => {
   const pillars = [
     {
       id: "01",
       icon: Sprout,
-      title: "Supply Chain Integrity",
-      description: "Direct-trade partnerships that bypass intermediaries, ensuring verifiable living wages and regenerative agricultural practices."
+      title: "Honest Trade",
+      // Old: Supply Chain Integrity / Intermediaries...
+      // New: Simple, human explanation.
+      description: "We work directly with farmers. No middlemen. This ensures they get paid fairly for their hard work, keeping the community thriving."
     },
     {
       id: "02",
       icon: ShieldCheck,
-      title: "Bio-Active Purity",
-      description: "Zero tolerance for synthetic additives. Every batch undergoes rigorous third-party spectroscopy to guarantee elemental composition."
+      title: "Lab Verified",
+      // Old: Bio-Active Purity / Spectroscopy...
+      description: "Zero fake stuff. Every single batch is tested in a lab to guarantee it is 100% pure, safe, and potent before it reaches you."
     },
     {
       id: "03",
-      icon: Droplets,
-      title: "Material Circularity",
-      description: "Our packaging ecosystem is engineered for complete biodegradation, utilizing plant-based polymers and compostable substrates."
+      icon: Recycle,
+      title: "Zero Waste",
+      // Old: Material Circularity / Polymers...
+      description: "Our packaging loves the earth. It is designed to break down naturally (biodegradable), leaving no plastic waste behind."
     },
     {
       id: "04",
-      icon: HeartHandshake,
-      title: "Ecological Reinvestment",
-      description: "A calculated percentage of revenue is contractually allocated to the preservation of indigenous Himalayan biodiversity."
+      icon: Heart,
+      title: "Giving Back",
+      // Old: Ecological Reinvestment / Allocation...
+      description: "We don't just take; we give back. A portion of every sale goes directly to planting trees and protecting Himalayan nature."
     }
   ];
 
   return (
-    <section className="relative py-24 lg:py-32 bg-[#0F140E] text-[#EBE9E4] overflow-hidden">
+    // BG: Dark Olive (#2C3326) - The "Dark Mode" of your theme
+    <section className="relative py-20 lg:py-32 bg-[#2C3326] text-[#F2F3EE] overflow-hidden">
       
-      {/* 1. ATMOSPHERE (Clean, no grids) */}
-      {/* Subtle Noise Texture for premium matte finish */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]"></div>
+      {/* Texture: Subtle Dust */}
+      <div className="absolute inset-0 opacity-[0.1] pointer-events-none mix-blend-overlay bg-[url('https://www.transparenttextures.com/patterns/dust.png')]"></div>
 
-      <div className="container-custom mx-auto relative z-10 max-w-7xl px-6 lg:px-12">
+      <div className="container mx-auto px-4 md:px-8 relative z-10">
         
-        {/* === HEADER: Clean & Floating === */}
-        <div className="flex flex-col lg:flex-row justify-between items-end mb-20 gap-12">
+        {/* === HEADER === */}
+        <div className="flex flex-col lg:flex-row justify-between items-end mb-16 gap-8 border-b border-[#8C9178]/30 pb-8">
           <div className="max-w-3xl">
-            <div className="flex items-center gap-3 mb-6">
-               <div className="w-2 h-2 bg-[#B56B56] rounded-full" />
-               <span className="font-[family-name:var(--font-montserrat)] text-[#B56B56] font-bold tracking-[0.25em] uppercase text-[10px]">
-                  Corporate Responsibility
+            <div className="flex items-center gap-3 mb-4">
+               <CheckCircle2 className="w-4 h-4 text-[#A9AB94]" />
+               <span className="font-mono text-[10px] md:text-[11px] text-[#A9AB94] font-bold tracking-[0.2em] uppercase">
+                  Ethical Standards
                </span>
             </div>
-            <h2 className="font-heading text-5xl lg:text-7xl leading-[0.95] font-medium text-[#EBE9E4]">
-              The <span className="text-[#B56B56]">Covenant.</span>
+            <h2 className="font-serif text-4xl lg:text-6xl leading-[0.95] text-[#F2F3EE]">
+              Our <span className="italic text-[#8C9178]">Promise.</span>
             </h2>
           </div>
           
           <div className="max-w-md text-left lg:text-right">
-             <div className="inline-flex items-center gap-2 rounded-full px-4 py-2 mb-4 bg-[#EBE9E4]/5">
-                <CheckCircle2 className="w-3 h-3 text-[#B56B56]" />
-                <span className="text-[9px] uppercase tracking-widest font-bold text-[#EBE9E4]/80">ISO 9001 Compliant Process</span>
-             </div>
-            <p className="font-[family-name:var(--font-montserrat)] text-sm text-[#EBE9E4]/60 font-light leading-relaxed">
-              Wellness cannot exist in isolation. Our operational model is designed to support the metabolic health of the planet.
+            <p className="font-sans text-sm text-[#F2F3EE]/70 leading-relaxed">
+              Wellness cannot exist in isolation. Our model is designed to support your health and the health of the planet simultaneously.
             </p>
           </div>
         </div>
 
-        {/* === THE CARDS (Floating Blocks) === */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+        {/* === THE CARDS === */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
           
           {pillars.map((pillar, index) => (
             <div 
               key={index} 
-              // Card Styling: Slightly lighter background than section to create depth without borders
-              className="group relative p-10 lg:p-14 bg-[#141A13] rounded-sm hover:bg-[#1A2118] transition-all duration-500 hover:-translate-y-1"
+              className="
+                group relative 
+                p-8 md:p-10 
+                /* Card BG: Slightly lighter than section BG for depth */
+                bg-[#343D2D] 
+                border border-[#8C9178]/20
+                rounded-sm 
+                hover:border-[#F2F3EE]/30
+                transition-all duration-500 hover:-translate-y-1
+              "
             >
-              {/* Large Number Background (Subtle Depth) */}
-              <span className="absolute top-6 right-8 font-heading text-8xl text-[#EBE9E4]/[0.02] font-bold select-none pointer-events-none">
+              {/* Large Number Background */}
+              <span className="absolute top-4 right-6 font-serif text-6xl md:text-8xl text-[#F2F3EE]/[0.03] font-bold select-none pointer-events-none group-hover:text-[#F2F3EE]/[0.05] transition-colors">
                 {pillar.id}
               </span>
 
               <div className="relative z-10">
                 <div className="mb-6 flex items-center gap-4">
-                  {/* Clean Icon Container */}
-                  <div className="w-10 h-10 rounded-full bg-[#EBE9E4]/5 flex items-center justify-center text-[#B56B56] group-hover:bg-[#B56B56] group-hover:text-[#EBE9E4] transition-colors duration-500">
+                  {/* Icon Container */}
+                  <div className="
+                    w-12 h-12 rounded-full 
+                    bg-[#2C3326] border border-[#8C9178]/30
+                    flex items-center justify-center 
+                    text-[#A9AB94] 
+                    group-hover:bg-[#F2F3EE] group-hover:text-[#2C3326] 
+                    transition-all duration-500
+                  ">
                     <pillar.icon className="w-5 h-5" />
                   </div>
-                  <h3 className="font-heading text-2xl lg:text-3xl font-medium text-[#EBE9E4]">
+                  <h3 className="font-serif text-2xl md:text-3xl text-[#F2F3EE]">
                     {pillar.title}
                   </h3>
                 </div>
 
-                <p className="font-[family-name:var(--font-montserrat)] text-sm text-[#EBE9E4]/50 leading-loose max-w-md group-hover:text-[#EBE9E4]/70 transition-colors">
+                <p className="font-sans text-sm text-[#F2F3EE]/60 leading-7 max-w-md group-hover:text-[#F2F3EE]/80 transition-colors">
                   {pillar.description}
                 </p>
                 
-                {/* Optional: Minimal accent line on hover only */}
-                <div className="mt-8 h-[2px] w-0 bg-[#B56B56] group-hover:w-12 transition-all duration-500 ease-out" />
+                {/* Accent Line */}
+                <div className="mt-8 h-px w-12 bg-[#8C9178]/50 group-hover:w-full group-hover:bg-[#F2F3EE]/50 transition-all duration-700 ease-out" />
               </div>
             </div>
           ))}
         </div>
 
         {/* === FOOTER ACTION === */}
-        <div className="mt-16 flex flex-col md:flex-row justify-between items-center gap-6">
-           <span className="font-[family-name:var(--font-montserrat)] text-[10px] uppercase tracking-widest text-[#EBE9E4]/30">
-               Transparency Report 2024-25
+        <div className="mt-12 md:mt-16 flex flex-col md:flex-row justify-between items-center gap-6 pt-8 border-t border-[#8C9178]/20">
+           <span className="font-mono text-[10px] uppercase tracking-widest text-[#F2F3EE]/40">
+               Transparency Report 2024
            </span>
 
-           <Link href="/about" className="group flex items-center gap-3 text-[#EBE9E4] hover:text-[#B56B56] transition-colors">
-              <span className="font-[family-name:var(--font-montserrat)] text-xs font-bold uppercase tracking-widest">
-                 Read Full Documentation
+           <Link href="/about" className="group flex items-center gap-3 text-[#F2F3EE] hover:text-[#A9AB94] transition-colors">
+              <span className="font-mono text-[11px] font-bold uppercase tracking-widest">
+                 Read Our Full Story
               </span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
            </Link>
