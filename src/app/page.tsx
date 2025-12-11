@@ -83,7 +83,7 @@ const HomePage = async () => {
           </div>
 
           {/* PRODUCT GRID */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-10">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-10">
             {featuredProducts.map((product: Product) => (
               <div key={product._id} className="w-full group">
                 <div className="transition-all duration-700 hover:-translate-y-2">
