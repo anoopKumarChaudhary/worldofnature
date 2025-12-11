@@ -1,162 +1,156 @@
 "use client";
 
 import React from "react";
-import { MoveRight, Sun, CloudRain, Snowflake, Thermometer, Droplets, Wind } from "lucide-react";
+import { 
+  CloudRain, Sun, Snowflake, 
+  Thermometer, Droplets, Wind, Sprout, 
+  Calendar, MapPin 
+} from "lucide-react";
 
-const PhenologySection = () => {
-  // New Theme:
-  // Section Background: #ECEBE4 (Warm Stone / Alabaster)
-  // Card Background: #FFFFFF (Pure White)
-  // Text: #1A2118 (Dark Forest Green)
-  
+const PhenologySectionDark = () => {
   const phases = [
     { 
       id: "01",
-      phase: "Phase I",
-      name: "The Wet Harvest",
+      season: "MONSOON",
+      title: "The Wet Harvest",
       dates: "JUN — SEP",
-      scientific: "Hydration",
-      soil: "High Moisture",
-      desc: "The monsoon alters valley bio-chemistry. We harvest wild cliff honey and plant ginger rhizomes as the flora drinks.",
+      desc: "Heavy rainfall activates bio-chemistry. We extract wild cliff honey while flora is in peak hydration.",
       icon: CloudRain,
-      subIcon: Droplets
+      stats: [
+        { label: "Avg Temp", value: "24°C", icon: Thermometer },
+        { label: "Rainfall", value: "High", icon: Droplets },
+        { label: "Soil", value: "Moist", icon: Sprout },
+      ]
     },
     { 
       id: "02",
-      phase: "Phase II",
-      name: "Solar Curing",
+      season: "SUMMER",
+      title: "Solar Curing",
       dates: "MAR — MAY",
-      scientific: "Desiccation",
-      soil: "Arid / Cured",
-      desc: "Intense Himalayan UV index is used as preservation technology. Turmeric and chilies cure on stone patios.",
+      desc: "We utilize high-altitude UV index to naturally cure turmeric and chilies on open stone patios.",
       icon: Sun,
-      subIcon: Thermometer
+      stats: [
+        { label: "Avg Temp", value: "32°C", icon: Thermometer },
+        { label: "UV Index", value: "Extreme", icon: Sun },
+        { label: "Method", value: "Air Dry", icon: Wind },
+      ]
     },
     { 
       id: "03",
-      phase: "Phase III",
-      name: "The Dormancy",
+      season: "WINTER",
+      title: "Dormancy",
       dates: "OCT — FEB",
-      scientific: "Restoration",
-      soil: "Frozen / Resting",
-      desc: "The valley sleeps under snow. No extraction occurs. We package reserves and analyze soil health.",
+      desc: "The valley sleeps under snow. Farming pauses to allow the soil microbiome to regenerate naturally.",
       icon: Snowflake,
-      subIcon: Wind
+      stats: [
+        { label: "Avg Temp", value: "-2°C", icon: Thermometer },
+        { label: "Cover", value: "Snow", icon: Snowflake },
+        { label: "Status", value: "Resting", icon: Sprout },
+      ]
     }
   ];
 
   return (
-    // CHANGED: Background to #ECEBE4 (Warm Stone)
-    <section className="relative py-24 lg:py-32 bg-[#ECEBE4] text-[#1A2118] overflow-hidden">
+    // BG: Deep Charcoal/Green | TEXT: Off-White
+    <section className="relative py-12 lg:py-24 bg-[#111210] text-[#E3E3DC] overflow-hidden">
       
-      {/* 1. TEXTURE (Subtle Grain) */}
-      <div className="absolute inset-0 opacity-[0.4] pointer-events-none mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]"></div>
-      
-      <div className="container-custom mx-auto relative z-10 max-w-7xl px-6 lg:px-12">
+      {/* Texture: Reduced opacity for dark mode subtlety */}
+      <div className="absolute inset-0 opacity-[0.07] pointer-events-none mix-blend-overlay bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]"></div>
+
+      <div className="container mx-auto px-4 md:px-8 relative z-10">
         
         {/* === HEADER === */}
-        <div className="flex flex-col lg:flex-row justify-between items-end mb-20 gap-12">
-           <div className="max-w-3xl">
-             <div className="flex items-center gap-3 mb-6">
-               <div className="w-2 h-2 bg-[#B56B56] rounded-full" />
-               <span className="font-[family-name:var(--font-montserrat)] text-[10px] font-bold uppercase tracking-[0.25em] text-[#B56B56]">
-                 Seasonal Rhythm
-               </span>
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 lg:mb-12 gap-4 border-b border-[#E3E3DC]/10 pb-6">
+           <div>
+             <div className="flex items-center gap-2 mb-2 lg:mb-3">
+                <Calendar className="w-3 h-3 text-[#D68C72]" /> {/* Accent: Muted Clay */}
+                <span className="font-mono text-[10px] font-bold uppercase tracking-[0.25em] text-[#D68C72]">
+                  Annual Almanac
+                </span>
              </div>
-             <h2 className="font-heading text-5xl lg:text-7xl leading-[0.95] font-medium text-[#1A2118]">
-               The <span className="italic font-serif font-light text-[#1A2118]/60">Almanac.</span>
+             <h2 className="font-serif text-3xl md:text-5xl text-[#E3E3DC]">
+               Production <span className="italic text-[#7A8072]">Cycles.</span>
              </h2>
            </div>
            
-           <div className="max-w-xs text-right hidden lg:block pb-2">
-              <span className="font-mono text-[10px] text-[#1A2118]/40 uppercase tracking-widest block mb-1">
-                 Coordinates
+           <div className="hidden md:flex items-center gap-2 opacity-40">
+              <MapPin className="w-4 h-4" />
+              <span className="font-mono text-[10px] uppercase tracking-widest">
+                 34°N / Kashmir
               </span>
-              <span className="font-heading text-xl text-[#1A2118]">34°05'N / 74°47'E</span>
            </div>
         </div>
 
-        {/* === THE CARDS (Floating White on Warm Stone) === */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* === THE CARDS === */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
           
           {phases.map((item, i) => (
             <div 
               key={i} 
-              // CHANGED: bg-[#FFFFFF] (Pure White) for crisp contrast
-              className="group relative bg-[#FFFFFF] p-8 lg:p-10 rounded-sm shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]"
+              className="
+                group relative 
+                bg-[#1A1C19] /* Card BG: Slightly lighter than section BG */
+                border border-[#E3E3DC]/10 
+                rounded-sm
+                shadow-2xl hover:shadow-lg hover:-translate-y-1 hover:border-[#D68C72]/30
+                transition-all duration-500 ease-out
+                flex flex-col justify-between
+                h-auto lg:min-h-[420px] 
+                p-5 lg:p-8
+              "
             >
-               {/* Hover Texture */}
-               <div className="absolute inset-0 opacity-0 group-hover:opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] transition-opacity duration-700 rounded-sm"></div>
-
-               {/* Top Meta Data */}
-               <div className="flex justify-between items-start mb-10">
-                  <span className="font-mono text-[10px] uppercase tracking-widest bg-[#ECEBE4]/50 border border-[#1A2118]/10 px-2 py-1 rounded-sm text-[#1A2118]/60">
-                    {item.dates}
-                  </span>
-                  <span className="font-[family-name:var(--font-montserrat)] text-[10px] font-bold uppercase tracking-[0.2em] text-[#B56B56]">
-                    {item.id}
-                  </span>
-               </div>
-
-               {/* HERO ICON CENTERPIECE */}
-               <div className="mb-10 flex justify-center">
-                  {/* CHANGED: Circle bg to match section background #ECEBE4 */}
-                  <div className="relative w-24 h-24 flex items-center justify-center rounded-full bg-[#ECEBE4]/60 group-hover:bg-[#1A2118] transition-colors duration-700">
-                     
-                     {/* Outer Ring Animation */}
-                     <div className="absolute inset-0 rounded-full border border-dashed border-[#1A2118]/20 group-hover:border-[#FFFFFF]/20 animate-[spin_12s_linear_infinite]" />
-                     
-                     {/* The Icon */}
-                     <item.icon className="w-10 h-10 text-[#1A2118] group-hover:text-[#FFFFFF] transition-colors duration-500 stroke-[1.5]" />
-                     
-                     {/* Sub-Icon Badge (Matches card bg) */}
-                     <div className="absolute -bottom-2 bg-[#FFFFFF] border border-[#1A2118]/10 p-1.5 rounded-full z-10">
-                        <item.subIcon className="w-3 h-3 text-[#B56B56]" />
-                     </div>
+               {/* --- TOP SECTION --- */}
+               <div>
+                  <div className="flex justify-between items-start mb-4 lg:mb-8">
+                      {/* Badge: Darker bg, light text */}
+                      <span className="
+                        inline-block px-2 py-1 rounded-sm bg-[#252924]
+                        font-mono text-[9px] lg:text-[10px] font-bold uppercase tracking-widest text-[#E3E3DC]/70
+                      ">
+                        {item.season}
+                      </span>
+                      
+                      {/* Icon Circle */}
+                      <div className="
+                        w-10 h-10 lg:w-14 lg:h-14 
+                        flex items-center justify-center 
+                        rounded-full border border-[#E3E3DC]/10
+                        bg-[#252924] group-hover:bg-[#D68C72] 
+                        transition-colors duration-500
+                      ">
+                         <item.icon className="w-4 h-4 lg:w-6 lg:h-6 text-[#E3E3DC] group-hover:text-[#111210] transition-colors duration-500" />
+                      </div>
                   </div>
-               </div>
 
-               {/* Text Content */}
-               <div className="relative z-10 text-center">
-                  <h3 className="font-heading text-3xl text-[#1A2118] mb-6">
-                    {item.name}
+                  <h3 className="font-serif text-xl lg:text-2xl text-[#E3E3DC] mb-2 group-hover:text-[#D68C72] transition-colors">
+                    {item.title}
                   </h3>
-                  
-                  {/* Data Points Box */}
-                  <div className="grid grid-cols-2 gap-4 mb-6 bg-[#1A2118]/[0.02] p-4 rounded-sm border border-[#1A2118]/5">
-                     <div className="border-r border-[#1A2118]/10">
-                        <span className="block font-[family-name:var(--font-montserrat)] text-[9px] uppercase tracking-widest text-[#1A2118]/40 mb-1">
-                           Process
-                        </span>
-                        <span className="block font-heading text-sm text-[#1A2118]">
-                           {item.scientific}
-                        </span>
-                     </div>
-                     <div>
-                        <span className="block font-[family-name:var(--font-montserrat)] text-[9px] uppercase tracking-widest text-[#1A2118]/40 mb-1">
-                           Soil State
-                        </span>
-                        <span className="block font-heading text-sm text-[#1A2118]">
-                           {item.soil}
-                        </span>
-                     </div>
-                  </div>
-
-                  <p className="font-[family-name:var(--font-montserrat)] text-xs leading-relaxed text-[#1A2118]/60 mx-auto max-w-[260px]">
+                  <p className="font-sans text-xs lg:text-sm text-[#E3E3DC]/60 leading-relaxed mb-6 lg:mb-8 line-clamp-3 lg:line-clamp-none">
                     {item.desc}
                   </p>
                </div>
 
+               {/* --- BOTTOM SECTION --- */}
+               <div className="mt-auto">
+                  <div className="w-full h-px bg-[#E3E3DC]/10 mb-3 lg:mb-4"></div>
+                  
+                  <div className="grid grid-cols-3 gap-2">
+                     {item.stats.map((stat, idx) => (
+                        <div key={idx} className="flex flex-col justify-center items-center gap-1 p-1.5 lg:p-2 rounded-sm bg-[#252924] border border-[#E3E3DC]/5 text-center group-hover:bg-[#2C302B] transition-colors">
+                           <stat.icon className="w-3 h-3 opacity-40 mb-0.5 text-[#E3E3DC]" />
+                           <span className="font-heading text-xs lg:text-sm font-medium text-[#E3E3DC]">
+                              {stat.value}
+                           </span>
+                           <span className="font-mono text-[7px] lg:text-[8px] uppercase tracking-wide text-[#E3E3DC]/40">
+                              {stat.label}
+                           </span>
+                        </div>
+                     ))}
+                  </div>
+               </div>
+
             </div>
           ))}
-        </div>
-
-        {/* Footer Note */}
-        <div className="mt-16 flex items-center justify-center lg:justify-start gap-4 opacity-50">
-           <MoveRight className="w-4 h-4 text-[#1A2118]" />
-           <span className="font-[family-name:var(--font-montserrat)] text-[10px] uppercase tracking-widest text-[#1A2118]">
-              Fig. 04 — Annual Production Cycle
-           </span>
         </div>
 
       </div>
@@ -164,4 +158,4 @@ const PhenologySection = () => {
   );
 };
 
-export default PhenologySection;
+export default PhenologySectionDark;

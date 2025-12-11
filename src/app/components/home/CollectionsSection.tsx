@@ -13,20 +13,21 @@ interface CollectionItem {
   image: string;
   desc: string;
   link: string;
-  desktopSpan?: string;
+  className?: string; // For grid positioning
 }
 
 // --- Data Configuration ---
 const COLLECTIONS: CollectionItem[] = [
-  // --- ROW 1 (4 Cols Total) ---
+  // --- ROW 1 & 2 START ---
   {
     id: "honey",
     label: "Raw Honey",
-    tag: "Kashmir",
+    tag: "Signature",
     image: "/h1.png",
-    desc: "Unfiltered wild harvest.",
+    desc: "Unfiltered wild harvest from Kashmir valley.",
     link: "/shop/honey",
-    desktopSpan: "md:col-span-2", // Wide (2/4)
+    // THE ANCHOR: Large 2x2 Box
+    className: "md:col-span-2 md:row-span-2", 
   },
   {
     id: "ghee",
@@ -35,7 +36,7 @@ const COLLECTIONS: CollectionItem[] = [
     image: "/h5.png",
     desc: "Slow-churned bilona.",
     link: "/shop/ghee",
-    desktopSpan: "md:col-span-1", // Standard (1/4)
+    className: "md:col-span-1 md:row-span-1",
   },
   {
     id: "spices",
@@ -44,9 +45,8 @@ const COLLECTIONS: CollectionItem[] = [
     image: "/h9.png",
     desc: "High-curcumin turmeric.",
     link: "/shop/spices",
-    desktopSpan: "md:col-span-1", // Standard (1/4)
+    className: "md:col-span-1 md:row-span-1",
   },
-  // --- ROW 2 (4 Cols Total) ---
   {
     id: "oils",
     label: "Cold Press",
@@ -54,17 +54,73 @@ const COLLECTIONS: CollectionItem[] = [
     image: "/h3.png",
     desc: "Virgin nut extracts.",
     link: "/shop/oils",
-    desktopSpan: "md:col-span-1", // Standard (1/4)
+    className: "md:col-span-1 md:row-span-1",
   },
   {
     id: "tea",
-    label: "Estates",
+    label: "Tea Estates",
     tag: "Darjeeling",
     image: "/h4.png",
     desc: "Single estate orthodox.",
     link: "/shop/tea",
-    // CHANGED: Made this wider (2 columns)
-    desktopSpan: "md:col-span-2", // Wide (2/4)
+    className: "md:col-span-1 md:row-span-1",
+  },
+  // --- ROW 3 START ---
+  {
+    id: "saffron",
+    label: "Kesar Saffron",
+    tag: "Grade A1",
+    image: "/h6.png",
+    desc: "Hand-picked Mongra strands from Pampore.",
+    link: "/shop/saffron",
+    // THE BANNER: Wide 2x1 Box
+    className: "md:col-span-2 md:row-span-1",
+  },
+  {
+    id: "walnuts",
+    label: "Walnuts",
+    tag: "Kagzi",
+    image: "/h7.png",
+    desc: "Soft shell organic.",
+    link: "/shop/nuts",
+    className: "md:col-span-1 md:row-span-1",
+  },
+  {
+    id: "shilajit",
+    label: "Shilajit",
+    tag: "Resin",
+    image: "/h8.png",
+    desc: "Himalayan purified.",
+    link: "/shop/wellness",
+    className: "md:col-span-1 md:row-span-1",
+  },
+  // --- ROW 4 START ---
+  {
+    id: "amla",
+    label: "Amla",
+    tag: "Preserve",
+    image: "/h10.png",
+    desc: "Sun-dried gooseberry.",
+    link: "/shop/amla",
+    className: "md:col-span-1 md:row-span-1",
+  },
+  {
+    id: "moringa",
+    label: "Moringa",
+    tag: "Superfood",
+    image: "/h11.png",
+    desc: "Leaf powder.",
+    link: "/shop/moringa",
+    className: "md:col-span-1 md:row-span-1",
+  },
+  {
+    id: "mustard",
+    label: "Mustard Oil",
+    tag: "Kachi Ghani",
+    image: "/h12.png",
+    desc: "Cold pressed.",
+    link: "/shop/mustard",
+    className: "md:col-span-1 md:row-span-1",
   },
 ];
 
@@ -74,15 +130,28 @@ const GridCard = ({ item }: { item: CollectionItem }) => {
     <Link
       href={item.link}
       className={`
-        group relative block overflow-hidden bg-[#0F140E] rounded-sm
-        /* MOBILE: Compact Height */
-        h-[180px]
-        /* DESKTOP: Gallery Height */
-        md:h-[420px]
-        /* DESKTOP SPAN: Custom layout logic */
-        ${item.desktopSpan || "md:col-span-1"}
-        /* SHADOW & HOVER */
-        hover:shadow-2xl transition-all duration-500
+        group relative block overflow-hidden 
+        /* BORDERS: Clean lines */
+        border border-[#8C9178]/40
+        
+        /* GRID LOGIC */
+        w-full
+        /* Mobile: Fixed height */
+        h-[200px] 
+        /* Desktop: Fill the assigned grid cell */
+        md:h-auto
+        ${item.className || "md:col-span-1 md:row-span-1"}
+        
+        /* SHARP CORNERS for strict box look (rounded-sm) */
+        rounded-sm
+        
+        /* INTERACTIONS */
+        bg-[#2C3326]
+        shadow-[0px_0px_0px_rgba(0,0,0,0)]
+        hover:shadow-[8px_8px_0px_rgba(44,51,38,0.15)]
+        hover:-translate-y-1 hover:-translate-x-1
+        transition-all duration-300 ease-out
+        z-0 hover:z-10 hover:border-[#F2F3EE]/50
       `}
     >
       {/* 1. IMAGE LAYER */}
@@ -94,45 +163,46 @@ const GridCard = ({ item }: { item: CollectionItem }) => {
           sizes="(max-width: 768px) 50vw, 33vw"
           className="
             object-cover 
-            transition-transform duration-[1.2s] ease-[cubic-bezier(0.25,1,0.5,1)]
+            transition-transform duration-[1s] ease-[cubic-bezier(0.25,1,0.5,1)]
             scale-100 group-hover:scale-110
-            grayscale-[0.1] group-hover:grayscale-0
+            opacity-90 group-hover:opacity-100
           "
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0F140E]/80 via-transparent to-transparent opacity-70 group-hover:opacity-50 transition-opacity duration-500" />
+        {/* Overlay: Deep Olive Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#2C3326] via-[#2C3326]/20 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-500" />
       </div>
 
       {/* 2. CONTENT LAYER */}
-      <div className="absolute inset-0 p-3 md:p-6 flex flex-col justify-end md:justify-between">
+      <div className="absolute inset-0 p-4 md:p-6 flex flex-col justify-end">
         
-        {/* Top Right Arrow (Desktop Only) */}
-        <div className="hidden md:flex justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-500 translate-y-2 group-hover:translate-y-0">
-           <div className="bg-white/10 backdrop-blur-md p-2.5 rounded-full">
-             <ArrowUpRight className="w-4 h-4 text-white" />
-           </div>
+        {/* Arrow Icon */}
+        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+           <ArrowUpRight className="w-5 h-5 text-[#F2F3EE]" />
         </div>
 
-        {/* Bottom Text */}
-        <div className="relative z-10 translate-y-0 md:translate-y-2 md:group-hover:translate-y-0 transition-transform duration-500">
+        <div className="relative z-10 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
           
           <span className="
-            inline-block px-1.5 py-0.5 rounded-[2px] 
-            bg-white/10 backdrop-blur-sm 
-            font-mono text-[8px] md:text-[9px] uppercase tracking-[0.15em] text-[#EBE9E4] 
-            mb-1.5 md:mb-2
+            inline-block px-1.5 py-0.5 mb-2
+            border border-[#F2F3EE]/20 rounded-sm
+            font-mono text-[9px] uppercase tracking-[0.15em] text-[#F2F3EE]/80
           ">
             {item.tag}
           </span>
           
           <h3 className="
-            font-heading text-lg md:text-2xl text-white 
-            leading-none font-medium tracking-wide
-            mb-0.5 md:mb-2
+            font-serif text-xl md:text-2xl text-[#F2F3EE] 
+            leading-none tracking-tight mb-1
           ">
             {item.label}
           </h3>
 
-          <p className="hidden md:block font-sans text-xs text-white/70 leading-relaxed max-w-[90%] opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+          <p className="
+            font-sans text-[11px] text-[#F2F3EE]/70 
+            leading-relaxed max-w-[95%] 
+            h-0 group-hover:h-auto overflow-hidden opacity-0 group-hover:opacity-100 
+            transition-all duration-300 delay-75
+          ">
             {item.desc}
           </p>
         </div>
@@ -141,30 +211,43 @@ const GridCard = ({ item }: { item: CollectionItem }) => {
   );
 };
 
-// --- View All Card (Now standard width) ---
+// --- Archive Card ---
 const ArchiveCard = () => (
   <Link
     href="/shop"
     className="
-      group relative overflow-hidden bg-[#1A2118] rounded-sm
-      h-[180px] md:h-[420px] 
-      /* CHANGED: Removed 'md:col-span-2' so it defaults to 1 col */
-      md:col-span-1
-      flex flex-col justify-center items-center text-center p-6
-      hover:bg-[#B56B56] transition-colors duration-500
+      group relative overflow-hidden rounded-sm
+      /* Matches Standard Item Size */
+      w-full h-[200px] md:h-auto
+      md:col-span-1 md:row-span-1
+      
+      bg-[#D1D4C2] /* Slightly darker sage for contrast */
+      border border-[#8C9178]/40
+      hover:bg-[#2C3326] hover:border-[#2C3326]
+      
+      flex flex-col justify-center items-center text-center p-4
+      
+      shadow-[0px_0px_0px_rgba(0,0,0,0)]
+      hover:shadow-[8px_8px_0px_rgba(44,51,38,0.15)]
+      hover:-translate-y-1 hover:-translate-x-1
+      transition-all duration-300 ease-out
     "
   >
-    <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')] mix-blend-overlay" />
-    
-    <div className="relative z-10 flex flex-col items-center gap-3 md:gap-4">
-       <div className="w-10 h-10 md:w-14 md:h-14 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:border-white transition-all duration-500 group-hover:scale-110">
-          <ArrowRight className="w-4 h-4 md:w-6 md:h-6 text-white group-hover:text-[#B56B56]" />
+    <div className="relative z-10 flex flex-col items-center gap-3">
+       <div className="
+         w-12 h-12 rounded-full 
+         bg-[#F2F3EE] border border-[#8C9178]
+         flex items-center justify-center 
+         group-hover:bg-[#F2F3EE] group-hover:scale-110
+         transition-all duration-300
+       ">
+          <ArrowRight className="w-5 h-5 text-[#2C3326]" />
        </div>
        <div>
-         <span className="font-mono text-[8px] md:text-[9px] font-bold uppercase tracking-[0.25em] text-white/40 block mb-1 md:mb-2">
-            The Archive
+         <span className="font-mono text-[9px] font-bold uppercase tracking-[0.25em] text-[#2C3326]/60 group-hover:text-[#F2F3EE]/60 block mb-1">
+            Catalogue
          </span>
-         <span className="font-heading text-xl md:text-2xl text-white font-medium italic">
+         <span className="font-serif text-xl text-[#2C3326] group-hover:text-[#F2F3EE] italic">
             View All
          </span>
        </div>
@@ -175,34 +258,37 @@ const ArchiveCard = () => (
 // --- Main Section ---
 const CollectionsSection = () => {
   return (
-    <section className="relative py-12 lg:py-24 bg-[#F0F0EB] text-[#1A2118] overflow-hidden">
+    // BG: Sage/Khaki (#A9AB94)
+    <section className="relative py-12 lg:py-24 bg-[#A9AB94] text-[#2C3326] overflow-hidden">
       
-      <div className="absolute inset-0 opacity-[0.5] pointer-events-none mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]" />
+      {/* Texture */}
+      <div className="absolute inset-0 opacity-[0.15] pointer-events-none mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/dust.png')]" />
 
       <div className="container mx-auto px-4 md:px-8 relative z-10">
         
         {/* HEADER */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4 border-b border-[#1A2118]/10 pb-6">
-          <div className="max-w-2xl">
-            <span className="font-mono text-[9px] md:text-[10px] font-bold uppercase tracking-[0.25em] text-[#B56B56] mb-3 block">
-              Seasonal Curations
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4 border-b border-[#2C3326]/10 pb-6">
+          <div className="max-w-xl">
+            <span className="font-mono text-[10px] font-bold uppercase tracking-[0.25em] text-[#F2F3EE] drop-shadow-sm mb-2 block">
+              Curated Harvest
             </span>
-            <h2 className="font-heading text-3xl md:text-5xl text-[#1A2118] leading-[0.95]">
-              Wild <span className="font-serif italic text-[#1A2118]/50">Essentials.</span>
+            <h2 className="font-serif text-4xl md:text-5xl text-[#2C3326] leading-[0.9]">
+              Wild <span className="italic text-[#F2F3EE]">Essentials.</span>
             </h2>
           </div>
           <div className="hidden md:block text-right">
-             <p className="font-mono text-[9px] uppercase tracking-widest text-[#1A2118]/50">
-                Harvest 2024
+             <p className="font-mono text-[10px] uppercase tracking-widest text-[#2C3326]">
+                Collection 2024
              </p>
           </div>
         </div>
 
-        {/* THE GRID */}
-        {/* Row 1: Honey(2) + Ghee(1) + Spices(1) = 4
-           Row 2: Oils(1) + Tea(2) + Archive(1) = 4
+        {/* THE GRID:
+           - grid-cols-2 (Mobile)
+           - grid-cols-4 (Desktop)
+           - auto-rows-[240px] (This defines the height unit for the Bento grid)
         */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[200px] md:auto-rows-[280px] gap-2 md:gap-3">
           
           {COLLECTIONS.map((item) => (
             <GridCard key={item.id} item={item} />
