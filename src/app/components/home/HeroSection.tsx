@@ -22,7 +22,7 @@ const HeroSection = () => {
         />
         {/* Mobile Background */}
         <Image
-          src="/bg12.png"
+          src="/bg13.png"
           alt="Lush nature landscape mobile"
           fill
           className="object-cover block md:hidden"
