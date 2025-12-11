@@ -127,7 +127,7 @@ const PhilosophySection = () => {
                 hover:shadow-[4px_4px_0px_rgba(44,51,38,0.15)] 
                 hover:-translate-y-1
                 
-                rounded-md
+                rounded-sm
                 transition-all duration-300 ease-out
                 
                 flex flex-col justify-between
@@ -141,7 +141,7 @@ const PhilosophySection = () => {
                  {/* Header: Icon + Title Inline */}
                  <div className="flex flex-col md:flex-row md:items-center gap-2 mb-3">
                     <div className="
-                      w-fit p-1.5 rounded-md
+                      w-fit p-1.5 rounded-sm
                       /* Icon BG: Khaki Green */
                       bg-[#E2E6D6] text-[#6B7556]
                       group-hover:bg-[#2C3326] group-hover:text-[#F2F3EE]

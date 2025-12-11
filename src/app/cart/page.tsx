@@ -53,8 +53,8 @@ export default function CartPage() {
         />
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#BC5633] rounded-full mix-blend-multiply filter blur-[120px] opacity-20 animate-blob" />
 
-        <div className="relative z-10 text-center p-8 bg-white/60 backdrop-blur-xl rounded-[3rem] border border-[#1A2118]/5 shadow-2xl max-w-lg w-full mx-4">
-          <div className="w-24 h-24 bg-[#F2F0EA] rounded-[2rem] flex items-center justify-center mx-auto mb-6 shadow-inner">
+        <div className="relative z-10 text-center p-8 bg-white/60 backdrop-blur-xl rounded-sm border border-[#1A2118]/5 shadow-2xl max-w-lg w-full mx-4">
+          <div className="w-24 h-24 bg-[#F2F0EA] rounded-sm flex items-center justify-center mx-auto mb-6 shadow-inner">
             <ShoppingBag className="w-10 h-10 text-[#BC5633]" />
           </div>
           <h1 className="text-3xl font-serif font-bold text-[#1A2118] mb-2">
@@ -65,7 +65,7 @@ export default function CartPage() {
           </p>
           <Link
             href="/shop"
-            className="inline-flex items-center gap-2 h-14 px-8 bg-[#1A2118] text-white rounded-full font-bold text-sm uppercase tracking-widest hover:bg-[#BC5633] transition-all shadow-lg hover:shadow-[#BC5633]/20"
+            className="inline-flex items-center gap-2 h-14 px-8 bg-[#1A2118] text-white rounded-sm font-bold text-sm uppercase tracking-widest hover:bg-[#BC5633] transition-all shadow-lg hover:shadow-[#BC5633]/20"
           >
             <ArrowLeft className="w-4 h-4" />
             Start Foraging
@@ -131,10 +131,10 @@ export default function CartPage() {
               {items.map((item) => (
                 <div
                   key={`${item.id}-${item.size}`}
-                  className="group bg-white/60 backdrop-blur-md border border-white/40 rounded-[2.5rem] p-6 flex flex-col sm:flex-row items-center gap-6 hover:bg-white/80 transition-all duration-300 shadow-sm hover:shadow-lg"
+                  className="group bg-white/60 backdrop-blur-md border border-white/40 rounded-sm p-6 flex flex-col sm:flex-row items-center gap-6 hover:bg-white/80 transition-all duration-300 shadow-sm hover:shadow-lg"
                 >
                   {/* Image */}
-                  <div className="relative w-32 h-32 flex-shrink-0 bg-[#F2F0EA] rounded-[2rem] overflow-hidden">
+                  <div className="relative w-32 h-32 flex-shrink-0 bg-[#F2F0EA] rounded-sm overflow-hidden">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={item.image}
@@ -151,7 +151,7 @@ export default function CartPage() {
                           {item.name}
                         </h3>
                         {item.size && (
-                          <span className="inline-block px-3 py-1 bg-[#1A2118]/5 text-[#596157] text-xs font-bold rounded-full uppercase tracking-wide">
+                          <span className="inline-block px-3 py-1 bg-[#1A2118]/5 text-[#596157] text-xs font-bold rounded-sm uppercase tracking-wide">
                             Size: {item.size}
                           </span>
                         )}
@@ -164,7 +164,7 @@ export default function CartPage() {
                     {/* Controls */}
                     <div className="flex items-center justify-center sm:justify-between border-t border-[#1A2118]/5 pt-4 mt-2">
                       {/* Quantity */}
-                      <div className="flex items-center bg-white rounded-full p-1 shadow-sm border border-[#1A2118]/5">
+                      <div className="flex items-center bg-white rounded-sm p-1 shadow-sm border border-[#1A2118]/5">
                         <button
                           onClick={() =>
                             handleUpdateQuantity(
@@ -173,7 +173,7 @@ export default function CartPage() {
                               item.quantity - 1
                             )
                           }
-                          className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-[#F2F0EA] transition-colors text-[#1A2118]"
+                          className="w-8 h-8 flex items-center justify-center rounded-sm hover:bg-[#F2F0EA] transition-colors text-[#1A2118]"
                         >
                           <Minus className="w-3 h-3" />
                         </button>
@@ -188,7 +188,7 @@ export default function CartPage() {
                               item.quantity + 1
                             )
                           }
-                          className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-[#F2F0EA] transition-colors text-[#1A2118]"
+                          className="w-8 h-8 flex items-center justify-center rounded-sm hover:bg-[#F2F0EA] transition-colors text-[#1A2118]"
                         >
                           <Plus className="w-3 h-3" />
                         </button>
@@ -217,7 +217,7 @@ export default function CartPage() {
             {/* --- ORDER SUMMARY --- */}
             <div className="lg:col-span-4 mt-12 lg:mt-0">
               <div className="sticky top-32">
-                <div className="bg-[#1A2118] text-[#F2F0EA] rounded-[2.5rem] p-8 lg:p-10 shadow-2xl relative overflow-hidden">
+                <div className="bg-[#1A2118] text-[#F2F0EA] rounded-sm p-8 lg:p-10 shadow-2xl relative overflow-hidden">
                   {/* Decorative Blob inside Summary */}
                   <div className="absolute top-0 right-0 w-40 h-40 bg-[#BC5633] rounded-full mix-blend-overlay filter blur-[60px] opacity-40 pointer-events-none" />
 
@@ -255,7 +255,7 @@ export default function CartPage() {
 
                   <Link
                     href="/checkout"
-                    className="w-full h-16 mt-8 bg-[#F2F0EA] text-[#1A2118] rounded-[1.5rem] flex items-center justify-center gap-3 font-bold text-sm uppercase tracking-widest hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg relative z-10"
+                    className="w-full h-16 mt-8 bg-[#F2F0EA] text-[#1A2118] rounded-sm flex items-center justify-center gap-3 font-bold text-sm uppercase tracking-widest hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg relative z-10"
                   >
                     Checkout <ArrowRight className="w-4 h-4" />
                   </Link>

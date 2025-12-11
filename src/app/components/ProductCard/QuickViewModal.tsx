@@ -47,7 +47,7 @@ const Badge = ({
   };
   return (
     <span
-      className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-sm backdrop-blur-md ${styles[type]}`}
+      className={`px-3 py-1 rounded-sm text-[10px] font-bold uppercase tracking-widest shadow-sm backdrop-blur-md ${styles[type]}`}
     >
       {label}
     </span>
@@ -117,14 +117,14 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({
 
       {/* Modal Container (Squircle) */}
       <div
-        className="relative w-full max-w-5xl bg-white rounded-[3rem] shadow-2xl overflow-hidden flex flex-col md:flex-row max-h-[90vh] animate-in fade-in zoom-in-95 duration-300 border border-white/20"
+        className="relative w-full max-w-5xl bg-white rounded-sm shadow-2xl overflow-hidden flex flex-col md:flex-row max-h-[90vh] animate-in fade-in zoom-in-95 duration-300 border border-white/20"
         role="dialog"
         aria-modal="true"
       >
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-6 right-6 z-50 p-2 rounded-full bg-white/80 backdrop-blur-md text-[#1A2118] hover:bg-[#1A2118] hover:text-white transition-all shadow-sm"
+          className="absolute top-6 right-6 z-50 p-2 rounded-sm bg-white/80 backdrop-blur-md text-[#1A2118] hover:bg-[#1A2118] hover:text-white transition-all shadow-sm"
         >
           <X className="w-5 h-5" />
         </button>
@@ -165,7 +165,7 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({
           <div className="flex-1 overflow-y-auto p-8 md:p-12 scrollbar-hide">
             {/* Rating */}
             <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-2 bg-[#F2F0EA] px-3 py-1.5 rounded-full">
+              <div className="flex items-center gap-2 bg-[#F2F0EA] px-3 py-1.5 rounded-sm">
                 <Star className="w-3.5 h-3.5 fill-[#BC5633] text-[#BC5633]" />
                 <span className="text-xs font-bold text-[#1A2118]">
                   {product.rating || 4.8}
@@ -209,13 +209,13 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({
               </p>
 
               <div className="mt-8 grid grid-cols-2 gap-4">
-                <div className="flex items-center gap-3 p-4 rounded-2xl border border-[#1A2118]/5 bg-[#F2F0EA]/30">
+                <div className="flex items-center gap-3 p-4 rounded-sm border border-[#1A2118]/5 bg-[#F2F0EA]/30">
                   <ShieldCheck className="w-5 h-5 text-[#BC5633]" />
                   <span className="text-xs font-bold uppercase tracking-wider text-[#1A2118]/60">
                     Certified Organic
                   </span>
                 </div>
-                <div className="flex items-center gap-3 p-4 rounded-2xl border border-[#1A2118]/5 bg-[#F2F0EA]/30">
+                <div className="flex items-center gap-3 p-4 rounded-sm border border-[#1A2118]/5 bg-[#F2F0EA]/30">
                   <Check className="w-5 h-5 text-[#BC5633]" />
                   <span className="text-xs font-bold uppercase tracking-wider text-[#1A2118]/60">
                     Ethically Sourced
@@ -229,10 +229,10 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({
           <div className="p-6 md:p-8 border-t border-[#1A2118]/5 bg-white z-20 shadow-[0_-10px_40px_rgba(0,0,0,0.02)]">
             <div className="flex gap-4">
               {/* Quantity Capsule */}
-              <div className="flex items-center bg-[#F2F0EA] rounded-full p-1.5 h-16 shadow-inner">
+              <div className="flex items-center bg-[#F2F0EA] rounded-sm p-1.5 h-16 shadow-inner">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="w-12 h-full flex items-center justify-center rounded-full hover:bg-white text-[#1A2118] transition-all shadow-sm"
+                  className="w-12 h-full flex items-center justify-center rounded-sm hover:bg-white text-[#1A2118] transition-all shadow-sm"
                 >
                   <Minus className="w-4 h-4" />
                 </button>
@@ -241,7 +241,7 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({
                 </span>
                 <button
                   onClick={() => setQuantity(quantity + 1)}
-                  className="w-12 h-full flex items-center justify-center rounded-full hover:bg-white text-[#1A2118] transition-all shadow-sm"
+                  className="w-12 h-full flex items-center justify-center rounded-sm hover:bg-white text-[#1A2118] transition-all shadow-sm"
                 >
                   <Plus className="w-4 h-4" />
                 </button>
@@ -251,7 +251,7 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({
               <button
                 onClick={handleAddToCart}
                 disabled={isAdding}
-                className={`flex-1 h-16 rounded-full font-bold text-sm uppercase tracking-widest transition-all active:scale-[0.98] flex items-center justify-center gap-3 shadow-xl ${
+                className={`flex-1 h-16 rounded-sm font-bold text-sm uppercase tracking-widest transition-all active:scale-[0.98] flex items-center justify-center gap-3 shadow-xl ${
                   isAdding
                     ? "bg-[#3A4D39] text-white"
                     : "bg-[#1A2118] text-white hover:bg-[#BC5633]"
@@ -271,7 +271,7 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({
               {/* Desktop Wishlist */}
               <button
                 onClick={handleWishlistToggle}
-                className={`hidden md:flex items-center justify-center w-16 h-16 rounded-full border transition-all duration-300 ${
+                className={`hidden md:flex items-center justify-center w-16 h-16 rounded-sm border transition-all duration-300 ${
                   isWishlisted
                     ? "bg-[#BC5633] border-[#BC5633] text-white shadow-lg shadow-[#BC5633]/20"
                     : "border-[#1A2118]/10 text-[#1A2118]/40 hover:border-[#BC5633] hover:text-[#BC5633]"

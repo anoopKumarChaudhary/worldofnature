@@ -302,14 +302,14 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
           <div className="flex flex-row gap-3 items-center justify-between">
             {/* Search Input */}
             <div className="relative flex-1 group">
-              <div className="absolute inset-0 bg-white/80 backdrop-blur-xl rounded-full border border-white/20 transition-all group-focus-within:border-[#B56B56]/30 z-[50]" />
+              <div className="absolute inset-0 bg-white/80 backdrop-blur-xl rounded-sm border border-white/20 transition-all group-focus-within:border-[#B56B56]/30 z-[50]" />
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#1A2118]/40 w-4 h-4 group-focus-within:text-[#B56B56] transition-colors z-10" />
               <input
                 type="text"
                 placeholder="Search..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="relative z-10 w-full bg-transparent border-none rounded-full py-3 pl-10 pr-4 text-sm font-medium text-[#1A2118] placeholder-[#1A2118]/40 focus:ring-0 transition-all outline-none"
+                className="relative z-10 w-full bg-transparent border-none rounded-sm py-3 pl-10 pr-4 text-sm font-medium text-[#1A2118] placeholder-[#1A2118]/40 focus:ring-0 transition-all outline-none"
               />
             </div>
 
@@ -320,11 +320,11 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
 
               {/* Desktop Sort & View */}
               <div className="relative group hidden lg:block">
-                <div className="absolute inset-0 bg-white/80 backdrop-blur-xl rounded-full border border-white/20" />
+                <div className="absolute inset-0 bg-white/80 backdrop-blur-xl rounded-sm border border-white/20" />
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="relative z-10 appearance-none bg-transparent px-5 py-3 pr-9 rounded-full text-xs font-bold uppercase tracking-wide text-[#1A2118] cursor-pointer outline-none transition-all"
+                  className="relative z-10 appearance-none bg-transparent px-5 py-3 pr-9 rounded-sm text-xs font-bold uppercase tracking-wide text-[#1A2118] cursor-pointer outline-none transition-all"
                 >
                   {sortOptions.map((option) => (
                     <option key={option.value} value={option.value}>
@@ -335,10 +335,10 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
                 <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[#1A2118]/50 pointer-events-none z-10" />
               </div>
 
-              <div className="hidden lg:flex bg-white/80 backdrop-blur-xl rounded-full p-1 shadow-sm border border-white/50">
+              <div className="hidden lg:flex bg-white/80 backdrop-blur-xl rounded-sm p-1 shadow-sm border border-white/50">
                 <button
                   onClick={() => setViewMode("grid")}
-                  className={`p-2 rounded-full transition-all duration-300 ${
+                  className={`p-2 rounded-sm transition-all duration-300 ${
                     viewMode === "grid"
                       ? "bg-[#1A2118] text-white shadow-sm"
                       : "text-[#1A2118]/40 hover:text-[#1A2118]"
@@ -348,7 +348,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
                 </button>
                 <button
                   onClick={() => setViewMode("list")}
-                  className={`p-2 rounded-full transition-all duration-300 ${
+                  className={`p-2 rounded-sm transition-all duration-300 ${
                     viewMode === "list"
                       ? "bg-[#1A2118] text-white shadow-sm"
                       : "text-[#1A2118]/40 hover:text-[#1A2118]"
@@ -373,7 +373,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
           />
           
           <aside
-            className={`fixed bottom-0 left-0 right-0 lg:static lg:w-80 bg-white/80 backdrop-blur-2xl lg:backdrop-blur-xl z-[9999] lg:z-0 rounded-t-[2.5rem] lg:rounded-[2.5rem] border-t lg:border border-white/40 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] lg:shadow-none transition-transform duration-500 cubic-bezier(0.32, 0.72, 0, 1) ${
+            className={`fixed bottom-0 left-0 right-0 lg:static lg:w-80 bg-white/80 backdrop-blur-2xl lg:backdrop-blur-xl z-[9999] lg:z-0 rounded-t-sm lg:rounded-sm border-t lg:border border-white/40 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] lg:shadow-none transition-transform duration-500 cubic-bezier(0.32, 0.72, 0, 1) ${
               isFilterOpen
                 ? "translate-y-0"
                 : "translate-y-full lg:translate-y-0"
@@ -387,7 +387,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
             {/* Header & Reset */}
             <div className="flex items-center justify-between p-6 lg:p-8 pb-4 lg:pb-8 border-b lg:border-none border-[#1A2118]/5">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-[#1A2118] rounded-[12px] text-white">
+                <div className="p-2 bg-[#1A2118] rounded-sm text-white">
                   <Filter className="w-4 h-4" />
                 </div>
                 <h2 className="text-lg font-bold text-[#1A2118]">Filters</h2>
@@ -408,7 +408,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
                 )}
                 <button
                   onClick={() => setIsFilterOpen(false)}
-                  className="lg:hidden p-2 bg-[#F2F0EA] rounded-full text-[#1A2118]"
+                  className="lg:hidden p-2 bg-[#F2F0EA] rounded-sm text-[#1A2118]"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -427,7 +427,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
                     <button
                       key={option.value}
                       onClick={() => setSortBy(option.value)}
-                      className={`px-4 py-3 rounded-xl text-sm font-medium transition-all ${
+                      className={`px-4 py-3 rounded-sm text-sm font-medium transition-all ${
                         sortBy === option.value
                           ? "bg-[#1A2118] text-white shadow-md"
                           : "bg-[#F2F0EA] text-[#1A2118] hover:bg-[#1A2118]/5"
@@ -547,7 +547,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
                           selectedRating === rating ? null : rating
                         )
                       }
-                      className={`flex items-center justify-between p-3 rounded-[1rem] transition-all duration-200 border ${
+                      className={`flex items-center justify-between p-3 rounded-sm transition-all duration-200 border ${
                         selectedRating === rating
                           ? "bg-white border-[#B56B56] shadow-md shadow-[#B56B56]/10"
                           : "border-transparent hover:bg-white/50"
@@ -577,7 +577,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
                         </span>
                       </div>
                       {selectedRating === rating && (
-                        <div className="w-2 h-2 rounded-full bg-[#B56B56]" />
+                        <div className="w-2 h-2 rounded-sm bg-[#B56B56]" />
                       )}
                     </button>
                   ))}
@@ -589,7 +589,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
             <div className="lg:hidden p-4 border-t border-[#1A2118]/5 bg-white">
               <button
                 onClick={() => setIsFilterOpen(false)}
-                className="w-full py-4 bg-[#1A2118] text-white rounded-full font-bold uppercase tracking-widest text-sm shadow-lg active:scale-95 transition-transform"
+                className="w-full py-4 bg-[#1A2118] text-white rounded-sm font-bold uppercase tracking-widest text-sm shadow-lg active:scale-95 transition-transform"
               >
                 Show {sortedProducts.length} Results
               </button>
@@ -607,7 +607,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
                     <button
                       key={catId}
                       onClick={() => removeCategory(catId)}
-                      className="flex items-center gap-2 px-3 py-1.5 bg-white border border-[#1A2118]/10 rounded-full text-xs font-bold text-[#1A2118] hover:border-[#B56B56] hover:text-[#B56B56] transition-colors shadow-sm"
+                      className="flex items-center gap-2 px-3 py-1.5 bg-white border border-[#1A2118]/10 rounded-sm text-xs font-bold text-[#1A2118] hover:border-[#B56B56] hover:text-[#B56B56] transition-colors shadow-sm"
                     >
                       {cat?.name} <X className="w-3 h-3" />
                     </button>
@@ -616,7 +616,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
                 {(priceRange[0] > 0 || priceRange[1] < 2000) && (
                   <button
                     onClick={resetPrice}
-                    className="flex items-center gap-2 px-3 py-1.5 bg-white border border-[#1A2118]/10 rounded-full text-xs font-bold text-[#1A2118] hover:border-[#B56B56] hover:text-[#B56B56] transition-colors shadow-sm"
+                    className="flex items-center gap-2 px-3 py-1.5 bg-white border border-[#1A2118]/10 rounded-sm text-xs font-bold text-[#1A2118] hover:border-[#B56B56] hover:text-[#B56B56] transition-colors shadow-sm"
                   >
                     ₹{priceRange[0]} - ₹{priceRange[1]} <X className="w-3 h-3" />
                   </button>
@@ -624,7 +624,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
                 {selectedRating && (
                   <button
                     onClick={resetRating}
-                    className="flex items-center gap-2 px-3 py-1.5 bg-white border border-[#1A2118]/10 rounded-full text-xs font-bold text-[#1A2118] hover:border-[#B56B56] hover:text-[#B56B56] transition-colors shadow-sm"
+                    className="flex items-center gap-2 px-3 py-1.5 bg-white border border-[#1A2118]/10 rounded-sm text-xs font-bold text-[#1A2118] hover:border-[#B56B56] hover:text-[#B56B56] transition-colors shadow-sm"
                   >
                     {selectedRating}+ Stars <X className="w-3 h-3" />
                   </button>
@@ -695,7 +695,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
                   <div className="mt-16 flex justify-center">
                     <button
                       onClick={handleLoadMore}
-                      className="px-10 py-4 bg-white border border-[#1A2118]/10 rounded-full text-sm font-bold uppercase tracking-widest text-[#1A2118] hover:bg-[#1A2118] hover:text-white transition-all shadow-sm hover:shadow-lg"
+                      className="px-10 py-4 bg-white border border-[#1A2118]/10 rounded-sm text-sm font-bold uppercase tracking-widest text-[#1A2118] hover:bg-[#1A2118] hover:text-white transition-all shadow-sm hover:shadow-lg"
                     >
                       Load More Products ({sortedProducts.length - visibleCount}{" "}
                       left)
@@ -704,8 +704,8 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
                 )}
               </>
             ) : (
-              <div className="flex flex-col items-center justify-center py-24 bg-white/40 backdrop-blur-md rounded-[2.5rem] border border-[#1A2118]/5 text-center">
-                <div className="w-20 h-20 bg-[#F2F0EA] rounded-[1.5rem] flex items-center justify-center mb-6 shadow-inner">
+              <div className="flex flex-col items-center justify-center py-24 bg-white/40 backdrop-blur-md rounded-sm border border-[#1A2118]/5 text-center">
+                <div className="w-20 h-20 bg-[#F2F0EA] rounded-sm flex items-center justify-center mb-6 shadow-inner">
                   <Search className="w-8 h-8 text-[#B56B56]" />
                 </div>
                 <h3 className="text-2xl font-serif text-[#1A2118] mb-2">
@@ -721,7 +721,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
                     setSelectedRating(null);
                     setPriceRange([0, 2000]);
                   }}
-                  className="px-8 py-3 bg-[#1A2118] text-white rounded-full text-sm font-bold uppercase tracking-widest hover:bg-[#B56B56] transition-colors"
+                  className="px-8 py-3 bg-[#1A2118] text-white rounded-sm text-sm font-bold uppercase tracking-widest hover:bg-[#B56B56] transition-colors"
                 >
                   Clear Filters
                 </button>
@@ -735,12 +735,12 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
       <div className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-[9997] lg:hidden transition-all duration-300 ${isFilterOpen ? "translate-y-24 opacity-0 pointer-events-none" : "translate-y-0 opacity-100"}`}>
         <button
           onClick={() => setIsFilterOpen(true)}
-          className="h-12 px-6 bg-[#1A2118] text-white rounded-full flex items-center gap-3 text-xs font-bold uppercase tracking-widest shadow-2xl transition-all hover:bg-[#B56B56] border border-white/10 backdrop-blur-md"
+          className="h-12 px-6 bg-[#1A2118] text-white rounded-sm flex items-center gap-3 text-xs font-bold uppercase tracking-widest shadow-2xl transition-all hover:bg-[#B56B56] border border-white/10 backdrop-blur-md"
         >
           <SlidersHorizontal className="w-4 h-4" />
           <span>Filters</span>
           {hasActiveFilters && (
-            <span className="flex items-center justify-center w-5 h-5 bg-[#B56B56] text-white text-[9px] rounded-full ml-1">
+            <span className="flex items-center justify-center w-5 h-5 bg-[#B56B56] text-white text-[9px] rounded-sm ml-1">
               !
             </span>
           )}

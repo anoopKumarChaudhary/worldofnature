@@ -43,7 +43,7 @@ export default function VerificationModal() {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1A2118]/80 backdrop-blur-sm">
-      <div className="bg-[#F2F0EA] rounded-[2.5rem] w-full max-w-md overflow-hidden shadow-2xl relative animate-fade-up">
+      <div className="bg-[#F2F0EA] rounded-sm w-full max-w-md overflow-hidden shadow-2xl relative animate-fade-up">
         {/* Decorative Header */}
         <div className="bg-[#1A2118] p-8 text-center relative overflow-hidden">
           <div className="absolute top-0 right-0 w-32 h-32 bg-[#BC5633] rounded-full mix-blend-overlay filter blur-[40px] opacity-40 pointer-events-none" />
@@ -72,13 +72,13 @@ export default function VerificationModal() {
                 maxLength={6}
                 value={otp}
                 onChange={(e) => setOtp(e.target.value.replace(/\D/g, ""))}
-                className="w-full px-6 py-4 bg-white border border-[#1A2118]/10 rounded-[1.5rem] text-[#1A2118] text-center text-2xl font-bold tracking-[0.5em] focus:ring-4 focus:ring-[#BC5633]/5 outline-none transition-all duration-300 placeholder-[#1A2118]/10 shadow-sm"
+                className="w-full px-6 py-4 bg-white border border-[#1A2118]/10 rounded-sm text-[#1A2118] text-center text-2xl font-bold tracking-[0.5em] focus:ring-4 focus:ring-[#BC5633]/5 outline-none transition-all duration-300 placeholder-[#1A2118]/10 shadow-sm"
                 placeholder="000000"
               />
             </div>
 
             {error && (
-              <div className="flex items-center gap-2 text-red-500 text-xs font-medium justify-center bg-red-50 p-3 rounded-xl">
+              <div className="flex items-center gap-2 text-red-500 text-xs font-medium justify-center bg-red-50 p-3 rounded-sm">
                 <AlertCircle className="w-4 h-4" />
                 {error}
               </div>
@@ -87,7 +87,7 @@ export default function VerificationModal() {
             <button
               type="submit"
               disabled={isLoading || otp.length !== 6}
-              className="w-full h-14 bg-[#1A2118] text-white rounded-[1.5rem] font-bold text-sm uppercase tracking-widest hover:bg-[#BC5633] hover:shadow-lg hover:shadow-[#BC5633]/20 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
+              className="w-full h-14 bg-[#1A2118] text-white rounded-sm font-bold text-sm uppercase tracking-widest hover:bg-[#BC5633] hover:shadow-lg hover:shadow-[#BC5633]/20 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
             >
               {isLoading ? (
                 <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />

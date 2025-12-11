@@ -71,7 +71,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   // --- LIST VIEW COMPONENT ---
   if (viewMode === "list") {
     return (
-      <div className="group relative flex flex-col md:flex-row bg-white dark:bg-neutral-900 rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 hover:shadow-xl hover:border-neutral-300 dark:hover:border-neutral-700 transition-all duration-300">
+      <div className="group relative flex flex-col md:flex-row bg-white dark:bg-neutral-900 rounded-none overflow-hidden border border-[#1A2118]/10 dark:border-[#E3E3DC]/10 hover:shadow-xl hover:-translate-y-1 hover:border-[#B56B56]/30 dark:hover:border-[#D68C72]/30 transition-all duration-500 ease-out">
         {/* Image Section */}
         <div className="relative w-full md:w-72 h-64 md:h-auto overflow-hidden bg-neutral-100 dark:bg-neutral-800">
           <Link href={`/product/${id}`} className="block w-full h-full">
@@ -88,12 +88,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
           {/* Badges */}
           <div className="absolute top-3 left-3 flex flex-col gap-2">
             {isOnSale && (
-              <span className="bg-rose-500/90 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+              <span className="bg-rose-500/90 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-sm shadow-sm">
                 SALE
               </span>
             )}
             {isNew && (
-              <span className="bg-emerald-500/90 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">
+              <span className="bg-emerald-500/90 backdrop-blur-sm text-white text-xs font-bold px-3 py-1 rounded-sm shadow-sm">
                 NEW
               </span>
             )}
@@ -107,7 +107,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
               {/* Categories/Tags could go here */}
               <div className="flex items-center gap-2 mb-2">
                 {isBestseller && (
-                  <span className="text-xs font-semibold text-amber-600 bg-amber-100 px-2 py-0.5 rounded">
+                  <span className="text-xs font-semibold text-amber-600 bg-amber-100 px-2 py-0.5 rounded-sm">
                     Best Seller
                   </span>
                 )}
@@ -167,10 +167,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
             </div>
 
             <div className="flex items-center gap-3">
-              <div className="flex items-center bg-neutral-100 dark:bg-neutral-800 rounded-full px-1 py-1">
+              <div className="flex items-center bg-neutral-100 dark:bg-neutral-800 rounded-sm px-1 py-1">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white dark:hover:bg-neutral-700 shadow-sm transition-all text-neutral-600"
+                  className="w-8 h-8 flex items-center justify-center rounded-sm hover:bg-white dark:hover:bg-neutral-700 shadow-sm transition-all text-neutral-600"
                 >
                   <Minus className="w-4 h-4" />
                 </button>
@@ -179,7 +179,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 </span>
                 <button
                   onClick={() => setQuantity(quantity + 1)}
-                  className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white dark:hover:bg-neutral-700 shadow-sm transition-all text-neutral-600"
+                  className="w-8 h-8 flex items-center justify-center rounded-sm hover:bg-white dark:hover:bg-neutral-700 shadow-sm transition-all text-neutral-600"
                 >
                   <Plus className="w-4 h-4" />
                 </button>
@@ -187,7 +187,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
               <button
                 onClick={handleAddToCart}
-                className="flex-1 sm:flex-none bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 px-6 py-2.5 rounded-full font-medium hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all active:scale-95 flex items-center gap-2 justify-center"
+                className="flex-1 sm:flex-none bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 px-6 py-2.5 rounded-sm font-medium hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all active:scale-95 flex items-center gap-2 justify-center"
               >
                 {isAdding ? (
                   <Check className="w-4 h-4" />
@@ -199,7 +199,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
               <button
                 onClick={() => setShowQuickView(true)}
-                className="p-2.5 rounded-full border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors text-neutral-600"
+                className="p-2.5 rounded-sm border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors text-neutral-600"
               >
                 <Eye className="w-5 h-5" />
               </button>
@@ -214,7 +214,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   return (
     <>
       <div
-        className="group relative w-full bg-white dark:bg-neutral-900 rounded-3xl overflow-hidden border border-transparent hover:border-neutral-200 dark:hover:border-neutral-700 shadow-sm hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-500"
+        className="group relative w-full bg-white dark:bg-neutral-900 rounded-none overflow-hidden border border-[#1A2118]/10 dark:border-[#E3E3DC]/10 hover:border-[#B56B56]/30 dark:hover:border-[#D68C72]/30 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-500 ease-out"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
@@ -250,17 +250,17 @@ const ProductCard: React.FC<ProductCardProps> = ({
           {/* Floating Badges */}
           <div className="absolute top-4 left-4 flex flex-col gap-2 z-10">
             {isBestseller && (
-              <span className="bg-white/90 dark:bg-neutral-900/90 backdrop-blur-md text-amber-600 dark:text-amber-400 text-[10px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-sm">
+              <span className="bg-white/90 dark:bg-neutral-900/90 backdrop-blur-md text-amber-600 dark:text-amber-400 text-[10px] uppercase tracking-wider font-bold px-3 py-1 rounded-sm shadow-sm">
                 Bestseller
               </span>
             )}
             {isOnSale && (
-              <span className="bg-rose-500 text-white text-[10px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-sm">
+              <span className="bg-rose-500 text-white text-[10px] uppercase tracking-wider font-bold px-3 py-1 rounded-sm shadow-sm">
                 -20%
               </span>
             )}
             {isNew && (
-              <span className="bg-indigo-500 text-white text-[10px] uppercase tracking-wider font-bold px-3 py-1 rounded-full shadow-sm">
+              <span className="bg-indigo-500 text-white text-[10px] uppercase tracking-wider font-bold px-3 py-1 rounded-sm shadow-sm">
                 New
               </span>
             )}
@@ -269,7 +269,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           {/* Wishlist - Glass Effect */}
           <button
             onClick={handleWishlistToggle}
-            className={`absolute top-4 right-4 p-2.5 rounded-full backdrop-blur-md transition-all duration-300 z-10 shadow-sm ${
+            className={`absolute top-4 right-4 p-2.5 rounded-sm backdrop-blur-md transition-all duration-300 z-10 shadow-sm ${
               isWishlisted
                 ? "bg-rose-500 text-white rotate-[360deg]"
                 : "bg-white/80 dark:bg-neutral-800/80 text-neutral-600 dark:text-neutral-300 hover:bg-white hover:text-rose-500"
@@ -285,7 +285,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             <div className="flex gap-2">
               <button
                 onClick={() => setShowQuickView(true)}
-                className="flex-1 bg-white/95 dark:bg-neutral-800/95 backdrop-blur text-neutral-900 dark:text-white py-3 rounded-xl text-sm font-semibold hover:bg-white shadow-lg transition-colors flex items-center justify-center gap-2"
+                className="flex-1 bg-white/95 dark:bg-neutral-800/95 backdrop-blur text-neutral-900 dark:text-white py-3 rounded-sm text-sm font-semibold hover:bg-white shadow-lg transition-colors flex items-center justify-center gap-2"
               >
                 <Eye className="w-4 h-4" />
                 Quick View
@@ -338,7 +338,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             <div className="flex items-center gap-2">
               {/* Only show quantity controls if hovered, otherwise a simple circle button */}
               <div
-                className={`flex items-center bg-neutral-100 dark:bg-neutral-800 rounded-full p-1 transition-all duration-300 ${
+                className={`flex items-center bg-neutral-100 dark:bg-neutral-800 rounded-sm p-1 transition-all duration-300 ${
                   isHovered ? "w-auto" : "w-10 h-10"
                 }`}
               >
@@ -349,7 +349,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
                         e.preventDefault();
                         setQuantity(Math.max(1, quantity - 1));
                       }}
-                      className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white dark:hover:bg-neutral-700 text-neutral-600 transition-colors"
+                      className="w-8 h-8 flex items-center justify-center rounded-sm hover:bg-white dark:hover:bg-neutral-700 text-neutral-600 transition-colors"
                     >
                       <Minus className="w-3 h-3" />
                     </button>
@@ -363,7 +363,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
                   onClick={handleAddToCart}
                   className={`${
                     isHovered ? "w-8 h-8" : "w-full h-full"
-                  } flex items-center justify-center rounded-full bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all shadow-md`}
+                  } flex items-center justify-center rounded-sm bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all shadow-md`}
                 >
                   {isAdding ? (
                     <Check className="w-4 h-4" />

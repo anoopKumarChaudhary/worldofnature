@@ -45,7 +45,7 @@ const TestimonialsSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
           {reviews.map((review) => (
-            <div key={review.id} className="bg-[#F2F0EA] p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-[#1A2118]/5 flex flex-col">
+            <div key={review.id} className="bg-[#F2F0EA] p-8 rounded-sm shadow-sm hover:shadow-md transition-shadow duration-300 border border-[#1A2118]/5 flex flex-col">
               
               {/* Stars */}
               <div className="flex gap-1 mb-6">

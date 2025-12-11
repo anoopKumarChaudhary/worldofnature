@@ -140,7 +140,7 @@ export default function LoginPage() {
         <div className="fixed inset-0 z-0 pointer-events-none bg-[#D9DBD5]" />
         
         <div className="relative z-10 w-full max-w-lg animate-fade-up">
-          <div className="bg-white/80 backdrop-blur-2xl border border-white/60 rounded-[3rem] p-8 md:p-12 shadow-2xl shadow-[#1A2118]/10 text-center relative overflow-hidden">
+          <div className="bg-white/80 backdrop-blur-2xl border border-white/60 rounded-sm p-8 md:p-12 shadow-2xl shadow-[#1A2118]/10 text-center relative overflow-hidden">
              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-48 bg-[#B56B56] rounded-full mix-blend-multiply filter blur-[80px] opacity-20 pointer-events-none" />
 
             <div className="w-20 h-20 bg-[#1A2118] rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl relative z-10">
@@ -162,7 +162,7 @@ export default function LoginPage() {
                   maxLength={6}
                   value={otp}
                   onChange={(e) => setOtp(e.target.value.replace(/\D/g, ''))}
-                  className="w-full px-6 py-4 bg-white border border-[#1A2118]/10 rounded-[1.5rem] text-[#1A2118] text-center text-2xl font-bold tracking-[0.5em] focus:ring-4 focus:ring-[#B56B56]/5 outline-none transition-all duration-300 placeholder-[#1A2118]/10 shadow-sm"
+                  className="w-full px-6 py-4 bg-white border border-[#1A2118]/10 rounded-sm text-[#1A2118] text-center text-2xl font-bold tracking-[0.5em] focus:ring-4 focus:ring-[#B56B56]/5 outline-none transition-all duration-300 placeholder-[#1A2118]/10 shadow-sm"
                   placeholder="000000"
                 />
               </div>
@@ -174,7 +174,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={isLoading || otp.length !== 6}
-                className="w-full h-14 bg-[#1A2118] text-white rounded-[1.5rem] font-bold text-sm uppercase tracking-widest hover:bg-[#B56B56] hover:shadow-lg hover:shadow-[#B56B56]/20 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
+                className="w-full h-14 bg-[#1A2118] text-white rounded-sm font-bold text-sm uppercase tracking-widest hover:bg-[#B56B56] hover:shadow-lg hover:shadow-[#B56B56]/20 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
               >
                 {isLoading ? (
                   <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -219,7 +219,7 @@ export default function LoginPage() {
 
 
         {/* Main Card */}
-        <div className="bg-white/70 backdrop-blur-2xl border border-white/40 rounded-[3rem] p-8 md:p-12 shadow-2xl shadow-[#1A2118]/10 relative overflow-hidden">
+        <div className="bg-white/70 backdrop-blur-2xl border border-white/40 rounded-sm p-8 md:p-12 shadow-2xl shadow-[#1A2118]/10 relative overflow-hidden">
           {/* Top Decoration */}
           <div className="absolute top-0 right-0 w-32 h-32 bg-[#B56B56] rounded-full mix-blend-overlay filter blur-[50px] opacity-20 pointer-events-none" />
 
@@ -228,7 +228,7 @@ export default function LoginPage() {
               href="/"
               className="inline-block mb-6 hover:scale-105 transition-transform"
             >
-              <div className="w-16 h-16 bg-[#1A2118] rounded-[1.2rem] flex items-center justify-center shadow-lg mx-auto">
+              <div className="w-16 h-16 bg-[#1A2118] rounded-sm flex items-center justify-center shadow-lg mx-auto">
                 <span className="text-2xl font-bold text-white">W</span>
               </div>
             </Link>
@@ -312,7 +312,7 @@ export default function LoginPage() {
                 <label className="flex items-center cursor-pointer">
                   <input
                     type="checkbox"
-                    className="w-4 h-4 rounded border-[#1A2118]/20 text-[#1A2118] focus:ring-[#B56B56]"
+                    className="w-4 h-4 rounded-sm border-[#1A2118]/20 text-[#1A2118] focus:ring-[#B56B56]"
                   />
                   <span className="ml-2 text-xs font-bold text-[#596157]">
                     Remember me
@@ -337,7 +337,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="group w-full h-14 bg-[#1A2118] text-white rounded-[1.5rem] font-bold text-sm uppercase tracking-widest hover:bg-[#B56B56] hover:shadow-lg hover:shadow-[#B56B56]/20 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
+                className="group w-full h-14 bg-[#1A2118] text-white rounded-sm font-bold text-sm uppercase tracking-widest hover:bg-[#B56B56] hover:shadow-lg hover:shadow-[#B56B56]/20 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
               >
                 {isLoading ? (
                   <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -426,7 +426,7 @@ const Input = ({ label, error, icon, ...props }: InputProps) => (
     <div className="relative">
       <input
         {...props}
-        className={`w-full px-6 py-4 bg-white border rounded-[1.5rem] text-[#1A2118] focus:ring-4 focus:ring-[#B56B56]/5 outline-none transition-all duration-300 placeholder-[#1A2118]/30 shadow-sm ${
+        className={`w-full px-6 py-4 bg-white border rounded-sm text-[#1A2118] focus:ring-4 focus:ring-[#B56B56]/5 outline-none transition-all duration-300 placeholder-[#1A2118]/30 shadow-sm ${
           error
             ? "border-red-400 focus:border-red-400"
             : "border-[#1A2118]/10 focus:border-[#B56B56]/20"
@@ -443,7 +443,7 @@ const Input = ({ label, error, icon, ...props }: InputProps) => (
 const SocialButton = ({ icon, label }: SocialButtonProps) => (
   <button
     type="button"
-    className="flex items-center justify-center gap-3 py-3.5 px-4 bg-white border border-[#1A2118]/5 rounded-[1.2rem] hover:bg-[#F2F0EA] hover:-translate-y-0.5 transition-all shadow-sm"
+    className="flex items-center justify-center gap-3 py-3.5 px-4 bg-white border border-[#1A2118]/5 rounded-sm hover:bg-[#F2F0EA] hover:-translate-y-0.5 transition-all shadow-sm"
   >
     {icon}
     <span className="text-sm font-bold text-[#1A2118]">{label}</span>

@@ -99,7 +99,7 @@ export default function ProfilePage() {
               </div>
               <button
                 onClick={handleLogout}
-                className="px-6 py-3 bg-white/60 backdrop-blur-md border border-[#1A2118]/10 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-[#1A2118] hover:text-white transition-all flex items-center gap-2"
+                className="px-6 py-3 bg-white/60 backdrop-blur-md border border-[#1A2118]/10 rounded-sm text-xs font-bold uppercase tracking-widest hover:bg-[#1A2118] hover:text-white transition-all flex items-center gap-2"
               >
                 <LogOut className="w-4 h-4" /> Sign Out
               </button>
@@ -108,8 +108,8 @@ export default function ProfilePage() {
             <div className="grid lg:grid-cols-12 gap-8">
               {/* Sidebar / User Info */}
               <div className="lg:col-span-4">
-                <div className="bg-white/60 backdrop-blur-xl border border-white/40 rounded-[2.5rem] p-8 shadow-lg">
-                  <div className="w-20 h-20 bg-[#1A2118] rounded-[1.5rem] flex items-center justify-center mb-6 shadow-xl text-white text-2xl font-serif">
+                <div className="bg-white/60 backdrop-blur-xl border border-white/40 rounded-sm p-8 shadow-lg">
+                  <div className="w-20 h-20 bg-[#1A2118] rounded-sm flex items-center justify-center mb-6 shadow-xl text-white text-2xl font-serif">
                     {user?.firstName?.charAt(0)}
                   </div>
                   <h2 className="text-2xl font-serif font-bold text-[#1A2118] mb-1">
@@ -139,8 +139,8 @@ export default function ProfilePage() {
                     <div className="w-10 h-10 border-2 border-[#BC5633] border-t-transparent rounded-full animate-spin"></div>
                   </div>
                 ) : orders.length === 0 ? (
-                  <div className="bg-white/40 backdrop-blur-md border border-white/40 rounded-[2.5rem] p-12 text-center">
-                    <div className="w-16 h-16 bg-[#F2F0EA] rounded-[1.5rem] flex items-center justify-center mx-auto mb-4">
+                  <div className="bg-white/40 backdrop-blur-md border border-white/40 rounded-sm p-12 text-center">
+                    <div className="w-16 h-16 bg-[#F2F0EA] rounded-sm flex items-center justify-center mx-auto mb-4">
                       <Package className="w-8 h-8 text-[#1A2118]/40" />
                     </div>
                     <h3 className="text-xl font-bold text-[#1A2118] mb-2">
@@ -151,7 +151,7 @@ export default function ProfilePage() {
                     </p>
                     <Link
                       href="/shop"
-                      className="inline-block px-8 py-4 bg-[#1A2118] text-white rounded-full font-bold text-sm uppercase tracking-widest hover:bg-[#BC5633] transition-colors"
+                      className="inline-block px-8 py-4 bg-[#1A2118] text-white rounded-sm font-bold text-sm uppercase tracking-widest hover:bg-[#BC5633] transition-colors"
                     >
                       Start Shopping
                     </Link>
@@ -161,7 +161,7 @@ export default function ProfilePage() {
                     {orders.map((order) => (
                       <div
                         key={order.id}
-                        className="bg-white/60 backdrop-blur-xl border border-white/40 rounded-[2rem] p-6 hover:shadow-lg transition-all duration-300 group"
+                        className="bg-white/60 backdrop-blur-xl border border-white/40 rounded-sm p-6 hover:shadow-lg transition-all duration-300 group"
                       >
                         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6 pb-6 border-b border-[#1A2118]/5">
                           <div>
@@ -175,7 +175,7 @@ export default function ProfilePage() {
                           </div>
                           <div className="flex items-center gap-4">
                             <span
-                              className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide ${
+                              className={`px-3 py-1 rounded-sm text-xs font-bold uppercase tracking-wide ${
                                 order.status === "delivered"
                                   ? "bg-[#3A4D39]/10 text-[#3A4D39]"
                                   : order.status === "cancelled"
@@ -197,7 +197,7 @@ export default function ProfilePage() {
                               key={`${item.id}-${item.size}`}
                               className="flex items-center gap-4"
                             >
-                              <div className="w-12 h-12 bg-white rounded-lg overflow-hidden border border-[#1A2118]/5">
+                              <div className="w-12 h-12 bg-white rounded-sm overflow-hidden border border-[#1A2118]/5">
                                   {/* eslint-disable-next-line @next/next/no-img-element */}
                                   <img
                                     src={item.image}

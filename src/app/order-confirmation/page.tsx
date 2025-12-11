@@ -50,7 +50,7 @@ function OrderConfirmationContent() {
           </h1>
           <Link
             href="/"
-            className="inline-flex items-center gap-2 h-14 px-8 bg-[#1A2118] text-white rounded-[2rem] font-bold text-sm uppercase tracking-widest hover:bg-[#BC5633] transition-colors shadow-lg"
+            className="inline-flex items-center gap-2 h-14 px-8 bg-[#1A2118] text-white rounded-sm font-bold text-sm uppercase tracking-widest hover:bg-[#BC5633] transition-colors shadow-lg"
           >
             Back Home
           </Link>
@@ -143,7 +143,7 @@ function OrderConfirmationContent() {
 
             {/* --- ORDER DETAILS CARD --- */}
             <div
-              className="bg-white/60 backdrop-blur-xl border border-white/40 rounded-[3rem] shadow-2xl overflow-hidden animate-fade-up"
+              className="bg-white/60 backdrop-blur-xl border border-white/40 rounded-sm shadow-2xl overflow-hidden animate-fade-up"
               style={{ animationDelay: "0.2s" }}
             >
               {/* Header Bar */}
@@ -154,7 +154,7 @@ function OrderConfirmationContent() {
                   </p>
                   <p className="text-2xl font-mono">{orderNumber}</p>
                 </div>
-                <div className="px-4 py-2 bg-[#F2F0EA]/10 rounded-full border border-[#F2F0EA]/20">
+                <div className="px-4 py-2 bg-[#F2F0EA]/10 rounded-sm border border-[#F2F0EA]/20">
                   <span className="text-xs font-bold uppercase tracking-widest">
                     Processing
                   </span>
@@ -172,7 +172,7 @@ function OrderConfirmationContent() {
                       key={`${item.id}-${item.size}`}
                       className="flex items-center gap-5"
                     >
-                      <div className="w-16 h-16 bg-white rounded-[1rem] overflow-hidden border border-[#1A2118]/5 shadow-sm">
+                      <div className="w-16 h-16 bg-white rounded-sm overflow-hidden border border-[#1A2118]/5 shadow-sm">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
                           src={item.image}
@@ -225,7 +225,7 @@ function OrderConfirmationContent() {
               style={{ animationDelay: "0.4s" }}
             >
               {/* What's Next */}
-              <div className="bg-white/40 backdrop-blur-md border border-white/40 rounded-[2.5rem] p-8">
+              <div className="bg-white/40 backdrop-blur-md border border-white/40 rounded-sm p-8">
                 <h3 className="text-xl font-serif font-bold text-[#1A2118] mb-6">
                   What&apos;s Next?
                 </h3>
@@ -268,7 +268,7 @@ function OrderConfirmationContent() {
               </div>
 
               {/* Need Help? */}
-              <div className="bg-[#1A2118] text-[#F2F0EA] rounded-[2.5rem] p-8 flex flex-col justify-between">
+              <div className="bg-[#1A2118] text-[#F2F0EA] rounded-sm p-8 flex flex-col justify-between">
                 <div>
                   <h3 className="text-xl font-serif font-bold mb-2">
                     Need Help?
@@ -294,13 +294,13 @@ function OrderConfirmationContent() {
             >
               <Link
                 href="/shop"
-                className="h-14 px-8 bg-[#1A2118] text-white rounded-[2rem] font-bold text-sm uppercase tracking-widest hover:bg-[#BC5633] transition-colors shadow-lg flex items-center justify-center gap-3"
+                className="h-14 px-8 bg-[#1A2118] text-white rounded-sm font-bold text-sm uppercase tracking-widest hover:bg-[#BC5633] transition-colors shadow-lg flex items-center justify-center gap-3"
               >
                 <ShoppingBag className="w-5 h-5" /> Continue Shopping
               </Link>
               <Link
                 href="/"
-                className="h-14 px-8 bg-white border border-[#1A2118]/10 text-[#1A2118] rounded-[2rem] font-bold text-sm uppercase tracking-widest hover:bg-[#F2F0EA] transition-colors flex items-center justify-center gap-3"
+                className="h-14 px-8 bg-white border border-[#1A2118]/10 text-[#1A2118] rounded-sm font-bold text-sm uppercase tracking-widest hover:bg-[#F2F0EA] transition-colors flex items-center justify-center gap-3"
               >
                 <Home className="w-5 h-5" /> Back Home
               </Link>

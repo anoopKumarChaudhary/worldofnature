@@ -95,7 +95,7 @@ export default function WishlistPage() {
             </p>
             <Link
               href="/login"
-              className="inline-block bg-[#1A2118] text-white px-8 py-3 rounded-full hover:bg-[#BC5633] transition-colors"
+              className="inline-block bg-[#1A2118] text-white px-8 py-3 rounded-sm hover:bg-[#BC5633] transition-colors"
             >
               Login
             </Link>
@@ -107,7 +107,7 @@ export default function WishlistPage() {
             </p>
             <Link
               href="/shop"
-              className="inline-block bg-[#1A2118] text-white px-8 py-3 rounded-full hover:bg-[#BC5633] transition-colors"
+              className="inline-block bg-[#1A2118] text-white px-8 py-3 rounded-sm hover:bg-[#BC5633] transition-colors"
             >
               Continue Shopping
             </Link>
@@ -117,7 +117,7 @@ export default function WishlistPage() {
             {wishlistItems.map((item) => (
               <div
                 key={item.id}
-                className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+                className="bg-white rounded-sm overflow-hidden shadow-sm hover:shadow-md transition-shadow"
               >
                 <div className="relative h-64">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -128,7 +128,7 @@ export default function WishlistPage() {
                   />
                   <button
                     onClick={() => handleRemove(item.id)}
-                    className="absolute top-4 right-4 p-2 bg-white/80 backdrop-blur-sm rounded-full text-red-500 hover:bg-red-50 transition-colors"
+                    className="absolute top-4 right-4 p-2 bg-white/80 backdrop-blur-sm rounded-sm text-red-500 hover:bg-red-50 transition-colors"
                   >
                     <Trash2 size={20} />
                   </button>
@@ -144,7 +144,7 @@ export default function WishlistPage() {
                   </p>
                   <button
                     onClick={() => handleAddToCart(item)}
-                    className="w-full py-3 bg-[#1A2118] text-white rounded-xl font-bold uppercase tracking-widest text-xs hover:bg-[#BC5633] transition-colors flex items-center justify-center gap-2"
+                    className="w-full py-3 bg-[#1A2118] text-white rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-[#BC5633] transition-colors flex items-center justify-center gap-2"
                   >
                     <ShoppingBag size={16} />
                     Add to Cart

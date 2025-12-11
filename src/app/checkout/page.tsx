@@ -195,8 +195,8 @@ export default function CheckoutPage() {
             backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
           }}
         />
-        <div className="relative z-10 text-center p-10 bg-white/60 backdrop-blur-xl rounded-[3rem] border border-[#1A2118]/5 shadow-2xl">
-          <div className="w-24 h-24 bg-[#F2F0EA] rounded-[2rem] flex items-center justify-center mx-auto mb-6 shadow-inner">
+        <div className="relative z-10 text-center p-10 bg-white/60 backdrop-blur-xl rounded-sm border border-[#1A2118]/5 shadow-2xl">
+          <div className="w-24 h-24 bg-[#F2F0EA] rounded-sm flex items-center justify-center mx-auto mb-6 shadow-inner">
             <Truck className="w-10 h-10 text-[#BC5633]" />
           </div>
           <h1 className="text-3xl font-serif font-bold text-[#1A2118] mb-2">
@@ -207,7 +207,7 @@ export default function CheckoutPage() {
           </p>
           <Link
             href="/shop"
-            className="inline-flex items-center gap-2 h-14 px-8 bg-[#1A2118] text-white rounded-full font-bold text-sm uppercase tracking-widest hover:bg-[#BC5633] transition-colors shadow-lg"
+            className="inline-flex items-center gap-2 h-14 px-8 bg-[#1A2118] text-white rounded-sm font-bold text-sm uppercase tracking-widest hover:bg-[#BC5633] transition-colors shadow-lg"
           >
             Continue Shopping
           </Link>
@@ -260,7 +260,7 @@ export default function CheckoutPage() {
             </h1>
             
             {!user && (
-              <div className="mb-8 p-4 bg-[#BC5633]/10 rounded-2xl flex items-center justify-between">
+              <div className="mb-8 p-4 bg-[#BC5633]/10 rounded-sm flex items-center justify-between">
                 <p className="text-[#1A2118] font-medium">Already have an account?</p>
                 <Link href="/login" className="text-[#BC5633] font-bold hover:underline">
                   Login for a faster checkout
@@ -269,7 +269,7 @@ export default function CheckoutPage() {
             )}
 
             {/* Stepper */}
-            <div className="inline-flex bg-white/70 backdrop-blur-xl rounded-full p-1.5 shadow-lg border border-white/40 mb-12">
+            <div className="inline-flex bg-white/70 backdrop-blur-xl rounded-sm p-1.5 shadow-lg border border-white/40 mb-12">
               {[
                 { id: 1, label: "Shipping", icon: MapPin },
                 { id: 2, label: "Payment", icon: DollarSign },
@@ -277,7 +277,7 @@ export default function CheckoutPage() {
               ].map((step, idx) => (
                 <div key={step.id} className="flex items-center">
                   <div
-                    className={`flex items-center gap-2 px-6 py-3 rounded-full transition-all duration-500 ${
+                    className={`flex items-center gap-2 px-6 py-3 rounded-sm transition-all duration-500 ${
                       currentStep === step.id
                         ? "bg-[#1A2118] text-white shadow-md"
                         : currentStep > step.id
@@ -309,7 +309,7 @@ export default function CheckoutPage() {
               {/* --- MAIN FORM AREA --- */}
               <div className="lg:col-span-8">
                 {currentStep === 1 && (
-                  <div className="bg-white/80 backdrop-blur-xl border border-white rounded-[3rem] p-8 md:p-12 shadow-2xl shadow-[#1A2118]/5">
+                  <div className="bg-white/80 backdrop-blur-xl border border-white rounded-sm p-8 md:p-12 shadow-2xl shadow-[#1A2118]/5">
                     <h2 className="text-2xl font-serif font-bold text-[#1A2118] mb-8">
                       Shipping Details
                     </h2>
@@ -421,7 +421,7 @@ export default function CheckoutPage() {
                       <div className="flex justify-end pt-6">
                         <button
                           type="submit"
-                          className="btn-primary h-14 px-8 bg-[#1A2118] text-white rounded-[2rem] font-bold text-sm uppercase tracking-widest hover:bg-[#3A4D39] transition-all shadow-lg flex items-center gap-3"
+                          className="btn-primary h-14 px-8 bg-[#1A2118] text-white rounded-sm font-bold text-sm uppercase tracking-widest hover:bg-[#3A4D39] transition-all shadow-lg flex items-center gap-3"
                         >
                           Continue to Payment <ArrowRight className="w-4 h-4" />
                         </button>
@@ -431,14 +431,14 @@ export default function CheckoutPage() {
                 )}
 
                 {currentStep === 2 && (
-                  <div className="bg-white/80 backdrop-blur-xl border border-white rounded-[3rem] p-8 md:p-12 shadow-2xl shadow-[#1A2118]/5">
+                  <div className="bg-white/80 backdrop-blur-xl border border-white rounded-sm p-8 md:p-12 shadow-2xl shadow-[#1A2118]/5">
                     <h2 className="text-2xl font-serif font-bold text-[#1A2118] mb-8">
                       Payment Method
                     </h2>
                     <div className="space-y-6">
                       {/* COD Option */}
                       <div 
-                        className={`rounded-[2rem] p-6 border cursor-pointer transition-all ${
+                        className={`rounded-sm p-6 border cursor-pointer transition-all ${
                           paymentInfo.paymentMethod === "COD" 
                             ? "bg-[#F2F0EA]/50 border-[#BC5633]" 
                             : "bg-white border-[#1A2118]/10 hover:border-[#BC5633]/50"
@@ -471,7 +471,7 @@ export default function CheckoutPage() {
 
                       {/* Razorpay Option */}
                       <div 
-                        className={`rounded-[2rem] p-6 border cursor-pointer transition-all ${
+                        className={`rounded-sm p-6 border cursor-pointer transition-all ${
                           paymentInfo.paymentMethod === "RAZORPAY" 
                             ? "bg-[#F2F0EA]/50 border-[#BC5633]" 
                             : "bg-white border-[#1A2118]/10 hover:border-[#BC5633]/50"
@@ -506,13 +506,13 @@ export default function CheckoutPage() {
                         <button
                           type="button"
                           onClick={() => setCurrentStep(1)}
-                          className="h-14 px-8 bg-white border border-[#1A2118]/10 text-[#1A2118] rounded-[2rem] font-bold text-sm uppercase tracking-widest hover:bg-[#F2F0EA] transition-colors flex items-center gap-3"
+                          className="h-14 px-8 bg-white border border-[#1A2118]/10 text-[#1A2118] rounded-sm font-bold text-sm uppercase tracking-widest hover:bg-[#F2F0EA] transition-colors flex items-center gap-3"
                         >
                           <ArrowLeft className="w-4 h-4" /> Back
                         </button>
                         <button
                           onClick={() => setCurrentStep(3)}
-                          className="h-14 px-8 bg-[#1A2118] text-white rounded-[2rem] font-bold text-sm uppercase tracking-widest hover:bg-[#3A4D39] transition-all shadow-lg flex items-center gap-3"
+                          className="h-14 px-8 bg-[#1A2118] text-white rounded-sm font-bold text-sm uppercase tracking-widest hover:bg-[#3A4D39] transition-all shadow-lg flex items-center gap-3"
                         >
                           Review Order <ArrowRight className="w-4 h-4" />
                         </button>
@@ -524,7 +524,7 @@ export default function CheckoutPage() {
                 {currentStep === 3 && (
                   <div className="space-y-6">
                     {/* Items Review */}
-                    <div className="bg-white/80 backdrop-blur-xl border border-white rounded-[3rem] p-8 shadow-lg">
+                    <div className="bg-white/80 backdrop-blur-xl border border-white rounded-sm p-8 shadow-lg">
                       <h2 className="text-2xl font-serif font-bold text-[#1A2118] mb-6">
                         Review Items
                       </h2>
@@ -532,9 +532,9 @@ export default function CheckoutPage() {
                         {items.map((item) => (
                           <div
                             key={`${item.id}-${item.size}`}
-                            className="flex items-center gap-4 p-4 bg-[#F2F0EA]/50 rounded-[1.5rem] border border-[#1A2118]/5"
+                            className="flex items-center gap-4 p-4 bg-[#F2F0EA]/50 rounded-sm border border-[#1A2118]/5"
                           >
-                            <div className="w-16 h-16 bg-white rounded-[1rem] overflow-hidden shadow-sm">
+                            <div className="w-16 h-16 bg-white rounded-sm overflow-hidden shadow-sm">
                               {/* eslint-disable-next-line @next/next/no-img-element */}
                               <img
                                 src={item.image}
@@ -560,7 +560,7 @@ export default function CheckoutPage() {
                     </div>
 
                     {/* Shipping Review */}
-                    <div className="bg-white/80 backdrop-blur-xl border border-white rounded-[3rem] p-8 shadow-lg">
+                    <div className="bg-white/80 backdrop-blur-xl border border-white rounded-sm p-8 shadow-lg">
                       <div className="flex justify-between items-start mb-4">
                         <h3 className="text-xl font-serif font-bold text-[#1A2118]">
                           Shipping To
@@ -588,13 +588,13 @@ export default function CheckoutPage() {
                     <div className="flex justify-between pt-4">
                       <button
                         onClick={() => setCurrentStep(2)}
-                        className="h-14 px-8 bg-white border border-[#1A2118]/10 text-[#1A2118] rounded-[2rem] font-bold text-sm uppercase tracking-widest hover:bg-[#F2F0EA] transition-colors flex items-center gap-3"
+                        className="h-14 px-8 bg-white border border-[#1A2118]/10 text-[#1A2118] rounded-sm font-bold text-sm uppercase tracking-widest hover:bg-[#F2F0EA] transition-colors flex items-center gap-3"
                       >
                         <ArrowLeft className="w-4 h-4" /> Back
                       </button>
                       <button
                         onClick={handlePlaceOrder}
-                        className="h-14 px-8 bg-[#BC5633] text-white rounded-[2rem] font-bold text-sm uppercase tracking-widest hover:bg-[#A34528] transition-all shadow-lg shadow-[#BC5633]/20 flex items-center gap-3"
+                        className="h-14 px-8 bg-[#BC5633] text-white rounded-sm font-bold text-sm uppercase tracking-widest hover:bg-[#A34528] transition-all shadow-lg shadow-[#BC5633]/20 flex items-center gap-3"
                       >
                         {paymentInfo.paymentMethod === "RAZORPAY" ? "Pay Now" : "Place Order"} <Package className="w-4 h-4" />
                       </button>
@@ -605,7 +605,7 @@ export default function CheckoutPage() {
 
               {/* --- ORDER SUMMARY SIDEBAR --- */}
               <div className="lg:col-span-4 mt-12 lg:mt-0">
-                <div className="sticky top-32 bg-[#1A2118] text-[#F2F0EA] rounded-[2.5rem] p-8 shadow-2xl relative overflow-hidden">
+                <div className="sticky top-32 bg-[#1A2118] text-[#F2F0EA] rounded-sm p-8 shadow-2xl relative overflow-hidden">
                   <div className="absolute top-0 right-0 w-40 h-40 bg-[#BC5633] rounded-full mix-blend-overlay filter blur-[60px] opacity-40 pointer-events-none" />
 
                   <h2 className="text-2xl font-serif font-bold mb-8 relative z-10">
@@ -673,7 +673,7 @@ const Input = ({ label, icon, error, ...props }: InputProps) => (
         required
         className={`w-full px-6 py-4 bg-[#F2F0EA]/50 border ${
           error ? "border-red-500" : "border-transparent"
-        } rounded-[1.5rem] text-[#1A2118] focus:bg-white focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all duration-300 placeholder-[#1A2118]/30`}
+        } rounded-sm text-[#1A2118] focus:bg-white focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all duration-300 placeholder-[#1A2118]/30`}
       />
       {icon && (
         <div className="absolute right-6 top-1/2 -translate-y-1/2">{icon}</div>

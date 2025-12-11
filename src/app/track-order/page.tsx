@@ -42,7 +42,7 @@ export default function TrackOrderPage() {
           </p>
         </div>
 
-        <div className="bg-white/80 backdrop-blur-xl border border-white rounded-[3rem] p-8 md:p-12 shadow-2xl shadow-[#1A2118]/5 mb-12">
+        <div className="bg-white/80 backdrop-blur-xl border border-white rounded-sm p-8 md:p-12 shadow-2xl shadow-[#1A2118]/5 mb-12">
           <form onSubmit={handleTrack} className="space-y-6 max-w-xl mx-auto">
             <div className="space-y-2">
               <label className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/60 ml-4">
@@ -54,7 +54,7 @@ export default function TrackOrderPage() {
                   value={orderNumber}
                   onChange={(e) => setOrderNumber(e.target.value)}
                   placeholder="e.g. ORD-1733650000000"
-                  className="w-full px-6 py-4 bg-[#F2F0EA]/50 border border-transparent rounded-[1.5rem] text-[#1A2118] focus:bg-white focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all duration-300 placeholder-[#1A2118]/30"
+                  className="w-full px-6 py-4 bg-[#F2F0EA]/50 border border-transparent rounded-sm text-[#1A2118] focus:bg-white focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all duration-300 placeholder-[#1A2118]/30"
                   required
                 />
                 <Package className="absolute right-6 top-1/2 -translate-y-1/2 text-[#1A2118]/30 w-5 h-5" />
@@ -71,7 +71,7 @@ export default function TrackOrderPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="e.g. jane@example.com"
-                  className="w-full px-6 py-4 bg-[#F2F0EA]/50 border border-transparent rounded-[1.5rem] text-[#1A2118] focus:bg-white focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all duration-300 placeholder-[#1A2118]/30"
+                  className="w-full px-6 py-4 bg-[#F2F0EA]/50 border border-transparent rounded-sm text-[#1A2118] focus:bg-white focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all duration-300 placeholder-[#1A2118]/30"
                   required
                 />
                 <Search className="absolute right-6 top-1/2 -translate-y-1/2 text-[#1A2118]/30 w-5 h-5" />
@@ -79,7 +79,7 @@ export default function TrackOrderPage() {
             </div>
 
             {error && (
-              <div className="flex items-center gap-2 text-red-500 text-sm font-medium justify-center bg-red-50 p-4 rounded-2xl">
+              <div className="flex items-center gap-2 text-red-500 text-sm font-medium justify-center bg-red-50 p-4 rounded-sm">
                 <AlertCircle className="w-5 h-5" />
                 {error}
               </div>
@@ -88,7 +88,7 @@ export default function TrackOrderPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full h-14 bg-[#1A2118] text-white rounded-[2rem] font-bold text-sm uppercase tracking-widest hover:bg-[#3A4D39] transition-all shadow-lg flex items-center justify-center gap-3 disabled:opacity-70"
+              className="w-full h-14 bg-[#1A2118] text-white rounded-sm font-bold text-sm uppercase tracking-widest hover:bg-[#3A4D39] transition-all shadow-lg flex items-center justify-center gap-3 disabled:opacity-70"
             >
               {isLoading ? (
                 <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -102,7 +102,7 @@ export default function TrackOrderPage() {
         </div>
 
         {order && (
-          <div className="bg-[#1A2118] text-[#F2F0EA] rounded-[3rem] p-8 md:p-12 shadow-2xl relative overflow-hidden animate-fade-up">
+          <div className="bg-[#1A2118] text-[#F2F0EA] rounded-sm p-8 md:p-12 shadow-2xl relative overflow-hidden animate-fade-up">
              <div className="absolute top-0 right-0 w-64 h-64 bg-[#BC5633] rounded-full mix-blend-overlay filter blur-[80px] opacity-20 pointer-events-none" />
              
              <div className="relative z-10">
@@ -111,7 +111,7 @@ export default function TrackOrderPage() {
                       <h2 className="text-3xl font-serif font-bold mb-2">Order Status</h2>
                       <p className="text-[#F2F0EA]/60">Order #{order.orderNumber}</p>
                    </div>
-                   <div className="px-6 py-3 bg-[#BC5633] rounded-full font-bold uppercase tracking-widest text-sm shadow-lg shadow-[#BC5633]/20">
+                   <div className="px-6 py-3 bg-[#BC5633] rounded-sm font-bold uppercase tracking-widest text-sm shadow-lg shadow-[#BC5633]/20">
                       {order.status}
                    </div>
                 </div>
@@ -135,9 +135,9 @@ export default function TrackOrderPage() {
                    <h3 className="text-[#F2F0EA]/40 uppercase tracking-widest text-xs font-bold mb-6">Items Ordered</h3>
                    <div className="space-y-4">
                       {order.items.map((item: OrderItem) => (
-                         <div key={item.id} className="flex items-center justify-between p-4 bg-white/5 rounded-2xl border border-white/5">
+                         <div key={item.id} className="flex items-center justify-between p-4 bg-white/5 rounded-sm border border-white/5">
                             <div className="flex items-center gap-4">
-                               <div className="relative w-12 h-12 bg-white/10 rounded-xl overflow-hidden">
+                               <div className="relative w-12 h-12 bg-white/10 rounded-sm overflow-hidden">
                                   <Image src={item.image} alt={item.name} fill className="object-cover" sizes="48px" />
                                </div>
                                <div>

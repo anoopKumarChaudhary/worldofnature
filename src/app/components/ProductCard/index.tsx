@@ -86,9 +86,9 @@ const ProductCard = ({
   // --- LIST VIEW (Kept simple and clean) ---
   if (viewMode === "list") {
     return (
-      <div className="group relative flex gap-6 p-4 bg-white border border-gray-100 rounded-xl hover:shadow-md transition-all duration-300">
+      <div className="group relative flex gap-6 p-4 bg-white border border-[#1A2118]/10 rounded-none hover:shadow-xl hover:border-[#B56B56]/30 transition-all duration-500 ease-out">
         {/* Image */}
-        <div className="relative w-40 aspect-[4/3] bg-gray-50 rounded-lg overflow-hidden shrink-0">
+        <div className="relative w-40 aspect-[4/3] bg-gray-50 rounded-sm overflow-hidden shrink-0">
           <Link href={`/product/${id}`}>
             <Image
               src={imageUrl}
@@ -128,7 +128,7 @@ const ProductCard = ({
              {/* Action */}
              <button
                onClick={handleAddToCart}
-               className="flex items-center gap-2 px-4 py-2 bg-[#1A2118] text-white text-sm font-bold uppercase tracking-wider rounded-lg hover:bg-[#B56B56] transition-colors"
+               className="flex items-center gap-2 px-4 py-2 bg-[#1A2118] text-white text-sm font-bold uppercase tracking-wider rounded-sm hover:bg-[#B56B56] transition-colors"
              >
                {isAdding ? "Added" : "Add to Cart"}
              </button>
@@ -141,7 +141,7 @@ const ProductCard = ({
   // --- GRID VIEW (Clean & User-Friendly) ---
   return (
     // Changed: Rounded corners, white bg, soft shadow for friendliness
-    <div className="group relative flex flex-col h-full bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-gray-100">
+    <div className="group relative flex flex-col h-full bg-white rounded-none shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-[#B56B56]/30 transition-all duration-500 ease-out overflow-hidden border border-[#1A2118]/10">
       
       {/* 1. IMAGE SECTION (Reduced Height) */}
       {/* Changed: aspect-[3/4] -> aspect-[4/3] for shorter height */}
@@ -160,7 +160,7 @@ const ProductCard = ({
         {/* Wishlist (Top Right - Clean Bubble) */}
         <button
           onClick={handleWishlistToggle}
-          className="absolute top-3 right-3 z-20 w-9 h-9 flex items-center justify-center rounded-full bg-white/80 backdrop-blur-sm shadow-sm hover:bg-white text-[#1A2118] transition-all scale-95 md:scale-100 opacity-0 group-hover:opacity-100"
+          className="absolute top-3 right-3 z-20 w-9 h-9 flex items-center justify-center rounded-sm bg-white/80 backdrop-blur-sm shadow-sm hover:bg-white text-[#1A2118] transition-all scale-95 md:scale-100 opacity-0 group-hover:opacity-100"
         >
           <Heart
             className={`w-5 h-5 ${isWishlisted ? "fill-[#B56B56] text-[#B56B56]" : "text-[#1A2118]"}`}
@@ -170,12 +170,12 @@ const ProductCard = ({
         {/* Tags (Top Left - Clean Pills) */}
         <div className="absolute top-3 left-3 z-10 flex flex-col gap-2">
           {isNew && (
-            <span className="inline-block px-3 py-1 bg-[#1A2118] text-white text-[10px] font-bold uppercase tracking-widest rounded-full shadow-sm">
+            <span className="inline-block px-3 py-1 bg-[#1A2118] text-white text-[10px] font-bold uppercase tracking-widest rounded-sm shadow-sm">
               New
             </span>
           )}
           {(isOnSale || (originalPrice && originalPrice > price)) && (
-            <span className="inline-block px-3 py-1 bg-[#B56B56] text-white text-[10px] font-bold uppercase tracking-widest rounded-full shadow-sm">
+            <span className="inline-block px-3 py-1 bg-[#B56B56] text-white text-[10px] font-bold uppercase tracking-widest rounded-sm shadow-sm">
               Sale
             </span>
           )}
@@ -185,7 +185,7 @@ const ProductCard = ({
         <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out hidden md:block bg-gradient-to-t from-black/40 to-transparent">
            <button
              onClick={handleAddToCart}
-             className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-white text-[#1A2118] hover:bg-[#1A2118] hover:text-white rounded-xl shadow-lg transition-colors font-bold uppercase tracking-widest text-xs"
+             className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-white text-[#1A2118] hover:bg-[#1A2118] hover:text-white rounded-sm shadow-lg transition-colors font-bold uppercase tracking-widest text-xs"
            >
               {isAdding ? (
                  <>
@@ -238,7 +238,7 @@ const ProductCard = ({
         {/* Mobile-Only Add Button */}
         <button 
           onClick={handleAddToCart}
-          className="md:hidden absolute bottom-4 right-4 w-10 h-10 flex items-center justify-center bg-[#1A2118] text-white rounded-full shadow-md active:scale-95 transition-transform"
+          className="md:hidden absolute bottom-4 right-4 w-10 h-10 flex items-center justify-center bg-[#1A2118] text-white rounded-sm shadow-md active:scale-95 transition-transform"
         >
            {isAdding ? <Check className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
         </button>
