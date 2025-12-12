@@ -204,13 +204,17 @@ export const productsAPI = {
           )
         ).toString()
       : "";
-    const response = await fetch(`${API_BASE_URL}/products${queryString}`);
+    const response = await fetch(`${API_BASE_URL}/products${queryString}`, {
+      next: { revalidate: 30 },
+    });
     if (!response.ok) throw new Error("Failed to fetch products");
     return response.json();
   },
 
   getProduct: async (id: string): Promise<Product> => {
-    const response = await fetch(`${API_BASE_URL}/products/${id}`);
+    const response = await fetch(`${API_BASE_URL}/products/${id}`, {
+      next: { revalidate: 30 },
+    });
     if (!response.ok) {
       console.error(
         `Failed to fetch product ${id}: ${response.status} ${response.statusText}`
@@ -221,7 +225,9 @@ export const productsAPI = {
   },
 
   getCategories: async (): Promise<string[]> => {
-    const response = await fetch(`${API_BASE_URL}/products/categories`);
+    const response = await fetch(`${API_BASE_URL}/products/categories`, {
+      next: { revalidate: 3600 }, // Categories change less often
+    });
     if (!response.ok) throw new Error("Failed to fetch categories");
     return response.json();
   },
