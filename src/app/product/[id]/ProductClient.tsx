@@ -194,7 +194,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
       </div>
 
       {/* --- BREADCRUMB NAV --- */}
-      <div className="relative pt-28 pb-6 px-4 lg:px-12 z-10">
+      <div className="relative pt-20 pb-6 px-4 lg:px-12 z-10">
         <div className="container mx-auto max-w-7xl flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#1A2118]/40">
           <Link href="/" className="hover:text-[#BC5633] transition-colors">
             Home
@@ -215,7 +215,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
             <div className="lg:col-span-7 mb-8 lg:mb-0">
               <div className="sticky top-32 space-y-6">
                 {/* Main Image Card */}
-                <div className="relative aspect-[4/5] lg:aspect-square w-full bg-white rounded-[2rem] lg:rounded-[3rem] overflow-hidden shadow-2xl shadow-[#1A2118]/5 border border-white">
+                <div className="relative aspect-[4/5] lg:aspect-square w-full bg-white/60 backdrop-blur-md rounded-sm overflow-hidden shadow-2xl shadow-[#1A2118]/5 border border-white/40">
                   {/* Main Image/Video Card */}
                   {activeImage.endsWith('.mp4') || activeImage.endsWith('.webm') ? (
                      <video
@@ -224,7 +224,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
                       autoPlay
                       loop
                       muted
-                      className="w-full h-full object-cover rounded-[2rem] lg:rounded-[3rem]"
+                      className="w-full h-full object-cover rounded-sm"
                     />
                   ) : (
                     <Image
@@ -238,7 +238,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
 
                   {/* Floating Badges */}
                   <div className="absolute top-4 left-4 lg:top-6 lg:left-6 flex flex-col gap-2">
-                    <span className="bg-white/90 backdrop-blur text-[#BC5633] text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm border border-[#BC5633]/20">
+                    <span className="bg-white/90 backdrop-blur text-[#BC5633] text-[10px] font-bold px-3 py-1 rounded-sm uppercase tracking-wider shadow-sm border border-[#BC5633]/20">
                       Premium
                     </span>
                   </div>
@@ -247,7 +247,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
                   <div className="absolute top-4 right-4 lg:top-6 lg:right-6 flex flex-col gap-3">
                     <button
                       onClick={handleWishlistToggle}
-                      className={`w-10 h-10 lg:w-12 lg:h-12 rounded-full flex items-center justify-center backdrop-blur-md transition-all shadow-sm ${
+                      className={`w-10 h-10 lg:w-12 lg:h-12 rounded-sm flex items-center justify-center backdrop-blur-md transition-all shadow-sm ${
                         isWishlisted
                           ? "bg-[#BC5633] text-white"
                           : "bg-white/60 text-[#1A2118] hover:bg-white"
@@ -259,7 +259,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
                         }`}
                       />
                     </button>
-                    <button className="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-white/60 backdrop-blur-md flex items-center justify-center text-[#1A2118] hover:bg-white transition-all shadow-sm">
+                    <button className="w-10 h-10 lg:w-12 lg:h-12 rounded-sm bg-white/60 backdrop-blur-md flex items-center justify-center text-[#1A2118] hover:bg-white transition-all shadow-sm">
                       <Share2 className="w-4 h-4 lg:w-5 lg:h-5" />
                     </button>
                   </div>
@@ -281,7 +281,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
                           <button
                             key={idx}
                             onClick={() => setActiveImage(mediaUrl)}
-                            className={`relative w-20 h-20 lg:w-24 lg:h-24 flex-shrink-0 rounded-2xl overflow-hidden border-2 transition-all group ${
+                            className={`relative w-20 h-20 lg:w-24 lg:h-24 flex-shrink-0 rounded-sm overflow-hidden border transition-all group ${
                               activeImage === mediaUrl
                                 ? "border-[#BC5633] shadow-lg scale-105"
                                 : "border-transparent hover:border-[#1A2118]/20"
@@ -311,7 +311,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
 
             {/* --- RIGHT: PRODUCT DETAILS PANEL --- */}
             <div className="lg:col-span-5">
-              <div className="bg-white/60 backdrop-blur-xl border border-white/40 rounded-[2rem] lg:rounded-[3rem] p-6 lg:p-10 shadow-xl">
+              <div className="bg-white/60 backdrop-blur-xl border border-white/40 rounded-sm p-4 lg:p-8 shadow-xl">
                 {/* Header Info */}
                 <div className="mb-8 border-b border-[#1A2118]/10 pb-8">
                   <div className="flex items-center gap-2 mb-4">
@@ -366,7 +366,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
                           <button
                             key={size.value}
                             onClick={() => setSelectedSize(size.value)}
-                            className={`px-6 py-3 rounded-[1rem] text-sm font-bold transition-all border ${
+                            className={`px-6 py-3 rounded-sm text-sm font-bold transition-all border ${
                               selectedSize === size.value
                                 ? "bg-[#1A2118] text-white border-[#1A2118] shadow-lg"
                                 : "bg-white text-[#596157] border-transparent hover:border-[#1A2118]/20"
@@ -383,10 +383,10 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
                   <div className="hidden lg:block pt-4 space-y-4">
                     <div className="flex gap-4">
                       {/* Quantity Pill */}
-                      <div className="flex items-center bg-white rounded-[1.5rem] p-1.5 h-16 shadow-sm border border-[#1A2118]/5 w-40">
+                      <div className="flex items-center bg-white rounded-sm p-1.5 h-16 shadow-sm border border-[#1A2118]/5 w-40">
                         <button
                           onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                          className="w-12 h-full flex items-center justify-center rounded-full hover:bg-[#F2F0EA] transition-colors active:scale-90"
+                          className="w-12 h-full flex items-center justify-center rounded-sm hover:bg-[#F2F0EA] transition-colors active:scale-90"
                         >
                           <Minus className="w-4 h-4 text-[#1A2118]" />
                         </button>
@@ -395,7 +395,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
                         </span>
                         <button
                           onClick={() => setQuantity(quantity + 1)}
-                          className="w-12 h-full flex items-center justify-center rounded-full hover:bg-[#F2F0EA] transition-colors active:scale-90"
+                          className="w-12 h-full flex items-center justify-center rounded-sm hover:bg-[#F2F0EA] transition-colors active:scale-90"
                         >
                           <Plus className="w-4 h-4 text-[#1A2118]" />
                         </button>
@@ -405,7 +405,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
                       <button
                         onClick={handleAddToCart}
                         disabled={!currentProduct.inStock || isAdding}
-                        className={`flex-1 h-16 rounded-[1.5rem] font-bold uppercase tracking-widest transition-all shadow-xl flex items-center justify-center gap-3 ${
+                        className={`flex-1 h-16 rounded-sm font-bold uppercase tracking-widest transition-all shadow-xl flex items-center justify-center gap-3 ${
                           isAdding
                             ? "bg-[#3A4D39] text-white"
                             : !currentProduct.inStock
@@ -440,28 +440,28 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
                 </div>
 
                 {/* Product Meta Details */}
-                <div className="mt-10 pt-8 border-t border-[#1A2118]/10 space-y-8">
+                <div className="mt-8 pt-6 border-t border-[#1A2118]/10 space-y-6">
                   {/* Ingredients - Full Width */}
                   {currentProduct.ingredients && (
-                    <div>
-                      <h3 className="text-sm font-bold uppercase tracking-widest text-[#1A2118]/40 mb-3">
+                    <div className="w-full">
+                      <h3 className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/40 mb-2">
                         Ingredients
                       </h3>
-                      <p className="text-[#596157] font-light text-sm leading-relaxed bg-[#F9F8F6] p-6 rounded-2xl border border-[#1A2118]/5">
+                      <p className="text-[#596157] font-light text-sm leading-relaxed bg-white/40 p-4 rounded-sm border border-[#1A2118]/5 break-words">
                         {currentProduct.ingredients}
                       </p>
                     </div>
                   )}
 
                   {/* Sourcing & Taste Profile - Grid */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
                     {currentProduct.sourcing && (
-                      <div>
-                        <h3 className="text-sm font-bold uppercase tracking-widest text-[#1A2118]/40 mb-3">
+                      <div className="w-full flex flex-col h-full">
+                        <h3 className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/40 mb-2">
                           Sourcing
                         </h3>
-                        <div className="bg-[#F9F8F6] p-6 rounded-2xl border border-[#1A2118]/5 h-full">
-                          <p className="text-[#596157] font-light text-sm leading-relaxed">
+                        <div className="bg-white/40 p-4 rounded-sm border border-[#1A2118]/5 flex-1 w-full">
+                          <p className="text-[#596157] font-light text-sm leading-relaxed break-words">
                             {currentProduct.sourcing}
                           </p>
                         </div>
@@ -469,12 +469,12 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
                     )}
 
                     {currentProduct.tasteProfile && (
-                      <div>
-                        <h3 className="text-sm font-bold uppercase tracking-widest text-[#1A2118]/40 mb-3">
+                      <div className="w-full flex flex-col h-full">
+                        <h3 className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/40 mb-2">
                           Taste Profile
                         </h3>
-                        <div className="bg-[#F9F8F6] p-6 rounded-2xl border border-[#1A2118]/5 h-full">
-                          <p className="text-[#596157] font-light text-sm leading-relaxed">
+                        <div className="bg-white/40 p-4 rounded-sm border border-[#1A2118]/5 flex-1 w-full">
+                          <p className="text-[#596157] font-light text-sm leading-relaxed break-words">
                             {currentProduct.tasteProfile}
                           </p>
                         </div>
@@ -488,7 +488,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
 
           {/* --- REVIEWS SECTION --- */}
           <div className="mt-12 pt-12 border-t border-[#1A2118]/10 max-w-4xl mx-auto" id="reviews-section">
-            <div className="flex items-end justify-between mb-10">
+            <div className="flex flex-col items-start gap-4 md:flex-row md:items-end md:justify-between mb-10">
               <div>
                 <h2 className="text-3xl font-serif font-bold text-[#1A2118] mb-2">
                   Community Reviews
@@ -512,7 +512,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
                   const textarea = form?.querySelector("textarea");
                   textarea?.focus();
                 }}
-                className="px-6 py-3 bg-[#1A2118] text-white rounded-full font-bold uppercase tracking-widest text-xs hover:bg-[#BC5633] transition-colors shadow-lg"
+                className="w-full md:w-auto px-6 py-3 bg-[#1A2118] text-white rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-[#BC5633] transition-colors shadow-lg text-center"
               >
                 Write a Review
               </button>
@@ -522,7 +522,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
 
               {/* Write Review Form */}
               {isMounted && isAuthenticated ? (
-                <div id="review-form" className="bg-white/60 backdrop-blur-xl border border-white/40 rounded-[2rem] p-8 mb-12 shadow-sm">
+                <div id="review-form" className="bg-white/60 backdrop-blur-xl border border-white/40 rounded-sm p-6 md:p-8 mb-12 shadow-sm">
                   <h3 className="text-xl font-serif font-bold text-[#1A2118] mb-6">Write a Review</h3>
                   <form onSubmit={handleReviewSubmit} className="space-y-6">
                     <div>
@@ -559,7 +559,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
                         required
                         rows={4}
                         placeholder="Share your experience with this product..."
-                        className="w-full px-6 py-4 bg-white border border-[#1A2118]/10 rounded-[1.5rem] text-[#1A2118] focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all placeholder-[#1A2118]/30 resize-none"
+                        className="w-full px-6 py-4 bg-white border border-[#1A2118]/10 rounded-sm text-[#1A2118] focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all placeholder-[#1A2118]/30 resize-none"
                       />
                     </div>
 
@@ -567,7 +567,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
                       <button
                         type="submit"
                         disabled={isSubmitting || !comment.trim() || rating === 0}
-                        className={`px-8 py-3 rounded-full font-bold uppercase tracking-widest text-xs transition-all shadow-lg flex items-center gap-2 ${
+                        className={`px-8 py-3 rounded-sm font-bold uppercase tracking-widest text-xs transition-all shadow-lg flex items-center gap-2 ${
                           isSubmitting || !comment.trim() || rating === 0
                             ? "bg-[#F2F0EA] text-[#1A2118]/40 cursor-not-allowed"
                             : "bg-[#1A2118] text-white hover:bg-[#BC5633]"
@@ -586,9 +586,9 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
                   </form>
                 </div>
               ) : (
-                <div className="bg-[#F2F0EA]/50 rounded-[2rem] p-8 mb-12 text-center border border-[#1A2118]/5">
+                <div className="bg-[#F2F0EA]/50 rounded-sm p-6 md:p-8 mb-12 text-center border border-[#1A2118]/5">
                   <p className="text-[#596157] mb-4">Please login to write a review.</p>
-                  <Link href="/login" className="inline-block px-8 py-3 bg-[#1A2118] text-white rounded-full font-bold uppercase tracking-widest text-xs hover:bg-[#BC5633] transition-colors shadow-lg">
+                  <Link href="/login" className="inline-block px-8 py-3 bg-[#1A2118] text-white rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-[#BC5633] transition-colors shadow-lg">
                     Login
                   </Link>
                 </div>
@@ -599,7 +599,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
                 {reviews.map((review) => (
                   <div
                     key={review.id}
-                    className="bg-white/80 backdrop-blur-sm p-8 rounded-[2rem] border border-white shadow-sm hover:shadow-md transition-shadow"
+                    className="bg-white/80 backdrop-blur-sm p-6 rounded-sm border border-white/40 shadow-sm hover:shadow-md transition-shadow"
                   >
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center gap-3">
@@ -635,7 +635,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
                 ))}
               </div>
             ) : (
-              <div className="text-center py-12 bg-[#F2F0EA]/50 rounded-[2rem] border border-[#1A2118]/5">
+              <div className="text-center py-12 bg-[#F2F0EA]/50 rounded-sm border border-[#1A2118]/5">
                 <p className="text-[#596157] font-medium">No reviews yet. Be the first to share your thoughts!</p>
               </div>
             )}
@@ -656,10 +656,10 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
           </div>
           
           {/* Quantity Stepper Mini */}
-          <div className="flex items-center bg-[#F2F0EA] rounded-full p-1 h-12">
+          <div className="flex items-center bg-[#F2F0EA] rounded-sm p-1 h-12">
             <button
               onClick={() => setQuantity(Math.max(1, quantity - 1))}
-              className="w-8 h-full flex items-center justify-center rounded-full active:bg-white transition-colors"
+              className="w-8 h-full flex items-center justify-center rounded-sm active:bg-white transition-colors"
             >
               <Minus className="w-3 h-3 text-[#1A2118]" />
             </button>
@@ -668,7 +668,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
             </span>
             <button
               onClick={() => setQuantity(quantity + 1)}
-              className="w-8 h-full flex items-center justify-center rounded-full active:bg-white transition-colors"
+              className="w-8 h-full flex items-center justify-center rounded-sm active:bg-white transition-colors"
             >
               <Plus className="w-3 h-3 text-[#1A2118]" />
             </button>
@@ -677,7 +677,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
           <button
             onClick={handleAddToCart}
             disabled={!currentProduct.inStock || isAdding}
-            className={`flex-1 h-12 rounded-full font-bold uppercase tracking-widest text-xs transition-all shadow-lg flex items-center justify-center gap-2 ${
+            className={`flex-1 h-12 rounded-sm font-bold uppercase tracking-widest text-xs transition-all shadow-lg flex items-center justify-center gap-2 ${
               isAdding
                 ? "bg-[#3A4D39] text-white"
                 : !currentProduct.inStock
