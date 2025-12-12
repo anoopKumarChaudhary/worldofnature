@@ -28,6 +28,9 @@ export const metadata: Metadata = {
     description: "Discover the purest organic essentials sourced from pristine valleys.",
     type: "website",
   },
+  icons: {
+    icon: "/icon.png",
+  },
 };
 
 export default function RootLayout({

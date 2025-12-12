@@ -120,7 +120,7 @@ const Footer = () => {
           </div>
 
           {/* Links Columns */}
-          <div className="lg:col-span-5 grid grid-cols-2 gap-8 md:gap-12">
+          <div className="lg:col-span-5 grid grid-cols-1 md:grid-cols-3 gap-8">
             {footerSections.map((section) => (
               <div key={section.title} className="space-y-6">
                 <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-[#BC5633] mb-4">
