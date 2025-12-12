@@ -120,18 +120,18 @@ const Footer = () => {
           </div>
 
           {/* Links Columns */}
-          <div className="lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 gap-8 md:gap-12">
+          <div className="lg:col-span-5 grid grid-cols-2 gap-10 md:gap-12">
             {footerSections.map((section) => (
               <div key={section.title} className="space-y-6">
                 <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-[#BC5633] mb-4">
                   {section.title}
                 </h3>
-                <ul className="space-y-3">
+                <ul className="space-y-4">
                   {section.links.map((link) => (
                     <li key={link.href}>
                       <Link
                         href={link.href}
-                        className="text-[#F2F0EA]/60 hover:text-[#F2F0EA] transition-colors duration-200 text-sm font-medium block py-0.5"
+                        className="text-[#F2F0EA]/60 hover:text-[#F2F0EA] transition-colors duration-200 text-sm font-medium block py-1"
                       >
                         {link.label}
                       </Link>

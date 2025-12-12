@@ -219,7 +219,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         onMouseLeave={() => setIsHovered(false)}
       >
         {/* Image Container */}
-        <div className="relative aspect-[4/5] overflow-hidden bg-neutral-100 dark:bg-neutral-800">
+        <div className="relative aspect-[3/4] md:aspect-[4/5] overflow-hidden bg-neutral-100 dark:bg-neutral-800">
           <Link href={`/product/${id}`} className="block w-full h-full relative">
             <img
               src={imageUrl}
