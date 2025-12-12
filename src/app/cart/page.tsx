@@ -53,7 +53,7 @@ export default function CartPage() {
         />
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#BC5633] rounded-full mix-blend-multiply filter blur-[120px] opacity-20 animate-blob" />
 
-        <div className="relative z-10 text-center p-8 bg-white/60 backdrop-blur-xl rounded-sm border border-[#1A2118]/5 shadow-2xl max-w-lg mx-4">
+        <div className="relative z-10 text-center p-8 bg-white/60 backdrop-blur-xl rounded-sm border border-[#1A2118]/5 shadow-2xl max-w-lg mx-[8px]">
           <div className="w-24 h-24 bg-[#F2F0EA] rounded-sm flex items-center justify-center mx-auto mb-6 shadow-inner">
             <ShoppingBag className="w-10 h-10 text-[#BC5633]" />
           </div>
@@ -100,7 +100,7 @@ export default function CartPage() {
       <div className="fixed inset-0 z-0 pointer-events-none bg-[#D9DBD5]" />
 
       {/* --- HEADER --- */}
-      <div className="relative pt-12 lg:pt-32 pb-4 px-4 lg:px-12 z-10">
+      <div className="relative pt-12 lg:pt-32 pb-4 px-[8px] lg:px-12 z-10">
         <div className="container mx-auto max-w-7xl flex items-end justify-between border-b border-[#1A2118]/10 pb-6">
           <div>
             <div className="flex items-center gap-3 mb-2">
@@ -123,7 +123,7 @@ export default function CartPage() {
         </div>
       </div>
 
-      <div className="relative z-10 px-4 lg:px-12">
+      <div className="relative z-10 px-[8px] lg:px-12">
         <div className="container mx-auto max-w-7xl">
           <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-12 items-start">
             {/* --- CART ITEMS LIST --- */}
