@@ -306,7 +306,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
           <div className="flex flex-row gap-3 items-center justify-between">
             {/* Search Input */}
             <div className="relative flex-1 group">
-              <div className="absolute inset-0 bg-white/80 backdrop-blur-xl rounded-sm border border-white/20 transition-all group-focus-within:border-[#B56B56]/30 z-[50]" />
+              <div className="absolute inset-0 bg-white/80 backdrop-blur-xl rounded-sm border border-white/20 transition-all group-focus-within:border-[#B56B56]/30 z-0" />
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#1A2118]/40 w-4 h-4 group-focus-within:text-[#B56B56] transition-colors z-10" />
               <input
                 type="text"
@@ -659,7 +659,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
             {sortedProducts.length > 0 ? (
               <>
                 <div
-                  className={`grid gap-2 sm:gap-6 ${
+                  className={`grid gap-1 sm:gap-6 ${
                     viewMode === "grid"
                       ? "grid-cols-2 max-[350px]:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3"
                       : "grid-cols-1"
