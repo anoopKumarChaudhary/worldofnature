@@ -139,7 +139,7 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({
             }}
           />
 
-          <div className="relative w-full h-[400px] md:h-full p-8 md:p-12">
+          <div className="relative w-full h-[400px] md:h-full p-4 md:p-12">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={product.imageUrl}
@@ -162,7 +162,7 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({
         {/* RIGHT: Details Section */}
         <div className="w-full md:w-1/2 flex flex-col bg-white relative">
           {/* Scrollable Content */}
-          <div className="flex-1 overflow-y-auto p-8 md:p-12 scrollbar-hide">
+          <div className="flex-1 overflow-y-auto p-4 md:p-12 scrollbar-hide">
             {/* Rating */}
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-2 bg-[#F2F0EA] px-3 py-1.5 rounded-sm">
@@ -226,7 +226,7 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({
           </div>
 
           {/* Sticky Footer Actions */}
-          <div className="p-6 md:p-8 border-t border-[#1A2118]/5 bg-white z-20 shadow-[0_-10px_40px_rgba(0,0,0,0.02)]">
+          <div className="p-4 md:p-8 border-t border-[#1A2118]/5 bg-white z-20 shadow-[0_-10px_40px_rgba(0,0,0,0.02)]">
             <div className="flex gap-4">
               {/* Quantity Capsule */}
               <div className="flex items-center bg-[#F2F0EA] rounded-sm p-1.5 h-16 shadow-inner">

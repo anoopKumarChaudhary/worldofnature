@@ -385,7 +385,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
             </div>
 
             {/* Header & Reset */}
-            <div className="flex items-center justify-between p-6 lg:p-8 pb-4 lg:pb-8 border-b lg:border-none border-[#1A2118]/5">
+            <div className="flex items-center justify-between p-4 lg:p-8 pb-4 lg:pb-8 border-b lg:border-none border-[#1A2118]/5">
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-[#1A2118] rounded-sm text-white">
                   <Filter className="w-4 h-4" />
@@ -416,7 +416,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
             </div>
 
             {/* Scrollable Content */}
-            <div className="overflow-y-auto p-6 lg:p-8 space-y-8 flex-1">
+            <div className="overflow-y-auto p-4 lg:p-8 space-y-8 flex-1">
               {/* Mobile Sort Options */}
               <div className="lg:hidden space-y-4">
                 <h3 className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/40 ml-1">

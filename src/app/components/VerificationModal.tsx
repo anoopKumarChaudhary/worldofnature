@@ -45,7 +45,7 @@ export default function VerificationModal() {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1A2118]/80 backdrop-blur-sm">
       <div className="bg-[#F2F0EA] rounded-sm w-full max-w-md overflow-hidden shadow-2xl relative animate-fade-up">
         {/* Decorative Header */}
-        <div className="bg-[#1A2118] p-8 text-center relative overflow-hidden">
+        <div className="bg-[#1A2118] p-6 md:p-8 text-center relative overflow-hidden">
           <div className="absolute top-0 right-0 w-32 h-32 bg-[#BC5633] rounded-full mix-blend-overlay filter blur-[40px] opacity-40 pointer-events-none" />
           <div className="w-16 h-16 bg-[#F2F0EA]/10 rounded-full flex items-center justify-center mx-auto mb-4 backdrop-blur-md border border-white/10">
             <Lock className="w-8 h-8 text-[#F2F0EA]" />
@@ -58,7 +58,7 @@ export default function VerificationModal() {
           </p>
         </div>
 
-        <div className="p-8">
+        <div className="p-6 md:p-8">
           <div className="text-center mb-6">
             <p className="text-[#596157] text-sm">
               We&apos;ve sent a code to <span className="font-bold text-[#1A2118]">{user.email}</span>
