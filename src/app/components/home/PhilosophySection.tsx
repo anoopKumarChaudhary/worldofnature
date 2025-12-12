@@ -100,7 +100,7 @@ const PhilosophySection = () => {
              </span>
            </div>
            {/* Text is Dark Olive, "Methodology" is Pale Sage */}
-           <h2 className="font-serif text-2xl md:text-4xl text-[#2C3326] tracking-tight">
+           <h2 className="font-serif text-3xl md:text-4xl text-[#2C3326] tracking-tight">
              Core <span className="italic text-[#F2F3EE] opacity-90">Methodology</span>
            </h2>
         </div>
@@ -132,8 +132,8 @@ const PhilosophySection = () => {
                 
                 flex flex-col justify-between
                 
-                h-full min-h-[210px] md:min-h-[240px]
-                p-4 md:p-6
+                h-full min-h-[160px] md:min-h-[240px]
+                p-3 md:p-6
               "
             >
                {/* Top Section */}
@@ -149,7 +149,7 @@ const PhilosophySection = () => {
                     ">
                       <item.icon size={16} className="md:w-5 md:h-5" />
                     </div>
-                    <h3 className="font-serif font-bold text-base md:text-xl text-[#2C3326]">
+                    <h3 className="font-serif font-bold text-lg md:text-xl text-[#2C3326]">
                       {item.label}
                     </h3>
                  </div>

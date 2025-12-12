@@ -90,7 +90,7 @@ export default function ContactClient() {
             required
             value={formData.subject}
             onChange={handleInputChange}
-            className="w-full px-6 py-4 bg-[#F2F0EA]/50 border border-transparent rounded-[1.5rem] text-base text-[#1A2118] focus:bg-white focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all duration-300 appearance-none cursor-pointer"
+            className="w-full px-6 py-4 bg-[#F2F0EA]/50 border border-transparent rounded-sm text-base text-[#1A2118] focus:bg-white focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all duration-300 appearance-none cursor-pointer"
           >
             <option value="">Select a topic...</option>
             <option value="general">General Inquiry</option>
@@ -111,7 +111,7 @@ export default function ContactClient() {
           rows={6}
           value={formData.message}
           onChange={handleInputChange}
-          className="w-full px-6 py-4 bg-[#F2F0EA]/50 border border-transparent rounded-[1.5rem] text-base text-[#1A2118] focus:bg-white focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all duration-300 resize-none placeholder-[#1A2118]/30"
+          className="w-full px-6 py-4 bg-[#F2F0EA]/50 border border-transparent rounded-sm text-base text-[#1A2118] focus:bg-white focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all duration-300 resize-none placeholder-[#1A2118]/30"
           placeholder="How can we help you today?"
         />
       </div>
@@ -120,7 +120,7 @@ export default function ContactClient() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full py-5 bg-[#1A2118] text-white rounded-[2rem] font-bold text-sm uppercase tracking-widest hover:bg-[#BC5633] hover:shadow-xl hover:shadow-[#BC5633]/20 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed group"
+          className="w-full py-5 bg-[#1A2118] text-white rounded-sm font-bold text-sm uppercase tracking-widest hover:bg-[#BC5633] hover:shadow-xl hover:shadow-[#BC5633]/20 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed group"
         >
           {isSubmitting ? (
             <>
@@ -155,7 +155,7 @@ const Input = ({ label, ...props }: ContactInputProps) => (
     </label>
     <input
       required
-      className="w-full px-6 py-4 bg-[#F2F0EA]/50 border border-transparent rounded-[1.5rem] text-base text-[#1A2118] focus:bg-white focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all duration-300 placeholder-[#1A2118]/30"
+      className="w-full px-6 py-4 bg-[#F2F0EA]/50 border border-transparent rounded-sm text-base text-[#1A2118] focus:bg-white focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all duration-300 placeholder-[#1A2118]/30"
       {...props}
     />
   </div>

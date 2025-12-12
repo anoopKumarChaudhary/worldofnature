@@ -18,9 +18,9 @@ interface ContactSectionProps {
 
 export default function ContactSection({ className = "" }: ContactSectionProps) {
   return (
-    <section className={`relative pt-20 pb-9 px-[8px] md:px-6 lg:px-12 z-10 ${className}`}>
+    <section className={`relative pt-24 md:pt-20 pb-6 md:pb-9 px-[8px] md:px-6 lg:px-12 z-10 ${className}`}>
       <div className="container mx-auto max-w-7xl">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-8 mb-12 md:mb-16 border-b border-[#1A2118]/10 pb-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-8 mb-6 md:mb-16 border-b border-[#1A2118]/10 pb-8">
           <div>
             <div className="flex items-center gap-3 mb-4">
               <div className="h-2 w-2 bg-[#BC5633] rounded-full animate-pulse"></div>
@@ -53,7 +53,7 @@ export default function ContactSection({ className = "" }: ContactSectionProps) 
           {/* --- LEFT COLUMN: CONTACT CARDS --- */}
           <div className="lg:col-span-5 flex flex-col gap-6 animate-fade-up">
             {/* Main Primary Card */}
-            <div className="bg-[#1A2118] text-[#F2F0EA] rounded-sm p-8 relative overflow-hidden shadow-2xl group flex-1">
+            <div className="bg-[#1A2118] text-[#F2F0EA] rounded-sm p-5 md:p-8 relative overflow-hidden shadow-2xl group flex-1">
               {/* Internal Decoration */}
               <div className="absolute top-0 right-0 w-64 h-64 bg-[#BC5633] rounded-full mix-blend-overlay filter blur-[80px] opacity-20 group-hover:opacity-40 transition-opacity duration-700" />
 
@@ -135,7 +135,7 @@ export default function ContactSection({ className = "" }: ContactSectionProps) 
             {/* Secondary Info Grid */}
             <div className="grid sm:grid-cols-2 gap-6">
               {/* Location Card */}
-              <div className="bg-white/60 backdrop-blur-md border border-white/40 p-8 rounded-sm hover:bg-white transition-colors duration-300 flex flex-col justify-between min-h-[200px]">
+              <div className="bg-white backdrop-blur-md border border-white/40 p-5 md:p-8 rounded-sm hover:bg-white transition-colors duration-300 flex flex-col justify-between min-h-[140px] md:min-h-[200px]">
                 <div>
                   <div className="w-10 h-10 rounded-full bg-[#BC5633]/10 flex items-center justify-center text-[#BC5633] mb-4">
                     <MapPin className="w-5 h-5" />
@@ -156,7 +156,7 @@ export default function ContactSection({ className = "" }: ContactSectionProps) 
               {/* WhatsApp Card */}
               <Link
                 href="https://wa.me/15550000000"
-                className="group bg-white/60 backdrop-blur-md border border-white/40 p-8 rounded-sm hover:bg-[#25D366] transition-colors duration-500 flex flex-col justify-between relative overflow-hidden min-h-[200px]"
+                className="group bg-white backdrop-blur-md border border-white/40 p-5 md:p-8 rounded-sm hover:bg-[#25D366] transition-colors duration-500 flex flex-col justify-between relative overflow-hidden min-h-[140px] md:min-h-[200px]"
               >
                 {/* Green Reveal Background */}
                 <div className="absolute inset-0 bg-[#25D366] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0" />
@@ -186,7 +186,7 @@ export default function ContactSection({ className = "" }: ContactSectionProps) 
             className="lg:col-span-7 animate-fade-up flex flex-col"
             style={{ animationDelay: "0.2s" }}
           >
-            <div className="bg-white/80 backdrop-blur-xl rounded-sm p-8 md:p-12 shadow-[0_20px_60px_-15px_rgba(26,33,24,0.1)] border border-white relative h-full">
+            <div className="bg-white backdrop-blur-xl rounded-sm p-5 md:p-12 shadow-[0_20px_60px_-15px_rgba(26,33,24,0.1)] border border-white relative h-full">
               <div className="mb-10">
                 <h2 className="text-3xl md:text-4xl font-serif text-[#1A2118] mb-3">
                   Send a Message

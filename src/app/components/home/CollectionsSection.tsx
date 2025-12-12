@@ -99,7 +99,7 @@ const COLLECTIONS: CollectionItem[] = [
     id: "amla",
     label: "Amla",
     tag: "Preserve",
-    image: "/h10.png",
+    image: "/h2.png",
     desc: "Sun-dried gooseberry.",
     link: "/shop/amla",
     className: "md:col-span-1 md:row-span-1",
@@ -108,7 +108,7 @@ const COLLECTIONS: CollectionItem[] = [
     id: "moringa",
     label: "Moringa",
     tag: "Superfood",
-    image: "/h11.png",
+    image: "/h3.png",
     desc: "Leaf powder.",
     link: "/shop/moringa",
     className: "md:col-span-1 md:row-span-1",
@@ -117,7 +117,7 @@ const COLLECTIONS: CollectionItem[] = [
     id: "mustard",
     label: "Mustard Oil",
     tag: "Kachi Ghani",
-    image: "/h12.png",
+    image: "/h4.png",
     desc: "Cold pressed.",
     link: "/shop/mustard",
     className: "md:col-span-1 md:row-span-1",
@@ -137,7 +137,7 @@ const GridCard = ({ item }: { item: CollectionItem }) => {
         /* GRID LOGIC */
         w-full
         /* Mobile: Fixed height */
-        h-[200px] 
+        h-[150px] 
         /* Desktop: Fill the assigned grid cell */
         md:h-auto
         ${item.className || "md:col-span-1 md:row-span-1"}
@@ -218,7 +218,7 @@ const ArchiveCard = () => (
     className="
       group relative overflow-hidden rounded-sm
       /* Matches Standard Item Size */
-      w-full h-[200px] md:h-auto
+      w-full h-[150px] md:h-auto
       md:col-span-1 md:row-span-1
       
       bg-[#D1D4C2] /* Slightly darker sage for contrast */
@@ -272,7 +272,7 @@ const CollectionsSection = () => {
             <span className="font-mono text-[10px] font-bold uppercase tracking-[0.25em] text-[#F2F3EE] drop-shadow-sm mb-2 block">
               Curated Harvest
             </span>
-            <h2 className="font-serif text-4xl md:text-5xl text-[#2C3326] leading-[0.9]">
+            <h2 className="font-serif text-3xl md:text-5xl text-[#2C3326] leading-[0.9]">
               Wild <span className="italic text-[#F2F3EE]">Essentials.</span>
             </h2>
           </div>
@@ -288,7 +288,7 @@ const CollectionsSection = () => {
            - grid-cols-4 (Desktop)
            - auto-rows-[240px] (This defines the height unit for the Bento grid)
         */}
-        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[200px] md:auto-rows-[280px] gap-1 md:gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[150px] md:auto-rows-[280px] gap-1 md:gap-3">
           
           {COLLECTIONS.map((item) => (
             <GridCard key={item.id} item={item} />

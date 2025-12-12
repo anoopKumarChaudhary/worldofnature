@@ -47,7 +47,7 @@ const HeroSection = () => {
         <h1 className="flex flex-col items-center justify-center mb-8 md:mb-10 text-white leading-none">
           
           {/* Line 1: Elegant Italic Serif */}
-          <span className="block font-serif italic text-3xl md:text-5xl lg:text-6xl text-white/90 mb-[-5px] md:mb-[-20px] z-10 animate-reveal-up" style={{ animationDelay: '0.1s' }}>
+          <span className="block font-serif italic text-2xl md:text-5xl lg:text-6xl text-white/90 mb-[-5px] md:mb-[-20px] z-10 animate-reveal-up" style={{ animationDelay: '0.1s' }}>
             The Earth&rsquo;s
           </span>
           

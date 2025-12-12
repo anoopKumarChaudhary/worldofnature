@@ -48,7 +48,8 @@ const HomePage = async () => {
 
       {/* --- 6. CURATED ESSENTIALS (Shop) --- */}
       {/* BACKGROUND: Pale Mist (#F2F3EE) for contrast against Sage/Olive */}
-      <section className="relative py-24 lg:py-32 bg-[#F2F3EE]">
+      {/* MODIFIED: Reduced mobile vertical padding to py-12 (was py-24) */}
+      <section className="relative py-12 md:py-24 lg:py-32 bg-[#F2F3EE]">
         
         {/* Texture: Organic Dust */}
         <div className="absolute inset-0 opacity-[0.4] pointer-events-none mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]"></div>
@@ -57,15 +58,16 @@ const HomePage = async () => {
         <div className="container mx-auto relative z-10 max-w-7xl px-2 md:px-6 lg:px-12">
           
           {/* HEADER: Editorial Style */}
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8 border-b border-[#2C3326]/10 pb-8 px-2 md:px-0">
+          {/* MODIFIED: Reduced mb-16 to mb-8 for mobile, pb-8 to pb-4 */}
+          <div className="flex flex-col md:flex-row justify-between items-end mb-8 md:mb-16 gap-8 border-b border-[#2C3326]/10 pb-4 md:pb-8 px-2 md:px-0">
             <div className="max-w-2xl">
               <div className="flex items-center gap-2 mb-4">
                  <Sprout className="w-4 h-4 text-[#8C9178]" />
-                 <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-[#8C9178]">
+                 <span className="font-mono text-[10px] font-bold uppercase tracking-[0.25em] text-[#8C9178]">
                    Catalogue No. 02
                  </span>
               </div>
-              <h2 className="font-serif text-5xl lg:text-7xl text-[#2C3326] leading-[0.95]">
+              <h2 className="font-serif text-3xl lg:text-7xl text-[#2C3326] leading-[0.95]">
                 The <span className="italic text-[#8C9178] font-light">Formulations.</span>
               </h2>
             </div>
@@ -82,11 +84,8 @@ const HomePage = async () => {
           </div>
 
           {/* PRODUCT GRID */}
-          {/* MODIFIED: gap-2 (8px) for uniform X/Y spacing on mobile, matching container padding */}
-          {/* MODIFIED: gap-4 (16px) for desktop */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-1 lg:gap-4 auto-rows-fr">
             {featuredProducts.map((product: Product) => (
-              // MODIFIED: Added h-full to wrapper to force equal heights
               <div key={product._id} className="w-full group h-full">
                 <div className="h-full flex flex-col transition-all duration-700 hover:-translate-y-2">
                   <ProductCard
@@ -100,7 +99,6 @@ const HomePage = async () => {
                     isBestseller={product.isBestseller}
                     isOnSale={product.isOnSale}
                     isNew={product.isNew}
-                    // Ensure ProductCard root div has h-full or flex-grow behavior via styling if needed
                   />
                 </div>
               </div>
@@ -108,7 +106,8 @@ const HomePage = async () => {
           </div>
 
           {/* Mobile "View All" Button */}
-          <div className="mt-12 md:hidden flex justify-center">
+          {/* MODIFIED: Reduced top margin to mt-8 (was mt-12) */}
+          <div className="mt-8 md:hidden flex justify-center">
              <Link 
                href="/shop"
                className="inline-flex items-center gap-3 font-mono text-sm font-bold uppercase tracking-widest text-[#2C3326] border-b border-[#2C3326] pb-1"
@@ -124,7 +123,6 @@ const HomePage = async () => {
       <ImpactSection />
 
       {/* --- 9. CONTACT SECTION --- */}
-      {/* Passed 'bg-[#F2F3EE]' to keep it light before the dark footer */}
       <ContactSection className="bg-[#F2F3EE]" />
       
     </div>

@@ -86,7 +86,7 @@ const RitualCard = ({ item }: { item: RitualItem }) => {
       "
     >
       {/* --- TOP: IMAGE --- */}
-      <div className="relative w-full h-[140px] md:h-[200px] overflow-hidden border-b border-[#8C9178]/20">
+      <div className="relative w-full h-[110px] md:h-[200px] overflow-hidden border-b border-[#8C9178]/20">
         <Image
           src={item.image}
           alt={item.title}
@@ -116,7 +116,7 @@ const RitualCard = ({ item }: { item: RitualItem }) => {
       </div>
 
       {/* --- BOTTOM: CONTENT --- */}
-      <div className="flex flex-col flex-grow p-3 md:p-5 relative">
+      <div className="flex flex-col flex-grow p-2 md:p-5 relative">
         
         {/* Step Number (Timeline marker) */}
         <div className="absolute -top-3 right-2 md:-top-4 md:right-4 bg-[#2C3326] border border-[#8C9178]/30 px-1.5 py-0.5 md:px-2 md:py-1 rounded-sm z-10">
@@ -127,7 +127,7 @@ const RitualCard = ({ item }: { item: RitualItem }) => {
 
         {/* Title & Phase */}
         <div className="mb-2 md:mb-3 pt-1 md:pt-2">
-            <h3 className="font-serif text-sm md:text-xl text-[#F2F3EE] mb-1 leading-tight group-hover:text-white transition-colors line-clamp-1">
+            <h3 className="font-serif text-base md:text-xl text-[#F2F3EE] mb-1 leading-tight group-hover:text-white transition-colors line-clamp-1">
               {item.title}
             </h3>
             <span className="font-mono text-[9px] font-bold uppercase tracking-[0.1em] text-[#8C9178] group-hover:text-[#F2F3EE]/60 transition-colors">

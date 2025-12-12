@@ -47,7 +47,7 @@ const ImpactSection = () => {
       <div className="container mx-auto px-[8px] md:px-8 relative z-10">
         
         {/* === HEADER === */}
-        <div className="flex flex-col lg:flex-row justify-between items-end mb-16 gap-8 border-b border-[#8C9178]/30 pb-8">
+        <div className="flex flex-col lg:flex-row justify-between items-end mb-8 md:mb-16 gap-8 border-b border-[#8C9178]/30 pb-8">
           <div className="max-w-3xl">
             <div className="flex items-center gap-3 mb-4">
                <CheckCircle2 className="w-4 h-4 text-[#A9AB94]" />
@@ -55,7 +55,7 @@ const ImpactSection = () => {
                   Ethical Standards
                </span>
             </div>
-            <h2 className="font-serif text-4xl lg:text-6xl leading-[0.95] text-[#F2F3EE]">
+            <h2 className="font-serif text-3xl lg:text-6xl leading-[0.95] text-[#F2F3EE]">
               Our <span className="italic text-[#8C9178]">Promise.</span>
             </h2>
           </div>
@@ -75,7 +75,7 @@ const ImpactSection = () => {
               key={index} 
               className="
                 group relative 
-                p-8 md:p-10 
+                p-4 md:p-10 
                 /* Card BG: Slightly lighter than section BG for depth */
                 bg-[#343D2D] 
                 border border-[#8C9178]/20
@@ -93,7 +93,7 @@ const ImpactSection = () => {
                 <div className="mb-6 flex items-center gap-4">
                   {/* Icon Container */}
                   <div className="
-                    w-12 h-12 rounded-full 
+                    w-10 h-10 md:w-12 md:h-12 rounded-full 
                     bg-[#2C3326] border border-[#8C9178]/30
                     flex items-center justify-center 
                     text-[#A9AB94] 
@@ -102,24 +102,24 @@ const ImpactSection = () => {
                   ">
                     <pillar.icon className="w-5 h-5" />
                   </div>
-                  <h3 className="font-serif text-2xl md:text-3xl text-[#F2F3EE]">
+                  <h3 className="font-serif text-xl md:text-3xl text-[#F2F3EE]">
                     {pillar.title}
                   </h3>
                 </div>
 
-                <p className="font-sans text-sm text-[#F2F3EE]/60 leading-7 max-w-md group-hover:text-[#F2F3EE]/80 transition-colors">
+                <p className="font-sans text-xs md:text-sm text-[#F2F3EE]/60 leading-7 max-w-md group-hover:text-[#F2F3EE]/80 transition-colors">
                   {pillar.description}
                 </p>
                 
                 {/* Accent Line */}
-                <div className="mt-8 h-px w-12 bg-[#8C9178]/50 group-hover:w-full group-hover:bg-[#F2F3EE]/50 transition-all duration-700 ease-out" />
+                <div className="mt-4 md:mt-8 h-px w-12 bg-[#8C9178]/50 group-hover:w-full group-hover:bg-[#F2F3EE]/50 transition-all duration-700 ease-out" />
               </div>
             </div>
           ))}
         </div>
 
         {/* === FOOTER ACTION === */}
-        <div className="mt-12 md:mt-16 flex flex-col md:flex-row justify-between items-center gap-6 pt-8 border-t border-[#8C9178]/20">
+        <div className="mt-8 md:mt-16 flex flex-col md:flex-row justify-between items-center gap-6 pt-8 border-t border-[#8C9178]/20">
            <span className="font-mono text-[10px] uppercase tracking-widest text-[#F2F3EE]/40">
                Transparency Report 2024
            </span>
