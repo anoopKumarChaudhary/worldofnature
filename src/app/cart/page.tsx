@@ -16,6 +16,7 @@ import {
   Minus,
   ArrowRight,
   ShieldCheck,
+  PackageCheck,
 } from "lucide-react";
 
 export default function CartPage() {
@@ -53,7 +54,7 @@ export default function CartPage() {
         />
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#BC5633] rounded-full mix-blend-multiply filter blur-[120px] opacity-20 animate-blob" />
 
-        <div className="relative z-10 text-center p-8 bg-white/60 backdrop-blur-xl rounded-sm border border-[#1A2118]/5 shadow-2xl max-w-lg mx-[8px]">
+        <div className="relative z-10 text-center p-8 bg-white/60 backdrop-blur-xl rounded-sm border border-[#1A2118]/5 shadow-2xl max-w-lg mx-2">
           <div className="w-24 h-24 bg-[#F2F0EA] rounded-sm flex items-center justify-center mx-auto mb-6 shadow-inner">
             <ShoppingBag className="w-10 h-10 text-[#BC5633]" />
           </div>
@@ -76,7 +77,7 @@ export default function CartPage() {
   }
 
   return (
-    <div className="min-h-[60vh] lg:min-h-screen bg-[#D9DBD5] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white pb-4 overflow-x-hidden">
+    <div className="min-h-[60vh] lg:min-h-screen bg-[#D9DBD5] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white pb-8 overflow-x-hidden">
       {/* --- STYLES & BACKGROUND --- */}
       <style jsx>{`
         @keyframes blob {
@@ -100,8 +101,8 @@ export default function CartPage() {
       <div className="fixed inset-0 z-0 pointer-events-none bg-[#D9DBD5]" />
 
       {/* --- HEADER --- */}
-      <div className="relative pt-12 lg:pt-32 pb-4 px-[8px] lg:px-12 z-10">
-        <div className="container mx-auto max-w-7xl flex items-end justify-between border-b border-[#1A2118]/10 pb-6">
+      <div className="relative pt-16 lg:pt-32 pb-0 px-2 lg:px-12 z-10">
+        <div className="container mx-auto max-w-7xl flex items-end justify-between border-b border-[#1A2118]/10 pb-4 mb-4 lg:pb-6 lg:mb-8">
           <div>
             <div className="flex items-center gap-3 mb-2">
               <div className="h-2 w-2 bg-[#BC5633] rounded-full animate-pulse"></div>
@@ -115,92 +116,93 @@ export default function CartPage() {
           </div>
           <button
             onClick={handleClearCart}
-            className="group flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-[#1A2118]/50 hover:text-[#BC5633] transition-colors pb-2"
+            className="group flex items-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-widest text-[#1A2118]/40 hover:text-[#BC5633] transition-colors pb-1"
           >
-            <Trash2 className="w-4 h-4" />
+            <Trash2 className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">Clear Cart</span>
           </button>
         </div>
       </div>
 
-      <div className="relative z-10 px-[8px] lg:px-12">
+      <div className="relative z-10 px-2 lg:px-12">
         <div className="container mx-auto max-w-7xl">
-          <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-12 items-start">
+          <div className="flex flex-col lg:grid lg:grid-cols-12 gap-4 lg:gap-12 items-start">
+            
             {/* --- CART ITEMS LIST --- */}
-            <div className="w-full lg:col-span-8 space-y-4">
+            <div className="w-full lg:col-span-8 space-y-3 lg:space-y-4">
               {items.map((item) => (
+                // === PROFESSIONAL ITEM CARD ===
                 <div
                   key={`${item.id}-${item.size}`}
-                  className="group bg-white/60 backdrop-blur-md border border-white/40 rounded-sm p-4 flex flex-row items-start gap-4 hover:bg-white/80 transition-all duration-300 shadow-sm hover:shadow-lg"
+                  className="group relative bg-white border border-[#1A2118]/5 rounded-sm p-3 sm:p-5 flex gap-4 sm:gap-6 transition-all duration-500 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:border-[#BC5633]/30"
                 >
-                  {/* Image */}
+                  {/* Left: Image */}
                   <div className="relative w-24 h-24 sm:w-32 sm:h-32 flex-shrink-0 bg-[#F2F0EA] rounded-sm overflow-hidden">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={item.image}
                       alt={item.name}
-                      className="w-full h-full object-cover mix-blend-multiply opacity-90 group-hover:scale-110 transition-transform duration-700"
+                      className="w-full h-full object-cover mix-blend-multiply opacity-90 transition-transform duration-700 group-hover:scale-105"
                     />
                   </div>
 
-                  {/* Details */}
-                  <div className="flex-1 min-w-0 flex flex-col justify-between self-stretch">
-                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1 sm:gap-4 mb-2">
-                      <div>
-                        <h3 className="text-lg sm:text-xl font-serif font-bold text-[#1A2118] leading-tight truncate pr-2">
-                          {item.name}
+                  {/* Right: Content */}
+                  <div className="flex-1 flex flex-col justify-between py-0.5">
+                    {/* Top Row: Title & Price */}
+                    <div className="flex justify-between items-start gap-3">
+                      <div className="space-y-1">
+                         {/* Status Badge (Optional Professional Touch) */}
+                         <div className="hidden sm:flex items-center gap-1.5 mb-1">
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/80"></span>
+                            <span className="text-[10px] font-bold uppercase tracking-widest text-[#1A2118]/40">In Stock</span>
+                         </div>
+                        
+                        <h3 className="font-serif text-lg sm:text-2xl text-[#1A2118] leading-[1.1] hover:text-[#BC5633] transition-colors cursor-pointer">
+                          <Link href={`/product/${item.id}`}>{item.name}</Link>
                         </h3>
+                        
                         {item.size && (
-                          <span className="inline-block mt-1 px-2 py-0.5 bg-[#1A2118]/5 text-[#596157] text-xs sm:text-sm font-bold rounded-sm uppercase tracking-wide">
-                            Size: {item.size}
-                          </span>
+                          <p className="text-xs sm:text-sm font-medium text-[#596157] font-mono">
+                            Volume: {item.size}
+                          </p>
                         )}
                       </div>
-                      <p className="text-lg font-bold text-[#1A2118] mt-1 sm:mt-0">
-                        ₹{item.price.toFixed(2)}
-                      </p>
+                      <div className="text-right">
+                        <p className="font-bold text-[#1A2118] text-base sm:text-lg">
+                          ₹{item.price.toFixed(2)}
+                        </p>
+                      </div>
                     </div>
 
-                    {/* Controls */}
-                    <div className="flex items-center justify-between mt-auto pt-2">
-                      {/* Quantity */}
-                      <div className="flex items-center bg-white rounded-sm p-0.5 shadow-sm border border-[#1A2118]/5 h-8">
+                    {/* Bottom Row: Controls */}
+                    <div className="flex items-end justify-between mt-3 sm:mt-0">
+                      {/* Premium Quantity Stepper */}
+                      <div className="flex items-center border border-[#1A2118]/10 rounded-sm bg-white hover:border-[#1A2118]/30 transition-colors h-8 sm:h-9">
                         <button
-                          onClick={() =>
-                            handleUpdateQuantity(
-                              item.id,
-                              item.size,
-                              item.quantity - 1
-                            )
-                          }
-                          className="w-7 h-full flex items-center justify-center rounded-sm hover:bg-[#F2F0EA] transition-colors text-[#1A2118]"
+                          onClick={() => handleUpdateQuantity(item.id, item.size, item.quantity - 1)}
+                          className="w-8 h-full flex items-center justify-center text-[#1A2118]/60 hover:text-[#BC5633] hover:bg-[#F2F0EA] transition-colors"
+                          disabled={item.quantity <= 1}
                         >
                           <Minus className="w-3 h-3" />
                         </button>
-                        <span className="w-6 text-center text-sm font-bold text-[#1A2118]">
+                        <span className="w-8 text-center text-sm font-bold text-[#1A2118] font-mono">
                           {item.quantity}
                         </span>
                         <button
-                          onClick={() =>
-                            handleUpdateQuantity(
-                              item.id,
-                              item.size,
-                              item.quantity + 1
-                            )
-                          }
-                          className="w-7 h-full flex items-center justify-center rounded-sm hover:bg-[#F2F0EA] transition-colors text-[#1A2118]"
+                          onClick={() => handleUpdateQuantity(item.id, item.size, item.quantity + 1)}
+                          className="w-8 h-full flex items-center justify-center text-[#1A2118]/60 hover:text-[#BC5633] hover:bg-[#F2F0EA] transition-colors"
                         >
                           <Plus className="w-3 h-3" />
                         </button>
                       </div>
 
-                      {/* Remove */}
+                      {/* Remove Button */}
                       <button
                         onClick={() => handleRemoveItem(item.id, item.size)}
-                        className="flex items-center gap-1 text-xs sm:text-sm font-bold uppercase tracking-widest text-[#1A2118]/40 hover:text-red-500 transition-colors"
+                        className="group/trash flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-[#1A2118]/30 hover:text-rose-500 transition-colors py-2 pl-2"
                       >
-                        <Trash2 className="w-3 h-3 sm:hidden" />
                         <span className="hidden sm:inline">Remove</span>
+                        <Trash2 className="w-4 h-4 transition-transform group-hover/trash:scale-110" />
                       </button>
                     </div>
                   </div>
@@ -209,29 +211,28 @@ export default function CartPage() {
 
               <Link
                 href="/shop"
-                className="inline-flex items-center gap-2 text-[#596157] hover:text-[#1A2118] font-medium transition-colors mt-4 ml-4"
+                className="inline-flex items-center gap-2 text-[#596157] hover:text-[#1A2118] font-medium transition-colors mt-2 ml-1 text-sm group"
               >
-                <ArrowLeft className="w-4 h-4" /> Continue Shopping
+                <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" /> Continue Shopping
               </Link>
             </div>
 
             {/* --- ORDER SUMMARY --- */}
-            <div className="w-full lg:col-span-4 mt-6 lg:mt-0">
+            <div className="w-full lg:col-span-4 mt-4 lg:mt-0">
               <div className="sticky top-32">
-                <div className="bg-[#1A2118] text-[#F2F0EA] rounded-sm p-5 lg:p-10 shadow-2xl relative overflow-hidden">
-                  {/* Decorative Blob inside Summary */}
+                <div className="bg-[#1A2118] text-[#F2F0EA] rounded-sm p-5 lg:p-8 shadow-2xl relative overflow-hidden">
+                  {/* Decorative Blob */}
                   <div className="absolute top-0 right-0 w-40 h-40 bg-[#BC5633] rounded-full mix-blend-overlay filter blur-[60px] opacity-40 pointer-events-none" />
 
-                  <h2 className="text-2xl font-serif font-bold mb-6 relative z-10">
-                    Order Summary
-                  </h2>
+                  <div className="relative z-10 flex items-center gap-2 mb-6 opacity-60">
+                     <PackageCheck className="w-4 h-4" />
+                     <span className="text-xs font-bold uppercase tracking-widest">Order Details</span>
+                  </div>
 
-                  <div className="space-y-4 text-sm font-medium text-[#F2F0EA]/70 relative z-10">
+                  <div className="space-y-4 text-sm font-medium text-[#F2F0EA]/70 relative z-10 font-mono">
                     <div className="flex justify-between">
-                      <span>Subtotal ({items.length})</span>
-                      <span className="text-[#F2F0EA]">
-                        ₹{total.toFixed(2)}
-                      </span>
+                      <span>Subtotal</span>
+                      <span className="text-[#F2F0EA]">₹{total.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Shipping</span>
@@ -244,10 +245,8 @@ export default function CartPage() {
 
                     <div className="border-t border-white/10 pt-6 mt-6 pb-2">
                       <div className="flex justify-between items-end">
-                        <span className="text-[#F2F0EA]/50 uppercase tracking-widest text-sm">
-                          Total
-                        </span>
-                        <span className="text-3xl font-serif font-bold text-[#F2F0EA]">
+                        <span className="text-[#F2F0EA]/50 uppercase tracking-widest text-xs font-sans font-bold">Total</span>
+                        <span className="text-3xl font-serif text-[#F2F0EA]">
                           ₹{total.toFixed(2)}
                         </span>
                       </div>
@@ -256,13 +255,13 @@ export default function CartPage() {
 
                   <Link
                     href="/checkout"
-                    className="w-full h-16 mt-6 bg-[#F2F0EA] text-[#1A2118] rounded-sm flex items-center justify-center gap-3 font-bold text-sm uppercase tracking-widest hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg relative z-10"
+                    className="group w-full h-14 mt-8 bg-[#F2F0EA] text-[#1A2118] rounded-sm flex items-center justify-center gap-3 font-bold text-sm uppercase tracking-widest hover:bg-white transition-all shadow-lg relative z-10"
                   >
-                    Checkout <ArrowRight className="w-4 h-4" />
+                    Checkout <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </Link>
 
-                  <div className="mt-4 flex items-center justify-center gap-2 text-[#F2F0EA]/30 text-sm uppercase tracking-widest relative z-10">
-                    <ShieldCheck className="w-4 h-4" /> Secure Transaction
+                  <div className="mt-4 flex items-center justify-center gap-2 text-[#F2F0EA]/30 text-[10px] uppercase tracking-widest relative z-10">
+                    <ShieldCheck className="w-3 h-3" /> Secure Transaction • SSL Encrypted
                   </div>
                 </div>
               </div>
