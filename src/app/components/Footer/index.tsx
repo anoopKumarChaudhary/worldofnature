@@ -69,7 +69,7 @@ const Footer = () => {
     <footer className="relative z-10 bg-[#1A2118] text-[#F2F0EA] pt-16 md:pt-24 pb-12 border-t border-[#F2F0EA]/10" role="contentinfo">
       <div className="container-custom mx-auto">
         {/* Top Section: Newsletter & Brand */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 mb-16 md:mb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16 md:mb-24">
           {/* Brand Column */}
           <div className="lg:col-span-4 space-y-8">
             <Link href="/" className="inline-block" aria-label="World of Nature">
@@ -120,7 +120,7 @@ const Footer = () => {
           </div>
 
           {/* Links Columns */}
-          <div className="lg:col-span-5 grid grid-cols-2 gap-10 md:gap-12">
+          <div className="lg:col-span-5 grid grid-cols-2 gap-8 md:gap-12">
             {footerSections.map((section) => (
               <div key={section.title} className="space-y-6">
                 <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-[#BC5633] mb-4">

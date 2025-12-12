@@ -253,7 +253,7 @@ export default function CheckoutPage() {
         </div>
 
         {/* --- HEADER --- */}
-        <div className="relative pt-32 pb-8 px-4 lg:px-12 z-10">
+        <div className="relative pt-20 lg:pt-32 pb-8 px-4 lg:px-12 z-10">
           <div className="container mx-auto max-w-7xl">
             <h1 className="text-5xl md:text-6xl font-serif font-medium tracking-tight text-[#1A2118] mb-8">
               Checkout
@@ -305,7 +305,7 @@ export default function CheckoutPage() {
 
         <div className="relative z-10 px-4 lg:px-12">
           <div className="container mx-auto max-w-7xl">
-            <div className="lg:grid lg:grid-cols-12 lg:gap-12 items-start">
+            <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
               {/* --- MAIN FORM AREA --- */}
               <div className="lg:col-span-8">
                 {currentStep === 1 && (

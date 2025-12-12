@@ -29,7 +29,7 @@ export default function FaqClient({ faqData }: FaqClientProps) {
   return (
     <>
       {/* --- HEADER SECTION (Search) --- */}
-      <section className="relative pt-32 pb-16 px-4 sm:px-6 lg:px-8 z-10">
+      <section className="relative pt-20 lg:pt-32 pb-16 px-4 sm:px-6 lg:px-8 z-10">
         <div className="container mx-auto max-w-3xl text-center">
           {/* Pill Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#1A2118]/10 shadow-sm mb-8 animate-fade-in-up">
@@ -91,7 +91,7 @@ export default function FaqClient({ faqData }: FaqClientProps) {
             </div>
           ) : (
             // Empty State - One UI Style
-            <div className="text-center py-16 px-6 bg-white/50 backdrop-blur-md rounded-[2.5rem] border border-dashed border-[#1A2118]/20">
+            <div className="text-center py-12 lg:py-16 px-6 bg-white/50 backdrop-blur-md rounded-[2.5rem] border border-dashed border-[#1A2118]/20">
               <div className="bg-[#F2F0EA] w-20 h-20 rounded-[1.5rem] flex items-center justify-center mx-auto mb-6 shadow-inner">
                 <Search className="w-8 h-8 text-[#BC5633]" />
               </div>

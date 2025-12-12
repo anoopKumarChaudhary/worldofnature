@@ -43,7 +43,7 @@ const TestimonialsSection = () => {
           <p className="text-[#596157] font-light">Real experiences from those who value purity.</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-12">
           {reviews.map((review) => (
             <div key={review.id} className="bg-[#F2F0EA] p-8 rounded-sm shadow-sm hover:shadow-md transition-shadow duration-300 border border-[#1A2118]/5 flex flex-col">
               

@@ -100,7 +100,7 @@ export default function CartPage() {
       <div className="fixed inset-0 z-0 pointer-events-none bg-[#D9DBD5]" />
 
       {/* --- HEADER --- */}
-      <div className="relative pt-32 pb-12 px-4 lg:px-12 z-10">
+      <div className="relative pt-20 lg:pt-32 pb-12 px-4 lg:px-12 z-10">
         <div className="container mx-auto max-w-7xl flex items-end justify-between border-b border-[#1A2118]/10 pb-6">
           <div>
             <div className="flex items-center gap-3 mb-2">
@@ -125,7 +125,7 @@ export default function CartPage() {
 
       <div className="relative z-10 px-4 lg:px-12">
         <div className="container mx-auto max-w-7xl">
-          <div className="lg:grid lg:grid-cols-12 lg:gap-12 items-start">
+          <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             {/* --- CART ITEMS LIST --- */}
             <div className="lg:col-span-8 space-y-6">
               {items.map((item) => (

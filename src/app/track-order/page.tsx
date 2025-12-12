@@ -31,7 +31,7 @@ export default function TrackOrderPage() {
   };
 
   return (
-    <div className="min-h-screen text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white pt-32 pb-20">
+    <div className="min-h-screen text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white pt-20 lg:pt-32 pb-20">
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="text-center mb-16">
           <h1 className="text-5xl md:text-6xl font-serif font-medium tracking-tight text-[#1A2118] mb-6">

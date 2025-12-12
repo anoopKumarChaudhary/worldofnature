@@ -282,7 +282,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
       <div className="fixed inset-0 z-0 pointer-events-none bg-[#D9DBD5]" />
 
       {/* --- Header --- */}
-      <section className="relative pt-24 pb-6 z-10">
+      <section className="relative pt-20 lg:pt-32 pb-4 lg:pb-6 z-10">
         <div className="container-custom mx-auto">
           <div className="flex items-center gap-3 mb-3">
             <div className="h-2 w-2 bg-[#B56B56] rounded-full animate-pulse"></div>
@@ -298,7 +298,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
 
       <div className="container-custom mx-auto relative z-10">
         {/* --- Control Bar --- */}
-        <div className="sticky top-20 z-[90] mb-6 transition-all duration-300">
+        <div className="sticky top-20 z-[90] mb-4 lg:mb-6 transition-all duration-300">
           <div className="flex flex-row gap-3 items-center justify-between">
             {/* Search Input */}
             <div className="relative flex-1 group">
@@ -704,7 +704,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
                 )}
               </>
             ) : (
-              <div className="flex flex-col items-center justify-center py-24 bg-white/40 backdrop-blur-md rounded-sm border border-[#1A2118]/5 text-center">
+              <div className="flex flex-col items-center justify-center py-12 lg:py-24 bg-white/40 backdrop-blur-md rounded-sm border border-[#1A2118]/5 text-center">
                 <div className="w-20 h-20 bg-[#F2F0EA] rounded-sm flex items-center justify-center mb-6 shadow-inner">
                   <Search className="w-8 h-8 text-[#B56B56]" />
                 </div>

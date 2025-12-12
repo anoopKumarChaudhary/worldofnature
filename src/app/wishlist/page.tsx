@@ -84,7 +84,7 @@ export default function WishlistPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#D9DBD5] pt-32 pb-20 px-4">
+    <div className="min-h-screen bg-[#D9DBD5] pt-20 lg:pt-32 pb-20 px-4">
       <div className="container mx-auto max-w-6xl">
         <h1 className="text-4xl font-serif text-[#1A2118] mb-8">My Wishlist</h1>
 
