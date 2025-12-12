@@ -46,14 +46,14 @@ export default function ContactClient() {
 
   if (isSubmitted) {
     return (
-      <div className="flex flex-col items-center justify-center py-20 text-center">
-        <div className="w-24 h-24 bg-[#E6F4EA] rounded-full flex items-center justify-center mb-6 animate-blob">
-          <CheckCircle2 className="w-12 h-12 text-[#1A2118]" />
+      <div className="flex flex-col items-center justify-center py-20 text-center animate-fade-in">
+        <div className="w-20 h-20 md:w-24 md:h-24 bg-[#E6F4EA] rounded-full flex items-center justify-center mb-6 animate-blob">
+          <CheckCircle2 className="w-10 h-10 md:w-12 md:h-12 text-[#1A2118]" />
         </div>
-        <h3 className="text-3xl font-serif font-bold text-[#1A2118] mb-2">
+        <h3 className="text-2xl md:text-3xl font-serif font-bold text-[#1A2118] mb-2">
           Message Received
         </h3>
-        <p className="text-[#596157] max-w-xs mx-auto text-lg">
+        <p className="text-[#596157] max-w-xs mx-auto text-base md:text-lg">
           Thank you for reaching out. Our team will get back to you shortly.
         </p>
       </div>
@@ -61,27 +61,30 @@ export default function ContactClient() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8">
-      <div className="grid md:grid-cols-2 gap-8">
+    // Reduced space-y for mobile to save vertical height
+    <form onSubmit={handleSubmit} className="space-y-4 md:space-y-8">
+      
+      {/* GRID: Forced 2 columns on mobile to reduce height */}
+      <div className="grid grid-cols-2 gap-3 md:gap-8">
         <Input
           label="Full Name"
           name="name"
-          placeholder="e.g. Jane Doe"
+          placeholder="e.g. Jane"
           value={formData.name}
           onChange={handleInputChange}
         />
         <Input
-          label="Email Address"
+          label="Email" // Shortened label for mobile
           name="email"
           type="email"
-          placeholder="jane@example.com"
+          placeholder="jane@ex.com"
           value={formData.email}
           onChange={handleInputChange}
         />
       </div>
 
-      <div className="space-y-2">
-        <label className="text-sm font-bold uppercase tracking-widest text-[#1A2118]/60 ml-4">
+      <div className="space-y-1.5 md:space-y-2">
+        <label className="text-xs md:text-sm font-bold uppercase tracking-widest text-[#1A2118]/60 ml-2 md:ml-4">
           Subject
         </label>
         <div className="relative">
@@ -90,7 +93,8 @@ export default function ContactClient() {
             required
             value={formData.subject}
             onChange={handleInputChange}
-            className="w-full px-6 py-4 bg-[#F2F0EA]/50 border border-transparent rounded-sm text-base text-[#1A2118] focus:bg-white focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all duration-300 appearance-none cursor-pointer"
+            // Adjusted padding for mobile (px-4 py-3) vs desktop (px-6 py-4)
+            className="w-full px-4 py-3 md:px-6 md:py-4 bg-[#F2F0EA]/50 border border-transparent rounded-sm text-base text-[#1A2118] focus:bg-white focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all duration-300 appearance-none cursor-pointer"
           >
             <option value="">Select a topic...</option>
             <option value="general">General Inquiry</option>
@@ -98,20 +102,27 @@ export default function ContactClient() {
             <option value="orders">Order Support</option>
             <option value="wholesale">Wholesale / Partnerships</option>
           </select>
+          {/* Custom Arrow for better styling consistency */}
+          <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none opacity-50">
+             <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L5 5L9 1" stroke="#1A2118" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+             </svg>
+          </div>
         </div>
       </div>
 
-      <div className="space-y-2">
-        <label className="text-sm font-bold uppercase tracking-widest text-[#1A2118]/60 ml-4">
+      <div className="space-y-1.5 md:space-y-2">
+        <label className="text-xs md:text-sm font-bold uppercase tracking-widest text-[#1A2118]/60 ml-2 md:ml-4">
           Your Message
         </label>
         <textarea
           name="message"
           required
-          rows={6}
+          // Reduced rows on mobile to 4
+          rows={4}
           value={formData.message}
           onChange={handleInputChange}
-          className="w-full px-6 py-4 bg-[#F2F0EA]/50 border border-transparent rounded-sm text-base text-[#1A2118] focus:bg-white focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all duration-300 resize-none placeholder-[#1A2118]/30"
+          className="w-full px-4 py-3 md:px-6 md:py-4 md:min-h-[160px] bg-[#F2F0EA]/50 border border-transparent rounded-sm text-base text-[#1A2118] focus:bg-white focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all duration-300 resize-none placeholder-[#1A2118]/30"
           placeholder="How can we help you today?"
         />
       </div>
@@ -120,7 +131,7 @@ export default function ContactClient() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full py-5 bg-[#1A2118] text-white rounded-sm font-bold text-sm uppercase tracking-widest hover:bg-[#BC5633] hover:shadow-xl hover:shadow-[#BC5633]/20 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed group"
+          className="w-full py-4 md:py-5 bg-[#1A2118] text-white rounded-sm font-bold text-sm uppercase tracking-widest hover:bg-[#BC5633] hover:shadow-xl hover:shadow-[#BC5633]/20 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed group"
         >
           {isSubmitting ? (
             <>
@@ -149,14 +160,15 @@ interface ContactInputProps {
 }
 
 const Input = ({ label, ...props }: ContactInputProps) => (
-  <div className="space-y-2">
-    <label className="text-sm font-bold uppercase tracking-widest text-[#1A2118]/60 ml-4">
+  <div className="space-y-1.5 md:space-y-2">
+    <label className="text-xs md:text-sm font-bold uppercase tracking-widest text-[#1A2118]/60 ml-2 md:ml-4 truncate">
       {label}
     </label>
     <input
       required
-      className="w-full px-6 py-4 bg-[#F2F0EA]/50 border border-transparent rounded-sm text-base text-[#1A2118] focus:bg-white focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all duration-300 placeholder-[#1A2118]/30"
+      // Optimized padding: px-4 py-3 on mobile, larger on desktop
+      className="w-full px-4 py-3 md:px-6 md:py-4 bg-[#F2F0EA]/50 border border-transparent rounded-sm text-base text-[#1A2118] focus:bg-white focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all duration-300 placeholder-[#1A2118]/30"
       {...props}
     />
   </div>
-);
+);  
