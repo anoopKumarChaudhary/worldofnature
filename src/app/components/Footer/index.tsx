@@ -65,14 +65,14 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative z-10 bg-[#1A2118] text-[#F2F0EA] pt-10 md:pt-24 pb-6 md:pb-12 border-t border-[#F2F0EA]/10" role="contentinfo">
+    <footer className="relative z-10 bg-[#1A2118] text-[#F2F0EA] pt-6 md:pt-24 pb-4 md:pb-12 border-t border-[#F2F0EA]/10" role="contentinfo">
       {/* MODIFIED: Removed 'container-custom' to avoid conflicts. Used standard max-w and mx-auto. */}
       {/* MODIFIED: Increased padding to px-6 (24px) for mobile. */}
       <div className="w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
         {/* Top Section: Newsletter & Brand */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8 md:mb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-6 md:mb-24">
           {/* Brand Column */}
-          <div className="lg:col-span-4 space-y-6">
+          <div className="lg:col-span-4 space-y-4 md:space-y-6">
             <Link href="/" className="inline-block" aria-label="World of Nature">
               <div className="relative h-12 w-40 md:h-16 md:w-48 overflow-visible">
                  <Image 
@@ -80,27 +80,26 @@ const Footer = () => {
                    alt="World of Nature Logo" 
                    fill
                    className="object-contain brightness-0 invert opacity-90" 
-                   sizes="(max-width: 768px) 150px, 200px"
+                   sizes="(max-width: 768px) 120px, 200px"
                  />
               </div>
             </Link>
-            <p className="text-[#F2F0EA]/70 leading-relaxed max-w-sm text-base md:text-lg font-light">
-              Curating the finest organic essentials from sustainable farms. 
-              Pure, potent, and ethically sourced for your well-being.
+            <p className="text-[#F2F0EA]/70 leading-relaxed max-w-sm text-sm md:text-lg font-light">
+              Curating the finest organic essentials. Pure, potent, and ethically sourced.
             </p>
             
-            <div className="space-y-4 pt-2">
-               <div className="flex items-start gap-3 text-[#F2F0EA]/60">
-                  <MapPin size={18} className="mt-1 shrink-0 text-[#BC5633]" />
-                  <span className="text-sm leading-relaxed">123 Organic Valley, Nature City, NC 12345</span>
+            <div className="space-y-2 md:space-y-4 pt-2">
+               <div className="flex items-start gap-2 md:gap-3 text-[#F2F0EA]/60">
+                  <MapPin size={16} className="mt-1 shrink-0 text-[#BC5633]" />
+                  <span className="text-xs md:text-sm leading-relaxed">123 Organic Valley, Nature City, NC</span>
                </div>
-               <div className="flex items-center gap-3 text-[#F2F0EA]/60">
-                  <Mail size={18} className="shrink-0 text-[#BC5633]" />
-                  <a href="mailto:hello@worldofnature.com" className="text-sm hover:text-[#F2F0EA] transition-colors">hello@worldofnature.com</a>
+               <div className="flex items-center gap-2 md:gap-3 text-[#F2F0EA]/60">
+                  <Mail size={16} className="shrink-0 text-[#BC5633]" />
+                  <a href="mailto:hello@worldofnature.com" className="text-xs md:text-sm hover:text-[#F2F0EA] transition-colors">hello@worldofnature.com</a>
                </div>
-               <div className="flex items-center gap-3 text-[#F2F0EA]/60">
-                  <Phone size={18} className="shrink-0 text-[#BC5633]" />
-                  <a href="tel:+1234567890" className="text-sm hover:text-[#F2F0EA] transition-colors">+1 (123) 456-7890</a>
+               <div className="flex items-center gap-2 md:gap-3 text-[#F2F0EA]/60">
+                  <Phone size={16} className="shrink-0 text-[#BC5633]" />
+                  <a href="tel:+1234567890" className="text-xs md:text-sm hover:text-[#F2F0EA] transition-colors">+1 (123) 456-7890</a>
                </div>
             </div>
 
@@ -120,19 +119,19 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Links Columns */}
-          <div className="lg:col-span-5 grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Links Columns - Compact Grid on Mobile */}
+          <div className="lg:col-span-5 grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-6">
             {footerSections.map((section) => (
-              <div key={section.title} className="space-y-4">
-                <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-[#BC5633] mb-4">
+              <div key={section.title} className="space-y-2 md:space-y-4">
+                <h3 className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-[#BC5633] mb-2 md:mb-4">
                   {section.title}
                 </h3>
-                <ul className="space-y-4">
+                <ul className="space-y-1 md:space-y-4">
                   {section.links.map((link) => (
                     <li key={link.href}>
                       <Link
                         href={link.href}
-                        className="text-[#F2F0EA]/60 hover:text-[#F2F0EA] transition-colors duration-200 text-sm font-medium block py-1"
+                        className="text-[#F2F0EA]/60 hover:text-[#F2F0EA] transition-colors duration-200 text-xs md:text-sm font-medium block py-0.5 md:py-1"
                       >
                         {link.label}
                       </Link>
@@ -146,9 +145,9 @@ const Footer = () => {
           {/* Newsletter Column */}
           <div className="lg:col-span-3 space-y-4">
             <div>
-                <h3 className="text-xl font-serif text-[#F2F0EA] mb-4">Stay Connected</h3>
-                <p className="text-[#F2F0EA]/60 text-sm leading-relaxed mb-6">
-                Join our community for exclusive offers, wellness tips, and new arrival updates.
+                <h3 className="text-lg md:text-xl font-serif text-[#F2F0EA] mb-2 md:mb-4">Stay Connected</h3>
+                <p className="text-[#F2F0EA]/60 text-xs md:text-sm leading-relaxed mb-4 md:mb-6">
+                Join our community for exclusive offers and updates.
                 </p>
                 <form
                 className="space-y-3"
@@ -190,8 +189,8 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-[#F2F0EA]/10 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex flex-col md:flex-row items-center gap-4 text-xs text-[#F2F0EA]/30 uppercase tracking-wider">
+        <div className="pt-4 md:pt-8 border-t border-[#F2F0EA]/10 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6">
+          <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4 text-[10px] md:text-xs text-[#F2F0EA]/30 uppercase tracking-wider text-center md:text-left">
             <span>&copy; {currentYear} World of Nature. All rights reserved.</span>
             <span className="hidden md:inline opacity-50">|</span>
             <div className="flex items-center gap-1">
