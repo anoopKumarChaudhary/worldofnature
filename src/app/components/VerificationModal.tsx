@@ -49,12 +49,12 @@ export default function VerificationModal() {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1A2118]/80 backdrop-blur-sm">
       <div className="bg-[#F2F0EA] rounded-sm w-full max-w-md overflow-hidden shadow-2xl relative animate-fade-up">
         {/* Decorative Header */}
-        <div className="bg-[#1A2118] p-6 md:p-8 text-center relative overflow-hidden">
+        <div className="bg-[#1A2118] p-5 md:p-8 text-center relative overflow-hidden">
           <div className="absolute top-0 right-0 w-32 h-32 bg-[#BC5633] rounded-full mix-blend-overlay filter blur-[40px] opacity-40 pointer-events-none" />
-          <div className="w-16 h-16 bg-[#F2F0EA]/10 rounded-full flex items-center justify-center mx-auto mb-4 backdrop-blur-md border border-white/10">
-            <Lock className="w-8 h-8 text-[#F2F0EA]" />
+          <div className="w-12 h-12 bg-[#F2F0EA]/10 rounded-full flex items-center justify-center mx-auto mb-3 backdrop-blur-md border border-white/10">
+            <Lock className="w-6 h-6 text-[#F2F0EA]" />
           </div>
-          <h2 className="text-2xl font-serif font-bold text-[#F2F0EA]">
+          <h2 className="text-xl font-serif font-bold text-[#F2F0EA]">
             Verification Required
           </h2>
           <p className="text-[#F2F0EA]/60 text-sm mt-2">
@@ -62,14 +62,14 @@ export default function VerificationModal() {
           </p>
         </div>
 
-        <div className="p-6 md:p-8">
-          <div className="text-center mb-6">
+        <div className="p-5 md:p-8">
+          <div className="text-center mb-5">
             <p className="text-[#596157] text-sm">
               We&apos;ve sent a code to <span className="font-bold text-[#1A2118]">{user.email}</span>
             </p>
           </div>
 
-          <form onSubmit={handleVerify} className="space-y-6">
+          <form onSubmit={handleVerify} className="space-y-4">
             <div className="relative">
               <input
                 type="text"
@@ -91,7 +91,7 @@ export default function VerificationModal() {
             <button
               type="submit"
               disabled={isLoading || otp.length !== 6}
-              className="w-full h-14 bg-[#1A2118] text-white rounded-sm font-bold text-sm uppercase tracking-widest hover:bg-[#BC5633] hover:shadow-lg hover:shadow-[#BC5633]/20 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
+              className="w-full h-12 bg-[#1A2118] text-white rounded-sm font-bold text-sm uppercase tracking-widest hover:bg-[#BC5633] hover:shadow-lg hover:shadow-[#BC5633]/20 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
             >
               {isLoading ? (
                 <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />

@@ -76,7 +76,7 @@ export default function CartPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#D9DBD5] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white pb-20 overflow-x-hidden">
+    <div className="min-h-[60vh] lg:min-h-screen bg-[#D9DBD5] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white pb-4 overflow-x-hidden">
       {/* --- STYLES & BACKGROUND --- */}
       <style jsx>{`
         @keyframes blob {
@@ -100,7 +100,7 @@ export default function CartPage() {
       <div className="fixed inset-0 z-0 pointer-events-none bg-[#D9DBD5]" />
 
       {/* --- HEADER --- */}
-      <div className="relative pt-20 lg:pt-32 pb-12 px-4 lg:px-12 z-10">
+      <div className="relative pt-12 lg:pt-32 pb-4 px-4 lg:px-12 z-10">
         <div className="container mx-auto max-w-7xl flex items-end justify-between border-b border-[#1A2118]/10 pb-6">
           <div>
             <div className="flex items-center gap-3 mb-2">
@@ -125,9 +125,9 @@ export default function CartPage() {
 
       <div className="relative z-10 px-4 lg:px-12">
         <div className="container mx-auto max-w-7xl">
-          <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-12 items-start">
             {/* --- CART ITEMS LIST --- */}
-            <div className="w-full lg:col-span-8 space-y-6">
+            <div className="w-full lg:col-span-8 space-y-4">
               {items.map((item) => (
                 <div
                   key={`${item.id}-${item.size}`}
@@ -209,20 +209,20 @@ export default function CartPage() {
 
               <Link
                 href="/shop"
-                className="inline-flex items-center gap-2 text-[#596157] hover:text-[#1A2118] font-medium transition-colors mt-6 ml-4"
+                className="inline-flex items-center gap-2 text-[#596157] hover:text-[#1A2118] font-medium transition-colors mt-4 ml-4"
               >
                 <ArrowLeft className="w-4 h-4" /> Continue Shopping
               </Link>
             </div>
 
             {/* --- ORDER SUMMARY --- */}
-            <div className="w-full lg:col-span-4 mt-12 lg:mt-0">
+            <div className="w-full lg:col-span-4 mt-6 lg:mt-0">
               <div className="sticky top-32">
-                <div className="bg-[#1A2118] text-[#F2F0EA] rounded-sm p-6 lg:p-10 shadow-2xl relative overflow-hidden">
+                <div className="bg-[#1A2118] text-[#F2F0EA] rounded-sm p-5 lg:p-10 shadow-2xl relative overflow-hidden">
                   {/* Decorative Blob inside Summary */}
                   <div className="absolute top-0 right-0 w-40 h-40 bg-[#BC5633] rounded-full mix-blend-overlay filter blur-[60px] opacity-40 pointer-events-none" />
 
-                  <h2 className="text-2xl font-serif font-bold mb-8 relative z-10">
+                  <h2 className="text-2xl font-serif font-bold mb-6 relative z-10">
                     Order Summary
                   </h2>
 
@@ -256,12 +256,12 @@ export default function CartPage() {
 
                   <Link
                     href="/checkout"
-                    className="w-full h-16 mt-8 bg-[#F2F0EA] text-[#1A2118] rounded-sm flex items-center justify-center gap-3 font-bold text-sm uppercase tracking-widest hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg relative z-10"
+                    className="w-full h-16 mt-6 bg-[#F2F0EA] text-[#1A2118] rounded-sm flex items-center justify-center gap-3 font-bold text-sm uppercase tracking-widest hover:scale-[1.02] active:scale-[0.98] transition-all shadow-lg relative z-10"
                   >
                     Checkout <ArrowRight className="w-4 h-4" />
                   </Link>
 
-                  <div className="mt-6 flex items-center justify-center gap-2 text-[#F2F0EA]/30 text-sm uppercase tracking-widest relative z-10">
+                  <div className="mt-4 flex items-center justify-center gap-2 text-[#F2F0EA]/30 text-sm uppercase tracking-widest relative z-10">
                     <ShieldCheck className="w-4 h-4" /> Secure Transaction
                   </div>
                 </div>

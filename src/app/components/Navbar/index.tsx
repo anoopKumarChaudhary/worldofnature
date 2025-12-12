@@ -254,7 +254,7 @@ const Navbar = () => {
 
           {/* Navigation Links */}
           <div className="flex-1 flex flex-col justify-center px-8 relative z-10">
-            <ul className="space-y-6">
+            <ul className="space-y-4">
               {navItems.map((item, idx) => (
                 <li key={item.href} className="animate-reveal-up" style={{ animationDelay: `${idx * 100}ms` }}>
                   <Link
@@ -275,11 +275,11 @@ const Navbar = () => {
           </div>
 
           {/* Footer Actions */}
-          <div className="relative z-10 p-8 border-t border-white/5 grid grid-cols-2 gap-4 bg-black/20 backdrop-blur-sm animate-reveal-up" style={{ animationDelay: "500ms" }}>
+          <div className="relative z-10 p-6 border-t border-white/5 grid grid-cols-2 gap-4 bg-black/20 backdrop-blur-sm animate-reveal-up" style={{ animationDelay: "500ms" }}>
               <Link
               href="/wishlist"
               onClick={closeMobileMenu}
-              className="flex flex-col items-center justify-center p-6 rounded-2xl bg-white/5 hover:bg-white/10 transition-all group border border-white/5"
+              className="flex flex-col items-center justify-center p-4 rounded-2xl bg-white/5 hover:bg-white/10 transition-all group border border-white/5"
             >
               <Heart size={24} className="text-[#F2F0EA] group-hover:text-[#B56B56] mb-3 transition-colors" strokeWidth={1.5} />
               <span className="text-xs font-bold uppercase tracking-widest text-[#F2F0EA]/60 group-hover:text-[#F2F0EA] transition-colors">Wishlist</span>
@@ -291,7 +291,7 @@ const Navbar = () => {
                   dispatch(logout());
                   closeMobileMenu();
                 }}
-                className="flex flex-col items-center justify-center p-6 rounded-2xl bg-white/5 hover:bg-[#B56B56] transition-all group border border-white/5"
+                className="flex flex-col items-center justify-center p-4 rounded-2xl bg-white/5 hover:bg-[#B56B56] transition-all group border border-white/5"
               >
                 <LogOut size={24} className="text-[#F2F0EA] mb-3" strokeWidth={1.5} />
                 <span className="text-xs font-bold uppercase tracking-widest text-[#F2F0EA]/60 group-hover:text-[#F2F0EA] transition-colors">Logout</span>
@@ -300,7 +300,7 @@ const Navbar = () => {
               <Link
                 href="/login"
                 onClick={closeMobileMenu}
-              className="flex flex-col items-center justify-center p-6 rounded-2xl bg-white/5 hover:bg-white/10 transition-all group border border-white/5"
+              className="flex flex-col items-center justify-center p-4 rounded-2xl bg-white/5 hover:bg-white/10 transition-all group border border-white/5"
               >
                 <User size={24} className="text-[#F2F0EA] group-hover:text-[#B56B56] mb-3 transition-colors" strokeWidth={1.5} />
                 <span className="text-xs font-bold uppercase tracking-widest text-[#F2F0EA]/60 group-hover:text-[#F2F0EA] transition-colors">Login</span>

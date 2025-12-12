@@ -105,7 +105,7 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6">
       {/* Deep Blur Backdrop */}
       <div
         className="absolute inset-0 bg-[#1A2118]/40 backdrop-blur-md transition-opacity duration-300"
@@ -137,7 +137,7 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({
             }}
           />
 
-          <div className="relative w-full h-[400px] md:h-full p-4 md:p-12">
+          <div className="relative w-full h-[300px] md:h-full p-3 md:p-12">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={product.imageUrl}
@@ -160,9 +160,9 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({
         {/* RIGHT: Details Section */}
         <div className="w-full md:w-1/2 flex flex-col bg-white relative">
           {/* Scrollable Content */}
-          <div className="flex-1 overflow-y-auto p-4 md:p-12 scrollbar-hide">
+          <div className="flex-1 overflow-y-auto p-3 md:p-12 scrollbar-hide">
             {/* Rating */}
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2 bg-[#F2F0EA] px-3 py-1.5 rounded-sm">
                 <Star className="w-3.5 h-3.5 fill-[#BC5633] text-[#BC5633]" />
                 <span className="text-xs font-bold text-[#1A2118]">
@@ -190,7 +190,7 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({
               {product.title}
             </h2>
 
-            <div className="flex items-baseline gap-3 mb-8">
+            <div className="flex items-baseline gap-3 mb-5">
               <span className="text-2xl font-bold text-[#1A2118]">
                 {displayPrice}
               </span>
@@ -224,7 +224,7 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({
           </div>
 
           {/* Sticky Footer Actions */}
-          <div className="p-4 md:p-8 border-t border-[#1A2118]/5 bg-white z-20 shadow-[0_-10px_40px_rgba(0,0,0,0.02)]">
+          <div className="p-3 md:p-8 border-t border-[#1A2118]/5 bg-white z-20 shadow-[0_-10px_40px_rgba(0,0,0,0.02)]">
             <div className="flex gap-4">
               {/* Quantity Capsule */}
               <div className="flex items-center bg-[#F2F0EA] rounded-sm p-1.5 h-16 shadow-inner">

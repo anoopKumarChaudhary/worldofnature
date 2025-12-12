@@ -60,7 +60,7 @@ function OrderConfirmationContent() {
   }
 
   return (
-      <div className="min-h-screen bg-[#D9DBD5] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white pb-20 overflow-x-hidden">
+      <div className="min-h-screen bg-[#D9DBD5] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white pb-12 overflow-x-hidden">
         {/* --- STYLES & ANIMATION --- */}
         <style jsx>{`
           @keyframes blob {
@@ -116,10 +116,10 @@ function OrderConfirmationContent() {
         {/* --- BACKGROUND LAYERS --- */}
         <div className="fixed inset-0 z-0 pointer-events-none bg-[#D9DBD5]" />
 
-        <div className="relative z-10 pt-20 lg:pt-32 pb-16 px-4 lg:px-12">
+        <div className="relative z-10 pt-16 lg:pt-32 pb-12 px-4 lg:px-12">
           <div className="max-w-3xl mx-auto">
             {/* --- SUCCESS HEADER --- */}
-            <div className="text-center mb-12 animate-fade-up">
+            <div className="text-center mb-8 animate-fade-up">
               <div className="w-24 h-24 bg-[#3A4D39] rounded-full flex items-center justify-center mx-auto mb-8 shadow-2xl shadow-[#3A4D39]/30 animate-scale-check">
                 <Check className="w-10 h-10 text-white" strokeWidth={3} />
               </div>
@@ -152,7 +152,7 @@ function OrderConfirmationContent() {
                 </div>
               </div>
 
-              <div className="p-8 md:p-12">
+              <div className="p-6 md:p-12">
                 {/* Items List */}
                 <div className="space-y-6 mb-10">
                   <h3 className="text-sm font-bold uppercase tracking-widest text-[#1A2118]/40 mb-4">

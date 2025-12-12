@@ -7,7 +7,7 @@ import { ArrowRight, Leaf, Sprout } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex flex-col justify-center items-center pt-20 lg:pt-32 pb-20 overflow-hidden">
+    <section className="relative min-h-screen flex flex-col justify-center items-center pt-16 lg:pt-32 pb-12 lg:pb-20 overflow-hidden">
       
       {/* 1. BACKGROUND LAYER */}
       <div className="absolute inset-0 z-0">
@@ -37,14 +37,14 @@ const HeroSection = () => {
       <div className="container-custom mx-auto relative z-10 text-center">
         
         {/* Top Tagline */}
-        <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full border border-white/20 bg-white/5 backdrop-blur-md text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mb-12 animate-reveal-up text-white/90">
+        <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full border border-white/20 bg-white/5 backdrop-blur-md text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mb-8 md:mb-12 animate-reveal-up text-white/90">
           <span className="w-1.5 h-1.5 bg-[#B56B56] rounded-full animate-pulse" />
           Est. 2025 • World of Nature
         </div>
         
         {/* === TYPOGRAPHY UPDATE === */}
         {/* Using "Scale Contrast": Small Italic vs. Massive Bold */}
-        <h1 className="flex flex-col items-center justify-center mb-10 text-white leading-none">
+        <h1 className="flex flex-col items-center justify-center mb-8 md:mb-10 text-white leading-none">
           
           {/* Line 1: Elegant Italic Serif */}
           <span className="block font-serif italic text-3xl md:text-5xl lg:text-6xl text-white/90 mb-[-5px] md:mb-[-20px] z-10 animate-reveal-up" style={{ animationDelay: '0.1s' }}>
@@ -63,7 +63,7 @@ const HeroSection = () => {
         </h1>
         
         {/* Subtext */}
-        <p className="text-lg md:text-xl lg:text-2xl leading-relaxed font-light max-w-xl mx-auto mb-12 animate-reveal-up text-balance text-white/80 font-serif italic" style={{ animationDelay: '0.4s' }}>
+        <p className="text-lg md:text-xl lg:text-2xl leading-relaxed font-light max-w-xl mx-auto mb-8 md:mb-12 animate-reveal-up text-balance text-white/80 font-serif italic" style={{ animationDelay: '0.4s' }}>
           &ldquo;We don&rsquo;t manufacture essentials. <br className="hidden md:block"/> We simply harvest them.&rdquo;
         </p>
 

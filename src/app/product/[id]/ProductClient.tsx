@@ -161,7 +161,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
   });
 
   return (
-    <div className="min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white pb-32 lg:pb-20 overflow-x-hidden">
+    <div className="min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white pb-24 lg:pb-20 overflow-x-hidden">
       {/* --- BACKGROUND & STYLES --- */}
       <style jsx>{`
         @keyframes blob {
@@ -194,7 +194,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
       </div>
 
       {/* --- BREADCRUMB NAV --- */}
-      <div className="relative pt-20 pb-6 px-4 lg:px-12 z-10">
+      <div className="relative pt-16 pb-6 px-4 lg:px-12 z-10">
         <div className="container mx-auto max-w-7xl flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-[#1A2118]/40">
           <Link href="/" className="hover:text-[#BC5633] transition-colors">
             Home

@@ -218,7 +218,7 @@ export default function CheckoutPage() {
 
   return (
     <>
-      <div className="min-h-screen bg-[#D9DBD5] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white pb-20 overflow-x-hidden">
+      <div className="min-h-[60vh] lg:min-h-screen bg-[#D9DBD5] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white pb-12 overflow-x-hidden">
         {/* --- VERIFICATION CHECK (Only if logged in) --- */}
         {user && !user.isVerified && <VerificationModal />}
         {/* --- STYLES & ANIMATIONS --- */}
@@ -244,7 +244,7 @@ export default function CheckoutPage() {
         <div className="fixed inset-0 z-0 pointer-events-none bg-[#D9DBD5]" />
 
         {/* --- HEADER --- */}
-        <div className="relative pt-20 lg:pt-32 pb-8 px-4 lg:px-12 z-10">
+        <div className="relative pt-12 lg:pt-32 pb-8 px-4 lg:px-12 z-10">
           <div className="container mx-auto max-w-7xl">
             <h1 className="text-4xl md:text-6xl font-serif font-medium tracking-tight text-[#1A2118] mb-8">
               Checkout
@@ -260,7 +260,7 @@ export default function CheckoutPage() {
             )}
 
             {/* Stepper */}
-            <div className="inline-flex bg-white/70 backdrop-blur-xl rounded-sm p-1.5 shadow-lg border border-white/40 mb-12">
+            <div className="inline-flex bg-white/70 backdrop-blur-xl rounded-sm p-1.5 shadow-lg border border-white/40 mb-6">
               {[
                 { id: 1, label: "Shipping", icon: MapPin },
                 { id: 2, label: "Payment", icon: DollarSign },
@@ -296,11 +296,11 @@ export default function CheckoutPage() {
 
         <div className="relative z-10 px-4 lg:px-12">
           <div className="container mx-auto max-w-7xl">
-            <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-12 items-start">
               {/* --- MAIN FORM AREA --- */}
               <div className="w-full lg:col-span-8">
                 {currentStep === 1 && (
-                  <div className="bg-white/80 backdrop-blur-xl border border-white rounded-sm p-6 md:p-12 shadow-2xl shadow-[#1A2118]/5">
+                  <div className="bg-white/80 backdrop-blur-xl border border-white rounded-sm p-5 md:p-12 shadow-2xl shadow-[#1A2118]/5">
                     <h2 className="text-2xl font-serif font-bold text-[#1A2118] mb-8">
                       Shipping Details
                     </h2>
@@ -595,11 +595,11 @@ export default function CheckoutPage() {
               </div>
 
               {/* --- ORDER SUMMARY SIDEBAR --- */}
-              <div className="w-full lg:col-span-4 mt-12 lg:mt-0">
-                <div className="sticky top-32 bg-[#1A2118] text-[#F2F0EA] rounded-sm p-6 shadow-2xl relative overflow-hidden">
+              <div className="w-full lg:col-span-4 lg:mt-0">
+                <div className="sticky top-32 bg-[#1A2118] text-[#F2F0EA] rounded-sm p-5 shadow-2xl relative overflow-hidden">
                   <div className="absolute top-0 right-0 w-40 h-40 bg-[#BC5633] rounded-full mix-blend-overlay filter blur-[60px] opacity-40 pointer-events-none" />
 
-                  <h2 className="text-2xl font-serif font-bold mb-8 relative z-10">
+                  <h2 className="text-2xl font-serif font-bold mb-6 relative z-10">
                     Order Summary
                   </h2>
 
@@ -629,7 +629,7 @@ export default function CheckoutPage() {
                     </div>
                   </div>
 
-                  <div className="mt-8 pt-6 border-t border-white/10 flex items-center gap-3 justify-center text-[#F2F0EA]/40 text-sm uppercase tracking-widest">
+                  <div className="mt-6 pt-6 border-t border-white/10 flex items-center gap-3 justify-center text-[#F2F0EA]/40 text-sm uppercase tracking-widest">
                     <ShieldCheck className="w-4 h-4" /> SSL Secure Payment
                   </div>
                 </div>
@@ -662,7 +662,7 @@ const Input = ({ label, icon, error, ...props }: InputProps) => (
       <input
         {...props}
         required
-        className={`w-full px-6 py-4 bg-[#F2F0EA]/50 border ${
+        className={`w-full px-6 py-3 bg-[#F2F0EA]/50 border ${
           error ? "border-red-500" : "border-transparent"
         } rounded-sm text-base text-[#1A2118] focus:bg-white focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all duration-300 placeholder-[#1A2118]/30`}
       />

@@ -66,12 +66,12 @@ const Footer = () => {
 
   return (
     // CHANGED: z-40 -> z-10 (Lower z-index prevents it from covering fixed/sticky filters)
-    <footer className="relative z-1 bg-[#1A2118] text-[#F2F0EA] pt-16 md:pt-24 pb-12 border-t border-[#F2F0EA]/10" role="contentinfo">
+    <footer className="relative z-1 bg-[#1A2118] text-[#F2F0EA] pt-10 md:pt-24 pb-6 md:pb-12 border-t border-[#F2F0EA]/10" role="contentinfo">
       <div className="container-custom mx-auto">
         {/* Top Section: Newsletter & Brand */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16 md:mb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8 md:mb-24">
           {/* Brand Column */}
-          <div className="lg:col-span-4 space-y-8">
+          <div className="lg:col-span-4 space-y-6">
             <Link href="/" className="inline-block" aria-label="World of Nature">
               <div className="relative h-12 w-40 md:h-16 md:w-48 overflow-visible">
                  <Image 
@@ -120,9 +120,9 @@ const Footer = () => {
           </div>
 
           {/* Links Columns */}
-          <div className="lg:col-span-5 grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="lg:col-span-5 grid grid-cols-1 md:grid-cols-3 gap-6">
             {footerSections.map((section) => (
-              <div key={section.title} className="space-y-6">
+              <div key={section.title} className="space-y-4">
                 <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-[#BC5633] mb-4">
                   {section.title}
                 </h3>
@@ -143,7 +143,7 @@ const Footer = () => {
           </div>
 
           {/* Newsletter Column */}
-          <div className="lg:col-span-3 space-y-6">
+          <div className="lg:col-span-3 space-y-4">
             <div>
                 <h3 className="text-xl font-serif text-[#F2F0EA] mb-4">Stay Connected</h3>
                 <p className="text-[#F2F0EA]/60 text-sm leading-relaxed mb-6">
