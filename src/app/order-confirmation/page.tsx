@@ -125,7 +125,7 @@ function OrderConfirmationContent() {
           <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#1A2118] rounded-full mix-blend-overlay filter blur-[120px] opacity-10 animate-blob" />
         </div>
 
-        <div className="relative z-10 pt-24 pb-16 px-6 lg:px-12">
+        <div className="relative z-10 pt-24 pb-16 px-4 lg:px-12">
           <div className="max-w-3xl mx-auto">
             {/* --- SUCCESS HEADER --- */}
             <div className="text-center mb-12 animate-fade-up">

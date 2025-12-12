@@ -7,7 +7,7 @@ import { ArrowRight, Leaf, Sprout } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex flex-col justify-center items-center pt-32 pb-20 px-6 lg:px-12 overflow-hidden">
+    <section className="relative min-h-screen flex flex-col justify-center items-center pt-32 pb-20 overflow-hidden">
       
       {/* 1. BACKGROUND LAYER */}
       <div className="absolute inset-0 z-0">

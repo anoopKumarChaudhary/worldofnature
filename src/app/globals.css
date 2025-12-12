@@ -152,9 +152,9 @@ html {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1.5rem;
-  /* 24px on mobile for more breathing room */
-  padding-right: 1.5rem;
+  padding-left: 1rem;
+  /* 16px on mobile for maximum width utilization */
+  padding-right: 1rem;
 }
 
 @media (min-width: 640px) {

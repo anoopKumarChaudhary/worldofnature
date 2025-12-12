@@ -16,7 +16,7 @@ export default function AboutPage() {
       <div className="fixed inset-0 z-0 pointer-events-none" />
 
       {/* --- HERO SECTION --- */}
-      <header className="relative pt-32 pb-16 px-6 lg:px-12 z-10">
+      <header className="relative pt-32 pb-16 px-4 lg:px-12 z-10">
         <div className="container mx-auto max-w-7xl">
           <div className="flex flex-col lg:flex-row gap-12 items-center">
             {/* Text Content */}
@@ -89,7 +89,7 @@ export default function AboutPage() {
       </header>
 
       {/* --- PHILOSOPHY SECTION --- */}
-      <section className="relative py-24 px-6 lg:px-12 z-10">
+      <section className="relative py-24 px-4 lg:px-12 z-10">
         <div className="container mx-auto max-w-4xl text-center">
           <Sprout className="w-12 h-12 text-[#1A2118]/20 mx-auto mb-8" />
           <h2 className="text-3xl md:text-5xl font-serif font-medium text-[#1A2118] mb-8 leading-tight">
@@ -102,7 +102,7 @@ export default function AboutPage() {
       </section>
 
       {/* --- CORE VALUES (One UI Cards) --- */}
-      <section className="relative py-16 px-6 lg:px-12 z-10">
+      <section className="relative py-16 px-4 lg:px-12 z-10">
         <div className="container mx-auto max-w-7xl">
           <div className="grid md:grid-cols-3 gap-8">
             {/* Value 1 */}
@@ -151,7 +151,7 @@ export default function AboutPage() {
       </section>
 
       {/* --- PROCESS SECTION --- */}
-      <section className="relative py-24 px-6 lg:px-12 z-10">
+      <section className="relative py-24 px-4 lg:px-12 z-10">
         <div className="container mx-auto max-w-7xl">
           <div className="bg-[#1A2118] text-[#F2F0EA] rounded-[3rem] p-8 lg:p-16 overflow-hidden relative shadow-2xl">
             {/* Background Decor */}

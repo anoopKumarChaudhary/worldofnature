@@ -194,7 +194,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
       </div>
 
       {/* --- BREADCRUMB NAV --- */}
-      <div className="relative pt-28 pb-6 px-6 lg:px-12 z-10">
+      <div className="relative pt-28 pb-6 px-4 lg:px-12 z-10">
         <div className="container mx-auto max-w-7xl flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#1A2118]/40">
           <Link href="/" className="hover:text-[#BC5633] transition-colors">
             Home
@@ -208,7 +208,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
         </div>
       </div>
 
-      <div className="relative z-10 px-6 lg:px-12">
+      <div className="relative z-10 px-4 lg:px-12">
         <div className="container mx-auto max-w-7xl">
           <div className="lg:grid lg:grid-cols-12 lg:gap-16 items-start">
             {/* --- LEFT: IMMERSIVE IMAGE --- */}

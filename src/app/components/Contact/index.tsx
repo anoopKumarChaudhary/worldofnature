@@ -115,7 +115,7 @@ const ContactPage = () => {
       </div>
 
       {/* --- HEADER --- */}
-      <section className="relative pt-32 pb-16 px-6 lg:px-12 z-10">
+      <section className="relative pt-32 pb-16 px-4 lg:px-12 z-10">
         <div className="container mx-auto max-w-7xl text-center">
           <div className="inline-flex items-center gap-3 mb-6 bg-white/40 backdrop-blur-md px-4 py-2 rounded-full border border-[#1A2118]/5">
             <div className="h-2 w-2 bg-[#BC5633] rounded-full animate-pulse"></div>
@@ -134,7 +134,7 @@ const ContactPage = () => {
         </div>
       </section>
 
-      <div className="relative z-10 px-6 lg:px-12">
+      <div className="relative z-10 px-4 lg:px-12">
         <div className="container mx-auto max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             {/* --- LEFT COLUMN: CONTACT CARDS --- */}

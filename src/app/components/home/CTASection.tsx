@@ -16,7 +16,7 @@ const CTASection = () => {
           className="object-cover grayscale"
         />
       </div>
-      <div className="relative z-10 text-center px-6 max-w-3xl">
+      <div className="relative z-10 text-center px-4 max-w-3xl">
         <h2 className="text-6xl lg:text-9xl font-serif tracking-tighter mb-8 leading-none">
           Taste the <br /> Difference.
         </h2>
