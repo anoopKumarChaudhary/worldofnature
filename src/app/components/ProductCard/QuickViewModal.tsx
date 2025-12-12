@@ -11,6 +11,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import Link from "next/link";
+import useLockBodyScroll from "../../hooks/use-lock-body-scroll";
 
 interface QuickViewModalProps {
   isOpen: boolean;
@@ -77,20 +78,17 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({
   const displayOriginalPrice = product.originalPrice ? formatPrice(product.originalPrice) : undefined;
 
   // Lock body scroll
+  useLockBodyScroll(isOpen);
+
+  // Reset state when opening
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = "hidden";
       // Reset state only if needed
       // setQuantity((prev) => (prev !== 1 ? 1 : prev));
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setImageLoaded(false);
       setIsAdding(false);
-    } else {
-      document.body.style.overflow = "unset";
     }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
   }, [isOpen]);
 
   const handleAddToCart = () => {

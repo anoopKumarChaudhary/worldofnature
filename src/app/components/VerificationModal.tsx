@@ -6,6 +6,7 @@ import { verifyOtp, resendOtp } from "../redux/features/auth/authSlice";
 import { AppDispatch, RootState } from "../redux/store";
 import { useRouter } from "next/navigation";
 import { ArrowRight, Lock, AlertCircle } from "lucide-react";
+import useLockBodyScroll from "../hooks/use-lock-body-scroll";
 
 export default function VerificationModal() {
   const dispatch = useDispatch<AppDispatch>();
@@ -39,7 +40,10 @@ export default function VerificationModal() {
     }
   };
 
-  if (!user || user.isVerified) return null;
+  const shouldShow = user && !user.isVerified;
+  useLockBodyScroll(!!shouldShow);
+
+  if (!shouldShow) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1A2118]/80 backdrop-blur-sm">

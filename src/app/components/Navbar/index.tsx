@@ -24,6 +24,7 @@ import {
   LogOut,
 
 } from "lucide-react";
+import useLockBodyScroll from "../../hooks/use-lock-body-scroll";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -98,16 +99,7 @@ const Navbar = () => {
     }
   }, []);
 
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [isMobileMenuOpen]);
+  useLockBodyScroll(isMobileMenuOpen);
 
   const navItems = [
     { href: "/", label: "Home", icon: Home },

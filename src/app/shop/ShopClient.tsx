@@ -16,6 +16,7 @@ import {
   Star,
   RefreshCcw,
 } from "lucide-react";
+import useLockBodyScroll from "../hooks/use-lock-body-scroll";
 
 interface ShopClientProps {
   initialProducts: Product[];
@@ -39,6 +40,9 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
   // --- LOAD MORE STATE ---
   const ITEMS_PER_PAGE = 100; // Show all items by default as requested
   const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
+
+  // Lock body scroll when filters are open on mobile
+  useLockBodyScroll(isFilterOpen);
 
   useEffect(() => {
     if (isAuthenticated && user?.id) {
