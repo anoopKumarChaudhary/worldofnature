@@ -54,7 +54,7 @@ export default function CheckoutPage() {
     zipCode: "",
   });
   const [paymentInfo, setPaymentInfo] = useState<PaymentInfo>({
-    paymentMethod: "COD",
+    paymentMethod: "RAZORPAY",
   });
 
   const tax = 0;
