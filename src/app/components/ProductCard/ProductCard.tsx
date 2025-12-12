@@ -280,23 +280,25 @@ const ProductCard: React.FC<ProductCardProps> = ({
             />
           </button>
 
-          {/* Quick Action Bar (Slides up) */}
-          <div className="absolute bottom-4 left-4 right-4 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out z-20">
+          {/* Quick Action Bar (Desktop Only) */}
+          <div className="hidden lg:block absolute bottom-4 left-4 right-4 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out z-20">
             <div className="flex gap-2">
               <button
-                onClick={() => setShowQuickView(true)}
+                onClick={(e) => {
+                    e.preventDefault();
+                    setShowQuickView(true);
+                }}
                 className="flex-1 bg-white/95 dark:bg-neutral-800/95 backdrop-blur text-neutral-900 dark:text-white py-3 rounded-sm text-sm font-semibold hover:bg-white shadow-lg transition-colors flex items-center justify-center gap-2"
               >
                 <Eye className="w-4 h-4" />
                 Quick View
               </button>
-              {/* Add Button Logic handled below to separate concerns */}
             </div>
           </div>
         </div>
 
         {/* Content Container */}
-        <div className="p-5">
+        <div className="p-3 md:p-5">
           {/* Rating */}
           {rating > 0 && (
             <div className="flex items-center gap-1 mb-2">
@@ -335,15 +337,14 @@ const ProductCard: React.FC<ProductCardProps> = ({
             </div>
 
             {/* Cart / Quantity Logic */}
+            {/* Cart / Quantity Logic */}
             <div className="flex items-center gap-2">
-              {/* Only show quantity controls if hovered, otherwise a simple circle button */}
+              {/* Mobile: Always expanded. Desktop: Expand on hover. */}
               <div
-                className={`flex items-center bg-neutral-100 dark:bg-neutral-800 rounded-sm p-1 transition-all duration-300 ${
-                  isHovered ? "w-auto" : "w-10 h-10"
-                }`}
+                className={`flex items-center bg-neutral-100 dark:bg-neutral-800 rounded-sm p-1 transition-all duration-300 w-auto lg:w-10 lg:h-10 lg:hover:w-auto group/btn overflow-hidden`}
               >
-                {isHovered && (
-                  <>
+                {/* Quantity Controls: Visible on Mobile, Hidden on Desktop until hover */}
+                <div className="flex items-center lg:hidden lg:group-hover/btn:flex">
                     <button
                       onClick={(e) => {
                         e.preventDefault();
@@ -356,14 +357,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
                     <span className="w-6 text-center text-sm font-bold text-neutral-900 dark:text-white">
                       {quantity}
                     </span>
-                  </>
-                )}
+                </div>
 
                 <button
                   onClick={handleAddToCart}
-                  className={`${
-                    isHovered ? "w-8 h-8" : "w-full h-full"
-                  } flex items-center justify-center rounded-sm bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all shadow-md`}
+                  className={`w-8 h-8 lg:w-full lg:h-full flex items-center justify-center rounded-sm bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 hover:bg-neutral-800 dark:hover:bg-neutral-200 transition-all shadow-md shrink-0`}
                 >
                   {isAdding ? (
                     <Check className="w-4 h-4" />

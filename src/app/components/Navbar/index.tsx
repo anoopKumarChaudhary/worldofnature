@@ -235,18 +235,26 @@ const Navbar = () => {
         </nav>
       </header>
 
-      {/* MOBILE MENU - CLEAN & SOLID */}
+      {/* MOBILE MENU - GLASSMORPHISM & ANIMATED */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-[60] bg-[#1A2118] flex flex-col overflow-hidden">
+        <div className="fixed inset-0 z-[60] flex flex-col overflow-hidden">
+           {/* Backdrop with Blur & Gradient */}
+           <div className="absolute inset-0 bg-[#1A2118]/90 backdrop-blur-xl z-0">
+             <div className="absolute inset-0 bg-gradient-to-b from-[#1A2118]/50 via-transparent to-[#B56B56]/10" />
+             {/* Decorative Blobs */}
+             <div className="absolute top-[-10%] right-[-10%] w-64 h-64 bg-[#B56B56]/20 rounded-full blur-3xl animate-pulse" />
+             <div className="absolute bottom-[-10%] left-[-10%] w-80 h-80 bg-[#5A7D6B]/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
+           </div>
+
           {/* Header inside Overlay */}
-          <div className="relative z-10 px-6 py-6 flex items-center justify-between border-b border-white/5">
+          <div className="relative z-10 px-6 py-6 flex items-center justify-between border-b border-white/5 animate-fade-in-up">
             <div className="h-10 w-auto overflow-visible opacity-90 invert brightness-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/image.png" alt="World of Nature Logo" className="h-full w-auto object-contain" />
             </div>
             <button
               onClick={closeMobileMenu}
-              className="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 text-[#F2F0EA] hover:bg-white/20 transition-all"
+              className="w-12 h-12 flex items-center justify-center rounded-full bg-white/5 text-[#F2F0EA] hover:bg-white/20 transition-all border border-white/5"
             >
               <X size={24} strokeWidth={1.5} />
             </button>
@@ -254,15 +262,15 @@ const Navbar = () => {
 
           {/* Navigation Links */}
           <div className="flex-1 flex flex-col justify-center px-8 relative z-10">
-            <ul className="space-y-8">
-              {navItems.map((item) => (
-                <li key={item.href}>
+            <ul className="space-y-6">
+              {navItems.map((item, idx) => (
+                <li key={item.href} className="animate-reveal-up" style={{ animationDelay: `${idx * 100}ms` }}>
                   <Link
                     href={item.href}
                     onClick={closeMobileMenu}
                     className="group flex items-center justify-between text-[#F2F0EA] hover:text-[#B56B56] transition-colors"
                   >
-                    <span className="font-heading text-3xl md:text-4xl font-light tracking-wide group-hover:translate-x-2 transition-transform duration-500">
+                    <span className="font-heading text-4xl md:text-5xl font-light tracking-wide group-hover:translate-x-2 transition-transform duration-500">
                       {item.label}
                     </span>
                     <span className="text-[10px] font-bold uppercase tracking-[0.2em] opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-[#B56B56]">
@@ -275,11 +283,11 @@ const Navbar = () => {
           </div>
 
           {/* Footer Actions */}
-          <div className="relative z-10 p-8 border-t border-white/5 grid grid-cols-2 gap-4 bg-[#1A2118]">
+          <div className="relative z-10 p-8 border-t border-white/5 grid grid-cols-2 gap-4 bg-black/20 backdrop-blur-sm animate-reveal-up" style={{ animationDelay: "500ms" }}>
               <Link
               href="/wishlist"
               onClick={closeMobileMenu}
-              className="flex flex-col items-center justify-center p-6 rounded-2xl bg-white/5 hover:bg-white/10 transition-all group"
+              className="flex flex-col items-center justify-center p-6 rounded-2xl bg-white/5 hover:bg-white/10 transition-all group border border-white/5"
             >
               <Heart size={24} className="text-[#F2F0EA] group-hover:text-[#B56B56] mb-3 transition-colors" strokeWidth={1.5} />
               <span className="text-xs font-bold uppercase tracking-widest text-[#F2F0EA]/60 group-hover:text-[#F2F0EA] transition-colors">Wishlist</span>
@@ -291,7 +299,7 @@ const Navbar = () => {
                   dispatch(logout());
                   closeMobileMenu();
                 }}
-                className="flex flex-col items-center justify-center p-6 rounded-2xl bg-white/5 hover:bg-[#B56B56] transition-all group"
+                className="flex flex-col items-center justify-center p-6 rounded-2xl bg-white/5 hover:bg-[#B56B56] transition-all group border border-white/5"
               >
                 <LogOut size={24} className="text-[#F2F0EA] mb-3" strokeWidth={1.5} />
                 <span className="text-xs font-bold uppercase tracking-widest text-[#F2F0EA]/60 group-hover:text-[#F2F0EA] transition-colors">Logout</span>
@@ -300,7 +308,7 @@ const Navbar = () => {
               <Link
                 href="/login"
                 onClick={closeMobileMenu}
-              className="flex flex-col items-center justify-center p-6 rounded-2xl bg-white/5 hover:bg-white/10 transition-all group"
+              className="flex flex-col items-center justify-center p-6 rounded-2xl bg-white/5 hover:bg-white/10 transition-all group border border-white/5"
               >
                 <User size={24} className="text-[#F2F0EA] group-hover:text-[#B56B56] mb-3 transition-colors" strokeWidth={1.5} />
                 <span className="text-xs font-bold uppercase tracking-widest text-[#F2F0EA]/60 group-hover:text-[#F2F0EA] transition-colors">Login</span>

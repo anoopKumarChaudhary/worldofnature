@@ -211,7 +211,7 @@ h6 {
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -219,12 +219,12 @@ h6 {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--brand-primary-300);
-  border-radius: 4px;
+  background: var(--brand-primary-600); /* Darker Sage for better visibility */
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--brand-primary-400);
+  background: var(--brand-secondary-600); /* Terracotta on hover */
 }
 
 /* Animations */
