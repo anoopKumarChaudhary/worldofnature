@@ -38,7 +38,7 @@ export default function FaqClient({ faqData }: FaqClientProps) {
             </span>
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-serif font-medium text-[#1A2118] mb-6 tracking-tight">
+          <h1 className="text-4xl md:text-7xl font-serif font-medium text-[#1A2118] mb-6 tracking-tight">
             How can we help?
           </h1>
           <p className="text-xl text-[#596157] max-w-xl mx-auto mb-12 font-light">

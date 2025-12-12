@@ -9,7 +9,7 @@ export default function NotFound() {
           <Search className="w-10 h-10 text-[#BC5633]" />
         </div>
         
-        <h1 className="text-6xl font-serif font-bold text-[#1A2118] mb-4">404</h1>
+        <h1 className="text-5xl md:text-6xl font-serif font-bold text-[#1A2118] mb-4">404</h1>
         <h2 className="text-2xl font-serif text-[#1A2118] mb-6">Page Not Found</h2>
         
         <p className="text-[#596157] mb-10 leading-relaxed">

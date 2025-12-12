@@ -250,17 +250,17 @@ const ProductCard: React.FC<ProductCardProps> = ({
           {/* Floating Badges */}
           <div className="absolute top-4 left-4 flex flex-col gap-2 z-10">
             {isBestseller && (
-              <span className="bg-white/90 dark:bg-neutral-900/90 backdrop-blur-md text-amber-600 dark:text-amber-400 text-[10px] uppercase tracking-wider font-bold px-3 py-1 rounded-sm shadow-sm">
+              <span className="bg-white/90 dark:bg-neutral-900/90 backdrop-blur-md text-amber-600 dark:text-amber-400 text-xs uppercase tracking-wider font-bold px-3 py-1 rounded-sm shadow-sm">
                 Bestseller
               </span>
             )}
             {isOnSale && (
-              <span className="bg-rose-500 text-white text-[10px] uppercase tracking-wider font-bold px-3 py-1 rounded-sm shadow-sm">
+              <span className="bg-rose-500 text-white text-xs uppercase tracking-wider font-bold px-3 py-1 rounded-sm shadow-sm">
                 -20%
               </span>
             )}
             {isNew && (
-              <span className="bg-indigo-500 text-white text-[10px] uppercase tracking-wider font-bold px-3 py-1 rounded-sm shadow-sm">
+              <span className="bg-indigo-500 text-white text-xs uppercase tracking-wider font-bold px-3 py-1 rounded-sm shadow-sm">
                 New
               </span>
             )}
@@ -323,7 +323,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           {/* Footer: Price & Add Action */}
           <div className="flex items-center justify-between mt-2">
             <div className="flex flex-col">
-              <span className="text-xs text-neutral-400 font-medium uppercase tracking-wide">
+              <span className="text-sm text-neutral-400 font-medium uppercase tracking-wide">
                 Price
               </span>
               <div className="flex items-center gap-2">

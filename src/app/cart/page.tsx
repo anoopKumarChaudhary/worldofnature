@@ -105,17 +105,17 @@ export default function CartPage() {
           <div>
             <div className="flex items-center gap-3 mb-2">
               <div className="h-2 w-2 bg-[#BC5633] rounded-full animate-pulse"></div>
-              <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#1A2118]">
+              <span className="text-sm font-bold tracking-[0.2em] uppercase text-[#1A2118]">
                 Checkout
               </span>
             </div>
-            <h1 className="text-5xl md:text-6xl font-serif font-medium tracking-tight text-[#1A2118]">
+            <h1 className="text-4xl md:text-6xl font-serif font-medium tracking-tight text-[#1A2118]">
               Your Harvest
             </h1>
           </div>
           <button
             onClick={handleClearCart}
-            className="group flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#1A2118]/50 hover:text-[#BC5633] transition-colors pb-2"
+            className="group flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-[#1A2118]/50 hover:text-[#BC5633] transition-colors pb-2"
           >
             <Trash2 className="w-4 h-4" />
             <span className="hidden sm:inline">Clear Cart</span>
@@ -151,7 +151,7 @@ export default function CartPage() {
                           {item.name}
                         </h3>
                         {item.size && (
-                          <span className="inline-block mt-1 px-2 py-0.5 bg-[#1A2118]/5 text-[#596157] text-[10px] sm:text-xs font-bold rounded-sm uppercase tracking-wide">
+                          <span className="inline-block mt-1 px-2 py-0.5 bg-[#1A2118]/5 text-[#596157] text-xs sm:text-sm font-bold rounded-sm uppercase tracking-wide">
                             Size: {item.size}
                           </span>
                         )}
@@ -177,7 +177,7 @@ export default function CartPage() {
                         >
                           <Minus className="w-3 h-3" />
                         </button>
-                        <span className="w-6 text-center text-xs font-bold text-[#1A2118]">
+                        <span className="w-6 text-center text-sm font-bold text-[#1A2118]">
                           {item.quantity}
                         </span>
                         <button
@@ -197,7 +197,7 @@ export default function CartPage() {
                       {/* Remove */}
                       <button
                         onClick={() => handleRemoveItem(item.id, item.size)}
-                        className="flex items-center gap-1 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#1A2118]/40 hover:text-red-500 transition-colors"
+                        className="flex items-center gap-1 text-xs sm:text-sm font-bold uppercase tracking-widest text-[#1A2118]/40 hover:text-red-500 transition-colors"
                       >
                         <Trash2 className="w-3 h-3 sm:hidden" />
                         <span className="hidden sm:inline">Remove</span>
@@ -244,7 +244,7 @@ export default function CartPage() {
 
                     <div className="border-t border-white/10 pt-6 mt-6 pb-2">
                       <div className="flex justify-between items-end">
-                        <span className="text-[#F2F0EA]/50 uppercase tracking-widest text-xs">
+                        <span className="text-[#F2F0EA]/50 uppercase tracking-widest text-sm">
                           Total
                         </span>
                         <span className="text-3xl font-serif font-bold text-[#F2F0EA]">
@@ -261,7 +261,7 @@ export default function CartPage() {
                     Checkout <ArrowRight className="w-4 h-4" />
                   </Link>
 
-                  <div className="mt-6 flex items-center justify-center gap-2 text-[#F2F0EA]/30 text-xs uppercase tracking-widest relative z-10">
+                  <div className="mt-6 flex items-center justify-center gap-2 text-[#F2F0EA]/30 text-sm uppercase tracking-widest relative z-10">
                     <ShieldCheck className="w-4 h-4" /> Secure Transaction
                   </div>
                 </div>

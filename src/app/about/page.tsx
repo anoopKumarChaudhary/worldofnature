@@ -23,7 +23,7 @@ export default function AboutPage() {
             <div className="lg:w-1/2 animate-fade-up">
               <div className="inline-flex items-center gap-3 mb-6 bg-white/40 backdrop-blur-md px-4 py-2 rounded-full border border-[#1A2118]/5">
                 <div className="h-2 w-2 bg-[#BC5633] rounded-full animate-pulse"></div>
-                <span className="text-xs font-bold tracking-[0.2em] uppercase text-[#1A2118]">
+                <span className="text-sm font-bold tracking-[0.2em] uppercase text-[#1A2118]">
                   Our Story
                 </span>
               </div>
@@ -44,7 +44,7 @@ export default function AboutPage() {
                   <span className="text-3xl font-serif font-bold text-[#1A2118]">
                     2025
                   </span>
-                  <span className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/40">
+                  <span className="text-sm font-bold uppercase tracking-widest text-[#1A2118]/40">
                     Established
                   </span>
                 </div>
@@ -53,7 +53,7 @@ export default function AboutPage() {
                   <span className="text-3xl font-serif font-bold text-[#1A2118]">
                     100%
                   </span>
-                  <span className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/40">
+                  <span className="text-sm font-bold uppercase tracking-widest text-[#1A2118]/40">
                     Traceable
                   </span>
                 </div>
@@ -78,7 +78,7 @@ export default function AboutPage() {
               {/* Floating Badge */}
               <div className="absolute -bottom-6 -left-6 bg-[#1A2118] text-[#F2F0EA] p-6 rounded-[2rem] shadow-xl hidden md:block">
                 <Leaf className="w-8 h-8 text-[#BC5633] mb-2" />
-                <p className="text-xs font-bold uppercase tracking-widest opacity-60">
+                <p className="text-sm font-bold uppercase tracking-widest opacity-60">
                   Sourced from
                 </p>
                 <p className="font-serif text-xl">Pristine Valleys</p>

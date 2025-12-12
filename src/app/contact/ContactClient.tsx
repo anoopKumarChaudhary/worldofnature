@@ -81,7 +81,7 @@ export default function ContactClient() {
       </div>
 
       <div className="space-y-2">
-        <label className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/60 ml-4">
+        <label className="text-sm font-bold uppercase tracking-widest text-[#1A2118]/60 ml-4">
           Subject
         </label>
         <div className="relative">
@@ -90,7 +90,7 @@ export default function ContactClient() {
             required
             value={formData.subject}
             onChange={handleInputChange}
-            className="w-full px-6 py-4 bg-[#F2F0EA]/50 border border-transparent rounded-[1.5rem] text-[#1A2118] focus:bg-white focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all duration-300 appearance-none cursor-pointer"
+            className="w-full px-6 py-4 bg-[#F2F0EA]/50 border border-transparent rounded-[1.5rem] text-base text-[#1A2118] focus:bg-white focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all duration-300 appearance-none cursor-pointer"
           >
             <option value="">Select a topic...</option>
             <option value="general">General Inquiry</option>
@@ -102,7 +102,7 @@ export default function ContactClient() {
       </div>
 
       <div className="space-y-2">
-        <label className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/60 ml-4">
+        <label className="text-sm font-bold uppercase tracking-widest text-[#1A2118]/60 ml-4">
           Your Message
         </label>
         <textarea
@@ -111,7 +111,7 @@ export default function ContactClient() {
           rows={6}
           value={formData.message}
           onChange={handleInputChange}
-          className="w-full px-6 py-4 bg-[#F2F0EA]/50 border border-transparent rounded-[1.5rem] text-[#1A2118] focus:bg-white focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all duration-300 resize-none placeholder-[#1A2118]/30"
+          className="w-full px-6 py-4 bg-[#F2F0EA]/50 border border-transparent rounded-[1.5rem] text-base text-[#1A2118] focus:bg-white focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all duration-300 resize-none placeholder-[#1A2118]/30"
           placeholder="How can we help you today?"
         />
       </div>
@@ -150,12 +150,12 @@ interface ContactInputProps {
 
 const Input = ({ label, ...props }: ContactInputProps) => (
   <div className="space-y-2">
-    <label className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/60 ml-4">
+    <label className="text-sm font-bold uppercase tracking-widest text-[#1A2118]/60 ml-4">
       {label}
     </label>
     <input
       required
-      className="w-full px-6 py-4 bg-[#F2F0EA]/50 border border-transparent rounded-[1.5rem] text-[#1A2118] focus:bg-white focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all duration-300 placeholder-[#1A2118]/30"
+      className="w-full px-6 py-4 bg-[#F2F0EA]/50 border border-transparent rounded-[1.5rem] text-base text-[#1A2118] focus:bg-white focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all duration-300 placeholder-[#1A2118]/30"
       {...props}
     />
   </div>

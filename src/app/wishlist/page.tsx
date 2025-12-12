@@ -144,7 +144,7 @@ export default function WishlistPage() {
                   </p>
                   <button
                     onClick={() => handleAddToCart(item)}
-                    className="w-full py-3 bg-[#1A2118] text-white rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-[#BC5633] transition-colors flex items-center justify-center gap-2"
+                    className="w-full py-3 bg-[#1A2118] text-white rounded-sm font-bold uppercase tracking-widest text-sm hover:bg-[#BC5633] transition-colors flex items-center justify-center gap-2"
                   >
                     <ShoppingBag size={16} />
                     Add to Cart

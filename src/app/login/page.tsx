@@ -420,13 +420,13 @@ interface SocialButtonProps {
 
 const Input = ({ label, error, icon, ...props }: InputProps) => (
   <div className="space-y-2">
-    <label className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/60 ml-4">
+    <label className="text-sm font-bold uppercase tracking-widest text-[#1A2118]/60 ml-4">
       {label}
     </label>
     <div className="relative">
       <input
         {...props}
-        className={`w-full px-6 py-4 bg-white border rounded-sm text-[#1A2118] focus:ring-4 focus:ring-[#B56B56]/5 outline-none transition-all duration-300 placeholder-[#1A2118]/30 shadow-sm ${
+        className={`w-full px-6 py-4 bg-white border rounded-sm text-base text-[#1A2118] focus:ring-4 focus:ring-[#B56B56]/5 outline-none transition-all duration-300 placeholder-[#1A2118]/30 shadow-sm ${
           error
             ? "border-red-400 focus:border-red-400"
             : "border-[#1A2118]/10 focus:border-[#B56B56]/20"

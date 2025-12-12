@@ -66,7 +66,7 @@ const Footer = () => {
 
   return (
     // CHANGED: z-40 -> z-10 (Lower z-index prevents it from covering fixed/sticky filters)
-    <footer className="relative z-10 bg-[#1A2118] text-[#F2F0EA] pt-16 md:pt-24 pb-12 border-t border-[#F2F0EA]/10" role="contentinfo">
+    <footer className="relative z-1 bg-[#1A2118] text-[#F2F0EA] pt-16 md:pt-24 pb-12 border-t border-[#F2F0EA]/10" role="contentinfo">
       <div className="container-custom mx-auto">
         {/* Top Section: Newsletter & Brand */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16 md:mb-24">
@@ -208,9 +208,9 @@ const Footer = () => {
              </div>
              <div className="flex gap-2">
                 {/* Simulated Payment Icons */}
-                <div className="h-5 w-8 bg-white/10 rounded flex items-center justify-center text-[8px] font-bold text-white/50">VISA</div>
-                <div className="h-5 w-8 bg-white/10 rounded flex items-center justify-center text-[8px] font-bold text-white/50">MC</div>
-                <div className="h-5 w-8 bg-white/10 rounded flex items-center justify-center text-[8px] font-bold text-white/50">AMEX</div>
+                <div className="h-5 w-8 bg-white/10 rounded flex items-center justify-center text-[10px] font-bold text-white/50">VISA</div>
+                <div className="h-5 w-8 bg-white/10 rounded flex items-center justify-center text-[10px] font-bold text-white/50">MC</div>
+                <div className="h-5 w-8 bg-white/10 rounded flex items-center justify-center text-[10px] font-bold text-white/50">AMEX</div>
              </div>
           </div>
         </div>

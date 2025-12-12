@@ -99,7 +99,7 @@ export default function ProfilePage() {
               </div>
               <button
                 onClick={handleLogout}
-                className="px-6 py-3 bg-white/60 backdrop-blur-md border border-[#1A2118]/10 rounded-sm text-xs font-bold uppercase tracking-widest hover:bg-[#1A2118] hover:text-white transition-all flex items-center gap-2"
+                className="px-6 py-3 bg-white/60 backdrop-blur-md border border-[#1A2118]/10 rounded-sm text-sm font-bold uppercase tracking-widest hover:bg-[#1A2118] hover:text-white transition-all flex items-center gap-2"
               >
                 <LogOut className="w-4 h-4" /> Sign Out
               </button>

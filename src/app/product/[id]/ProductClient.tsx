@@ -195,7 +195,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
 
       {/* --- BREADCRUMB NAV --- */}
       <div className="relative pt-20 pb-6 px-4 lg:px-12 z-10">
-        <div className="container mx-auto max-w-7xl flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#1A2118]/40">
+        <div className="container mx-auto max-w-7xl flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-[#1A2118]/40">
           <Link href="/" className="hover:text-[#BC5633] transition-colors">
             Home
           </Link>
@@ -238,7 +238,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
 
                   {/* Floating Badges */}
                   <div className="absolute top-4 left-4 lg:top-6 lg:left-6 flex flex-col gap-2">
-                    <span className="bg-white/90 backdrop-blur text-[#BC5633] text-[10px] font-bold px-3 py-1 rounded-sm uppercase tracking-wider shadow-sm border border-[#BC5633]/20">
+                    <span className="bg-white/90 backdrop-blur text-[#BC5633] text-xs font-bold px-3 py-1 rounded-sm uppercase tracking-wider shadow-sm border border-[#BC5633]/20">
                       Premium
                     </span>
                   </div>
@@ -327,7 +327,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
                         />
                       ))}
                     </div>
-                    <span className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/40 ml-2">
+                    <span className="text-sm font-bold uppercase tracking-widest text-[#1A2118]/40 ml-2">
                       {reviews.length} Reviews
                     </span>
                   </div>
@@ -358,7 +358,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
                   {/* Size Selector */}
                   {currentProduct.sizes && currentProduct.sizes.length > 0 && (
                     <div className="space-y-3">
-                      <span className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/60 ml-2">
+                      <span className="text-sm font-bold uppercase tracking-widest text-[#1A2118]/60 ml-2">
                         Select Size
                       </span>
                       <div className="flex flex-wrap gap-3">
@@ -425,7 +425,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
                           : "Out of Stock"}
                       </button>
                     </div>
-                    <div className="flex items-center justify-center gap-6 text-[10px] font-bold uppercase tracking-widest text-[#1A2118]/40 pt-2">
+                    <div className="flex items-center justify-center gap-6 text-xs font-bold uppercase tracking-widest text-[#1A2118]/40 pt-2">
                       <span className="flex items-center gap-2">
                         <Truck className="w-3 h-3" /> Free Shipping
                       </span>
@@ -444,7 +444,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
                   {/* Ingredients - Full Width */}
                   {currentProduct.ingredients && (
                     <div className="w-full">
-                      <h3 className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/40 mb-2">
+                      <h3 className="text-sm font-bold uppercase tracking-widest text-[#1A2118]/40 mb-2">
                         Ingredients
                       </h3>
                       <p className="text-[#596157] font-light text-sm leading-relaxed bg-white/40 p-4 rounded-sm border border-[#1A2118]/5 break-words">
@@ -457,7 +457,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
                     {currentProduct.sourcing && (
                       <div className="w-full flex flex-col h-full">
-                        <h3 className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/40 mb-2">
+                        <h3 className="text-sm font-bold uppercase tracking-widest text-[#1A2118]/40 mb-2">
                           Sourcing
                         </h3>
                         <div className="bg-white/40 p-4 rounded-sm border border-[#1A2118]/5 flex-1 w-full">
@@ -470,7 +470,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
 
                     {currentProduct.tasteProfile && (
                       <div className="w-full flex flex-col h-full">
-                        <h3 className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/40 mb-2">
+                        <h3 className="text-sm font-bold uppercase tracking-widest text-[#1A2118]/40 mb-2">
                           Taste Profile
                         </h3>
                         <div className="bg-white/40 p-4 rounded-sm border border-[#1A2118]/5 flex-1 w-full">
@@ -512,7 +512,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
                   const textarea = form?.querySelector("textarea");
                   textarea?.focus();
                 }}
-                className="w-full md:w-auto px-6 py-3 bg-[#1A2118] text-white rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-[#BC5633] transition-colors shadow-lg text-center"
+                className="w-full md:w-auto px-6 py-3 bg-[#1A2118] text-white rounded-sm font-bold uppercase tracking-widest text-sm hover:bg-[#BC5633] transition-colors shadow-lg text-center"
               >
                 Write a Review
               </button>
@@ -526,7 +526,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
                   <h3 className="text-xl font-serif font-bold text-[#1A2118] mb-6">Write a Review</h3>
                   <form onSubmit={handleReviewSubmit} className="space-y-6">
                     <div>
-                      <label className="block text-xs font-bold uppercase tracking-widest text-[#1A2118]/60 mb-2">
+                      <label className="block text-sm font-bold uppercase tracking-widest text-[#1A2118]/60 mb-2">
                         Rating
                       </label>
                       <div className="flex gap-2">
@@ -550,7 +550,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
                     </div>
                     
                     <div>
-                      <label className="block text-xs font-bold uppercase tracking-widest text-[#1A2118]/60 mb-2">
+                      <label className="block text-sm font-bold uppercase tracking-widest text-[#1A2118]/60 mb-2">
                         Your Review
                       </label>
                       <textarea
@@ -559,7 +559,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
                         required
                         rows={4}
                         placeholder="Share your experience with this product..."
-                        className="w-full px-6 py-4 bg-white border border-[#1A2118]/10 rounded-sm text-[#1A2118] focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all placeholder-[#1A2118]/30 resize-none"
+                        className="w-full px-6 py-4 bg-white border border-[#1A2118]/10 rounded-sm text-base text-[#1A2118] focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all placeholder-[#1A2118]/30 resize-none"
                       />
                     </div>
 
@@ -567,7 +567,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
                       <button
                         type="submit"
                         disabled={isSubmitting || !comment.trim() || rating === 0}
-                        className={`px-8 py-3 rounded-sm font-bold uppercase tracking-widest text-xs transition-all shadow-lg flex items-center gap-2 ${
+                        className={`px-8 py-3 rounded-sm font-bold uppercase tracking-widest text-sm transition-all shadow-lg flex items-center gap-2 ${
                           isSubmitting || !comment.trim() || rating === 0
                             ? "bg-[#F2F0EA] text-[#1A2118]/40 cursor-not-allowed"
                             : "bg-[#1A2118] text-white hover:bg-[#BC5633]"
@@ -588,7 +588,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
               ) : (
                 <div className="bg-[#F2F0EA]/50 rounded-sm p-6 md:p-8 mb-12 text-center border border-[#1A2118]/5">
                   <p className="text-[#596157] mb-4">Please login to write a review.</p>
-                  <Link href="/login" className="inline-block px-8 py-3 bg-[#1A2118] text-white rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-[#BC5633] transition-colors shadow-lg">
+                  <Link href="/login" className="inline-block px-8 py-3 bg-[#1A2118] text-white rounded-sm font-bold uppercase tracking-widest text-sm hover:bg-[#BC5633] transition-colors shadow-lg">
                     Login
                   </Link>
                 </div>
@@ -647,7 +647,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
       <div className="fixed bottom-0 left-0 right-0 p-4 bg-white/90 backdrop-blur-xl border-t border-[#1A2118]/5 z-50 lg:hidden shadow-[0_-10px_40px_rgba(0,0,0,0.1)]">
         <div className="flex gap-4 items-center">
           <div className="flex flex-col">
-            <span className="text-[10px] font-bold uppercase tracking-widest text-[#1A2118]/40">
+            <span className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/40">
               Total Price
             </span>
             <span className="text-xl font-bold text-[#1A2118]">
@@ -677,7 +677,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
           <button
             onClick={handleAddToCart}
             disabled={!currentProduct.inStock || isAdding}
-            className={`flex-1 h-12 rounded-sm font-bold uppercase tracking-widest text-xs transition-all shadow-lg flex items-center justify-center gap-2 ${
+            className={`flex-1 h-12 rounded-sm font-bold uppercase tracking-widest text-sm transition-all shadow-lg flex items-center justify-center gap-2 ${
               isAdding
                 ? "bg-[#3A4D39] text-white"
                 : !currentProduct.inStock

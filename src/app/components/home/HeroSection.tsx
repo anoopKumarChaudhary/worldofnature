@@ -57,7 +57,7 @@ const HeroSection = () => {
           </span>
           
           {/* Line 3: Spaced Out Sans */}
-          <span className="block font-sans font-light text-xs md:text-xl lg:text-2xl tracking-[0.4em] uppercase text-white/80 mt-[-5px] md:mt-[-20px] animate-reveal-up" style={{ animationDelay: '0.3s' }}>
+          <span className="block font-sans font-light text-sm md:text-xl lg:text-2xl tracking-[0.4em] uppercase text-white/80 mt-[-5px] md:mt-[-20px] animate-reveal-up" style={{ animationDelay: '0.3s' }}>
             Technology
           </span>
         </h1>
@@ -70,7 +70,7 @@ const HeroSection = () => {
        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-5 w-full sm:w-auto animate-reveal-up" style={{ animationDelay: '0.5s' }}>
           <Link
             href="/shop"
-            className="h-14 w-full sm:w-auto px-10 bg-[#F2F0EA] text-[#1A2118] rounded-full flex items-center justify-center gap-3 font-bold text-xs uppercase tracking-widest hover:bg-[#B56B56] hover:text-white transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 group"
+            className="h-14 w-full sm:w-auto px-10 bg-[#F2F0EA] text-[#1A2118] rounded-full flex items-center justify-center gap-3 font-bold text-sm uppercase tracking-widest hover:bg-[#B56B56] hover:text-white transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 group"
           >
             {/* CHANGED TEXT HERE */}
             Shop the Harvest 
@@ -79,7 +79,7 @@ const HeroSection = () => {
           
           <Link
             href="/about"
-            className="h-14 w-full sm:w-auto px-10 border border-white/30 rounded-full flex items-center justify-center gap-3 font-bold text-xs uppercase tracking-widest hover:bg-white hover:text-[#1A2118] transition-all text-white backdrop-blur-sm"
+            className="h-14 w-full sm:w-auto px-10 border border-white/30 rounded-full flex items-center justify-center gap-3 font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-[#1A2118] transition-all text-white backdrop-blur-sm"
           >
             Our Philosophy
           </Link>

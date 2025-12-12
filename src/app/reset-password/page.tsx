@@ -91,7 +91,7 @@ function ResetPasswordContent() {
         <div className="absolute -top-16 left-0">
           <Link
             href="/login"
-            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#1A2118]/60 hover:text-[#BC5633] transition-colors"
+            className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-[#1A2118]/60 hover:text-[#BC5633] transition-colors"
           >
             <ArrowLeft className="w-4 h-4" /> Back to Login
           </Link>
@@ -114,7 +114,7 @@ function ResetPasswordContent() {
 
           <form className="space-y-5" onSubmit={handleSubmit}>
             <div className="space-y-2">
-              <label className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/60 ml-4">
+              <label className="text-sm font-bold uppercase tracking-widest text-[#1A2118]/60 ml-4">
                 Verification Code
               </label>
               <div className="relative">
@@ -131,7 +131,7 @@ function ResetPasswordContent() {
             </div>
 
             <div className="space-y-2">
-              <label className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/60 ml-4">
+              <label className="text-sm font-bold uppercase tracking-widest text-[#1A2118]/60 ml-4">
                 New Password
               </label>
               <div className="relative">
@@ -155,7 +155,7 @@ function ResetPasswordContent() {
 
             {error && (
               <div className="text-center">
-                <p className="text-xs text-red-500 font-medium">{error}</p>
+                <p className="text-sm text-red-500 font-medium">{error}</p>
               </div>
             )}
 

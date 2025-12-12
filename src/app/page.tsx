@@ -62,7 +62,7 @@ const HomePage = async () => {
             <div className="max-w-2xl">
               <div className="flex items-center gap-2 mb-4">
                  <Sprout className="w-4 h-4 text-[#8C9178]" />
-                 <span className="font-mono text-[10px] font-bold uppercase tracking-[0.25em] text-[#8C9178]">
+                 <span className="font-mono text-xs font-bold uppercase tracking-[0.25em] text-[#8C9178]">
                    Catalogue No. 02
                  </span>
               </div>
@@ -74,7 +74,7 @@ const HomePage = async () => {
             <div className="hidden md:block pb-2">
                <Link 
                  href="/shop"
-                 className="group inline-flex items-center gap-3 font-mono text-xs font-bold uppercase tracking-widest text-[#2C3326] hover:text-[#8C9178] transition-colors"
+                 className="group inline-flex items-center gap-3 font-mono text-sm font-bold uppercase tracking-widest text-[#2C3326] hover:text-[#8C9178] transition-colors"
                >
                  View Full Inventory 
                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -108,7 +108,7 @@ const HomePage = async () => {
           <div className="mt-12 md:hidden flex justify-center">
              <Link 
                href="/shop"
-               className="inline-flex items-center gap-3 font-mono text-xs font-bold uppercase tracking-widest text-[#2C3326] border-b border-[#2C3326] pb-1"
+               className="inline-flex items-center gap-3 font-mono text-sm font-bold uppercase tracking-widest text-[#2C3326] border-b border-[#2C3326] pb-1"
              >
                View All Products
              </Link>

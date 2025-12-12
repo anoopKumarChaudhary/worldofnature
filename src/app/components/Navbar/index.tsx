@@ -154,7 +154,7 @@ const Navbar = () => {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-[10px] font-bold uppercase tracking-[0.25em] transition-colors duration-300 relative group ${!isDarkText ? "text-white hover:text-[#E8D4A2]" : "text-[#1A2118] hover:text-[#B56B56]"}`}
+                className={`text-xs font-bold uppercase tracking-[0.25em] transition-colors duration-300 relative group ${!isDarkText ? "text-white hover:text-[#E8D4A2]" : "text-[#1A2118] hover:text-[#B56B56]"}`}
               >
                 {item.label}
                 <span className={`absolute -bottom-1 left-1/2 w-0 h-[1px] transition-all duration-300 group-hover:w-full group-hover:left-0 ${!isDarkText ? "bg-[#E8D4A2]" : "bg-[#B56B56]"}`} />
@@ -218,7 +218,7 @@ const Navbar = () => {
                 className={!isDarkText ? "text-white" : "text-[#1A2118]"}
               />
               {cartItemsCount > 0 && (
-                <span className="absolute top-0.5 right-0.5 w-3.5 h-3.5 bg-[#B56B56] text-[#F2F0EA] text-[9px] font-bold flex items-center justify-center rounded-full ring-1 ring-[#F2F0EA]">
+                <span className="absolute top-0.5 right-0.5 w-3.5 h-3.5 bg-[#B56B56] text-[#F2F0EA] text-[10px] font-bold flex items-center justify-center rounded-full ring-1 ring-[#F2F0EA]">
                   {cartItemsCount}
                 </span>
               )}

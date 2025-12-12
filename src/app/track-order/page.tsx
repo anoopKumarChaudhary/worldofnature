@@ -34,7 +34,7 @@ export default function TrackOrderPage() {
     <div className="min-h-screen text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white pt-20 lg:pt-32 pb-20">
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="text-center mb-16">
-          <h1 className="text-5xl md:text-6xl font-serif font-medium tracking-tight text-[#1A2118] mb-6">
+          <h1 className="text-4xl md:text-6xl font-serif font-medium tracking-tight text-[#1A2118] mb-6">
             Track Your Order
           </h1>
           <p className="text-[#596157] text-lg max-w-2xl mx-auto">
@@ -45,7 +45,7 @@ export default function TrackOrderPage() {
         <div className="bg-white/80 backdrop-blur-xl border border-white rounded-sm p-8 md:p-12 shadow-2xl shadow-[#1A2118]/5 mb-12">
           <form onSubmit={handleTrack} className="space-y-6 max-w-xl mx-auto">
             <div className="space-y-2">
-              <label className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/60 ml-4">
+              <label className="text-sm font-bold uppercase tracking-widest text-[#1A2118]/60 ml-4">
                 Order Number
               </label>
               <div className="relative">
@@ -62,7 +62,7 @@ export default function TrackOrderPage() {
             </div>
 
             <div className="space-y-2">
-              <label className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/60 ml-4">
+              <label className="text-sm font-bold uppercase tracking-widest text-[#1A2118]/60 ml-4">
                 Email Address
               </label>
               <div className="relative">
@@ -118,21 +118,21 @@ export default function TrackOrderPage() {
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-white/10 pt-8">
                    <div>
-                      <h3 className="text-[#F2F0EA]/40 uppercase tracking-widest text-xs font-bold mb-4">Date Placed</h3>
+                      <h3 className="text-[#F2F0EA]/40 uppercase tracking-widest text-sm font-bold mb-4">Date Placed</h3>
                       <p className="text-xl font-serif">{new Date(order.createdAt).toLocaleDateString()}</p>
                    </div>
                    <div>
-                      <h3 className="text-[#F2F0EA]/40 uppercase tracking-widest text-xs font-bold mb-4">Total Amount</h3>
+                      <h3 className="text-[#F2F0EA]/40 uppercase tracking-widest text-sm font-bold mb-4">Total Amount</h3>
                       <p className="text-xl font-serif">₹{order.total.toFixed(2)}</p>
                    </div>
                    <div>
-                      <h3 className="text-[#F2F0EA]/40 uppercase tracking-widest text-xs font-bold mb-4">Payment Method</h3>
+                      <h3 className="text-[#F2F0EA]/40 uppercase tracking-widest text-sm font-bold mb-4">Payment Method</h3>
                       <p className="text-xl font-serif">{order.paymentMethod}</p>
                    </div>
                 </div>
                 
                 <div className="mt-12 pt-8 border-t border-white/10">
-                   <h3 className="text-[#F2F0EA]/40 uppercase tracking-widest text-xs font-bold mb-6">Items Ordered</h3>
+                   <h3 className="text-[#F2F0EA]/40 uppercase tracking-widest text-sm font-bold mb-6">Items Ordered</h3>
                    <div className="space-y-4">
                       {order.items.map((item: OrderItem) => (
                          <div key={item.id} className="flex items-center justify-between p-4 bg-white/5 rounded-sm border border-white/5">

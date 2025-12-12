@@ -246,7 +246,7 @@ export default function CheckoutPage() {
         {/* --- HEADER --- */}
         <div className="relative pt-20 lg:pt-32 pb-8 px-4 lg:px-12 z-10">
           <div className="container mx-auto max-w-7xl">
-            <h1 className="text-5xl md:text-6xl font-serif font-medium tracking-tight text-[#1A2118] mb-8">
+            <h1 className="text-4xl md:text-6xl font-serif font-medium tracking-tight text-[#1A2118] mb-8">
               Checkout
             </h1>
             
@@ -277,7 +277,7 @@ export default function CheckoutPage() {
                     }`}
                   >
                     <step.icon className="w-4 h-4" />
-                    <span className="text-xs font-bold uppercase tracking-widest hidden sm:inline">
+                    <span className="text-sm font-bold uppercase tracking-widest hidden sm:inline">
                       {step.label}
                     </span>
                   </div>
@@ -619,7 +619,7 @@ export default function CheckoutPage() {
 
                     <div className="border-t border-white/10 pt-6 mt-6 pb-2">
                       <div className="flex justify-between items-end">
-                        <span className="text-[#F2F0EA]/50 uppercase tracking-widest text-xs">
+                        <span className="text-[#F2F0EA]/50 uppercase tracking-widest text-sm">
                           Total
                         </span>
                         <span className="text-3xl font-serif font-bold text-[#F2F0EA]">
@@ -629,7 +629,7 @@ export default function CheckoutPage() {
                     </div>
                   </div>
 
-                  <div className="mt-8 pt-6 border-t border-white/10 flex items-center gap-3 justify-center text-[#F2F0EA]/40 text-xs uppercase tracking-widest">
+                  <div className="mt-8 pt-6 border-t border-white/10 flex items-center gap-3 justify-center text-[#F2F0EA]/40 text-sm uppercase tracking-widest">
                     <ShieldCheck className="w-4 h-4" /> SSL Secure Payment
                   </div>
                 </div>
@@ -655,7 +655,7 @@ interface InputProps {
 // --- REUSABLE INPUT COMPONENT ---
 const Input = ({ label, icon, error, ...props }: InputProps) => (
   <div className="space-y-2">
-    <label className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/60 ml-4">
+    <label className="text-sm font-bold uppercase tracking-widest text-[#1A2118]/60 ml-4">
       {label}
     </label>
     <div className="relative">
@@ -664,14 +664,14 @@ const Input = ({ label, icon, error, ...props }: InputProps) => (
         required
         className={`w-full px-6 py-4 bg-[#F2F0EA]/50 border ${
           error ? "border-red-500" : "border-transparent"
-        } rounded-sm text-[#1A2118] focus:bg-white focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all duration-300 placeholder-[#1A2118]/30`}
+        } rounded-sm text-base text-[#1A2118] focus:bg-white focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all duration-300 placeholder-[#1A2118]/30`}
       />
       {icon && (
         <div className="absolute right-6 top-1/2 -translate-y-1/2">{icon}</div>
       )}
     </div>
     {error && (
-      <p className="text-red-500 text-xs ml-4 mt-1">{error}</p>
+      <p className="text-red-500 text-sm ml-4 mt-1">{error}</p>
     )}
   </div>
 );

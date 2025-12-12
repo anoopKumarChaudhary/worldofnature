@@ -309,7 +309,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
                 placeholder="Search..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="relative z-10 w-full bg-transparent border-none rounded-sm py-3 pl-10 pr-4 text-sm font-medium text-[#1A2118] placeholder-[#1A2118]/40 focus:ring-0 transition-all outline-none"
+                className="relative z-10 w-full bg-transparent border-none rounded-sm py-3 pl-10 pr-4 text-base font-medium text-[#1A2118] placeholder-[#1A2118]/40 focus:ring-0 transition-all outline-none"
               />
             </div>
 
@@ -324,7 +324,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="relative z-10 appearance-none bg-transparent px-5 py-3 pr-9 rounded-sm text-xs font-bold uppercase tracking-wide text-[#1A2118] cursor-pointer outline-none transition-all"
+                  className="relative z-10 appearance-none bg-transparent px-5 py-3 pr-9 rounded-sm text-sm font-bold uppercase tracking-wide text-[#1A2118] cursor-pointer outline-none transition-all"
                 >
                   {sortOptions.map((option) => (
                     <option key={option.value} value={option.value}>

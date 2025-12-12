@@ -123,7 +123,7 @@ function OrderConfirmationContent() {
               <div className="w-24 h-24 bg-[#3A4D39] rounded-full flex items-center justify-center mx-auto mb-8 shadow-2xl shadow-[#3A4D39]/30 animate-scale-check">
                 <Check className="w-10 h-10 text-white" strokeWidth={3} />
               </div>
-              <h1 className="text-5xl md:text-6xl font-serif font-medium text-[#1A2118] mb-4 tracking-tight">
+              <h1 className="text-4xl md:text-6xl font-serif font-medium text-[#1A2118] mb-4 tracking-tight">
                 Order Confirmed!
               </h1>
               <p className="text-xl text-[#596157] max-w-lg mx-auto leading-relaxed">
@@ -140,13 +140,13 @@ function OrderConfirmationContent() {
               {/* Header Bar */}
               <div className="bg-[#1A2118] text-[#F2F0EA] p-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-widest opacity-60 mb-1">
+                  <p className="text-sm font-bold uppercase tracking-widest opacity-60 mb-1">
                     Order Number
                   </p>
                   <p className="text-2xl font-mono">{orderNumber}</p>
                 </div>
                 <div className="px-4 py-2 bg-[#F2F0EA]/10 rounded-sm border border-[#F2F0EA]/20">
-                  <span className="text-xs font-bold uppercase tracking-widest">
+                  <span className="text-sm font-bold uppercase tracking-widest">
                     Processing
                   </span>
                 </div>
@@ -155,7 +155,7 @@ function OrderConfirmationContent() {
               <div className="p-8 md:p-12">
                 {/* Items List */}
                 <div className="space-y-6 mb-10">
-                  <h3 className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/40 mb-4">
+                  <h3 className="text-sm font-bold uppercase tracking-widest text-[#1A2118]/40 mb-4">
                     Items Ordered
                   </h3>
                   {order.items.map((item) => (
@@ -271,7 +271,7 @@ function OrderConfirmationContent() {
                 </div>
                 <a
                   href="mailto:support@worldofnature.com"
-                  className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest hover:text-[#BC5633] transition-colors"
+                  className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest hover:text-[#BC5633] transition-colors"
                 >
                   Contact Support <ArrowRight className="w-4 h-4" />
                 </a>
