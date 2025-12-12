@@ -244,32 +244,31 @@ export default function CheckoutPage() {
         <div className="fixed inset-0 z-0 pointer-events-none bg-[#D9DBD5]" />
 
         {/* --- HEADER --- */}
-        {/* MODIFIED: Reduced pt-20 -> pt-16, pb-10 -> pb-2, mb-8 -> mb-4 for mobile */}
         <div className="relative pt-16 lg:pt-32 pb-2 px-2 lg:px-12 z-10">
           <div className="container mx-auto max-w-7xl">
-            <h1 className="text-2xl md:text-6xl font-serif font-medium tracking-tight text-[#1A2118] mb-4">
+            <h1 className="text-3xl md:text-6xl font-serif font-medium tracking-tight text-[#1A2118] mb-6">
               Checkout
             </h1>
             
             {!user && (
-              <div className="mb-4 p-3 bg-[#BC5633]/10 rounded-sm flex items-center justify-between">
-                <p className="text-[#1A2118] font-medium text-xs md:text-base">Already have an account?</p>
-                <Link href="/login" className="text-[#BC5633] font-bold text-xs md:text-base hover:underline">
+              <div className="mb-6 p-4 bg-[#BC5633]/10 rounded-sm flex items-center justify-between">
+                <p className="text-[#1A2118] font-medium text-sm md:text-base">Already have an account?</p>
+                <Link href="/login" className="text-[#BC5633] font-bold text-sm md:text-base hover:underline">
                   Login
                 </Link>
               </div>
             )}
 
-            {/* Stepper - Compact on Mobile */}
-            <div className="inline-flex bg-white/70 backdrop-blur-xl rounded-sm p-1 shadow-lg border border-white/40 mb-4">
+            {/* Stepper - Optimized text sizes for mobile */}
+            <div className="inline-flex bg-white/70 backdrop-blur-xl rounded-sm p-1.5 shadow-lg border border-white/40 mb-6 w-full md:w-auto overflow-x-auto">
               {[
                 { id: 1, label: "Shipping", icon: MapPin },
                 { id: 2, label: "Payment", icon: DollarSign },
                 { id: 3, label: "Review", icon: Check },
               ].map((step, idx) => (
-                <div key={step.id} className="flex items-center">
+                <div key={step.id} className="flex items-center flex-1 md:flex-none justify-center md:justify-start">
                   <div
-                    className={`flex items-center gap-2 px-4 md:px-6 py-2 md:py-3 rounded-sm transition-all duration-500 ${
+                    className={`flex items-center gap-2 px-3 md:px-6 py-3 rounded-sm transition-all duration-500 whitespace-nowrap ${
                       currentStep === step.id
                         ? "bg-[#1A2118] text-white shadow-md"
                         : currentStep > step.id
@@ -277,14 +276,15 @@ export default function CheckoutPage() {
                         : "text-[#1A2118]/40"
                     }`}
                   >
-                    <step.icon className="w-3.5 h-3.5 md:w-4 md:h-4" />
-                    <span className="text-[10px] md:text-sm font-bold uppercase tracking-widest hidden sm:inline">
+                    <step.icon className="w-4 h-4 md:w-5 md:h-5" />
+                    {/* Increased font size for stepper */}
+                    <span className="text-xs md:text-sm font-bold uppercase tracking-widest">
                       {step.label}
                     </span>
                   </div>
                   {idx < 2 && (
                     <div
-                      className={`w-4 md:w-8 h-0.5 mx-1 md:mx-2 ${
+                      className={`w-full md:w-8 h-0.5 mx-2 ${
                         currentStep > step.id ? "bg-[#BC5633]" : "bg-[#1A2118]/10"
                       }`}
                     />
@@ -295,22 +295,21 @@ export default function CheckoutPage() {
           </div>
         </div>
 
-        {/* MODIFIED: Standard px-2 for mobile container */}
         <div className="relative z-10 px-2 lg:px-12">
           <div className="container mx-auto max-w-7xl">
-            {/* MODIFIED: Reduced gap-6 -> gap-4 for mobile grid */}
-            <div className="flex flex-col lg:grid lg:grid-cols-12 gap-4 lg:gap-12 items-start">
+            <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-12 items-start">
               {/* --- MAIN FORM AREA --- */}
               <div className="w-full lg:col-span-8">
                 {currentStep === 1 && (
-                  // MODIFIED: Reduced padding from p-5 -> p-4 for mobile
-                  <div className="bg-white/80 backdrop-blur-xl border border-white rounded-sm p-4 md:p-12 shadow-2xl shadow-[#1A2118]/5">
-                    <h2 className="text-xl md:text-2xl font-serif font-bold text-[#1A2118] mb-4 md:mb-8">
+                  <div className="bg-white/80 backdrop-blur-xl border border-white rounded-sm p-5 md:p-12 shadow-2xl shadow-[#1A2118]/5">
+                    <h2 className="text-2xl md:text-3xl font-serif font-bold text-[#1A2118] mb-6 md:mb-8">
                       Shipping Details
                     </h2>
-                    {/* MODIFIED: Reduced space-y-6 -> space-y-4 for mobile forms */}
-                    <form onSubmit={handleShippingSubmit} className="space-y-4 md:space-y-6">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                    
+                    <form onSubmit={handleShippingSubmit} className="space-y-5 md:space-y-6">
+                      
+                      {/* Name Row: Grid on Mobile (2 cols) */}
+                      <div className="grid grid-cols-2 gap-4 md:gap-6">
                         <Input
                           label="First Name"
                           placeholder="e.g. Jane"
@@ -336,7 +335,9 @@ export default function CheckoutPage() {
                           error={errors.lastName}
                         />
                       </div>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+
+                      {/* Contact Row: Stack on Mobile (Need width for email) */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
                         <Input
                           label="Email Address"
                           placeholder="jane@example.com"
@@ -364,6 +365,7 @@ export default function CheckoutPage() {
                           error={errors.phone}
                         />
                       </div>
+
                       <Input
                         label="Street Address"
                         placeholder="123 Organic Way, Apt 4B"
@@ -376,50 +378,64 @@ export default function CheckoutPage() {
                         }
                         error={errors.address}
                       />
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-                        <Input
-                          label="City"
-                          placeholder="Nature Valley"
-                          value={shippingInfo.city}
-                          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                            setShippingInfo({
-                              ...shippingInfo,
-                              city: e.target.value,
-                            })
-                          }
-                          error={errors.city}
-                        />
-                        <Input
-                          label="State"
-                          placeholder="CA"
-                          value={shippingInfo.state}
-                          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                            setShippingInfo({
-                              ...shippingInfo,
-                              state: e.target.value,
-                            })
-                          }
-                          error={errors.state}
-                        />
-                        <Input
-                          label="ZIP Code"
-                          placeholder="90210"
-                          value={shippingInfo.zipCode}
-                          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                            setShippingInfo({
-                              ...shippingInfo,
-                              zipCode: e.target.value,
-                            })
-                          }
-                          error={errors.zipCode}
-                        />
+
+                      {/* City/State/Zip Grid: Optimized for Mobile Height */}
+                      <div className="grid grid-cols-12 gap-4 md:gap-6">
+                        {/* City: Full on mobile, 1/3 on desktop */}
+                        <div className="col-span-12 md:col-span-4">
+                            <Input
+                            label="City"
+                            placeholder="Nature Valley"
+                            value={shippingInfo.city}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                                setShippingInfo({
+                                ...shippingInfo,
+                                city: e.target.value,
+                                })
+                            }
+                            error={errors.city}
+                            />
+                        </div>
+                        
+                        {/* State: Half on mobile, 1/3 on desktop */}
+                        <div className="col-span-6 md:col-span-4">
+                            <Input
+                            label="State"
+                            placeholder="CA"
+                            value={shippingInfo.state}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                                setShippingInfo({
+                                ...shippingInfo,
+                                state: e.target.value,
+                                })
+                            }
+                            error={errors.state}
+                            />
+                        </div>
+
+                        {/* Zip: Half on mobile, 1/3 on desktop */}
+                        <div className="col-span-6 md:col-span-4">
+                            <Input
+                            label="ZIP Code"
+                            placeholder="90210"
+                            value={shippingInfo.zipCode}
+                            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                                setShippingInfo({
+                                ...shippingInfo,
+                                zipCode: e.target.value,
+                                })
+                            }
+                            error={errors.zipCode}
+                            />
+                        </div>
                       </div>
-                      <div className="flex justify-end pt-4 md:pt-6">
+
+                      <div className="flex justify-end pt-6">
                         <button
                           type="submit"
-                          className="w-full md:w-auto h-12 md:h-14 px-8 bg-[#1A2118] text-white rounded-sm font-bold text-sm uppercase tracking-widest hover:bg-[#3A4D39] transition-all shadow-lg flex items-center justify-center gap-3"
+                          className="w-full md:w-auto h-14 px-8 bg-[#1A2118] text-white rounded-sm font-bold text-base uppercase tracking-widest hover:bg-[#3A4D39] transition-all shadow-lg flex items-center justify-center gap-3"
                         >
-                          Continue to Payment <ArrowRight className="w-4 h-4" />
+                          Continue to Payment <ArrowRight className="w-5 h-5" />
                         </button>
                       </div>
                     </form>
@@ -427,14 +443,14 @@ export default function CheckoutPage() {
                 )}
 
                 {currentStep === 2 && (
-                  <div className="bg-white/80 backdrop-blur-xl border border-white rounded-sm p-4 md:p-12 shadow-2xl shadow-[#1A2118]/5">
-                    <h2 className="text-xl md:text-2xl font-serif font-bold text-[#1A2118] mb-4 md:mb-8">
+                  <div className="bg-white/80 backdrop-blur-xl border border-white rounded-sm p-5 md:p-12 shadow-2xl shadow-[#1A2118]/5">
+                    <h2 className="text-2xl md:text-3xl font-serif font-bold text-[#1A2118] mb-6 md:mb-8">
                       Payment Method
                     </h2>
                     <div className="space-y-4 md:space-y-6">
                       {/* COD Option */}
                       <div 
-                        className={`rounded-sm p-4 md:p-6 border cursor-pointer transition-all ${
+                        className={`rounded-sm p-5 md:p-6 border cursor-pointer transition-all ${
                           paymentInfo.paymentMethod === "COD" 
                             ? "bg-[#F2F0EA]/50 border-[#BC5633]" 
                             : "bg-white border-[#1A2118]/10 hover:border-[#BC5633]/50"
@@ -442,24 +458,24 @@ export default function CheckoutPage() {
                         onClick={() => setPaymentInfo({ paymentMethod: "COD" })}
                       >
                         <div className="flex items-center gap-4 mb-2 md:mb-4">
-                          <div className={`w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center flex-shrink-0 ${
+                          <div className={`w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 ${
                             paymentInfo.paymentMethod === "COD" ? "bg-[#BC5633]" : "bg-[#1A2118]/10"
                           }`}>
-                            <DollarSign className={`w-5 h-5 md:w-6 md:h-6 ${
+                            <DollarSign className={`w-6 h-6 ${
                               paymentInfo.paymentMethod === "COD" ? "text-white" : "text-[#1A2118]"
                             }`} />
                           </div>
                           <div>
-                            <h3 className="font-bold text-[#1A2118] text-base md:text-lg">
+                            <h3 className="font-bold text-[#1A2118] text-lg md:text-xl">
                               Cash on Delivery
                             </h3>
-                            <p className="text-[#596157] text-xs md:text-sm leading-tight">
+                            <p className="text-[#596157] text-sm md:text-base leading-tight">
                               Pay when your order arrives at your doorstep
                             </p>
                           </div>
                            {paymentInfo.paymentMethod === "COD" && (
                             <div className="ml-auto">
-                              <Check className="w-5 h-5 md:w-6 md:h-6 text-[#BC5633]" />
+                              <Check className="w-6 h-6 text-[#BC5633]" />
                             </div>
                           )}
                         </div>
@@ -467,7 +483,7 @@ export default function CheckoutPage() {
 
                       {/* Razorpay Option */}
                       <div 
-                        className={`rounded-sm p-4 md:p-6 border cursor-pointer transition-all ${
+                        className={`rounded-sm p-5 md:p-6 border cursor-pointer transition-all ${
                           paymentInfo.paymentMethod === "RAZORPAY" 
                             ? "bg-[#F2F0EA]/50 border-[#BC5633]" 
                             : "bg-white border-[#1A2118]/10 hover:border-[#BC5633]/50"
@@ -475,42 +491,42 @@ export default function CheckoutPage() {
                         onClick={() => setPaymentInfo({ paymentMethod: "RAZORPAY" })}
                       >
                         <div className="flex items-center gap-4 mb-2 md:mb-4">
-                           <div className={`w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center flex-shrink-0 ${
+                           <div className={`w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 ${
                             paymentInfo.paymentMethod === "RAZORPAY" ? "bg-[#BC5633]" : "bg-[#1A2118]/10"
                           }`}>
-                            <CreditCard className={`w-5 h-5 md:w-6 md:h-6 ${
+                            <CreditCard className={`w-6 h-6 ${
                               paymentInfo.paymentMethod === "RAZORPAY" ? "text-white" : "text-[#1A2118]"
                             }`} />
                           </div>
                           <div>
-                            <h3 className="font-bold text-[#1A2118] text-base md:text-lg">
+                            <h3 className="font-bold text-[#1A2118] text-lg md:text-xl">
                               Pay Online (Razorpay)
                             </h3>
-                            <p className="text-[#596157] text-xs md:text-sm leading-tight">
+                            <p className="text-[#596157] text-sm md:text-base leading-tight">
                               Secure payment via Credit/Debit Card, UPI, NetBanking
                             </p>
                           </div>
                           {paymentInfo.paymentMethod === "RAZORPAY" && (
                             <div className="ml-auto">
-                              <Check className="w-5 h-5 md:w-6 md:h-6 text-[#BC5633]" />
+                              <Check className="w-6 h-6 text-[#BC5633]" />
                             </div>
                           )}
                         </div>
                       </div>
 
-                      <div className="flex justify-between pt-4 md:pt-6 gap-3">
+                      <div className="flex justify-between pt-6 gap-3">
                         <button
                           type="button"
                           onClick={() => setCurrentStep(1)}
-                          className="flex-1 md:flex-none h-12 md:h-14 px-6 md:px-8 bg-white border border-[#1A2118]/10 text-[#1A2118] rounded-sm font-bold text-sm uppercase tracking-widest hover:bg-[#F2F0EA] transition-colors flex items-center justify-center gap-3"
+                          className="flex-1 md:flex-none h-14 px-6 md:px-8 bg-white border border-[#1A2118]/10 text-[#1A2118] rounded-sm font-bold text-sm md:text-base uppercase tracking-widest hover:bg-[#F2F0EA] transition-colors flex items-center justify-center gap-3"
                         >
-                          <ArrowLeft className="w-4 h-4" /> Back
+                          <ArrowLeft className="w-5 h-5" /> Back
                         </button>
                         <button
                           onClick={() => setCurrentStep(3)}
-                          className="flex-[2] md:flex-none h-12 md:h-14 px-6 md:px-8 bg-[#1A2118] text-white rounded-sm font-bold text-sm uppercase tracking-widest hover:bg-[#3A4D39] transition-all shadow-lg flex items-center justify-center gap-3"
+                          className="flex-[2] md:flex-none h-14 px-6 md:px-8 bg-[#1A2118] text-white rounded-sm font-bold text-sm md:text-base uppercase tracking-widest hover:bg-[#3A4D39] transition-all shadow-lg flex items-center justify-center gap-3"
                         >
-                          Review Order <ArrowRight className="w-4 h-4" />
+                          Review Order <ArrowRight className="w-5 h-5" />
                         </button>
                       </div>
                     </div>
@@ -518,19 +534,19 @@ export default function CheckoutPage() {
                 )}
 
                 {currentStep === 3 && (
-                  <div className="space-y-4 md:space-y-6">
+                  <div className="space-y-6">
                     {/* Items Review */}
-                    <div className="bg-white/80 backdrop-blur-xl border border-white rounded-sm p-4 md:p-8 shadow-lg">
-                      <h2 className="text-xl md:text-2xl font-serif font-bold text-[#1A2118] mb-4 md:mb-6">
+                    <div className="bg-white/80 backdrop-blur-xl border border-white rounded-sm p-5 md:p-8 shadow-lg">
+                      <h2 className="text-2xl md:text-3xl font-serif font-bold text-[#1A2118] mb-6">
                         Review Items
                       </h2>
-                      <div className="space-y-3 md:space-y-4">
+                      <div className="space-y-4">
                         {items.map((item) => (
                           <div
                             key={`${item.id}-${item.size}`}
-                            className="flex items-center gap-3 md:gap-4 p-3 md:p-4 bg-[#F2F0EA]/50 rounded-sm border border-[#1A2118]/5"
+                            className="flex items-center gap-4 p-4 bg-[#F2F0EA]/50 rounded-sm border border-[#1A2118]/5"
                           >
-                            <div className="w-14 h-14 md:w-16 md:h-16 bg-white rounded-sm overflow-hidden shadow-sm flex-shrink-0">
+                            <div className="w-16 h-16 md:w-20 md:h-20 bg-white rounded-sm overflow-hidden shadow-sm flex-shrink-0">
                               {/* eslint-disable-next-line @next/next/no-img-element */}
                               <img
                                 src={item.image}
@@ -539,15 +555,16 @@ export default function CheckoutPage() {
                               />
                             </div>
                             <div className="flex-1 min-w-0">
-                              <h3 className="font-bold text-[#1A2118] text-sm md:text-base truncate">
+                              {/* Increased Font Size */}
+                              <h3 className="font-bold text-[#1A2118] text-base md:text-lg truncate">
                                 {item.name}
                               </h3>
-                              <p className="text-xs md:text-sm text-[#596157]">
+                              <p className="text-sm text-[#596157]">
                                 Qty: {item.quantity}{" "}
                                 {item.size && `• ${item.size}`}
                               </p>
                             </div>
-                            <p className="font-bold text-[#1A2118] text-sm md:text-base whitespace-nowrap">
+                            <p className="font-bold text-[#1A2118] text-base md:text-lg whitespace-nowrap">
                               ₹{(item.price * item.quantity).toFixed(2)}
                             </p>
                           </div>
@@ -556,19 +573,19 @@ export default function CheckoutPage() {
                     </div>
 
                     {/* Shipping Review */}
-                    <div className="bg-white/80 backdrop-blur-xl border border-white rounded-sm p-4 md:p-8 shadow-lg">
-                      <div className="flex justify-between items-start mb-2 md:mb-4">
-                        <h3 className="text-lg md:text-xl font-serif font-bold text-[#1A2118]">
+                    <div className="bg-white/80 backdrop-blur-xl border border-white rounded-sm p-5 md:p-8 shadow-lg">
+                      <div className="flex justify-between items-start mb-4">
+                        <h3 className="text-xl md:text-2xl font-serif font-bold text-[#1A2118]">
                           Shipping To
                         </h3>
                         <button
                           onClick={() => setCurrentStep(1)}
-                          className="text-[10px] md:text-xs font-bold text-[#BC5633] uppercase tracking-widest"
+                          className="text-xs md:text-sm font-bold text-[#BC5633] uppercase tracking-widest py-2"
                         >
                           Edit
                         </button>
                       </div>
-                      <div className="text-[#596157] text-sm leading-relaxed">
+                      <div className="text-[#596157] text-base leading-relaxed">
                         <p className="font-bold text-[#1A2118]">
                           {shippingInfo.firstName} {shippingInfo.lastName}
                         </p>
@@ -584,15 +601,15 @@ export default function CheckoutPage() {
                     <div className="flex justify-between pt-4 gap-3">
                       <button
                         onClick={() => setCurrentStep(2)}
-                        className="flex-1 md:flex-none h-12 md:h-14 px-6 md:px-8 bg-white border border-[#1A2118]/10 text-[#1A2118] rounded-sm font-bold text-sm uppercase tracking-widest hover:bg-[#F2F0EA] transition-colors flex items-center justify-center gap-3"
+                        className="flex-1 md:flex-none h-14 px-6 md:px-8 bg-white border border-[#1A2118]/10 text-[#1A2118] rounded-sm font-bold text-sm md:text-base uppercase tracking-widest hover:bg-[#F2F0EA] transition-colors flex items-center justify-center gap-3"
                       >
-                        <ArrowLeft className="w-4 h-4" /> Back
+                        <ArrowLeft className="w-5 h-5" /> Back
                       </button>
                       <button
                         onClick={handlePlaceOrder}
-                        className="flex-[2] md:flex-none h-12 md:h-14 px-6 md:px-8 bg-[#BC5633] text-white rounded-sm font-bold text-sm uppercase tracking-widest hover:bg-[#A34528] transition-all shadow-lg shadow-[#BC5633]/20 flex items-center justify-center gap-3"
+                        className="flex-[2] md:flex-none h-14 px-6 md:px-8 bg-[#BC5633] text-white rounded-sm font-bold text-sm md:text-base uppercase tracking-widest hover:bg-[#A34528] transition-all shadow-lg shadow-[#BC5633]/20 flex items-center justify-center gap-3"
                       >
-                        {paymentInfo.paymentMethod === "RAZORPAY" ? "Pay Now" : "Place Order"} <Package className="w-4 h-4" />
+                        {paymentInfo.paymentMethod === "RAZORPAY" ? "Pay Now" : "Place Order"} <Package className="w-5 h-5" />
                       </button>
                     </div>
                   </div>
@@ -600,16 +617,16 @@ export default function CheckoutPage() {
               </div>
 
               {/* --- ORDER SUMMARY SIDEBAR --- */}
-              {/* MODIFIED: Reduced top margin mt-4 for mobile */}
-              <div className="w-full lg:col-span-4 mt-4 lg:mt-0">
-                <div className="sticky top-32 bg-[#1A2118] text-[#F2F0EA] rounded-sm p-5 shadow-2xl relative overflow-hidden">
+              <div className="w-full lg:col-span-4 mt-6 lg:mt-0">
+                <div className="sticky top-32 bg-[#1A2118] text-[#F2F0EA] rounded-sm p-6 shadow-2xl relative overflow-hidden">
                   <div className="absolute top-0 right-0 w-40 h-40 bg-[#BC5633] rounded-full mix-blend-overlay filter blur-[60px] opacity-40 pointer-events-none" />
 
-                  <h2 className="text-xl md:text-2xl font-serif font-bold mb-4 md:mb-6 relative z-10">
+                  <h2 className="text-2xl font-serif font-bold mb-6 relative z-10">
                     Order Summary
                   </h2>
 
-                  <div className="space-y-3 md:space-y-4 text-sm font-medium text-[#F2F0EA]/70 relative z-10">
+                  {/* Increased Summary Font Sizes */}
+                  <div className="space-y-4 text-base font-medium text-[#F2F0EA]/70 relative z-10">
                     <div className="flex justify-between">
                       <span>Subtotal</span>
                       <span className="text-[#F2F0EA]">₹{total.toFixed(2)}</span>
@@ -623,19 +640,19 @@ export default function CheckoutPage() {
                       <span>₹{tax.toFixed(2)}</span>
                     </div>
 
-                    <div className="border-t border-white/10 pt-4 md:pt-6 mt-4 md:mt-6 pb-2">
+                    <div className="border-t border-white/10 pt-6 mt-6 pb-2">
                       <div className="flex justify-between items-end">
-                        <span className="text-[#F2F0EA]/50 uppercase tracking-widest text-xs md:text-sm">
+                        <span className="text-[#F2F0EA]/50 uppercase tracking-widest text-sm">
                           Total
                         </span>
-                        <span className="text-2xl md:text-3xl font-serif font-bold text-[#F2F0EA]">
+                        <span className="text-3xl md:text-4xl font-serif font-bold text-[#F2F0EA]">
                           ₹{finalTotal.toFixed(2)}
                         </span>
                       </div>
                     </div>
                   </div>
 
-                  <div className="mt-6 pt-4 md:pt-6 border-t border-white/10 flex items-center gap-3 justify-center text-[#F2F0EA]/40 text-xs md:text-sm uppercase tracking-widest">
+                  <div className="mt-6 pt-6 border-t border-white/10 flex items-center gap-3 justify-center text-[#F2F0EA]/40 text-xs md:text-sm uppercase tracking-widest">
                     <ShieldCheck className="w-4 h-4" /> SSL Secure Payment
                   </div>
                 </div>
@@ -658,26 +675,28 @@ interface InputProps {
   error?: string;
 }
 
-// --- REUSABLE INPUT COMPONENT ---
+// --- REUSABLE INPUT COMPONENT (UPDATED FONTS) ---
 const Input = ({ label, icon, error, ...props }: InputProps) => (
-  <div className="space-y-1.5 md:space-y-2">
-    <label className="text-xs md:text-sm font-bold uppercase tracking-widest text-[#1A2118]/60 ml-2 md:ml-4">
+  <div className="space-y-2">
+    {/* Increased Label Size */}
+    <label className="text-sm font-bold uppercase tracking-widest text-[#1A2118]/60 ml-1 md:ml-4">
       {label}
     </label>
     <div className="relative">
       <input
         {...props}
         required
-        className={`w-full px-4 md:px-6 py-2.5 md:py-3 bg-[#F2F0EA]/50 border ${
+        // UPDATED: text-base prevents iOS zoom. 
+        className={`w-full px-5 py-3.5 bg-[#F2F0EA]/50 border ${
           error ? "border-red-500" : "border-transparent"
-        } rounded-sm text-sm md:text-base text-[#1A2118] focus:bg-white focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all duration-300 placeholder-[#1A2118]/30`}
+        } rounded-sm text-base text-[#1A2118] focus:bg-white focus:border-[#BC5633]/20 focus:ring-4 focus:ring-[#BC5633]/5 focus:outline-none transition-all duration-300 placeholder-[#1A2118]/30`}
       />
       {icon && (
-        <div className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2">{icon}</div>
+        <div className="absolute right-6 top-1/2 -translate-y-1/2">{icon}</div>
       )}
     </div>
     {error && (
-      <p className="text-red-500 text-xs md:text-sm ml-2 md:ml-4 mt-1">{error}</p>
+      <p className="text-red-500 text-sm ml-1 md:ml-4 mt-1">{error}</p>
     )}
   </div>
 );
