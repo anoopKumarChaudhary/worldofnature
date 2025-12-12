@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
@@ -55,10 +53,11 @@ const HomePage = async () => {
         {/* Texture: Organic Dust */}
         <div className="absolute inset-0 opacity-[0.4] pointer-events-none mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]"></div>
         
-        <div className="container mx-auto relative z-10 max-w-7xl px-4 md:px-6 lg:px-12">
+        {/* Container with 8px horizontal padding on mobile (px-2) */}
+        <div className="container mx-auto relative z-10 max-w-7xl px-2 md:px-6 lg:px-12">
           
           {/* HEADER: Editorial Style */}
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8 border-b border-[#2C3326]/10 pb-8">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8 border-b border-[#2C3326]/10 pb-8 px-2 md:px-0">
             <div className="max-w-2xl">
               <div className="flex items-center gap-2 mb-4">
                  <Sprout className="w-4 h-4 text-[#8C9178]" />
@@ -83,10 +82,13 @@ const HomePage = async () => {
           </div>
 
           {/* PRODUCT GRID */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-10">
+          {/* MODIFIED: gap-2 (8px) for uniform X/Y spacing on mobile, matching container padding */}
+          {/* MODIFIED: gap-4 (16px) for desktop */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-1 lg:gap-4 auto-rows-fr">
             {featuredProducts.map((product: Product) => (
-              <div key={product._id} className="w-full group">
-                <div className="transition-all duration-700 hover:-translate-y-2">
+              // MODIFIED: Added h-full to wrapper to force equal heights
+              <div key={product._id} className="w-full group h-full">
+                <div className="h-full flex flex-col transition-all duration-700 hover:-translate-y-2">
                   <ProductCard
                     id={product._id}
                     imageUrl={product.imageUrl}
@@ -98,6 +100,7 @@ const HomePage = async () => {
                     isBestseller={product.isBestseller}
                     isOnSale={product.isOnSale}
                     isNew={product.isNew}
+                    // Ensure ProductCard root div has h-full or flex-grow behavior via styling if needed
                   />
                 </div>
               </div>

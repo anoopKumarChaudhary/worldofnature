@@ -194,7 +194,7 @@ const RitualsSection = () => {
         </div>
 
         {/* === THE GRID === */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 relative z-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-1 md:gap-4 relative z-10">
           {RITUALS.map((item, i) => (
             <RitualCard key={i} item={item} />
           ))}

@@ -288,7 +288,7 @@ const CollectionsSection = () => {
            - grid-cols-4 (Desktop)
            - auto-rows-[240px] (This defines the height unit for the Bento grid)
         */}
-        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[200px] md:auto-rows-[280px] gap-2 md:gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[200px] md:auto-rows-[280px] gap-1 md:gap-3">
           
           {COLLECTIONS.map((item) => (
             <GridCard key={item.id} item={item} />
