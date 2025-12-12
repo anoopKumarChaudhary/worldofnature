@@ -231,6 +231,21 @@ h6 {
   }
 }
 
+/* Hide Scrollbar - Mobile Only */
+@media (max-width: 1023px) {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  html,
+  body {
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE/Edge */
+  }
+}
+
 /* Animations */
 @keyframes fadeIn {
   from {
