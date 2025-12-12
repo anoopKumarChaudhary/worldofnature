@@ -28,7 +28,6 @@ export default function LoginPage() {
 
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
-  // const [showSuccess, setShowSuccess] = useState(false); // Removed unused state
   const [showOtp, setShowOtp] = useState(false); // OTP State
   const [otp, setOtp] = useState("");
   const [formData, setFormData] = useState({
@@ -136,33 +135,35 @@ export default function LoginPage() {
   // --- OTP VIEW ---
   if (showOtp) {
     return (
-      <div className="min-h-screen bg-[#D9DBD5] text-[#1A2118] font-sans selection:bg-[#B56B56] selection:text-white flex items-center justify-center pt-20 lg:pt-32 pb-9 px-[8px] sm:px-6 lg:px-8 overflow-hidden relative">
+      <div className="min-h-screen bg-[#D9DBD5] text-[#1A2118] font-sans selection:bg-[#B56B56] selection:text-white flex items-center justify-center pt-16 md:pt-32 pb-6 px-4 sm:px-6 lg:px-8 overflow-hidden relative">
         <div className="fixed inset-0 z-0 pointer-events-none bg-[#D9DBD5]" />
         
         <div className="relative z-10 w-full max-w-lg animate-fade-up">
+          {/* MODIFIED: Reduced padding for mobile */}
           <div className="bg-white/80 backdrop-blur-2xl border border-white/60 rounded-sm p-6 md:p-12 shadow-2xl shadow-[#1A2118]/10 text-center relative overflow-hidden">
              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-48 bg-[#B56B56] rounded-full mix-blend-multiply filter blur-[80px] opacity-20 pointer-events-none" />
 
-            <div className="w-20 h-20 bg-[#1A2118] rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl relative z-10">
-              <Lock className="w-10 h-10 text-white" />
+            {/* MODIFIED: Smaller icon on mobile */}
+            <div className="w-16 h-16 md:w-20 md:h-20 bg-[#1A2118] rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 shadow-xl relative z-10">
+              <Lock className="w-8 h-8 md:w-10 md:h-10 text-white" />
             </div>
             
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#1A2118] mb-4 relative z-10">
+            <h2 className="text-2xl md:text-4xl font-serif font-bold text-[#1A2118] mb-3 md:mb-4 relative z-10">
               Verify Your Email
             </h2>
             
-            <p className="text-[#596157] text-base mb-8 leading-relaxed relative z-10">
+            <p className="text-[#596157] text-sm md:text-base mb-6 md:mb-8 leading-relaxed relative z-10">
               We&apos;ve sent a 6-digit code to <span className="font-bold text-[#1A2118]">{formData.email}</span>. Please enter it below.
             </p>
 
-            <form onSubmit={handleVerifyOtp} className="space-y-6 relative z-10">
+            <form onSubmit={handleVerifyOtp} className="space-y-4 md:space-y-6 relative z-10">
               <div className="relative">
                 <input
                   type="text"
                   maxLength={6}
                   value={otp}
                   onChange={(e) => setOtp(e.target.value.replace(/\D/g, ''))}
-                  className="w-full px-6 py-4 bg-white border border-[#1A2118]/10 rounded-sm text-[#1A2118] text-center text-2xl font-bold tracking-[0.5em] focus:ring-4 focus:ring-[#B56B56]/5 outline-none transition-all duration-300 placeholder-[#1A2118]/10 shadow-sm"
+                  className="w-full px-4 md:px-6 py-3 md:py-4 bg-white border border-[#1A2118]/10 rounded-sm text-[#1A2118] text-center text-xl md:text-2xl font-bold tracking-[0.5em] focus:ring-4 focus:ring-[#B56B56]/5 outline-none transition-all duration-300 placeholder-[#1A2118]/10 shadow-sm"
                   placeholder="000000"
                 />
               </div>
@@ -174,7 +175,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={isLoading || otp.length !== 6}
-                className="w-full h-14 bg-[#1A2118] text-white rounded-sm font-bold text-sm uppercase tracking-widest hover:bg-[#B56B56] hover:shadow-lg hover:shadow-[#B56B56]/20 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
+                className="w-full h-12 md:h-14 bg-[#1A2118] text-white rounded-sm font-bold text-sm uppercase tracking-widest hover:bg-[#B56B56] hover:shadow-lg hover:shadow-[#B56B56]/20 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
               >
                 {isLoading ? (
                   <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -192,10 +193,10 @@ export default function LoginPage() {
     );
   }
 
-
-
+  // --- LOGIN / REGISTER VIEW ---
   return (
-    <div className="min-h-screen bg-[#D9DBD5] text-[#1A2118] font-sans selection:bg-[#B56B56] selection:text-white flex items-center justify-center pt-20 pb-10 px-[9px] sm:px-6 lg:px-8 overflow-hidden relative">
+    // MODIFIED: Reduced pt-20 -> pt-16, pb-10 -> pb-6 for mobile
+    <div className="min-h-screen bg-[#D9DBD5] text-[#1A2118] font-sans selection:bg-[#B56B56] selection:text-white flex items-center justify-center pt-16 md:pt-20 pb-6 px-4 sm:px-6 lg:px-8 overflow-hidden relative">
       {/* --- STYLES & ANIMATIONS --- */}
       <style jsx>{`
         @keyframes blob {
@@ -217,41 +218,44 @@ export default function LoginPage() {
 
       <div className="relative z-10 w-full max-w-lg animate-fade-up">
 
-
         {/* Main Card */}
-        <div className="bg-white/70 backdrop-blur-2xl border border-white/40 rounded-sm p-6 md:p-12 shadow-2xl shadow-[#1A2118]/10 relative overflow-hidden">
+        {/* MODIFIED: Reduced padding p-6 -> p-5 on mobile */}
+        <div className="bg-white/70 backdrop-blur-2xl border border-white/40 rounded-sm p-5 md:p-12 shadow-2xl shadow-[#1A2118]/10 relative overflow-hidden">
           {/* Top Decoration */}
           <div className="absolute top-0 right-0 w-32 h-32 bg-[#B56B56] rounded-full mix-blend-overlay filter blur-[50px] opacity-20 pointer-events-none" />
 
-          <div className="text-center mb-10">
+          {/* MODIFIED: Reduced mb-10 -> mb-6 for mobile */}
+          <div className="text-center mb-6 md:mb-10">
             <Link
               href="/"
-              className="inline-block mb-6 hover:scale-105 transition-transform"
+              className="inline-block mb-4 md:mb-6 hover:scale-105 transition-transform"
             >
-              <div className="w-16 h-16 bg-[#1A2118] rounded-sm flex items-center justify-center shadow-lg mx-auto">
-                <span className="text-2xl font-bold text-white">W</span>
+              {/* MODIFIED: Smaller logo container on mobile */}
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-[#1A2118] rounded-sm flex items-center justify-center shadow-lg mx-auto">
+                <span className="text-xl md:text-2xl font-bold text-white">W</span>
               </div>
             </Link>
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#1A2118] mb-3">
+            <h2 className="text-2xl md:text-4xl font-serif font-bold text-[#1A2118] mb-2 md:mb-3">
               {isLogin ? "Welcome Back" : "Join the Harvest"}
             </h2>
-            <p className="text-[#596157] text-sm font-medium">
+            <p className="text-[#596157] text-xs md:text-sm font-medium">
               {isLogin
                 ? "Sign in to continue your journey."
                 : "Create an account to start foraging."}
             </p>
           </div>
 
-          <form className="space-y-5" onSubmit={handleSubmit}>
+          {/* MODIFIED: Reduced space-y-5 -> space-y-4 for mobile */}
+          <form className="space-y-4 md:space-y-5" onSubmit={handleSubmit}>
             {!isLogin && (
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-3 md:gap-4">
                 <Input
                   label="First Name"
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleInputChange}
                   error={errors.firstName}
-                  icon={<User className="w-5 h-5 text-[#1A2118]/40" />}
+                  icon={<User className="w-4 h-4 md:w-5 md:h-5 text-[#1A2118]/40" />}
                 />
                 <Input
                   label="Last Name"
@@ -270,7 +274,7 @@ export default function LoginPage() {
               value={formData.email}
               onChange={handleInputChange}
               error={errors.email}
-              icon={<Mail className="w-5 h-5 text-[#1A2118]/40" />}
+              icon={<Mail className="w-4 h-4 md:w-5 md:h-5 text-[#1A2118]/40" />}
             />
 
             <Input
@@ -287,9 +291,9 @@ export default function LoginPage() {
                   className="text-[#1A2118]/40 hover:text-[#1A2118] transition-colors focus:outline-none"
                 >
                   {showPassword ? (
-                    <EyeOff className="w-5 h-5" />
+                    <EyeOff className="w-4 h-4 md:w-5 md:h-5" />
                   ) : (
-                    <Eye className="w-5 h-5" />
+                    <Eye className="w-4 h-4 md:w-5 md:h-5" />
                   )}
                 </button>
               }
@@ -303,16 +307,16 @@ export default function LoginPage() {
                 value={formData.confirmPassword}
                 onChange={handleInputChange}
                 error={errors.confirmPassword}
-                icon={<Lock className="w-5 h-5 text-[#1A2118]/40" />}
+                icon={<Lock className="w-4 h-4 md:w-5 md:h-5 text-[#1A2118]/40" />}
               />
             )}
 
             {isLogin && (
-              <div className="flex items-center justify-between pt-2">
+              <div className="flex items-center justify-between pt-1 md:pt-2">
                 <label className="flex items-center cursor-pointer">
                   <input
                     type="checkbox"
-                    className="w-4 h-4 rounded-sm border-[#1A2118]/20 text-[#1A2118] focus:ring-[#B56B56]"
+                    className="w-3.5 h-3.5 md:w-4 md:h-4 rounded-sm border-[#1A2118]/20 text-[#1A2118] focus:ring-[#B56B56]"
                   />
                   <span className="ml-2 text-xs font-bold text-[#596157]">
                     Remember me
@@ -333,11 +337,11 @@ export default function LoginPage() {
               </div>
             )}
 
-            <div className="pt-4">
+            <div className="pt-2 md:pt-4">
               <button
                 type="submit"
                 disabled={isLoading}
-                className="group w-full h-14 bg-[#1A2118] text-white rounded-sm font-bold text-sm uppercase tracking-widest hover:bg-[#B56B56] hover:shadow-lg hover:shadow-[#B56B56]/20 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
+                className="group w-full h-12 md:h-14 bg-[#1A2118] text-white rounded-sm font-bold text-sm uppercase tracking-widest hover:bg-[#B56B56] hover:shadow-lg hover:shadow-[#B56B56]/20 active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
               >
                 {isLoading ? (
                   <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -351,19 +355,21 @@ export default function LoginPage() {
             </div>
           </form>
 
-          <div className="mt-8 text-center">
+          {/* MODIFIED: Reduced mt-8 -> mt-6 */}
+          <div className="mt-6 md:mt-8 text-center">
             <div className="relative flex py-2 items-center">
               <div className="flex-grow border-t border-[#1A2118]/10"></div>
-              <span className="flex-shrink-0 mx-4 text-[#1A2118]/40 text-xs font-bold uppercase tracking-widest">
+              <span className="flex-shrink-0 mx-4 text-[#1A2118]/40 text-[10px] md:text-xs font-bold uppercase tracking-widest">
                 Or continue with
               </span>
               <div className="flex-grow border-t border-[#1A2118]/10"></div>
             </div>
 
-            <div className="mt-6 grid grid-cols-2 gap-4">
+            {/* MODIFIED: Reduced mt-6 -> mt-4 */}
+            <div className="mt-4 md:mt-6 grid grid-cols-2 gap-3 md:gap-4">
               <SocialButton
                 icon={
-                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                  <svg className="w-4 h-4 md:w-5 md:h-5" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
                     <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
                     <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" />
@@ -374,7 +380,7 @@ export default function LoginPage() {
               />
               <SocialButton
                 icon={
-                  <svg className="w-5 h-5 text-[#1DA1F2]" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 md:w-5 md:h-5 text-[#1DA1F2]" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.195a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.84 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
                   </svg>
                 }
@@ -382,7 +388,8 @@ export default function LoginPage() {
               />
             </div>
 
-            <p className="mt-8 text-sm text-[#596157]">
+            {/* MODIFIED: Reduced mt-8 -> mt-6 */}
+            <p className="mt-6 md:mt-8 text-xs md:text-sm text-[#596157]">
               {isLogin
                 ? "Don't have an account? "
                 : "Already have an account? "}
@@ -419,33 +426,38 @@ interface SocialButtonProps {
 // --- COMPONENTS ---
 
 const Input = ({ label, error, icon, ...props }: InputProps) => (
-  <div className="space-y-2">
-    <label className="text-sm font-bold uppercase tracking-widest text-[#1A2118]/60 ml-4">
+  // MODIFIED: Reduced space-y-2 -> space-y-1.5 for mobile
+  <div className="space-y-1.5 md:space-y-2">
+    {/* MODIFIED: Smaller label text on mobile */}
+    <label className="text-xs md:text-sm font-bold uppercase tracking-widest text-[#1A2118]/60 ml-2 md:ml-4">
       {label}
     </label>
     <div className="relative">
+      {/* MODIFIED: Reduced py-4 -> py-3, px-6 -> px-4 for mobile inputs */}
       <input
         {...props}
-        className={`w-full px-6 py-4 bg-white border rounded-sm text-base text-[#1A2118] focus:ring-4 focus:ring-[#B56B56]/5 outline-none transition-all duration-300 placeholder-[#1A2118]/30 shadow-sm ${
+        className={`w-full px-4 md:px-6 py-3 md:py-4 bg-white border rounded-sm text-sm md:text-base text-[#1A2118] focus:ring-4 focus:ring-[#B56B56]/5 outline-none transition-all duration-300 placeholder-[#1A2118]/30 shadow-sm ${
           error
             ? "border-red-400 focus:border-red-400"
             : "border-[#1A2118]/10 focus:border-[#B56B56]/20"
         }`}
       />
       {icon && (
-        <div className="absolute right-6 top-1/2 -translate-y-1/2">{icon}</div>
+        <div className="absolute right-4 md:right-6 top-1/2 -translate-y-1/2">{icon}</div>
       )}
     </div>
-    {error && <p className="text-xs text-red-500 font-medium ml-4">{error}</p>}
+    {error && <p className="text-xs text-red-500 font-medium ml-2 md:ml-4">{error}</p>}
   </div>
 );
 
 const SocialButton = ({ icon, label }: SocialButtonProps) => (
   <button
     type="button"
-    className="flex items-center justify-center gap-3 py-3.5 px-4 bg-white border border-[#1A2118]/5 rounded-sm hover:bg-[#F2F0EA] hover:-translate-y-0.5 transition-all shadow-sm"
+    // MODIFIED: Reduced py-3.5 -> py-2.5 for mobile buttons
+    className="flex items-center justify-center gap-2 md:gap-3 py-2.5 md:py-3.5 px-4 bg-white border border-[#1A2118]/5 rounded-sm hover:bg-[#F2F0EA] hover:-translate-y-0.5 transition-all shadow-sm"
   >
     {icon}
-    <span className="text-sm font-bold text-[#1A2118]">{label}</span>
+    {/* MODIFIED: Smaller button text on mobile */}
+    <span className="text-xs md:text-sm font-bold text-[#1A2118]">{label}</span>
   </button>
 );
