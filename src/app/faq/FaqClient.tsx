@@ -29,7 +29,7 @@ export default function FaqClient({ faqData }: FaqClientProps) {
   return (
     <>
       {/* --- HEADER SECTION (Search) --- */}
-      <section className="relative pt-20 lg:pt-32 pb-16 px-4 sm:px-6 lg:px-8 z-10">
+      <section className="relative pt-20 lg:pt-32 pb-9 px-[8px] sm:px-6 lg:px-8 z-10">
         <div className="container mx-auto max-w-3xl text-center">
           {/* Pill Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-[#1A2118]/10 shadow-sm mb-8 animate-fade-in-up">
@@ -75,7 +75,7 @@ export default function FaqClient({ faqData }: FaqClientProps) {
       </section>
 
       {/* --- FAQ CONTENT --- */}
-      <section className="px-4 sm:px-6 lg:px-8 relative z-10 pb-24">
+      <section className="px-[8px] sm:px-6 lg:px-8 relative z-10 pb-20">
         <div className="container mx-auto max-w-3xl">
           {filteredFaqs.length > 0 ? (
             <div className="space-y-5">

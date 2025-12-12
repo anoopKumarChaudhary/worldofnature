@@ -45,7 +45,7 @@ const faqData = [
 
 export default function FaqPage() {
   return (
-    <div className="min-h-screen font-sans selection:bg-[#BC5633] selection:text-white pb-20">
+    <div className="min-h-screen font-sans selection:bg-[#BC5633] selection:text-white pb-9">
       {/* --- BACKGROUND LAYERS --- */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         {/* Noise Texture */}
@@ -63,7 +63,7 @@ export default function FaqPage() {
       <FaqClient faqData={faqData} />
 
       {/* --- STILL NEED HELP CARD --- */}
-      <section className="px-4 sm:px-6 lg:px-8 relative z-10">
+      <section className="px-[8px] sm:px-6 lg:px-8 relative z-10">
         <div className="container mx-auto max-w-3xl">
           <div className="bg-[#1A2118] rounded-[2.5rem] p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl shadow-[#1A2118]/20 overflow-hidden relative">
             {/* Background Decoration */}

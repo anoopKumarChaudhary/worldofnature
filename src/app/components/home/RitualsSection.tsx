@@ -157,12 +157,12 @@ const RitualCard = ({ item }: { item: RitualItem }) => {
 
 const RitualsSection = () => {
   return (
-    <section className="relative py-12 lg:py-24 bg-[#A9AB94] text-[#2C3326] overflow-hidden">
+    <section className="relative py-9 lg:py-24 bg-[#A9AB94] text-[#2C3326] overflow-hidden">
       
       {/* Texture */}
       <div className="absolute inset-0 opacity-[0.1] pointer-events-none mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/dust.png')]"></div>
 
-      <div className="container mx-auto px-4 md:px-8 relative z-10">
+      <div className="container mx-auto px-[8px] md:px-8 relative z-10">
         
         {/* === HEADER === */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 md:mb-12 gap-4 border-b border-[#2C3326]/10 pb-6">

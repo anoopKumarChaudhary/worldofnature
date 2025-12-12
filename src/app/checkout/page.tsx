@@ -244,7 +244,8 @@ export default function CheckoutPage() {
         <div className="fixed inset-0 z-0 pointer-events-none bg-[#D9DBD5]" />
 
         {/* --- HEADER --- */}
-        <div className="relative pt-12 lg:pt-32 pb-8 px-4 lg:px-12 z-10">
+        {/* MODIFIED: px-[9px] changed to px-2 (8px) */}
+        <div className="relative pt-8 lg:pt-32 pb-10 px-2 lg:px-12 z-10">
           <div className="container mx-auto max-w-7xl">
             <h1 className="text-4xl md:text-6xl font-serif font-medium tracking-tight text-[#1A2118] mb-8">
               Checkout
@@ -294,7 +295,8 @@ export default function CheckoutPage() {
           </div>
         </div>
 
-        <div className="relative z-10 px-4 lg:px-12">
+        {/* MODIFIED: px-4 changed to px-2 (8px) */}
+        <div className="relative z-10 px-2 lg:px-12">
           <div className="container mx-auto max-w-7xl">
             <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6 lg:gap-12 items-start">
               {/* --- MAIN FORM AREA --- */}

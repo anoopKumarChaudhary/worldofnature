@@ -35,7 +35,7 @@ const reviews = [
 
 const TestimonialsSection = () => {
   return (
-    <section className="py-20 md:py-32 bg-[#E6E2D6]/30">
+    <section className="py-9 md:py-32 bg-[#E6E2D6]/30">
       <div className="container-custom mx-auto">
         
         <div className="text-center mb-16">

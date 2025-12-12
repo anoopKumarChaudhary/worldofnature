@@ -84,12 +84,12 @@ const PhilosophySection = () => {
 
   return (
     // BG: #A9AB94 (Dry Sage / Khaki) - A shift from Brown to Green-Brown
-    <section className="relative py-12 lg:py-20 bg-[#A9AB94] text-[#2C3326] overflow-hidden">
+    <section className="relative py-9 lg:py-20 bg-[#A9AB94] text-[#2C3326] overflow-hidden">
       
       {/* Texture: Organic noise */}
       <div className="absolute inset-0 opacity-[0.1] bg-[url('https://www.transparenttextures.com/patterns/dust.png')] mix-blend-multiply"></div>
 
-      <div className="container mx-auto px-4 md:px-8 relative z-10">
+      <div className="container mx-auto px-[8px] md:px-8 relative z-10">
         
         {/* === HEADER === */}
         <div className="flex flex-col items-start justify-between mb-8 gap-2 border-b border-[#8C9178] pb-4">

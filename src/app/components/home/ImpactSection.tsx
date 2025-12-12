@@ -39,12 +39,12 @@ const ImpactSection = () => {
 
   return (
     // BG: Dark Olive (#2C3326) - The "Dark Mode" of your theme
-    <section className="relative py-20 lg:py-32 bg-[#2C3326] text-[#F2F3EE] overflow-hidden">
+    <section className="relative py-9 lg:py-32 bg-[#2C3326] text-[#F2F3EE] overflow-hidden">
       
       {/* Texture: Subtle Dust */}
       <div className="absolute inset-0 opacity-[0.1] pointer-events-none mix-blend-overlay bg-[url('https://www.transparenttextures.com/patterns/dust.png')]"></div>
 
-      <div className="container mx-auto px-4 md:px-8 relative z-10">
+      <div className="container mx-auto px-[8px] md:px-8 relative z-10">
         
         {/* === HEADER === */}
         <div className="flex flex-col lg:flex-row justify-between items-end mb-16 gap-8 border-b border-[#8C9178]/30 pb-8">

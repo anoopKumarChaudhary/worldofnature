@@ -116,7 +116,7 @@ function OrderConfirmationContent() {
         {/* --- BACKGROUND LAYERS --- */}
         <div className="fixed inset-0 z-0 pointer-events-none bg-[#D9DBD5]" />
 
-        <div className="relative z-10 pt-16 lg:pt-32 pb-12 px-4 lg:px-12">
+        <div className="relative z-10 pt-20 lg:pt-32 pb-9 px-[8px] lg:px-12">
           <div className="max-w-3xl mx-auto">
             {/* --- SUCCESS HEADER --- */}
             <div className="text-center mb-8 animate-fade-up">

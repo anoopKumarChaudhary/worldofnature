@@ -18,7 +18,7 @@ interface ContactSectionProps {
 
 export default function ContactSection({ className = "" }: ContactSectionProps) {
   return (
-    <section className={`relative pt-24 pb-12 px-4 md:px-6 lg:px-12 z-10 ${className}`}>
+    <section className={`relative pt-20 pb-9 px-[8px] md:px-6 lg:px-12 z-10 ${className}`}>
       <div className="container mx-auto max-w-7xl">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-8 mb-12 md:mb-16 border-b border-[#1A2118]/10 pb-8">
           <div>

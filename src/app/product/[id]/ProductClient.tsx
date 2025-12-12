@@ -194,7 +194,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
       </div>
 
       {/* --- BREADCRUMB NAV --- */}
-      <div className="relative pt-16 pb-6 px-4 lg:px-12 z-10">
+      <section className="relative pt-20 lg:pt-32 pb-9 lg:pb-20 z-10">
         <div className="container mx-auto max-w-7xl flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-[#1A2118]/40">
           <Link href="/" className="hover:text-[#BC5633] transition-colors">
             Home
@@ -206,10 +206,10 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
           <ChevronLeft className="w-3 h-3 rotate-180" />
           <span className="text-[#1A2118] truncate max-w-[150px] sm:max-w-none">{currentProduct.title}</span>
         </div>
-      </div>
+      </section>
 
       <div className="relative z-10 px-4 lg:px-12">
-        <div className="container mx-auto max-w-7xl">
+        <div className="container mx-auto px-[8px] lg:px-12">
           <div className="lg:grid lg:grid-cols-12 lg:gap-16 items-start">
             {/* --- LEFT: IMMERSIVE IMAGE --- */}
             <div className="lg:col-span-7 mb-8 lg:mb-0">

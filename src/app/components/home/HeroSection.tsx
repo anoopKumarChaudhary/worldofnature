@@ -7,7 +7,7 @@ import { ArrowRight, Leaf, Sprout } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex flex-col justify-center items-center pt-16 lg:pt-32 pb-12 lg:pb-20 overflow-hidden">
+    <section className="relative min-h-screen flex flex-col justify-center items-center pt-20 lg:pt-32 pb-9 lg:pb-20 overflow-hidden">
       
       {/* 1. BACKGROUND LAYER */}
       <div className="absolute inset-0 z-0">
@@ -37,7 +37,7 @@ const HeroSection = () => {
       <div className="container-custom mx-auto relative z-10 text-center">
         
         {/* Top Tagline */}
-        <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full border border-white/20 bg-white/5 backdrop-blur-md text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mb-8 md:mb-12 animate-reveal-up text-white/90">
+        <div className="inline-flex items-center gap-3 px-6 py-2 rounded-full border border-white/20 bg-white/5 backdrop-blur-md text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mb-6 md:mb-12 animate-reveal-up text-white/90">
           <span className="w-1.5 h-1.5 bg-[#B56B56] rounded-full animate-pulse" />
           Est. 2025 • World of Nature
         </div>

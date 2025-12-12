@@ -65,9 +65,10 @@ const Footer = () => {
   ];
 
   return (
-    // CHANGED: z-40 -> z-10 (Lower z-index prevents it from covering fixed/sticky filters)
-    <footer className="relative z-1 bg-[#1A2118] text-[#F2F0EA] pt-10 md:pt-24 pb-6 md:pb-12 border-t border-[#F2F0EA]/10" role="contentinfo">
-      <div className="container-custom mx-auto">
+    <footer className="relative z-10 bg-[#1A2118] text-[#F2F0EA] pt-10 md:pt-24 pb-6 md:pb-12 border-t border-[#F2F0EA]/10" role="contentinfo">
+      {/* MODIFIED: Removed 'container-custom' to avoid conflicts. Used standard max-w and mx-auto. */}
+      {/* MODIFIED: Increased padding to px-6 (24px) for mobile. */}
+      <div className="w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
         {/* Top Section: Newsletter & Brand */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8 md:mb-24">
           {/* Brand Column */}

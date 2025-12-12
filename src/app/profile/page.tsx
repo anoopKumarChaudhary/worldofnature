@@ -48,7 +48,7 @@ export default function ProfilePage() {
 
   return (
     <AuthGuard>
-      <div className="min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white pb-20 overflow-x-hidden">
+      <div className="min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white pb-9 overflow-x-hidden">
         {/* --- STYLES & ANIMATIONS --- */}
         <style jsx>{`
           @keyframes blob {
@@ -82,7 +82,7 @@ export default function ProfilePage() {
           <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#1A2118] rounded-full mix-blend-overlay filter blur-[120px] opacity-10 animate-blob" />
         </div>
 
-        <div className="relative z-10 pt-20 lg:pt-32 px-4 lg:px-12">
+        <div className="relative z-10 pt-20 lg:pt-32 px-[8px] lg:px-12">
           <div className="container mx-auto max-w-6xl">
             {/* Header */}
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6">

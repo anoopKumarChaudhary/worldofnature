@@ -52,12 +52,12 @@ const PhenologySectionDark = () => {
 
   return (
     // BG: Deep Charcoal/Green | TEXT: Off-White
-    <section className="relative py-12 lg:py-24 bg-[#111210] text-[#E3E3DC] overflow-hidden">
+    <section className="relative py-9 lg:py-24 bg-[#111210] text-[#E3E3DC] overflow-hidden">
       
       {/* Texture: Reduced opacity for dark mode subtlety */}
       <div className="absolute inset-0 opacity-[0.07] pointer-events-none mix-blend-overlay bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]"></div>
 
-      <div className="container mx-auto px-4 md:px-8 relative z-10">
+      <div className="container mx-auto px-[8px] md:px-8 relative z-10">
         
         {/* === HEADER === */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 lg:mb-12 gap-4 border-b border-[#E3E3DC]/10 pb-6">
