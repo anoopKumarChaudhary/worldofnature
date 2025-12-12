@@ -12,7 +12,7 @@ const SmoothScroll = () => {
       gestureOrientation: "vertical",
       smoothWheel: true,
       wheelMultiplier: 2.5,
-      touchMultiplier: 4.5,
+      // touchMultiplier: 2, // Default is 2. We use native touch scroll (smoothTouch: false) for "ultra good" native feel.
     });
 
     function raf(time: number) {
