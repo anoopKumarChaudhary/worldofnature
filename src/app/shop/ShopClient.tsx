@@ -381,7 +381,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
               isFilterOpen
                 ? "translate-y-0"
                 : "translate-y-full lg:translate-y-0"
-            } max-h-[85vh] lg:max-h-none overflow-hidden flex flex-col`}
+            } max-h-[75vh] lg:max-h-none overflow-hidden flex flex-col`}
           >
             {/* Mobile Drag Handle */}
             <div className="lg:hidden w-full flex justify-center pt-4 pb-2" onClick={() => setIsFilterOpen(false)}>
