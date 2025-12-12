@@ -53,7 +53,7 @@ export default function CartPage() {
         />
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#BC5633] rounded-full mix-blend-multiply filter blur-[120px] opacity-20 animate-blob" />
 
-        <div className="relative z-10 text-center p-8 bg-white/60 backdrop-blur-xl rounded-sm border border-[#1A2118]/5 shadow-2xl max-w-lg w-full mx-4">
+        <div className="relative z-10 text-center p-8 bg-white/60 backdrop-blur-xl rounded-sm border border-[#1A2118]/5 shadow-2xl max-w-lg mx-4">
           <div className="w-24 h-24 bg-[#F2F0EA] rounded-sm flex items-center justify-center mx-auto mb-6 shadow-inner">
             <ShoppingBag className="w-10 h-10 text-[#BC5633]" />
           </div>
@@ -127,14 +127,14 @@ export default function CartPage() {
         <div className="container mx-auto max-w-7xl">
           <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             {/* --- CART ITEMS LIST --- */}
-            <div className="lg:col-span-8 space-y-6">
+            <div className="w-full lg:col-span-8 space-y-6">
               {items.map((item) => (
                 <div
                   key={`${item.id}-${item.size}`}
-                  className="group bg-white/60 backdrop-blur-md border border-white/40 rounded-sm p-6 flex flex-col sm:flex-row items-center gap-6 hover:bg-white/80 transition-all duration-300 shadow-sm hover:shadow-lg"
+                  className="group bg-white/60 backdrop-blur-md border border-white/40 rounded-sm p-4 flex flex-row items-start gap-4 hover:bg-white/80 transition-all duration-300 shadow-sm hover:shadow-lg"
                 >
                   {/* Image */}
-                  <div className="relative w-32 h-32 flex-shrink-0 bg-[#F2F0EA] rounded-sm overflow-hidden">
+                  <div className="relative w-24 h-24 sm:w-32 sm:h-32 flex-shrink-0 bg-[#F2F0EA] rounded-sm overflow-hidden">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={item.image}
@@ -144,27 +144,27 @@ export default function CartPage() {
                   </div>
 
                   {/* Details */}
-                  <div className="flex-1 w-full text-center sm:text-left">
-                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-4">
+                  <div className="flex-1 min-w-0 flex flex-col justify-between self-stretch">
+                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-1 sm:gap-4 mb-2">
                       <div>
-                        <h3 className="text-xl font-serif font-bold text-[#1A2118] mb-1">
+                        <h3 className="text-lg sm:text-xl font-serif font-bold text-[#1A2118] leading-tight truncate pr-2">
                           {item.name}
                         </h3>
                         {item.size && (
-                          <span className="inline-block px-3 py-1 bg-[#1A2118]/5 text-[#596157] text-xs font-bold rounded-sm uppercase tracking-wide">
+                          <span className="inline-block mt-1 px-2 py-0.5 bg-[#1A2118]/5 text-[#596157] text-[10px] sm:text-xs font-bold rounded-sm uppercase tracking-wide">
                             Size: {item.size}
                           </span>
                         )}
                       </div>
-                      <p className="text-xl font-bold text-[#1A2118]">
+                      <p className="text-lg font-bold text-[#1A2118] mt-1 sm:mt-0">
                         ₹{item.price.toFixed(2)}
                       </p>
                     </div>
 
                     {/* Controls */}
-                    <div className="flex items-center justify-center sm:justify-between border-t border-[#1A2118]/5 pt-4 mt-2">
+                    <div className="flex items-center justify-between mt-auto pt-2">
                       {/* Quantity */}
-                      <div className="flex items-center bg-white rounded-sm p-1 shadow-sm border border-[#1A2118]/5">
+                      <div className="flex items-center bg-white rounded-sm p-0.5 shadow-sm border border-[#1A2118]/5 h-8">
                         <button
                           onClick={() =>
                             handleUpdateQuantity(
@@ -173,11 +173,11 @@ export default function CartPage() {
                               item.quantity - 1
                             )
                           }
-                          className="w-8 h-8 flex items-center justify-center rounded-sm hover:bg-[#F2F0EA] transition-colors text-[#1A2118]"
+                          className="w-7 h-full flex items-center justify-center rounded-sm hover:bg-[#F2F0EA] transition-colors text-[#1A2118]"
                         >
                           <Minus className="w-3 h-3" />
                         </button>
-                        <span className="w-8 text-center text-sm font-bold text-[#1A2118]">
+                        <span className="w-6 text-center text-xs font-bold text-[#1A2118]">
                           {item.quantity}
                         </span>
                         <button
@@ -188,7 +188,7 @@ export default function CartPage() {
                               item.quantity + 1
                             )
                           }
-                          className="w-8 h-8 flex items-center justify-center rounded-sm hover:bg-[#F2F0EA] transition-colors text-[#1A2118]"
+                          className="w-7 h-full flex items-center justify-center rounded-sm hover:bg-[#F2F0EA] transition-colors text-[#1A2118]"
                         >
                           <Plus className="w-3 h-3" />
                         </button>
@@ -197,9 +197,10 @@ export default function CartPage() {
                       {/* Remove */}
                       <button
                         onClick={() => handleRemoveItem(item.id, item.size)}
-                        className="hidden sm:flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#1A2118]/40 hover:text-red-500 transition-colors ml-auto"
+                        className="flex items-center gap-1 text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#1A2118]/40 hover:text-red-500 transition-colors"
                       >
-                        Remove
+                        <Trash2 className="w-3 h-3 sm:hidden" />
+                        <span className="hidden sm:inline">Remove</span>
                       </button>
                     </div>
                   </div>
@@ -215,9 +216,9 @@ export default function CartPage() {
             </div>
 
             {/* --- ORDER SUMMARY --- */}
-            <div className="lg:col-span-4 mt-12 lg:mt-0">
+            <div className="w-full lg:col-span-4 mt-12 lg:mt-0">
               <div className="sticky top-32">
-                <div className="bg-[#1A2118] text-[#F2F0EA] rounded-sm p-8 lg:p-10 shadow-2xl relative overflow-hidden">
+                <div className="bg-[#1A2118] text-[#F2F0EA] rounded-sm p-6 lg:p-10 shadow-2xl relative overflow-hidden">
                   {/* Decorative Blob inside Summary */}
                   <div className="absolute top-0 right-0 w-40 h-40 bg-[#BC5633] rounded-full mix-blend-overlay filter blur-[60px] opacity-40 pointer-events-none" />
 

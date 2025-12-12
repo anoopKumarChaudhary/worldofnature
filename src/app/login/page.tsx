@@ -140,7 +140,7 @@ export default function LoginPage() {
         <div className="fixed inset-0 z-0 pointer-events-none bg-[#D9DBD5]" />
         
         <div className="relative z-10 w-full max-w-lg animate-fade-up">
-          <div className="bg-white/80 backdrop-blur-2xl border border-white/60 rounded-sm p-8 md:p-12 shadow-2xl shadow-[#1A2118]/10 text-center relative overflow-hidden">
+          <div className="bg-white/80 backdrop-blur-2xl border border-white/60 rounded-sm p-6 md:p-12 shadow-2xl shadow-[#1A2118]/10 text-center relative overflow-hidden">
              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-48 bg-[#B56B56] rounded-full mix-blend-multiply filter blur-[80px] opacity-20 pointer-events-none" />
 
             <div className="w-20 h-20 bg-[#1A2118] rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl relative z-10">
@@ -219,7 +219,7 @@ export default function LoginPage() {
 
 
         {/* Main Card */}
-        <div className="bg-white/70 backdrop-blur-2xl border border-white/40 rounded-sm p-8 md:p-12 shadow-2xl shadow-[#1A2118]/10 relative overflow-hidden">
+        <div className="bg-white/70 backdrop-blur-2xl border border-white/40 rounded-sm p-6 md:p-12 shadow-2xl shadow-[#1A2118]/10 relative overflow-hidden">
           {/* Top Decoration */}
           <div className="absolute top-0 right-0 w-32 h-32 bg-[#B56B56] rounded-full mix-blend-overlay filter blur-[50px] opacity-20 pointer-events-none" />
 

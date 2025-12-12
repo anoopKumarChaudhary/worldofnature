@@ -140,7 +140,7 @@ const ContactPage = () => {
             {/* --- LEFT COLUMN: CONTACT CARDS --- */}
             <div className="lg:col-span-7 space-y-6 animate-fade-up">
               {/* Email Card */}
-              <div className="group bg-white/60 backdrop-blur-xl border border-white/40 rounded-[2.5rem] p-8 flex items-start gap-6 hover:bg-white transition-all duration-300 shadow-sm hover:shadow-lg hover:-translate-y-1">
+              <div className="group bg-white/60 backdrop-blur-xl border border-white/40 rounded-[2.5rem] p-6 flex items-start gap-6 hover:bg-white transition-all duration-300 shadow-sm hover:shadow-lg hover:-translate-y-1">
                 <div className="w-14 h-14 rounded-[1.2rem] bg-[#BC5633]/10 flex items-center justify-center flex-shrink-0 text-[#BC5633] group-hover:scale-110 transition-transform duration-300">
                   <Mail size={24} />
                 </div>
@@ -161,7 +161,7 @@ const ContactPage = () => {
               </div>
 
               {/* Phone Card (Highlighted Dark Style) */}
-              <div className="group bg-[#1A2118] text-[#F2F0EA] rounded-[2.5rem] p-8 flex items-start gap-6 relative overflow-hidden shadow-2xl hover:-translate-y-1 transition-transform duration-300">
+              <div className="group bg-[#1A2118] text-[#F2F0EA] rounded-[2.5rem] p-6 flex items-start gap-6 relative overflow-hidden shadow-2xl hover:-translate-y-1 transition-transform duration-300">
                 {/* Glow Effect */}
                 <div className="absolute top-0 right-0 w-40 h-40 bg-[#BC5633] rounded-full mix-blend-overlay filter blur-[60px] opacity-30 group-hover:opacity-50 transition-opacity" />
 
@@ -191,7 +191,7 @@ const ContactPage = () => {
               </div>
 
               {/* Office Card */}
-              <div className="group bg-white/60 backdrop-blur-xl border border-white/40 rounded-[2.5rem] p-8 flex items-start gap-6 hover:bg-white transition-all duration-300 shadow-sm hover:shadow-lg hover:-translate-y-1">
+              <div className="group bg-white/60 backdrop-blur-xl border border-white/40 rounded-[2.5rem] p-6 flex items-start gap-6 hover:bg-white transition-all duration-300 shadow-sm hover:shadow-lg hover:-translate-y-1">
                 <div className="w-14 h-14 rounded-[1.2rem] bg-[#1A2118]/5 flex items-center justify-center flex-shrink-0 text-[#1A2118] group-hover:scale-110 transition-transform duration-300">
                   <MapPin size={24} />
                 </div>
@@ -227,7 +227,7 @@ const ContactPage = () => {
             {/* --- RIGHT COLUMN: WHATSAPP --- */}
             <div className="lg:col-span-5 space-y-8 lg:sticky lg:top-32">
               {/* WhatsApp Card (Visually Stunning) */}
-              <div className="relative group overflow-hidden bg-[#25D366] rounded-[3rem] p-10 text-center shadow-[0_20px_50px_-12px_rgba(37,211,102,0.3)] hover:-translate-y-2 transition-all duration-500">
+              <div className="relative group overflow-hidden bg-[#25D366] rounded-[3rem] p-8 text-center shadow-[0_20px_50px_-12px_rgba(37,211,102,0.3)] hover:-translate-y-2 transition-all duration-500">
                 {/* Background Texture inside Card */}
                 <div className="absolute inset-0 opacity-20 mix-blend-overlay bg-[url('https://www.transparenttextures.com/patterns/noise.png')] pointer-events-none"></div>
                 <div className="absolute -top-20 -right-20 w-60 h-60 bg-white rounded-full mix-blend-overlay filter blur-[60px] opacity-30 pointer-events-none"></div>
@@ -261,7 +261,7 @@ const ContactPage = () => {
               </div>
 
               {/* Contact Form Card */}
-              <div className="bg-white/60 backdrop-blur-xl border border-white/40 rounded-[2.5rem] p-8 lg:p-10 shadow-lg">
+              <div className="bg-white/60 backdrop-blur-xl border border-white/40 rounded-[2.5rem] p-6 lg:p-10 shadow-lg">
                 <h3 className="text-2xl font-serif font-bold text-[#1A2118] mb-6">
                   Send us a Message
                 </h3>

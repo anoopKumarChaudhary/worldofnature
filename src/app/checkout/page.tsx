@@ -195,7 +195,7 @@ export default function CheckoutPage() {
             backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
           }}
         />
-        <div className="relative z-10 text-center p-10 bg-white/60 backdrop-blur-xl rounded-sm border border-[#1A2118]/5 shadow-2xl">
+        <div className="relative z-10 text-center p-6 bg-white/60 backdrop-blur-xl rounded-sm border border-[#1A2118]/5 shadow-2xl">
           <div className="w-24 h-24 bg-[#F2F0EA] rounded-sm flex items-center justify-center mx-auto mb-6 shadow-inner">
             <Truck className="w-10 h-10 text-[#BC5633]" />
           </div>
@@ -307,9 +307,9 @@ export default function CheckoutPage() {
           <div className="container mx-auto max-w-7xl">
             <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
               {/* --- MAIN FORM AREA --- */}
-              <div className="lg:col-span-8">
+              <div className="w-full lg:col-span-8">
                 {currentStep === 1 && (
-                  <div className="bg-white/80 backdrop-blur-xl border border-white rounded-sm p-8 md:p-12 shadow-2xl shadow-[#1A2118]/5">
+                  <div className="bg-white/80 backdrop-blur-xl border border-white rounded-sm p-6 md:p-12 shadow-2xl shadow-[#1A2118]/5">
                     <h2 className="text-2xl font-serif font-bold text-[#1A2118] mb-8">
                       Shipping Details
                     </h2>
@@ -604,8 +604,8 @@ export default function CheckoutPage() {
               </div>
 
               {/* --- ORDER SUMMARY SIDEBAR --- */}
-              <div className="lg:col-span-4 mt-12 lg:mt-0">
-                <div className="sticky top-32 bg-[#1A2118] text-[#F2F0EA] rounded-sm p-8 shadow-2xl relative overflow-hidden">
+              <div className="w-full lg:col-span-4 mt-12 lg:mt-0">
+                <div className="sticky top-32 bg-[#1A2118] text-[#F2F0EA] rounded-sm p-6 shadow-2xl relative overflow-hidden">
                   <div className="absolute top-0 right-0 w-40 h-40 bg-[#BC5633] rounded-full mix-blend-overlay filter blur-[60px] opacity-40 pointer-events-none" />
 
                   <h2 className="text-2xl font-serif font-bold mb-8 relative z-10">
