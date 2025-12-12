@@ -125,7 +125,7 @@ const Navbar = () => {
         }`}
       >
         <nav
-          className={`relative flex items-center justify-between transition-all duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)] w-full py-2 px-6 md:px-10 ${
+          className={`relative flex items-center justify-between transition-all duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)] w-full py-2 px-2 md:px-10 ${
             isScrolled ? "bg-white/10 backdrop-blur-md shadow-sm" : "bg-transparent"
           }`}
         >
