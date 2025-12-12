@@ -1,132 +1,23 @@
-import React from "react";
-import Link from "next/link";
-import dynamic from "next/dynamic";
-import { ArrowRight, Star, MoveRight, Quote, Sprout } from "lucide-react";
-import { productsAPI, Product } from "./services/api";
-import ProductCard from "./components/ProductCard";
+import HeroSection from "./components/home/HeroSection";
+import PhilosophySection from "./components/home/PhilosophySection";
+import CollectionsSection from "./components/home/CollectionsSection";
+import RitualsSection from "./components/home/RitualsSection";
+import PhenologySection from "./components/home/PhenologySection";
+import ImpactSection from "./components/home/ImpactSection";
+// import ShopSection from "./components/home/ShopSection";
+import ContactSection from "./components/home/ContactSection";
 
-// === DYNAMIC IMPORTS ===
-// Loading states matched to the Dark Olive theme
-const HeroSection = dynamic(() => import("./components/home/HeroSection"), {
-  loading: () => <div className="h-screen bg-[#2C3326]" />,
-});
-const PhilosophySection = dynamic(() => import("./components/home/PhilosophySection"));
-const CollectionsSection = dynamic(() => import("./components/home/CollectionsSection"));
-const HarvestSection = dynamic(() => import("./components/home/HarvestSection")); 
-const ImpactSection = dynamic(() => import("./components/home/ImpactSection"));
-const RitualsSection = dynamic(() => import("./components/home/RitualsSection"));
-const ContactSection = dynamic(() => import("./components/home/ContactSection"));
-
-const HomePage = async () => {
-  // === DATA FETCHING ===
-  let featuredProducts: Product[] = [];
-  try {
-    const products = await productsAPI.getProducts({ isBestseller: true });
-    featuredProducts = products.slice(0, 4);
-  } catch (error) {
-    console.error("Failed to fetch products:", error);
-  }
-
+export default function HomePage() {
   return (
-    // GLOBAL THEME: Dark Olive Text on Sage/Mist Backgrounds
-    <div className="relative min-h-screen text-[#2C3326] font-sans selection:bg-[#8C9178] selection:text-[#F2F3EE] overflow-x-hidden">
-      
-      {/* 1. HERO SECTION */}
+    <main className="relative min-h-screen bg-[#F2F3EE] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white overflow-x-hidden antialiased">
       <HeroSection />
-
-      {/* 2. PHILOSOPHY (Sage BG) */}
       <PhilosophySection />
-
-      {/* 3. COLLECTIONS (Sage BG - Seamless Flow) */}
       <CollectionsSection />
-
-      {/* 4. RITUALS (Sage BG - Timeline) */}
       <RitualsSection />
-
-      {/* 5. PHENOLOGY / HARVEST (Sticky Section) */}
-      <HarvestSection />
-
-      {/* --- 6. CURATED ESSENTIALS (Shop) --- */}
-      {/* BACKGROUND: Pale Mist (#F2F3EE) for contrast against Sage/Olive */}
-      {/* MODIFIED: Reduced mobile vertical padding to py-12 (was py-24) */}
-      <section className="relative py-12 md:py-24 lg:py-32 bg-[#F2F3EE]">
-        
-        {/* Texture: Organic Dust */}
-        <div className="absolute inset-0 opacity-[0.4] pointer-events-none mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]"></div>
-        
-        {/* Container with 8px horizontal padding on mobile (px-2) */}
-        <div className="container mx-auto relative z-10 max-w-7xl px-2 md:px-6 lg:px-12">
-          
-          {/* HEADER: Editorial Style */}
-          {/* MODIFIED: Reduced mb-16 to mb-8 for mobile, pb-8 to pb-4 */}
-          <div className="flex flex-col md:flex-row justify-between items-end mb-8 md:mb-16 gap-8 border-b border-[#2C3326]/10 pb-4 md:pb-8 px-2 md:px-0">
-            <div className="max-w-2xl">
-              <div className="flex items-center gap-2 mb-4">
-                 <Sprout className="w-4 h-4 text-[#8C9178]" />
-                 <span className="font-mono text-[10px] font-bold uppercase tracking-[0.25em] text-[#8C9178]">
-                   Catalogue No. 02
-                 </span>
-              </div>
-              <h2 className="font-serif text-3xl lg:text-7xl text-[#2C3326] leading-[0.95]">
-                The <span className="italic text-[#8C9178] font-light">Formulations.</span>
-              </h2>
-            </div>
-            
-            <div className="hidden md:block pb-2">
-               <Link 
-                 href="/shop"
-                 className="group inline-flex items-center gap-3 font-mono text-sm font-bold uppercase tracking-widest text-[#2C3326] hover:text-[#8C9178] transition-colors"
-               >
-                 View Full Inventory 
-                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-               </Link>
-            </div>
-          </div>
-
-          {/* PRODUCT GRID */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-1 lg:gap-4 auto-rows-fr">
-            {featuredProducts.map((product: Product) => (
-              <div key={product._id} className="w-full group h-full">
-                <div className="h-full flex flex-col transition-all duration-700 hover:-translate-y-2">
-                  <ProductCard
-                    id={product._id}
-                    imageUrl={product.imageUrl}
-                    title={product.title}
-                    description={product.description}
-                    price={product.price}
-                    rating={product.rating}
-                    reviewCount={product.reviewCount}
-                    isBestseller={product.isBestseller}
-                    isOnSale={product.isOnSale}
-                    isNew={product.isNew}
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Mobile "View All" Button */}
-          {/* MODIFIED: Reduced top margin to mt-8 (was mt-12) */}
-          <div className="mt-8 md:hidden flex justify-center">
-             <Link 
-               href="/shop"
-               className="inline-flex items-center gap-3 font-mono text-sm font-bold uppercase tracking-widest text-[#2C3326] border-b border-[#2C3326] pb-1"
-             >
-               View All Products
-             </Link>
-          </div>
-
-        </div>
-      </section>
-
-      {/* 7. IMPACT STANDARDS (Dark Olive BG - High Contrast) */}
+      <PhenologySection />
+      {/* <ShopSection /> */}
       <ImpactSection />
-
-      {/* --- 9. CONTACT SECTION --- */}
-      <ContactSection className="bg-[#F2F3EE]" />
-      
-    </div>
+      <ContactSection />
+    </main>
   );
-};
-
-export default HomePage;
+}

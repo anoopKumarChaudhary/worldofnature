@@ -1,195 +1,154 @@
-"use client";
+import { MapPin, Microscope, Sun, Sprout, HeartHandshake, Hourglass, Activity, Leaf } from "lucide-react";
 
-import React from "react";
-import { 
-  Sprout, MapPin, Microscope, Sun, 
-  HeartHandshake, Hourglass, Activity 
-} from "lucide-react";
-
-const PhilosophySection = () => {
+export default function PhilosophySection() {
   const principles = [
     { 
-      id: "01", 
       icon: MapPin, 
-      label: "Traceability", 
-      sub: "GEO-TAGGED",
-      desc: "Serialized with GPS coordinates of the specific harvest lot.",
-      stats: [
-        { label: "Ref", value: "GPS-01" },
-        { label: "Status", value: "Live" },
-        { label: "Audit", value: "Yrly" },
-      ]
+      title: "Know the Source", 
+      tag: "GPS TRACKED", 
+      text: "See exactly where your jar came from. No secrets." 
     },
     { 
-      id: "02", 
       icon: Microscope, 
-      label: "Potency", 
-      sub: "LAB-ASSAYED",
-      desc: "Verified for active compound density & strict purity.",
-      stats: [
-        { label: "Purity", value: "99.8%" },
-        { label: "Test", value: "HPLC" },
-        { label: "Grade", value: "Rx" },
-      ]
+      title: "Pure & Safe", 
+      tag: "LAB VERIFIED", 
+      text: "We test every batch to make sure it is clean and strong." 
     },
     { 
-      id: "03", 
       icon: Sun, 
-      label: "Curing", 
-      sub: "ENZYMATIC",
-      desc: "Low-temp drying preserves heat-sensitive volatile oils.",
-      stats: [
-        { label: "Temp", value: "<35°C" },
-        { label: "Time", value: "Slow" },
-        { label: "Method", value: "Air" },
-      ]
+      title: "Nature Dried", 
+      tag: "NO HEAT", 
+      text: "Dried slowly by the sun and air to keep the nutrients alive." 
     },
     { 
-      id: "04", 
       icon: Sprout, 
-      label: "Harvest", 
-      sub: "BIO-RHYTHM",
-      desc: "Extraction during peak alkaloid production cycles.",
-      stats: [
-        { label: "Phase", value: "Full" },
-        { label: "Cycle", value: "Yrly" },
-        { label: "Yield", value: "Low" },
-      ]
+      title: "Picked Ripe", 
+      tag: "SEASONAL", 
+      text: "We only harvest when the plants are fully ready." 
     },
     { 
-      id: "05", 
       icon: HeartHandshake, 
-      label: "Equity", 
-      sub: "INTEGRITY",
-      desc: "Producers retain 100% of market value. No middlemen.",
-      stats: [
-        { label: "Cut", value: "0%" },
-        { label: "Model", value: "D2C" },
-        { label: "Impact", value: "High" },
-      ]
+      title: "Farmers First", 
+      tag: "FAIR TRADE", 
+      text: "No middlemen. The farmers keep 100% of the profit." 
     },
     { 
-      id: "06", 
       icon: Hourglass, 
-      label: "Micro-Batch", 
-      sub: "CONTROL",
-      desc: "Limited runs of 50 units for absolute consistency.",
-      stats: [
-        { label: "Batch", value: "50u" },
-        { label: "QC", value: "100%" },
-        { label: "Stock", value: "Low" },
-      ]
+      title: "Handcrafted", 
+      tag: "SMALL BATCH", 
+      text: "Made in tiny lots of 50 jars so we can focus on quality." 
     },
   ];
 
   return (
-    // BG: #A9AB94 (Dry Sage / Khaki) - A shift from Brown to Green-Brown
-    <section className="relative py-9 lg:py-20 bg-[#A9AB94] text-[#2C3326] overflow-hidden">
+    // BG: Warm Off-White / Cream (#F8F7F5)
+    <section className="relative py-16 md:py-24 bg-[#F8F7F5] text-[#243328] overflow-hidden">
       
-      {/* Texture: Organic noise */}
-      <div className="absolute inset-0 opacity-[0.1] bg-[url('https://www.transparenttextures.com/patterns/dust.png')] mix-blend-multiply"></div>
+      {/* Texture: Subtle organic noise */}
+      <div className="absolute inset-0 opacity-[0.05] pointer-events-none mix-blend-darken bg-[url('https://www.transparenttextures.com/patterns/dust.png')]"></div>
 
-      <div className="container mx-auto px-[8px] md:px-8 relative z-10">
+      {/* Decorative leaf for organic touch */}
+      <Leaf className="absolute -top-10 -right-10 w-64 h-64 text-[#4A7C59] opacity-[0.03] rotate-12 pointer-events-none" />
+
+      {/* Container: Strict 8px padding on mobile */}
+      <div className="container mx-auto px-[8px] md:px-12 relative z-10">
         
-        {/* === HEADER === */}
-        <div className="flex flex-col items-start justify-between mb-8 gap-2 border-b border-[#8C9178] pb-4">
-           <div className="flex items-center gap-2">
-             <Activity className="w-4 h-4 text-[#F2F3EE]" /> 
-             <span className="font-mono text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-[#F2F3EE] opacity-90 shadow-sm">
-               System Protocols
-             </span>
-           </div>
-           {/* Text is Dark Olive, "Methodology" is Pale Sage */}
-           <h2 className="font-serif text-3xl md:text-4xl text-[#2C3326] tracking-tight">
-             Core <span className="italic text-[#F2F3EE] opacity-90">Methodology</span>
-           </h2>
+        {/* HEADER */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-[#243328]/10 pb-6 mb-8 gap-4">
+          <div>
+            <div className="flex items-center gap-2 mb-3">
+               <Activity className="w-4 h-4 text-[#4A7C59]" />
+               <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-[#4A7C59]">
+                 Our Standards
+               </span>
+            </div>
+            <h2 className="font-serif text-3xl md:text-5xl text-[#243328] leading-none tracking-tight">
+              How We <span className="italic text-[#4A7C59]">Work.</span>
+            </h2>
+          </div>
+          <span className="font-mono text-[10px] md:text-xs uppercase tracking-widest text-[#5D6B62] text-right md:text-left hidden md:block">
+            The Natural Way
+          </span>
         </div>
 
-        {/* === THE CARDS === */}
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-1 md:gap-6">
-          
-          {principles.map((item, i) => (
+        {/* THE GRID 
+            - gap-1.5 on mobile (Very tight, architectural look)
+            - gap-3 on desktop
+        */}
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-1.5 md:gap-4">
+          {principles.map((p, i) => (
             <div 
               key={i} 
               className="
-                group relative 
+                group relative flex flex-col justify-between
+                /* CARD BASE: White, Sharp Corners */
+                bg-white hover:bg-white
+                rounded-none
                 
-                /* CARD BG: #F2F3EE (Pale Olive Mist) - Blends with the khaki BG */
-                bg-[#F2F3EE] 
-                hover:bg-[#FFFFFF]
+                /* BORDER: Subtle light grey, turns green on hover */
+                border border-[#E5E7EB] hover:border-[#4A7C59]/40
                 
-                /* Border: Muted Green-Grey */
-                border border-[#D1D4C2] 
-                hover:border-[#6B7556]
+                /* PADDING: Compact */
+                p-3 md:p-8
                 
-                /* Shadow: Deep Greenish shadow */
-                shadow-[2px_2px_0px_rgba(44,51,38,0.05)] 
-                hover:shadow-[4px_4px_0px_rgba(44,51,38,0.15)] 
+                /* ANIMATION */
+                transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)]
+                
+                /* SHADOW: Subtle lift on hover */
+                shadow-sm
+                hover:shadow-[0px_8px_24px_rgba(74,124,89,0.12)]
                 hover:-translate-y-1
-                
-                rounded-sm
-                transition-all duration-300 ease-out
-                
-                flex flex-col justify-between
-                
-                h-full min-h-[160px] md:min-h-[240px]
-                p-3 md:p-6
               "
             >
-               {/* Top Section */}
-               <div>
-                 {/* Header: Icon + Title Inline */}
-                 <div className="flex flex-col md:flex-row md:items-center gap-2 mb-3">
-                    <div className="
-                      w-fit p-1.5 rounded-sm
-                      /* Icon BG: Khaki Green */
-                      bg-[#E2E6D6] text-[#6B7556]
-                      group-hover:bg-[#2C3326] group-hover:text-[#F2F3EE]
-                      transition-colors duration-300
-                    ">
-                      <item.icon size={16} className="md:w-5 md:h-5" />
-                    </div>
-                    <h3 className="font-serif font-bold text-lg md:text-xl text-[#2C3326]">
-                      {item.label}
-                    </h3>
-                 </div>
-
-                 {/* Subtag */}
-                 <div className="mb-2">
-                   <span className="text-[10px] md:text-[11px] font-mono text-[#8C9178] uppercase tracking-wider font-bold">
-                     {item.sub}
-                   </span>
-                 </div>
-
-                 {/* Description */}
-                 <p className="font-sans text-xs md:text-sm text-[#555C4D] leading-relaxed mb-4 line-clamp-4 md:line-clamp-none">
-                   {item.desc}
-                 </p>
-               </div>
-
-               {/* Bottom Section: Stats */}
-               <div className="mt-auto pt-3 border-t border-[#E2E6D6] group-hover:border-[#D1D4C2] transition-colors">
-                  <div className="grid grid-cols-3 gap-1 divide-x divide-[#E2E6D6]">
-                     {item.stats.map((stat, idx) => (
-                        <div key={idx} className="text-center px-1">
-                           <div className="text-xs md:text-sm font-bold text-[#2C3326]">
-                             {stat.value}
-                           </div>
-                           <div className="text-[9px] md:text-[10px] uppercase text-[#8C9178] font-mono tracking-tight">
-                             {stat.label}
-                           </div>
-                        </div>
-                     ))}
+              <div>
+                {/* Header Row */}
+                <div className="flex justify-between items-start mb-3 md:mb-6">
+                  {/* Icon Box - Square with 0 radius */}
+                  <div className="
+                    w-8 h-8 md:w-12 md:h-12 
+                    flex items-center justify-center 
+                    /* Light green tint BG */
+                    bg-[#F0F5F2] group-hover:bg-[#4A7C59] 
+                    rounded-none transition-colors duration-500
+                  ">
+                    <p.icon className="w-4 h-4 md:w-6 md:h-6 text-[#4A7C59] group-hover:text-white transition-colors duration-500" />
                   </div>
-               </div>
+                  
+                  {/* Number Watermark */}
+                  <span className="font-mono text-[10px] md:text-xs text-[#243328]/20 group-hover:text-[#4A7C59]/40 transition-colors font-bold">
+                    0{i + 1}
+                  </span>
+                </div>
 
+                <h3 className="font-serif text-[16px] md:text-2xl text-[#243328] mb-1.5 leading-none tracking-tight group-hover:text-[#4A7C59] transition-colors">
+                  {p.title}
+                </h3>
+                
+                {/* Tag Pill - Sharp corners to match theme */}
+                <div className="mb-3 md:mb-5">
+                   <span className="
+                     inline-block 
+                     px-1.5 py-[2px] rounded-none
+                     bg-[#F0F5F2] group-hover:bg-[#E3F0E8]
+                     font-mono text-[8px] md:text-[9px] font-bold uppercase tracking-wider 
+                     text-[#4A7C59]
+                     transition-colors duration-300
+                   ">
+                    {p.tag}
+                  </span>
+                </div>
+              </div>
+
+              {/* Description */}
+              <div className="mt-auto pt-3 border-t border-[#F3F4F6] group-hover:border-[#4A7C59]/20 transition-colors">
+                <p className="font-sans text-[11px] md:text-[15px] text-[#5D6B62] leading-[1.4] md:leading-relaxed">
+                  {p.text}
+                </p>
+              </div>
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );
-};
-
-export default PhilosophySection;
+}

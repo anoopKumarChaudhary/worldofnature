@@ -3,9 +3,8 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Coffee, Moon, Sun, ArrowRight, Activity } from "lucide-react";
+import { Coffee, Moon, Sun, ArrowRight, Activity, Clock } from "lucide-react";
 
-// --- Types ---
 interface RitualItem {
   step: string;
   time: string;
@@ -13,7 +12,6 @@ interface RitualItem {
   icon: React.ElementType;
   title: string;
   product: string;
-  benefit: string;
   desc: string;
   image: string;
   link: string;
@@ -23,186 +21,186 @@ const RITUALS: RitualItem[] = [
   {
     step: "01",
     time: "07:00 AM",
-    phase: "Awakening",
+    phase: "Awaken",
     icon: Sun,
-    title: "Metabolic Start",
+    title: "Morning Kickstart",
     product: "Raw Honey",
-    benefit: "Alkalinity",
-    desc: "Dissolve raw cliff honey in warm water to kickstart gut alkalinity.",
+    desc: "Warm water and wild honey to wake up your digestion gently.",
     image: "/h1.png",
     link: "/shop/honey"
   },
   {
     step: "02",
     time: "10:00 AM",
-    phase: "Cognition",
+    phase: "Focus",
     icon: Coffee,
-    title: "Bulletproof Mind",
+    title: "Brain Fuel",
     product: "A2 Ghee",
-    benefit: "Brain Fuel",
-    desc: "Blend cultured ghee into coffee for jitter-free mental clarity.",
+    desc: "A teaspoon of cultured ghee in coffee for sustained mental clarity.",
     image: "/h5.png",
     link: "/shop/ghee"
   },
   {
     step: "03",
     time: "03:00 PM",
-    phase: "Sustain",
+    phase: "Recharge",
     icon: Activity,
-    title: "The Uplift",
+    title: "Afternoon Lift",
     product: "Wild Honey",
-    benefit: "Antioxidant",
-    desc: "Wild berry honey on oat crackers for sustained natural energy.",
+    desc: "A natural sugar boost from berry honey to beat the midday slump.",
     image: "/h8.png",
     link: "/shop/honey"
   },
   {
     step: "04",
     time: "09:00 PM",
-    phase: "Restoration",
+    phase: "Rest",
     icon: Moon,
-    title: "Golden Sleep",
+    title: "Deep Sleep",
     product: "Turmeric",
-    benefit: "Sedation",
-    desc: "Warm milk with high-curcumin turmeric for deep cellular repair.",
+    desc: "Golden milk with high-curcumin turmeric for cellular repair.",
     image: "/h9.png",
     link: "/shop/spices"
   },
 ];
 
-const RitualCard = ({ item }: { item: RitualItem }) => {
+export default function RitualsSection() {
   return (
-    <Link 
-      href={item.link}
-      className="
-        group relative flex flex-col 
-        /* CARD BASE */
-        bg-[#2C3326] 
-        border border-[#8C9178]/30 hover:border-[#F2F3EE]/40
-        rounded-sm
-        hover:-translate-y-1 md:hover:-translate-y-2
-        transition-all duration-500 ease-out
-        h-full
-      "
-    >
-      {/* --- TOP: IMAGE --- */}
-      <div className="relative w-full h-[110px] md:h-[200px] overflow-hidden border-b border-[#8C9178]/20">
-        <Image
-          src={item.image}
-          alt={item.title}
-          fill
-          className="
-            object-cover 
-            transition-transform duration-[1.2s] ease-[cubic-bezier(0.25,1,0.5,1)]
-            scale-100 group-hover:scale-110
-            opacity-90 group-hover:opacity-100
-          "
-        />
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-[#2C3326]/30 mix-blend-multiply transition-opacity duration-500 group-hover:opacity-0" />
-        
-        {/* Phase Tag (Top Left) */}
-        <div className="absolute top-2 left-2 md:top-3 md:left-3">
-          <div className="
-            inline-flex items-center gap-1.5 px-1.5 py-0.5 md:px-2 md:py-1 
-            bg-[#2C3326]/90 backdrop-blur-md border border-[#F2F3EE]/10 rounded-sm
-          ">
-             <item.icon className="w-3 h-3 text-[#F2F3EE]" />
-             <span className="font-mono text-[9px] md:text-[8px] uppercase tracking-widest text-[#F2F3EE] font-bold">
-               {item.time}
-             </span>
-          </div>
-        </div>
-      </div>
-
-      {/* --- BOTTOM: CONTENT --- */}
-      <div className="flex flex-col flex-grow p-2 md:p-5 relative">
-        
-        {/* Step Number (Timeline marker) */}
-        <div className="absolute -top-3 right-2 md:-top-4 md:right-4 bg-[#2C3326] border border-[#8C9178]/30 px-1.5 py-0.5 md:px-2 md:py-1 rounded-sm z-10">
-           <span className="font-serif text-sm md:text-lg text-[#F2F3EE]">
-             {item.step}
-           </span>
-        </div>
-
-        {/* Title & Phase */}
-        <div className="mb-2 md:mb-3 pt-1 md:pt-2">
-            <h3 className="font-serif text-base md:text-xl text-[#F2F3EE] mb-1 leading-tight group-hover:text-white transition-colors line-clamp-1">
-              {item.title}
-            </h3>
-            <span className="font-mono text-[9px] font-bold uppercase tracking-[0.1em] text-[#8C9178] group-hover:text-[#F2F3EE]/60 transition-colors">
-              {item.phase}
-            </span>
-        </div>
-
-        {/* Description */}
-        <p className="font-sans text-[11px] md:text-[11px] text-[#F2F3EE]/70 leading-relaxed mb-3 border-l border-[#8C9178]/30 pl-2 md:pl-3 line-clamp-3">
-          {item.desc}
-        </p>
-
-        {/* Footer */}
-        <div className="mt-auto pt-2 md:pt-3 border-t border-[#8C9178]/20 flex items-center justify-between">
-           <div className="flex items-center gap-1 md:gap-1.5">
-               <Activity className="w-3 h-3 text-[#8C9178]" />
-               <span className="font-sans text-[9px] md:text-[9px] font-bold uppercase text-[#F2F3EE]/80">
-                   {item.benefit}
-               </span>
-           </div>
-           <ArrowRight className="w-3 h-3 text-[#8C9178] group-hover:text-[#F2F3EE] transition-colors" />
-        </div>
-      </div>
-    </Link>
-  );
-};
-
-const RitualsSection = () => {
-  return (
-    <section className="relative py-9 lg:py-24 bg-[#A9AB94] text-[#2C3326] overflow-hidden">
+    <section className="relative py-12 md:py-32 bg-[#EBECE8] text-[#1A2118] overflow-hidden">
       
-      {/* Texture */}
-      <div className="absolute inset-0 opacity-[0.1] pointer-events-none mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/dust.png')]"></div>
+      {/* Texture Layer */}
+      <div className="absolute inset-0 opacity-[0.4] pointer-events-none mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]"></div>
 
-      <div className="container mx-auto px-[8px] md:px-8 relative z-10">
+      <div className="container mx-auto px-[8px] md:px-12 relative z-10">
         
         {/* === HEADER === */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 md:mb-12 gap-4 border-b border-[#2C3326]/10 pb-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 md:mb-20 gap-6 border-b border-[#1A2118]/10 pb-6">
           <div className="max-w-xl">
-            <div className="flex items-center gap-2 mb-2">
-               <Sun className="w-4 h-4 text-[#F2F3EE]" />
-               <span className="font-mono text-[10px] md:text-[10px] font-bold uppercase tracking-[0.25em] text-[#F2F3EE] shadow-sm">
-                 Circadian Protocols
+            <div className="flex items-center gap-2 mb-3">
+               <Clock className="w-4 h-4 text-[#BC5633]" />
+               <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-[#BC5633]">
+                 Circadian Rhythm
                </span>
             </div>
-            <h2 className="font-serif text-3xl md:text-5xl text-[#2C3326] leading-[0.9]">
-              Daily <span className="italic text-[#F2F3EE]/90">Rituals.</span>
+            <h2 className="font-serif text-3xl md:text-6xl text-[#1A2118] leading-[0.9] tracking-tight">
+              A Day in <span className="italic text-[#BC5633]">Balance.</span>
             </h2>
           </div>
           
           <div className="hidden md:block text-right">
-             <span className="font-mono text-[9px] text-[#2C3326]/60 uppercase tracking-widest block mb-1">
+             <span className="font-mono text-[10px] uppercase tracking-widest text-[#1A2118]/60 block mb-1">
                Timeline
              </span>
-             <span className="font-heading font-bold text-lg text-[#2C3326]">
-               07:00 AM — 09:00 PM
+             <span className="font-serif text-xl italic text-[#1A2118]">
+               Morning — Night
              </span>
           </div>
         </div>
 
-        {/* === TIMELINE DECORATION (Desktop Only) === */}
-        <div className="relative hidden md:block mb-8">
-            <div className="absolute top-[215px] left-0 right-0 h-px bg-[#2C3326]/20 z-0"></div>
-        </div>
+        {/* === THE TIMELINE === */}
+        
+        {/* 1. The Line (Desktop Only visual connector) */}
+        <div className="hidden md:block absolute left-0 right-0 h-px bg-[#1A2118]/10 top-[52%] z-0" />
 
-        {/* === THE GRID === */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-1 md:gap-4 relative z-10">
+        {/* 2. The Scroll Container */}
+        <div className="
+          flex overflow-x-auto snap-x snap-mandatory 
+          gap-4 md:gap-0 
+          pb-8 -mx-[8px] px-[8px] md:mx-0 md:px-0 
+          scrollbar-hide
+          md:grid md:grid-cols-4 
+        ">
           {RITUALS.map((item, i) => (
-            <RitualCard key={i} item={item} />
+            <Link 
+              key={i} 
+              href={item.link}
+              className="
+                group relative 
+                snap-center 
+                /* Width maintained to ensure nice scroll spacing */
+                min-w-[260px] w-[75vw] md:w-auto md:min-w-0 
+                flex-shrink-0 
+                flex flex-col md:block
+                md:px-4
+              "
+            >
+              {/* --- TIMELINE NODE (Desktop) --- */}
+              <div className="hidden md:flex justify-center items-center mb-8 relative z-10">
+                <div className="
+                  w-3 h-3 rounded-full bg-[#1A2118] 
+                  group-hover:scale-150 group-hover:bg-[#BC5633] 
+                  transition-all duration-500 ease-out
+                  shadow-[0_0_0_4px_#EBECE8]
+                "/>
+              </div>
+
+              {/* --- IMAGE CARD --- */}
+              {/* UPDATED: h-[220px] gives a portrait look, more immersive but balanced */}
+              <div className="relative h-[220px] md:h-auto md:aspect-[3/4] w-full overflow-hidden rounded-sm mb-4 md:mb-6 bg-[#1A2118]">
+                <Image 
+                  src={item.image} 
+                  alt={item.title} 
+                  fill 
+                  className="object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)]"
+                />
+                
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60" />
+
+                {/* Floating Time Badge */}
+                <div className="absolute top-2 left-2 md:top-3 md:left-3">
+                  <span className="
+                    inline-flex items-center gap-1.5 
+                    px-2 py-1 bg-white/90 backdrop-blur-md 
+                    font-mono text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-[#1A2118]
+                    rounded-sm
+                  ">
+                    <item.icon className="w-3 h-3" />
+                    {item.time}
+                  </span>
+                </div>
+
+                {/* Mobile Step Number (Inside Image) */}
+                <span className="md:hidden absolute bottom-2 right-2 font-serif text-3xl text-white/30 font-bold">
+                  {item.step}
+                </span>
+              </div>
+
+              {/* --- CONTENT --- */}
+              <div className="relative pl-1 md:pl-0 md:text-center">
+                {/* Desktop Step Number (Behind Text) */}
+                <span className="
+                  hidden md:block 
+                  font-serif text-[8rem] leading-[0.8] 
+                  text-[#1A2118]/5 
+                  absolute -top-10 left-1/2 -translate-x-1/2 -z-10
+                  group-hover:text-[#BC5633]/10 transition-colors duration-500
+                ">
+                  {item.step}
+                </span>
+
+                <span className="font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-[#BC5633] block mb-1.5">
+                  {item.phase}
+                </span>
+                
+                <h3 className="font-serif text-xl md:text-3xl text-[#1A2118] mb-2 group-hover:text-[#BC5633] transition-colors duration-300">
+                  {item.title}
+                </h3>
+                
+                <p className="font-sans text-xs md:text-sm text-[#555C4D] leading-relaxed md:max-w-[240px] md:mx-auto">
+                  {item.desc}
+                </p>
+
+                <div className="mt-3 md:mt-6 inline-flex items-center gap-2 text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#1A2118] group-hover:gap-3 transition-all">
+                  Shop Ritual <ArrowRight className="w-3 h-3" />
+                </div>
+              </div>
+
+            </Link>
           ))}
         </div>
 
       </div>
     </section>
   );
-};
-
-export default RitualsSection;
+}

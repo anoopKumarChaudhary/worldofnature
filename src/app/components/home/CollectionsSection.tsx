@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowUpRight, ArrowRight } from "lucide-react";
+import { ArrowUpRight, ArrowRight, Grid3X3 } from "lucide-react";
 
 // --- Types ---
 interface CollectionItem {
@@ -13,112 +13,107 @@ interface CollectionItem {
   image: string;
   desc: string;
   link: string;
-  className?: string; // For grid positioning
+  className?: string;
 }
 
 // --- Data Configuration ---
 const COLLECTIONS: CollectionItem[] = [
-  // --- ROW 1 & 2 START ---
   {
     id: "honey",
     label: "Raw Honey",
-    tag: "Signature",
+    tag: "SIGNATURE",
     image: "/h1.png",
-    desc: "Unfiltered wild harvest from Kashmir valley.",
+    desc: "Unfiltered wild harvest from Kashmir.",
     link: "/shop/honey",
-    // THE ANCHOR: Large 2x2 Box
     className: "md:col-span-2 md:row-span-2", 
   },
   {
     id: "ghee",
     label: "A2 Ghee",
-    tag: "Cultured",
+    tag: "CULTURED",
     image: "/h5.png",
-    desc: "Slow-churned bilona.",
+    desc: "Slow-churned bilona method.",
     link: "/shop/ghee",
     className: "md:col-span-1 md:row-span-1",
   },
   {
     id: "spices",
     label: "Spices",
-    tag: "Lakadong",
+    tag: "POTENT",
     image: "/h9.png",
-    desc: "High-curcumin turmeric.",
+    desc: "High-curcumin Lakadong turmeric.",
     link: "/shop/spices",
     className: "md:col-span-1 md:row-span-1",
   },
   {
     id: "oils",
     label: "Cold Press",
-    tag: "Wood Pressed",
+    tag: "VIRGIN",
     image: "/h3.png",
-    desc: "Virgin nut extracts.",
+    desc: "Wood-pressed nut extracts.",
     link: "/shop/oils",
     className: "md:col-span-1 md:row-span-1",
   },
   {
     id: "tea",
-    label: "Tea Estates",
-    tag: "Darjeeling",
+    label: "Estates",
+    tag: "ORTHODOX",
     image: "/h4.png",
-    desc: "Single estate orthodox.",
+    desc: "Single origin loose leaf.",
     link: "/shop/tea",
     className: "md:col-span-1 md:row-span-1",
   },
-  // --- ROW 3 START ---
   {
     id: "saffron",
-    label: "Kesar Saffron",
-    tag: "Grade A1",
+    label: "Saffron",
+    tag: "GRADE A1",
     image: "/h6.png",
-    desc: "Hand-picked Mongra strands from Pampore.",
+    desc: "Hand-picked Mongra strands.",
     link: "/shop/saffron",
-    // THE BANNER: Wide 2x1 Box
     className: "md:col-span-2 md:row-span-1",
   },
   {
     id: "walnuts",
     label: "Walnuts",
-    tag: "Kagzi",
+    tag: "KAGZI",
     image: "/h7.png",
-    desc: "Soft shell organic.",
+    desc: "Omega-rich soft shell.",
     link: "/shop/nuts",
     className: "md:col-span-1 md:row-span-1",
   },
   {
     id: "shilajit",
     label: "Shilajit",
-    tag: "Resin",
+    tag: "RESIN",
     image: "/h8.png",
-    desc: "Himalayan purified.",
+    desc: "Purified Himalayan mineral.",
     link: "/shop/wellness",
     className: "md:col-span-1 md:row-span-1",
   },
-  // --- ROW 4 START ---
   {
     id: "amla",
     label: "Amla",
-    tag: "Preserve",
+    tag: "PRESERVE",
     image: "/h2.png",
-    desc: "Sun-dried gooseberry.",
+    desc: "Sun-dried wild gooseberry.",
     link: "/shop/amla",
     className: "md:col-span-1 md:row-span-1",
   },
   {
     id: "moringa",
     label: "Moringa",
-    tag: "Superfood",
+    tag: "SUPERFOOD",
     image: "/h3.png",
-    desc: "Leaf powder.",
+    desc: "Nutrient-dense leaf powder.",
     link: "/shop/moringa",
     className: "md:col-span-1 md:row-span-1",
   },
   {
     id: "mustard",
-    label: "Mustard Oil",
-    tag: "Kachi Ghani",
+    label: "Mustard",
+    tag: "RAW OIL",
     image: "/h4.png",
-    desc: "Cold pressed.",
+    desc: "Cold pressed Kachi Ghani.",
     link: "/shop/mustard",
     className: "md:col-span-1 md:row-span-1",
   },
@@ -131,27 +126,19 @@ const GridCard = ({ item }: { item: CollectionItem }) => {
       href={item.link}
       className={`
         group relative block overflow-hidden 
-        /* BORDERS: Clean lines */
-        border border-[#8C9178]/40
-        
-        /* GRID LOGIC */
+        /* GRID & SIZING */
         w-full
-        /* Mobile: Fixed height */
-        h-[150px] 
-        /* Desktop: Fill the assigned grid cell */
-        md:h-auto
+        h-[160px] md:h-auto
         ${item.className || "md:col-span-1 md:row-span-1"}
         
-        /* SHARP CORNERS for strict box look (rounded-sm) */
-        rounded-sm
+        /* SHAPE & BORDER */
+        rounded-none
         
-        /* INTERACTIONS */
-        bg-[#2C3326]
-        shadow-[0px_0px_0px_rgba(0,0,0,0)]
-        hover:shadow-[8px_8px_0px_rgba(44,51,38,0.15)]
-        hover:-translate-y-1 hover:-translate-x-1
-        transition-all duration-300 ease-out
-        z-0 hover:z-10 hover:border-[#F2F3EE]/50
+        /* BASE COLOR */
+        bg-[#1A2118]
+        
+        /* HOVER EFFECTS */
+        hover:z-10
       `}
     >
       {/* 1. IMAGE LAYER */}
@@ -163,45 +150,49 @@ const GridCard = ({ item }: { item: CollectionItem }) => {
           sizes="(max-width: 768px) 50vw, 33vw"
           className="
             object-cover 
-            transition-transform duration-[1s] ease-[cubic-bezier(0.25,1,0.5,1)]
+            transition-transform duration-[0.8s] ease-out
             scale-100 group-hover:scale-110
             opacity-90 group-hover:opacity-100
           "
         />
-        {/* Overlay: Deep Olive Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#2C3326] via-[#2C3326]/20 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-500" />
+        {/* Cinematic Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0F140E]/90 via-[#0F140E]/20 to-transparent transition-opacity duration-500" />
       </div>
 
       {/* 2. CONTENT LAYER */}
-      <div className="absolute inset-0 p-4 md:p-6 flex flex-col justify-end">
+      <div className="absolute inset-0 p-3 md:p-6 flex flex-col justify-end">
         
-        {/* Arrow Icon */}
-        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-           <ArrowUpRight className="w-5 h-5 text-[#F2F3EE]" />
+        {/* Floating Arrow (Desktop) */}
+        <div className="absolute top-4 right-4 translate-x-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-out hidden md:block">
+           <ArrowUpRight className="w-5 h-5 text-white" />
         </div>
 
-        <div className="relative z-10 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+        <div className="relative z-10 translate-y-1 md:translate-y-2 group-hover:translate-y-0 transition-transform duration-500 ease-out">
           
+          {/* Tag - Clean Monospace Pill */}
           <span className="
-            inline-block px-1.5 py-0.5 mb-2
-            border border-[#F2F3EE]/20 rounded-sm
-            font-mono text-[9px] uppercase tracking-[0.15em] text-[#F2F3EE]/80
+            inline-block px-1.5 py-[2px] mb-2
+            bg-white/10 backdrop-blur-sm border border-white/10
+            font-mono text-[8px] md:text-[9px] font-bold uppercase tracking-[0.1em] text-white/90
           ">
             {item.tag}
           </span>
           
+          {/* Title - Elegant Serif */}
           <h3 className="
-            font-serif text-xl md:text-2xl text-[#F2F3EE] 
+            font-serif text-[1.1rem] md:text-2xl text-[#F8F7F5] 
             leading-none tracking-tight mb-1
           ">
             {item.label}
           </h3>
 
+          {/* Description - Desktop Only Reveal */}
           <p className="
-            font-sans text-[11px] text-[#F2F3EE]/70 
+            hidden md:block 
+            font-sans text-[11px] text-[#A9AB94]
             leading-relaxed max-w-[95%] 
             h-0 group-hover:h-auto overflow-hidden opacity-0 group-hover:opacity-100 
-            transition-all duration-300 delay-75
+            transition-all duration-500 delay-75
           ">
             {item.desc}
           </p>
@@ -211,43 +202,38 @@ const GridCard = ({ item }: { item: CollectionItem }) => {
   );
 };
 
-// --- Archive Card ---
+// --- Archive Card (The "More" Button) ---
 const ArchiveCard = () => (
   <Link
     href="/shop"
     className="
-      group relative overflow-hidden rounded-sm
-      /* Matches Standard Item Size */
-      w-full h-[150px] md:h-auto
+      group relative overflow-hidden rounded-none
+      w-full h-[160px] md:h-auto
       md:col-span-1 md:row-span-1
       
-      bg-[#D1D4C2] /* Slightly darker sage for contrast */
-      border border-[#8C9178]/40
-      hover:bg-[#2C3326] hover:border-[#2C3326]
+      /* Editorial Styling */
+      bg-[#EBECE8] /* Light Grey-Green */
+      hover:bg-[#1A2118] /* Invert on hover */
       
       flex flex-col justify-center items-center text-center p-4
-      
-      shadow-[0px_0px_0px_rgba(0,0,0,0)]
-      hover:shadow-[8px_8px_0px_rgba(44,51,38,0.15)]
-      hover:-translate-y-1 hover:-translate-x-1
-      transition-all duration-300 ease-out
+      transition-colors duration-500 ease-out
     "
   >
-    <div className="relative z-10 flex flex-col items-center gap-3">
+    <div className="relative z-10 flex flex-col items-center gap-4">
        <div className="
          w-12 h-12 rounded-full 
-         bg-[#F2F3EE] border border-[#8C9178]
+         border border-[#1A2118]/20 group-hover:border-white/20
          flex items-center justify-center 
-         group-hover:bg-[#F2F3EE] group-hover:scale-110
-         transition-all duration-300
+         bg-white group-hover:bg-[#1A2118]
+         transition-all duration-500
        ">
-          <ArrowRight className="w-5 h-5 text-[#2C3326]" />
+          <ArrowRight className="w-5 h-5 text-[#1A2118] group-hover:text-white transition-colors" />
        </div>
        <div>
-         <span className="font-mono text-[9px] font-bold uppercase tracking-[0.25em] text-[#2C3326]/60 group-hover:text-[#F2F3EE]/60 block mb-1">
-            Catalogue
+         <span className="font-mono text-[9px] font-bold uppercase tracking-[0.25em] text-[#1A2118]/60 group-hover:text-white/60 block mb-1 transition-colors">
+            Full Catalogue
          </span>
-         <span className="font-serif text-xl text-[#2C3326] group-hover:text-[#F2F3EE] italic">
+         <span className="font-serif text-xl text-[#1A2118] group-hover:text-white italic transition-colors">
             View All
          </span>
        </div>
@@ -256,51 +242,50 @@ const ArchiveCard = () => (
 );
 
 // --- Main Section ---
-const CollectionsSection = () => {
+export default function CollectionsSection() {
   return (
-    // BG: Sage/Khaki (#A9AB94)
-    <section className="relative py-9 lg:py-24 bg-[#A9AB94] text-[#2C3326] overflow-hidden">
+    // BG: Warm Cream / Off-White (#F9F8F6)
+    // REDUCED PADDING: py-8 on mobile (was py-16)
+    <section className="relative py-8 md:py-28 bg-[#F9F8F6] text-[#1A2118] overflow-hidden">
       
-      {/* Texture */}
-      <div className="absolute inset-0 opacity-[0.15] pointer-events-none mix-blend-multiply bg-[url('https://www.transparenttextures.com/patterns/dust.png')]" />
+      {/* Texture: Subtle Grain */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-darken bg-[url('https://www.transparenttextures.com/patterns/dust.png')]"></div>
 
-      <div className="container mx-auto px-[8px] md:px-8 relative z-10">
+      {/* Container: 8px padding on mobile */}
+      <div className="container mx-auto px-[8px] md:px-12 relative z-10">
         
-        {/* HEADER */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4 border-b border-[#2C3326]/10 pb-6">
+        {/* HEADER: Tighter Margins on Mobile */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-4 md:mb-12 gap-4 border-b border-[#1A2118]/10 pb-3 md:pb-6">
           <div className="max-w-xl">
-            <span className="font-mono text-[10px] font-bold uppercase tracking-[0.25em] text-[#F2F3EE] drop-shadow-sm mb-2 block">
-              Curated Harvest
-            </span>
-            <h2 className="font-serif text-3xl md:text-5xl text-[#2C3326] leading-[0.9]">
-              Wild <span className="italic text-[#F2F3EE]">Essentials.</span>
+            <div className="flex items-center gap-2 mb-2 md:mb-3">
+               <Grid3X3 className="w-4 h-4 text-[#4A7C59]" />
+               <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-[#4A7C59]">
+                 The Inventory
+               </span>
+            </div>
+            <h2 className="font-serif text-3xl md:text-5xl text-[#1A2118] leading-[0.9] tracking-tight">
+              Wild <span className="italic text-[#4A7C59]">Essentials.</span>
             </h2>
           </div>
           <div className="hidden md:block text-right">
-             <p className="font-mono text-[10px] uppercase tracking-widest text-[#2C3326]">
-                Collection 2024
-             </p>
+             <span className="font-mono text-[10px] uppercase tracking-widest text-[#1A2118]/60 block mb-1">
+               Series 2025
+             </span>
+             <span className="font-serif text-lg italic text-[#1A2118]">
+               Curated Harvest
+             </span>
           </div>
         </div>
 
-        {/* THE GRID:
-           - grid-cols-2 (Mobile)
-           - grid-cols-4 (Desktop)
-           - auto-rows-[240px] (This defines the height unit for the Bento grid)
-        */}
-        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[150px] md:auto-rows-[280px] gap-1 md:gap-3">
-          
+        {/* BENTO GRID */}
+        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[160px] md:auto-rows-[280px] gap-1.5 md:gap-3">
           {COLLECTIONS.map((item) => (
             <GridCard key={item.id} item={item} />
           ))}
-          
           <ArchiveCard />
-          
         </div>
 
       </div>
     </section>
   );
-};
-
-export default CollectionsSection;
+}
