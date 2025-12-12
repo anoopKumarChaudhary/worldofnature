@@ -229,17 +229,12 @@ const Navbar = () => {
 
       {/* MOBILE MENU - GLASSMORPHISM & ANIMATED */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-[60] flex flex-col overflow-hidden">
-           {/* Backdrop with Blur & Gradient */}
-           <div className="absolute inset-0 bg-[#1A2118]/90 backdrop-blur-xl z-0">
-             <div className="absolute inset-0 bg-gradient-to-b from-[#1A2118]/50 via-transparent to-[#B56B56]/10" />
-             {/* Decorative Blobs */}
-             <div className="absolute top-[-10%] right-[-10%] w-64 h-64 bg-[#B56B56]/20 rounded-full blur-3xl animate-pulse" />
-             <div className="absolute bottom-[-10%] left-[-10%] w-80 h-80 bg-[#5A7D6B]/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
-           </div>
+        <div className="fixed inset-0 z-[110] flex flex-col overflow-hidden">
+           {/* Backdrop - Solid Premium Dark */}
+           <div className="absolute inset-0 bg-[#1A2118] z-0" />
 
           {/* Header inside Overlay */}
-          <div className="relative z-10 px-6 py-6 flex items-center justify-between border-b border-white/5 animate-fade-in-up">
+          <div className="relative z-10 px-6 py-6 flex items-center justify-between border-b border-white/10">
             <div className="h-10 w-auto overflow-visible opacity-90 invert brightness-0">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/image.png" alt="World of Nature Logo" className="h-full w-auto object-contain" />
@@ -254,19 +249,16 @@ const Navbar = () => {
 
           {/* Navigation Links */}
           <div className="flex-1 flex flex-col justify-center px-8 relative z-10">
-            <ul className="space-y-4">
-              {navItems.map((item, idx) => (
-                <li key={item.href} className="animate-reveal-up" style={{ animationDelay: `${idx * 100}ms` }}>
+            <ul className="space-y-8 text-center">
+              {navItems.map((item) => (
+                <li key={item.href}>
                   <Link
                     href={item.href}
                     onClick={closeMobileMenu}
-                    className="group flex items-center justify-between text-[#F2F0EA] hover:text-[#B56B56] transition-colors"
+                    className="group block text-[#F2F0EA] hover:text-[#BC5633] transition-colors duration-300"
                   >
-                    <span className="font-heading text-4xl md:text-5xl font-light tracking-wide group-hover:translate-x-2 transition-transform duration-500">
+                    <span className="font-serif text-5xl md:text-6xl font-medium tracking-tight">
                       {item.label}
-                    </span>
-                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-[#B56B56]">
-                      Explore
                     </span>
                   </Link>
                 </li>
@@ -275,37 +267,42 @@ const Navbar = () => {
           </div>
 
           {/* Footer Actions */}
-          <div className="relative z-10 p-6 border-t border-white/5 grid grid-cols-2 gap-4 bg-black/20 backdrop-blur-sm animate-reveal-up" style={{ animationDelay: "500ms" }}>
+          <div className="relative z-10 p-8 border-t border-white/10 bg-[#1A2118] flex flex-col gap-6">
+            <div className="grid grid-cols-2 gap-4">
               <Link
-              href="/wishlist"
-              onClick={closeMobileMenu}
-              className="flex flex-col items-center justify-center p-4 rounded-2xl bg-white/5 hover:bg-white/10 transition-all group border border-white/5"
-            >
-              <Heart size={24} className="text-[#F2F0EA] group-hover:text-[#B56B56] mb-3 transition-colors" strokeWidth={1.5} />
-              <span className="text-xs font-bold uppercase tracking-widest text-[#F2F0EA]/60 group-hover:text-[#F2F0EA] transition-colors">Wishlist</span>
-            </Link>
-            
-            {isAuthenticated ? (
-                <button
-                onClick={() => {
-                  dispatch(logout());
-                  closeMobileMenu();
-                }}
-                className="flex flex-col items-center justify-center p-4 rounded-2xl bg-white/5 hover:bg-[#B56B56] transition-all group border border-white/5"
-              >
-                <LogOut size={24} className="text-[#F2F0EA] mb-3" strokeWidth={1.5} />
-                <span className="text-xs font-bold uppercase tracking-widest text-[#F2F0EA]/60 group-hover:text-[#F2F0EA] transition-colors">Logout</span>
-              </button>
-            ) : (
-              <Link
-                href="/login"
+                href="/wishlist"
                 onClick={closeMobileMenu}
-              className="flex flex-col items-center justify-center p-4 rounded-2xl bg-white/5 hover:bg-white/10 transition-all group border border-white/5"
+                className="flex flex-col items-center justify-center p-4 rounded-sm bg-white/5 hover:bg-white/10 transition-all group border border-white/5"
               >
-                <User size={24} className="text-[#F2F0EA] group-hover:text-[#B56B56] mb-3 transition-colors" strokeWidth={1.5} />
-                <span className="text-xs font-bold uppercase tracking-widest text-[#F2F0EA]/60 group-hover:text-[#F2F0EA] transition-colors">Login</span>
+                <Heart size={20} className="text-[#F2F0EA] group-hover:text-[#BC5633] mb-2 transition-colors" strokeWidth={1.5} />
+                <span className="text-[10px] font-bold uppercase tracking-widest text-[#F2F0EA]/60 group-hover:text-[#F2F0EA] transition-colors">Wishlist</span>
               </Link>
-            )}
+              
+              {isAuthenticated ? (
+                  <button
+                  onClick={() => {
+                    dispatch(logout());
+                    closeMobileMenu();
+                  }}
+                  className="flex flex-col items-center justify-center p-4 rounded-sm bg-white/5 hover:bg-[#BC5633] transition-all group border border-white/5"
+                >
+                  <LogOut size={20} className="text-[#F2F0EA] mb-2" strokeWidth={1.5} />
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#F2F0EA]/60 group-hover:text-[#F2F0EA] transition-colors">Logout</span>
+                </button>
+              ) : (
+                <Link
+                  href="/login"
+                  onClick={closeMobileMenu}
+                className="flex flex-col items-center justify-center p-4 rounded-sm bg-white/5 hover:bg-white/10 transition-all group border border-white/5"
+                >
+                  <User size={20} className="text-[#F2F0EA] group-hover:text-[#BC5633] mb-2 transition-colors" strokeWidth={1.5} />
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#F2F0EA]/60 group-hover:text-[#F2F0EA] transition-colors">Login</span>
+                </Link>
+              )}
+            </div>
+            <div className="text-center">
+              <p className="text-[#F2F0EA]/20 text-[10px] uppercase tracking-[0.3em] font-light">Est. 2024 • World of Nature</p>
+            </div>
           </div>
         </div>
       )}
