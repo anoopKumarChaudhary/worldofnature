@@ -161,7 +161,7 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
   });
 
   return (
-    <div className="min-h-screen bg-[#F2F0EA] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white pb-24 lg:pb-20 overflow-x-hidden">
+    <div className="min-h-screen bg-[#D9DBD5] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white pb-24 lg:pb-20 overflow-x-hidden">
       {/* --- BACKGROUND & STYLES --- */}
       <style jsx>{`
         @keyframes blob {
@@ -182,20 +182,11 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
           animation: blob 10s infinite;
         }
       `}</style>
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <div
-          className="absolute inset-0 opacity-[0.06] mix-blend-multiply"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-          }}
-        />
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#BC5633] rounded-full mix-blend-multiply filter blur-[120px] opacity-20 animate-blob" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#1A2118] rounded-full mix-blend-overlay filter blur-[120px] opacity-10 animate-blob" />
-      </div>
+      <div className="fixed inset-0 z-0 pointer-events-none bg-[#D9DBD5]" />
 
       {/* --- BREADCRUMB NAV --- */}
       <section className="relative pt-20 lg:pt-32 pb-9 lg:pb-20 z-10">
-        <div className="container mx-auto max-w-7xl flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-[#1A2118]/40">
+        <div className="container mx-auto max-w-7xl flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-[#1A2118]/40 px-2 lg:px-0">
           <Link href="/" className="hover:text-[#BC5633] transition-colors">
             Home
           </Link>
@@ -208,8 +199,8 @@ export default function ProductClient({ product, reviews }: ProductClientProps) 
         </div>
       </section>
 
-      <div className="relative z-10 px-4 lg:px-12">
-        <div className="container mx-auto px-[8px] lg:px-12">
+      <div className="relative z-10 px-2 lg:px-12">
+        <div className="container mx-auto px-0 lg:px-12">
           <div className="lg:grid lg:grid-cols-12 lg:gap-16 items-start">
             {/* --- LEFT: IMMERSIVE IMAGE --- */}
             <div className="lg:col-span-7 mb-8 lg:mb-0">
