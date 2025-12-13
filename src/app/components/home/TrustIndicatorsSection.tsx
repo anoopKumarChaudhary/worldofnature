@@ -12,17 +12,17 @@ import {
 
 const TrustIndicatorsSection = () => {
   const indicators = [
-  { icon: Leaf, text: "100% Natural" },
-  { icon: ShieldCheck, text: "No Chemicals" },
-  { icon: FlaskConical, text: "Lab Tested" },
-  { icon: HeartHandshake, text: "Ethically Sourced" },
-  { icon: PackageCheck, text: "Small-Batch Crafted" },
-  { icon: MapPin, text: "Made in India" },
-];
+    { icon: Leaf, text: "100% Natural" },
+    { icon: ShieldCheck, text: "No Chemicals" },
+    { icon: FlaskConical, text: "Lab Tested" },
+    { icon: HeartHandshake, text: "Ethically Sourced" },
+    { icon: PackageCheck, text: "Small-Batch Crafted" },
+    { icon: MapPin, text: "Made in India" },
+  ];
 
   return (
     <section className="relative bg-[#F8F6F1] border-b border-[rgba(26,33,24,0.12)]">
-      <div className="max-w-7xl mx-auto px-4 py-10 md:py-12">
+      <div className="max-w-7xl mx-auto px-2 md:px-4 py-10 md:py-12">
 
         {/* Desktop / Tablet */}
         <div className="hidden md:flex justify-center">
@@ -50,25 +50,25 @@ const TrustIndicatorsSection = () => {
         </div>
 
         {/* Mobile */}
-        <div className="grid grid-cols-2 gap-4 md:hidden">
+        <div className="grid grid-cols-2 gap-2 md:hidden">
           {indicators.map((item, index) => {
             const Icon = item.icon;
             return (
               <div
                 key={index}
                 className="
-                  flex items-center gap-3
-                  px-4 py-3
+                  flex items-center gap-2
+                  px-3 py-2.5
                   bg-white
                   border border-[rgba(26,33,24,0.12)]
                   shadow-sm
                 "
               >
                 <Icon
-                  className="w-5 h-5 text-[#B56B56]"
+                  className="w-4.5 h-4.5 text-[#B56B56]"
                   strokeWidth={1.5}
                 />
-                <span className="text-[11px] font-semibold uppercase tracking-wide text-[rgba(26,33,24,0.72)]">
+                <span className="text-[10.5px] font-semibold uppercase tracking-wide text-[rgba(26,33,24,0.72)] leading-tight">
                   {item.text}
                 </span>
               </div>
