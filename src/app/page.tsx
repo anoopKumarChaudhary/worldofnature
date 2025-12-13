@@ -1,4 +1,5 @@
 import HeroSection from "./components/home/HeroSection";
+import TrustIndicatorsSection from "./components/home/TrustIndicatorsSection";
 import PhilosophySection from "./components/home/PhilosophySection";
 import CollectionsSection from "./components/home/CollectionsSection";
 import RitualsSection from "./components/home/RitualsSection";
@@ -11,6 +12,7 @@ export default function HomePage() {
   return (
     <main className="relative min-h-screen bg-[#F2F3EE] text-[#1A2118] font-sans selection:bg-[#BC5633] selection:text-white overflow-x-hidden antialiased">
       <HeroSection />
+      <TrustIndicatorsSection />
       <PhilosophySection />
       <CollectionsSection />
       <RitualsSection />
