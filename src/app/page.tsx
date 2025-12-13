@@ -3,6 +3,7 @@ import TrustIndicatorsSection from "./components/home/TrustIndicatorsSection";
 import PhilosophySection from "./components/home/PhilosophySection";
 import CollectionsSection from "./components/home/CollectionsSection";
 import RitualsSection from "./components/home/RitualsSection";
+import WhyChooseUsSection from "./components/home/WhyChooseUsSection";
 import PhenologySection from "./components/home/PhenologySection";
 import ImpactSection from "./components/home/ImpactSection";
 // import ShopSection from "./components/home/ShopSection";
@@ -17,6 +18,7 @@ export default function HomePage() {
       <CollectionsSection />
       <RitualsSection />
       <PhenologySection />
+      <WhyChooseUsSection />
       {/* <ShopSection /> */}
       <ImpactSection />
       <ContactSection />
