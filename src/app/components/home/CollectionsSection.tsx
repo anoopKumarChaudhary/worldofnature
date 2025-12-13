@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowUpRight, ArrowRight, Grid3X3 } from "lucide-react";
+import { ArrowUpRight, ArrowRight, Grid3X3, Sparkles } from "lucide-react";
 
 // --- Types ---
 interface CollectionItem {
@@ -25,7 +25,7 @@ const COLLECTIONS: CollectionItem[] = [
     image: "/h1.png",
     desc: "Unfiltered wild harvest from Kashmir.",
     link: "/shop/honey",
-    className: "md:col-span-2 md:row-span-2", 
+    className: "md:col-span-2 md:row-span-2",
   },
   {
     id: "ghee",
@@ -126,23 +126,16 @@ const GridCard = ({ item }: { item: CollectionItem }) => {
       href={item.link}
       className={`
         group relative block overflow-hidden 
-        /* GRID & SIZING */
         w-full
-        h-[160px] md:h-auto
+        /* Mobile Aspect Ratio */
+        aspect-[4/5] md:aspect-auto md:h-full
         ${item.className || "md:col-span-1 md:row-span-1"}
         
-        /* SHAPE & BORDER */
-        rounded-none
-        
-        /* BASE COLOR */
         bg-[#1A2118]
-        
-        /* HOVER EFFECTS */
-        hover:z-10
+        rounded-sm
       `}
     >
-      {/* 1. IMAGE LAYER */}
-      <div className="absolute inset-0 w-full h-full">
+      <div className="absolute inset-0 w-full h-full overflow-hidden">
         <Image
           src={item.image}
           alt={item.label}
@@ -150,90 +143,92 @@ const GridCard = ({ item }: { item: CollectionItem }) => {
           sizes="(max-width: 768px) 50vw, 33vw"
           className="
             object-cover 
-            transition-transform duration-[0.8s] ease-out
-            scale-100 group-hover:scale-110
+            transition-transform duration-[0.8s] ease-[cubic-bezier(0.25,1,0.5,1)]
+            group-hover:scale-110
             opacity-90 group-hover:opacity-100
           "
         />
-        {/* Cinematic Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0F140E]/90 via-[#0F140E]/20 to-transparent transition-opacity duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0F140E]/95 via-[#0F140E]/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
       </div>
 
-      {/* 2. CONTENT LAYER */}
-      <div className="absolute inset-0 p-3 md:p-6 flex flex-col justify-end">
-        
-        {/* Floating Arrow (Desktop) */}
-        <div className="absolute top-4 right-4 translate-x-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-out hidden md:block">
-           <ArrowUpRight className="w-5 h-5 text-white" />
+      <div className="absolute inset-0 p-4 md:p-6 flex flex-col justify-between">
+        <div className="flex justify-end">
+          <div className="
+            w-8 h-8 rounded-full bg-white/10 backdrop-blur-md 
+            flex items-center justify-center
+            translate-y-[-10px] opacity-0 group-hover:translate-y-0 group-hover:opacity-100
+            transition-all duration-300 ease-out
+          ">
+            <ArrowUpRight className="w-4 h-4 text-white" />
+          </div>
         </div>
 
-        <div className="relative z-10 translate-y-1 md:translate-y-2 group-hover:translate-y-0 transition-transform duration-500 ease-out">
-          
-          {/* Tag - Clean Monospace Pill */}
+        <div className="translate-y-2 group-hover:translate-y-0 transition-transform duration-500 ease-out">
           <span className="
-            inline-block px-1.5 py-[2px] mb-2
-            bg-white/10 backdrop-blur-sm border border-white/10
-            font-mono text-[8px] md:text-[9px] font-bold uppercase tracking-[0.1em] text-white/90
+            inline-block px-2 py-1 mb-3
+            bg-white/10 backdrop-blur-md border border-white/10 rounded-sm
+            font-mono text-[9px] md:text-[10px] font-bold uppercase tracking-[0.15em] text-[#E0E0E0]
           ">
             {item.tag}
           </span>
           
-          {/* Title - Elegant Serif */}
           <h3 className="
-            font-serif text-[1.1rem] md:text-2xl text-[#F8F7F5] 
-            leading-none tracking-tight mb-1
+            font-serif text-xl md:text-3xl text-[#F8F7F5] 
+            leading-tight tracking-tight mb-2
           ">
             {item.label}
           </h3>
 
-          {/* Description - Desktop Only Reveal */}
-          <p className="
-            hidden md:block 
-            font-sans text-[11px] text-[#A9AB94]
-            leading-relaxed max-w-[95%] 
-            h-0 group-hover:h-auto overflow-hidden opacity-0 group-hover:opacity-100 
-            transition-all duration-500 delay-75
+          <div className="
+            grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-out
           ">
-            {item.desc}
-          </p>
+             <div className="overflow-hidden">
+                <p className="
+                  font-sans text-[11px] md:text-xs text-[#A9AB94]
+                  leading-relaxed max-w-[90%] opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100
+                ">
+                  {item.desc}
+                </p>
+             </div>
+          </div>
         </div>
       </div>
     </Link>
   );
 };
 
-// --- Archive Card (The "More" Button) ---
+// --- Archive Card ---
 const ArchiveCard = () => (
   <Link
     href="/shop"
     className="
-      group relative overflow-hidden rounded-none
-      w-full h-[160px] md:h-auto
+      group relative overflow-hidden
+      w-full aspect-[4/5] md:aspect-auto md:h-full
       md:col-span-1 md:row-span-1
       
-      /* Editorial Styling */
-      bg-[#EBECE8] /* Light Grey-Green */
-      hover:bg-[#1A2118] /* Invert on hover */
+      bg-[#E5E7EB] hover:bg-[#4A7C59]
+      rounded-sm
       
       flex flex-col justify-center items-center text-center p-4
       transition-colors duration-500 ease-out
     "
   >
-    <div className="relative z-10 flex flex-col items-center gap-4">
+    <div className="relative z-10 flex flex-col items-center gap-5">
        <div className="
-         w-12 h-12 rounded-full 
-         border border-[#1A2118]/20 group-hover:border-white/20
+         w-14 h-14 rounded-full 
+         border border-black/10 group-hover:border-white/20
          flex items-center justify-center 
-         bg-white group-hover:bg-[#1A2118]
+         bg-white group-hover:bg-white/10
          transition-all duration-500
+         group-hover:scale-110
        ">
-          <ArrowRight className="w-5 h-5 text-[#1A2118] group-hover:text-white transition-colors" />
+          <ArrowRight className="w-5 h-5 text-black group-hover:text-white transition-colors" />
        </div>
        <div>
-         <span className="font-mono text-[9px] font-bold uppercase tracking-[0.25em] text-[#1A2118]/60 group-hover:text-white/60 block mb-1 transition-colors">
-            Full Catalogue
+         <span className="font-mono text-[9px] font-bold uppercase tracking-[0.25em] text-black/40 group-hover:text-white/60 block mb-2 transition-colors">
+            Catalogue
          </span>
-         <span className="font-serif text-xl text-[#1A2118] group-hover:text-white italic transition-colors">
+         <span className="font-serif text-2xl text-black group-hover:text-white italic transition-colors">
             View All
          </span>
        </div>
@@ -244,45 +239,55 @@ const ArchiveCard = () => (
 // --- Main Section ---
 export default function CollectionsSection() {
   return (
-    // BG: Warm Cream / Off-White (#F9F8F6)
-    // REDUCED PADDING: py-8 on mobile (was py-16)
-    <section className="relative py-8 md:py-28 bg-[#F9F8F6] text-[#1A2118] overflow-hidden">
+    <section className="relative bg-[#F4F4F0] min-h-screen py-10 md:py-24">
       
-      {/* Texture: Subtle Grain */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-darken bg-[url('https://www.transparenttextures.com/patterns/dust.png')]"></div>
-
-      {/* Container: 8px padding on mobile */}
+      {/* CONTAINER UPDATE:
+         px-[8px] = 8px padding on left/right for mobile.
+         md:px-8 = Normal padding for desktop.
+      */}
       <div className="container mx-auto px-[8px] md:px-12 relative z-10">
         
-        {/* HEADER: Tighter Margins on Mobile */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-4 md:mb-12 gap-4 border-b border-[#1A2118]/10 pb-3 md:pb-6">
+        {/* HEADER */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 md:mb-14 gap-6 border-b border-[#1A2118]/10 pb-6">
           <div className="max-w-xl">
-            <div className="flex items-center gap-2 mb-2 md:mb-3">
+            <div className="flex items-center gap-2 mb-3">
                <Grid3X3 className="w-4 h-4 text-[#4A7C59]" />
                <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-[#4A7C59]">
                  The Inventory
                </span>
             </div>
-            <h2 className="font-serif text-3xl md:text-5xl text-[#1A2118] leading-[0.9] tracking-tight">
-              Wild <span className="italic text-[#4A7C59]">Essentials.</span>
+            <h2 className="font-serif text-4xl md:text-6xl text-[#1A2118] leading-[0.9] tracking-tight">
+              Wild <span className="italic font-light text-[#4A7C59]">Essentials.</span>
             </h2>
           </div>
-          <div className="hidden md:block text-right">
-             <span className="font-mono text-[10px] uppercase tracking-widest text-[#1A2118]/60 block mb-1">
-               Series 2025
-             </span>
-             <span className="font-serif text-lg italic text-[#1A2118]">
-               Curated Harvest
-             </span>
+          <div className="flex items-center gap-4 text-[#1A2118]/60">
+             <div className="hidden md:flex items-center gap-2 text-xs font-mono tracking-widest uppercase border border-[#1A2118]/10 px-3 py-1 rounded-full">
+               <Sparkles className="w-3 h-3" />
+               New Harvest 2025
+             </div>
           </div>
         </div>
 
-        {/* BENTO GRID */}
-        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[160px] md:auto-rows-[280px] gap-1.5 md:gap-3">
+        {/* GRID */}
+        <div className="
+          grid grid-cols-2 md:grid-cols-4 
+          auto-rows-auto md:auto-rows-[280px] 
+          gap-1.5 md:gap-2
+        ">
           {COLLECTIONS.map((item) => (
             <GridCard key={item.id} item={item} />
           ))}
           <ArchiveCard />
+        </div>
+        
+        {/* Footer Note */}
+        <div className="mt-6 flex justify-between items-center opacity-40">
+           <p className="font-mono text-[9px] uppercase tracking-widest">
+             © 2025 Nature World
+           </p>
+           <p className="font-mono text-[9px] uppercase tracking-widest">
+             Scroll to explore
+           </p>
         </div>
 
       </div>
