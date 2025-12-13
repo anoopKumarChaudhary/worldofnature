@@ -162,7 +162,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
     selectedRating !== null;
 
   return (
-    <div className="relative min-h-screen text-[#1A2118] font-sans selection:bg-[#B56B56] selection:text-white overflow-x-hidden pb-12">
+    <div className="relative min-h-screen text-[#1A2118] font-sans selection:bg-[#B56B56] selection:text-white pb-12">
       {/* --- STYLES & ANIMATIONS --- */}
       <style jsx>{`
         @keyframes blob {
@@ -286,7 +286,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
       <div className="fixed inset-0 z-0 pointer-events-none bg-[#D9DBD5]" />
 
       {/* --- Header --- */}
-      <section className="relative pt-16 lg:pt-32 pb-4 lg:pb-6 z-10">
+      <section className="relative pt-16 lg:pt-20 pb-4 lg:pb-6 z-10">
         <div className="container-custom mx-auto">
           <div className="flex items-center gap-3 mb-3">
             <div className="h-2 w-2 bg-[#B56B56] rounded-full animate-pulse"></div>
@@ -302,7 +302,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
 
       <div className="container-custom mx-auto relative z-10">
         {/* --- Control Bar --- */}
-        <div className="sticky top-20 z-[90] mb-4 lg:mb-6 transition-all duration-300">
+        <div className="mb-4 lg:mb-6 transition-all duration-300">
           <div className="flex flex-row gap-3 items-center justify-between">
             {/* Search Input */}
             <div className="relative flex-1 group">
@@ -377,11 +377,11 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
           />
           
           <aside
-            className={`fixed bottom-0 left-0 right-0 lg:static lg:w-80 bg-white/80 backdrop-blur-2xl lg:backdrop-blur-xl z-[9999] lg:z-0 rounded-t-sm lg:rounded-sm border-t lg:border border-white/40 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] lg:shadow-none transition-transform duration-500 cubic-bezier(0.32, 0.72, 0, 1) ${
+            className={`fixed bottom-0 left-0 right-0 lg:sticky lg:top-36 lg:w-80 bg-white/80 backdrop-blur-2xl lg:backdrop-blur-xl z-[9999] lg:z-0 rounded-t-sm lg:rounded-sm border-t lg:border border-white/40 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] lg:shadow-none transition-transform duration-500 cubic-bezier(0.32, 0.72, 0, 1) ${
               isFilterOpen
                 ? "translate-y-0"
                 : "translate-y-full lg:translate-y-0"
-            } max-h-[75vh] lg:max-h-none overflow-hidden flex flex-col`}
+            } max-h-[75vh] lg:max-h-[calc(100vh-10rem)] overflow-hidden flex flex-col`}
           >
             {/* Mobile Drag Handle */}
             <div className="lg:hidden w-full flex justify-center pt-4 pb-2" onClick={() => setIsFilterOpen(false)}>
@@ -420,7 +420,7 @@ const ShopClient = ({ initialProducts }: ShopClientProps) => {
             </div>
 
             {/* Scrollable Content */}
-            <div className="overflow-y-auto p-4 lg:p-8 space-y-8 flex-1">
+            <div className="overflow-y-auto p-4 lg:p-8 space-y-8 flex-1 hide-scrollbar">
               {/* Mobile Sort Options */}
               <div className="lg:hidden space-y-4">
                 <h3 className="text-xs font-bold uppercase tracking-widest text-[#1A2118]/40 ml-1">
